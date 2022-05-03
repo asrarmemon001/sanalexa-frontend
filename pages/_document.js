@@ -18,20 +18,15 @@ export default function Document() {
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
                 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500&display=swap" rel="stylesheet"/>
                 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
-              
-              
                 <link rel="stylesheet" href="/static/css/bootstrap.css"/>
-                <link rel="stylesheet" href="/static/css/style.css"/>`}} />
+                <link rel="stylesheet" href="/static/css/style.css"/>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>                 
+                <script src="/static/js/custom.js"></script>
+                `}} />
 
             <body>
                 <Main />
-                <NextScript />
-                {/* <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> */}
-                {/*
-                <script src="/static/js/owl.carousel.min.js"></script> */}
-                 {/* <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> */}
-                
-                {/* <script src="/static/js/custom.js"></script> */}
+                <NextScript />               
             </body>
         </Html>
     )
