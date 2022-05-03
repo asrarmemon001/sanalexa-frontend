@@ -1,11 +1,24 @@
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { plateformList } from "../../../../utils/plateform";
+import { projectList } from "../../../../utils/api-Request";
+import { ImageBaseUrl } from "../../../../utils/Baseurl"
 
 
 export default function GetStarted() {
 
+
   const [plateformFilterShow, setPlateformFilterShow] = useState(false)
   const [industryFilterShow, setIndustryFilterShow] = useState(false)
+  const [ page, setPage ] = useState(1)
+  const [ limit, setLimit ] = useState(6)
+  const [ search, setSearch ] = useState("")
+  const [ loadingIs, setLoading ] = useState(false)
+  const [ projectListIs, setProjectList ] = useState([])
+
+  const handleOnChange = (event) => {
+    setSearch(event.target.value)
+  }
 
   const togglePlateformFilter = () => {
     setPlateformFilterShow(!plateformFilterShow)
@@ -14,6 +27,26 @@ export default function GetStarted() {
   const toggleIndustryFilter = () => {
     setIndustryFilterShow(!industryFilterShow)
   }
+
+  const getProjectList = async() => {
+    const data = { page, limit, search }
+    setLoading(true)
+    const list = await projectList(data)
+    const response = list?.data?.data
+    if(response){
+      setLoading(false)
+      setProjectList(response)
+    }
+  }
+
+  useEffect(() => {
+    getProjectList()
+  },[search])
+
+  useEffect(() =>{
+    getProjectList()
+  },[])
+
   return (
     <section className="couressto">
       <div className="container">
@@ -42,33 +75,16 @@ export default function GetStarted() {
                           <i className="fa fa-desktop" aria-hidden="true"></i> <span className="platform">Platform</span>
                           <i className="fa fa-angle-down" aria-hidden="true"></i></div>
                         <div className="filterbut">
-                          <label className="control" for="Virtul">
-                            <input type="checkbox" name="topics" id="Virtul" />
-                            <span className="control__content">
-                              Virtul Reality (VR)
-                            </span>
-                          </label>
-
-                          <label className="control" for="destop">
-                            <input type="checkbox" name="topics" id="destop" />
-                            <span className="control__content">
-                              Destop
-                            </span>
-                          </label>
-                          <label className="control" name="WebGL">
-                            <input type="checkbox" name="topics" id="WebGL" />
-                            <span className="control__content">
-
-                              WebGL
-                            </span>
-                          </label>
-                          <label className="control" name="mobile">
-                            <input type="checkbox" name="topics" id="mobile" />
-                            <span className="control__content">
-                              Mobile
-                            </span>
-                          </label>
-
+                          {plateformList?.map((obj, index) => {
+                            return(
+                              <label className="control" for={obj?.name} key={index}>
+                                <input type="checkbox" name="topics" id={obj?.id} />
+                                <span className="control__content">
+                                  {obj?.name}
+                                </span>
+                              </label>
+                            )
+                          })}
                         </div>
 
                       </li>
@@ -156,143 +172,48 @@ export default function GetStarted() {
               </div>
             </div>
           </div>
-
+          
+          {/* Projects************************ */}
 
           <div className="col-lg-9 col-md-8">
 
             <div className="search-container" data-aos="fade-up">
               <i className="fa fa-search" aria-hidden="true"></i>
-              <input type="text" placeholder=" Search Keywords" name="search" />
+              <input type="text" placeholder=" Search Keywords" name="search" value={search} onChange={handleOnChange}/>
 
             </div>
 
-
-
             <div className="row mb-4">
-              <div className=" col-lg-4 col-md-6 mb-4">
-                <div className="pharmaceutical-box" data-aos="fade-right">
-                  <figure>
-                    <img src="/static/images/course.png" />
-                    <h5 className="Pharmacepo">Pharmaceutical</h5>
-                  </figure>
-                  <div className="pharmaceutical-contant">
-                    <h4>Good Manufacturing Practices(Gmp)</h4>
-                    <h3><span>$24.99</span></h3>
+              {loadingIs ? 
+                <div className="spinner-border text-primary" role="status">
+                  <span className="sr-only">Loading...</span>
+                </div> :
+                projectListIs?.length > 0 ? 
+                projectListIs.map((obj,index) => {
+                  return(
+                    <div className=" col-lg-4 col-md-6 mb-4" key={index}>
+                      <div className="pharmaceutical-box" data-aos="fade-right">
+                        <figure>
+                          <img src={ImageBaseUrl + obj?.bannerImage} />
+                          <h5 className="Pharmacepo">{obj?.sector?.name}</h5>
+                        </figure>
+                        <div className="pharmaceutical-contant">
+                          <h4>{obj?.projectTitle}</h4>
+                          <h3><span>${obj?.price}</span></h3>
 
-                    <div className="buttons">
-                      <button className="carts"><i className="fa fa-plus" aria-hidden="true"></i> <i className="fa fa-shopping-cart"
-                        aria-hidden="true"></i> </button>
-                      <button href="#" className="addtubul">Add to Bundle</button>
+                          <div className="buttons">
+                            <button className="carts"><i className="fa fa-plus" aria-hidden="true"></i> <i className="fa fa-shopping-cart"
+                              aria-hidden="true"></i> </button>
+                            <button href="#" className="addtubul">Add to Bundle</button>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-              </div>
+                  )
+                }): "Projects not found...."
+                }
 
-
-
-              <div className=" col-lg-4 col-md-6 mb-4">
-                <div className="pharmaceutical-box" data-aos="fade-up">
-                  <figure>
-                    <img src="/static/images/course.png" />
-                    <h5 className="Pharmacepo">Pharmaceutical</h5>
-                  </figure>
-                  <div className="pharmaceutical-contant">
-                    <h4>Good Manufacturing Practices(Gmp)</h4>
-                    <h3><span>$24.99</span></h3>
-
-                    <div className="buttons">
-                      <button className="carts"><i className="fa fa-plus" aria-hidden="true"></i> <i className="fa fa-shopping-cart"
-                        aria-hidden="true"></i> </button>
-                      <button href="#" className="addtubul">Add to Bundle</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-
-              <div className=" col-lg-4 col-md-6 mb-4">
-                <div className="pharmaceutical-box" data-aos="fade-left">
-                  <figure>
-                    <img src="/static/images/course.png" />
-                    <h5 className="Pharmacepo">Pharmaceutical</h5>
-                  </figure>
-                  <div className="pharmaceutical-contant">
-                    <h4>Good Manufacturing Practices(Gmp)</h4>
-                    <h3><span>$24.99</span></h3>
-
-                    <div className="buttons">
-                      <button className="carts"><i className="fa fa-plus" aria-hidden="true"></i> <i className="fa fa-shopping-cart"
-                        aria-hidden="true"></i> </button>
-                      <button href="#" className="addtubul">Add to Bundle</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-
-
-
-              <div className=" col-lg-4 col-md-6 mb-4">
-                <div className="pharmaceutical-box" data-aos="fade-right">
-                  <figure>
-                    <img src="/static/images/course.png" />
-                    <h5 className="Pharmacepo">Pharmaceutical</h5>
-                  </figure>
-                  <div className="pharmaceutical-contant">
-                    <h4>Good Manufacturing Practices(Gmp)</h4>
-                    <h3><span>$24.99</span></h3>
-
-                    <div className="buttons">
-                      <button className="carts"><i className="fa fa-plus" aria-hidden="true"></i> <i className="fa fa-shopping-cart"
-                        aria-hidden="true"></i> </button>
-                      <button href="#" className="addtubul">Add to Bundle</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-
-
-              <div className=" col-lg-4 col-md-6 mb-4">
-                <div className="pharmaceutical-box" data-aos="fade-up">
-                  <figure>
-                    <img src="/static/images/course.png" />
-                    <h5 className="Pharmacepo">Pharmaceutical</h5>
-                  </figure>
-                  <div className="pharmaceutical-contant">
-                    <h4>Good Manufacturing Practices(Gmp)</h4>
-                    <h3><span>$24.99</span></h3>
-
-                    <div className="buttons">
-                      <button className="carts"><i className="fa fa-plus" aria-hidden="true"></i> <i className="fa fa-shopping-cart"
-                        aria-hidden="true"></i> </button>
-                      <button href="#" className="addtubul">Add to Bundle</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-
-              <div className=" col-lg-4 col-md-6 mb-4">
-                <div className="pharmaceutical-box" data-aos="fade-left">
-                  <figure>
-                    <img src="/static/images/course.png" />
-                    <h5 className="Pharmacepo">Pharmaceutical</h5>
-                  </figure>
-                  <div className="pharmaceutical-contant">
-                    <h4>Good Manufacturing Practices(Gmp)</h4>
-                    <h3><span>$24.99</span></h3>
-
-                    <div className="buttons">
-                      <button className="carts"><i className="fa fa-plus" aria-hidden="true"></i> <i className="fa fa-shopping-cart"
-                        aria-hidden="true"></i> </button>
-                      <button href="#" className="addtubul">Add to Bundle</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="pagination">
+              {/* <div className="pagination">
                 <Link href="#"><a><i className="fa fa-angle-left" aria-hidden="true"></i></a></Link>
                 <Link href="#"><a>1</a></Link>
                 <Link href="#"><a className="active">2</a></Link>
@@ -301,9 +222,10 @@ export default function GetStarted() {
                 <Link href="#"><a>5</a></Link>
                 <Link href="#"><a>6</a></Link>
                 <Link href="#"><a><i className="fa fa-angle-right" aria-hidden="true"></i></a></Link>
-              </div>
+              </div> */}
             </div>
           </div>
+          {/* Projects************************ */}
         </div>
       </div>
     </section>
