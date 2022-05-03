@@ -5,7 +5,7 @@ import HomePageTemplate from "../templates/home";
 export default function Home() {
   return (
     <Layout>
-      <HomePageTemplate />
+      {/* <HomePageTemplate /> */}
     </Layout>
   )
 }
