@@ -1,9 +1,11 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { plateformList } from "../../../../utils/plateform";
+import { ImageBaseUrl } from "../../../../utils/Baseurl";
 import { projectList } from "../../../../utils/api-Request";
-import { ImageBaseUrl } from "../../../../utils/Baseurl"
-
+import { Loader } from "../../../../components/Loader/Loader";
+import { NoDataFound } from "../../../../components/NoDataFound/NoDataFound";
+import ReactPaginate from 'react-paginate';
 
 export default function GetStarted() {
 
@@ -11,13 +13,19 @@ export default function GetStarted() {
   const [plateformFilterShow, setPlateformFilterShow] = useState(false)
   const [industryFilterShow, setIndustryFilterShow] = useState(false)
   const [ page, setPage ] = useState(1)
-  const [ limit, setLimit ] = useState(6)
+  const [ limit, setLimit ] = useState(5)
+  const [ totalPages, setTotalPages ] = useState(0)
   const [ search, setSearch ] = useState("")
   const [ loadingIs, setLoading ] = useState(false)
   const [ projectListIs, setProjectList ] = useState([])
 
+
   const handleOnChange = (event) => {
     setSearch(event.target.value)
+  }
+
+  const handlePageClick = (data) => {
+    setPage(data?.selected +1)
   }
 
   const togglePlateformFilter = () => {
@@ -35,9 +43,14 @@ export default function GetStarted() {
     const response = list?.data?.data
     if(response){
       setLoading(false)
+      setTotalPages(list?.data?.totalPages)
       setProjectList(response)
     }
   }
+
+  useEffect(() => {
+    getProjectList()
+  },[page])
 
   useEffect(() => {
     getProjectList()
@@ -185,9 +198,7 @@ export default function GetStarted() {
 
             <div className="row mb-4">
               {loadingIs ? 
-                <div className="spinner-border text-primary" role="status">
-                  <span className="sr-only">Loading...</span>
-                </div> :
+                <Loader /> :
                 projectListIs?.length > 0 ? 
                 projectListIs.map((obj,index) => {
                   return(
@@ -210,8 +221,20 @@ export default function GetStarted() {
                       </div>
                     </div>
                   )
-                }): "Projects not found...."
+                }): <NoDataFound />
                 }
+
+                {/* Pagination *********************** */}
+                <ReactPaginate
+                  breakLabel="..."
+                  nextLabel="next"
+                  onPageChange={handlePageClick}
+                  pageRangeDisplayed={5}
+                  pageCount={totalPages}
+                  previousLabel="previous"
+                  renderOnZeroPageCount={null}
+                />
+
 
               {/* <div className="pagination">
                 <Link href="#"><a><i className="fa fa-angle-left" aria-hidden="true"></i></a></Link>

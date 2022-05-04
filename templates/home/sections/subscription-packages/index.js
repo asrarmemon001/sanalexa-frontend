@@ -1,6 +1,28 @@
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import Slider from "react-slick";
+import { packageList } from "../../../../utils/api-Request";
+import { ImageBaseUrl } from "../../../../utils/Baseurl";
+import { Loader } from "../../../../components/Loader/Loader";
+import { NoDataFound } from "../../../../components/NoDataFound/NoDataFound";
+
 export default function SubscriptionPackages() {
+    const [ packListIs, setPackList ] = useState([])
+    const [ loadingIs , setLoading ] = useState(false)
+
+    const getPackageList = async() => {
+        setLoading(true)
+        const list = await packageList()
+        const response = list?.data?.data
+        if(response){
+           setLoading(false)
+           setPackList(response)
+        }
+    }
+
+    useEffect(() => {
+      getPackageList()
+    },[])
 
     function NextArrow(props) {
         const { onClick } = props;
@@ -60,7 +82,25 @@ export default function SubscriptionPackages() {
             </div>
             <div className="rowCantainer">
                 <Slider {...settings} className="packegeSlider owl-carousel">
-                    <div className="packageItem px-3 mb-2">
+                    {loadingIs ?
+                    <Loader />:
+                    packListIs?.length > 0 ?
+                    packListIs?.map((obj, index) => {
+                        return(
+                            <div className="packageItem px-3 mb-2" key={index}>
+                                <figure className="package-img" style={{ backgroundImage: `url(${ImageBaseUrl + obj?.bannerImage})` }} />
+                                <div className="content-area text-center">
+                                    <h3>{obj?.packagesName}</h3>
+                                    <Link href="#">
+                                        <a className="button-download-launcher border-only">Pay & Subscription</a>
+                                    </Link>
+                                </div>
+                            </div>
+                        )
+                    }):
+                    <NoDataFound />
+                    }
+                    {/* <div className="packageItem px-3 mb-2">
                         <figure className="package-img" style={{ backgroundImage: 'url(/static/images/first-package.jpg)' }} />
                         <div className="content-area text-center">
                             <h3>Oil & Gas Package </h3>
@@ -115,7 +155,7 @@ export default function SubscriptionPackages() {
                                 <a className="button-download-launcher border-only">Pay & Subscription</a>
                             </Link>
                         </div>
-                    </div>
+                    </div> */}
                 </Slider>
             </div>
         </div>
