@@ -50,15 +50,8 @@ export default function GetStarted() {
 
   useEffect(() => {
     getProjectList()
-  },[page])
+  },[page, search])
 
-  useEffect(() => {
-    getProjectList()
-  },[search])
-
-  useEffect(() =>{
-    getProjectList()
-  },[])
 
   return (
     <section className="couressto">
@@ -225,27 +218,21 @@ export default function GetStarted() {
                 }
 
                 {/* Pagination *********************** */}
-                <ReactPaginate
+              <div className="col-12">
+              <ReactPaginate
                   breakLabel="..."
-                  nextLabel="next"
+                  className="pagination"
+                  nextLabel={<i className="fa fa-angle-right" aria-hidden="true"></i>}
                   onPageChange={handlePageClick}
                   pageRangeDisplayed={5}
                   pageCount={totalPages}
-                  previousLabel="previous"
+                  previousLabel={<i className="fa fa-angle-left" aria-hidden="true"></i>}
                   renderOnZeroPageCount={null}
                 />
+              </div>
 
 
-              {/* <div className="pagination">
-                <Link href="#"><a><i className="fa fa-angle-left" aria-hidden="true"></i></a></Link>
-                <Link href="#"><a>1</a></Link>
-                <Link href="#"><a className="active">2</a></Link>
-                <Link href="#"><a>3</a></Link>
-                <Link href="#"><a>4</a></Link>
-                <Link href="#"><a>5</a></Link>
-                <Link href="#"><a>6</a></Link>
-                <Link href="#"><a><i className="fa fa-angle-right" aria-hidden="true"></i></a></Link>
-              </div> */}
+         
             </div>
           </div>
           {/* Projects************************ */}

@@ -719,17 +719,17 @@ section{
     }
 /****************pagination*****************/
 .pagination {
-    display: inline-block;
-    margin: 0px 0px 0px 15px;
+    display: flex; 
     background: #FBF9F9;
     border-radius: 6px;
-    padding: 5px 10px;
+    padding: 5px 0px;
+    width: 100%;
 }
 .filterkey li:last-child {
     padding: 0;
 }
 .pagination a {
-    float: left;
+    /* float: left; */
     padding: 8px 15px;
     text-decoration: none;
     font-family: 'Montserrat';
@@ -740,7 +740,7 @@ section{
     color: #5C5656;
 }
   
-.pagination a.active {
+.pagination li.selected{
     color: #ff8b75;
 }
 .filter-title i.fa.fa-sliders {
