@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { plateformList } from "../../../../utils/plateform";
 import { ImageBaseUrl } from "../../../../utils/Baseurl";
-import { projectList } from "../../../../utils/api-Request";
+import { projectList, sectorList } from "../../../../utils/api-Request";
 import { Loader } from "../../../../components/Loader/Loader";
 import { NoDataFound } from "../../../../components/NoDataFound/NoDataFound";
 import ReactPaginate from 'react-paginate';
@@ -18,6 +18,9 @@ export default function GetStarted() {
   const [ search, setSearch ] = useState("")
   const [ loadingIs, setLoading ] = useState(false)
   const [ projectListIs, setProjectList ] = useState([])
+  const [ plateform, setplateform ] = useState([])
+  const [ sector , setSector ] = useState([])
+  const [ sectorListIs, setSectorList ] = useState([])
 
 
   const handleOnChange = (event) => {
@@ -36,6 +39,14 @@ export default function GetStarted() {
     setIndustryFilterShow(!industryFilterShow)
   }
 
+  const getSectorList = async() => {
+    const list = await sectorList()
+    const response = list?.data?.data
+    if(response){
+      setSectorList(response)
+    }
+  }
+
   const getProjectList = async() => {
     const data = { page, limit, search }
     setLoading(true)
@@ -47,10 +58,16 @@ export default function GetStarted() {
       setProjectList(response)
     }
   }
+  
 
   useEffect(() => {
     getProjectList()
   },[page, search])
+
+
+  useEffect(() => {
+    getSectorList()
+  },[])
 
 
   return (
@@ -84,7 +101,7 @@ export default function GetStarted() {
                           {plateformList?.map((obj, index) => {
                             return(
                               <label className="control" for={obj?.name} key={index}>
-                                <input type="checkbox" name="topics" id={obj?.id} />
+                                <input type="checkbox" name={obj?.name} id={obj?.id} />
                                 <span className="control__content">
                                   {obj?.name}
                                 </span>
@@ -99,68 +116,16 @@ export default function GetStarted() {
                         <div className="plus" onClick={toggleIndustryFilter}><i className="fa fa-industry" aria-hidden="true"></i> <span className="platform">Industrie
                           specific</span> <i className="fa fa-angle-down" aria-hidden="true"></i></div>
                         <div className="filterbut">
-                          <label className="control" for="Automobile">
-                            <input type="checkbox" name="topics" id="Automobile" />
-                            <span className="control__content">
-                              Automobile
-                            </span>
-                          </label>
-
-                          <label className="control" for="Automation">
-                            <input type="checkbox" name="topics" id="Automation" />
-                            <span className="control__content">
-                              Automation
-                            </span>
-                          </label>
-                          <label className="control" name="Pharmaceutical">
-                            <input type="checkbox" name="topics" id="Pharmaceutical" />
-                            <span className="control__content">
-
-                              Pharmaceutical
-                            </span>
-                          </label>
-                          <label className="control" name="mobile">
-                            <input type="checkbox" name="topics" id="mobile" />
-                            <span className="control__content">
-                              Oil and Gas
-                            </span>
-                          </label>
-                          <label className="control" name="gas">
-                            <input type="checkbox" name="topics" id="gas" />
-                            <span className="control__content">
-                              Manufacturing
-                            </span>
-                          </label>
-                          <label className="control" name="Safety">
-                            <input type="checkbox" name="topics" id="Safety" />
-                            <span className="control__content">
-                              Safety
-                            </span>
-                          </label>
-                          <label className="control" name="Maintenance">
-                            <input type="checkbox" name="topics" id="Maintenance" />
-                            <span className="control__content">
-                              Maintenance
-                            </span>
-                          </label>
-
-                          <label className="control" name="Contraction">
-                            <input type="checkbox" name="topics" id="Contraction" />
-                            <span className="control__content">
-                              Contraction
-                            </span>
-                          </label>
-                          <label className="control" name="Paint">
-                            <input type="checkbox" name="topics" id="Paint" />
-                            <span className="control__content">
-                              Paint
-                            </span>
-                          </label>
-                          <label className="control" name="Contraction">
-                            <input type="checkbox" name="topics" id="Contraction" />
-                            <span className="control__content">
-                              Contraction </span>
-                          </label>
+                          {sectorListIs?.map((obj, index) => {
+                            return(
+                              <label className="control" for={obj?.id} key={index}>
+                                <input type="checkbox" name={obj?.name} id={obj?.id} />
+                                <span className="control__content">
+                                  {obj?.name}
+                                </span>
+                              </label>
+                            )
+                          })}
                         </div>
 
                       </li>
