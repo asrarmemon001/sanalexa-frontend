@@ -27,6 +27,39 @@ export default function GetStarted() {
     setSearch(event.target.value)
   }
 
+  const getPlateform = (event) => {
+    const { value, checked } = event.target;
+    let data = plateform
+    if(checked){
+      data.push(value)
+    }else{
+      data.pop(value)
+    }
+    setplateform(data)
+    getProjectList()
+  }
+
+  const getSectors = (event) =>{
+    const { value, checked } = event.target;    
+    let data = sector
+    if(checked){
+      data.push(value)
+    }else{
+      data.pop(value)
+    }
+    setSector(data)
+    getProjectList()
+  }
+
+
+  const handleFilterChange = (event, status) => {
+    if(status === "plateform"){
+      getPlateform(event)     
+    }else if(status === "sector"){
+      getSectors(event)
+    }
+  }
+
   const handlePageClick = (data) => {
     setPage(data?.selected +1)
   }
@@ -48,7 +81,7 @@ export default function GetStarted() {
   }
 
   const getProjectList = async() => {
-    const data = { page, limit, search }
+    const data = { page, limit, search, plateform, sector }
     setLoading(true)
     const list = await projectList(data)
     const response = list?.data?.data
@@ -62,7 +95,7 @@ export default function GetStarted() {
 
   useEffect(() => {
     getProjectList()
-  },[page, search])
+  },[page, search, plateform, sector])
 
 
   useEffect(() => {
@@ -100,8 +133,8 @@ export default function GetStarted() {
                         <div className="filterbut">
                           {plateformList?.map((obj, index) => {
                             return(
-                              <label className="control" for={obj?.name} key={index}>
-                                <input type="checkbox" name={obj?.name} id={obj?.id} />
+                              <label className="control" for={obj?.id} key={index}>
+                                <input type="checkbox" name={obj?.name} value={obj?.id} id={obj?.id} onChange={(e) => handleFilterChange(e,"plateform")}/>
                                 <span className="control__content">
                                   {obj?.name}
                                 </span>
@@ -119,7 +152,7 @@ export default function GetStarted() {
                           {sectorListIs?.map((obj, index) => {
                             return(
                               <label className="control" for={obj?.id} key={index}>
-                                <input type="checkbox" name={obj?.name} id={obj?.id} />
+                                <input type="checkbox" name={obj?.name} value={obj?.id} id={obj?.id} onChange={(e) => handleFilterChange(e, "sector")}/>
                                 <span className="control__content">
                                   {obj?.name}
                                 </span>

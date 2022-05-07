@@ -1,7 +1,7 @@
-import { getApiWithoutToken } from "./api-interface";
+import { getApiWithoutToken, postApiWithoutToken } from "./api-interface";
 
 export const projectList = (data) =>{
-   const res =  getApiWithoutToken(`/api/projects/web/list?limit=${data.limit}&page=${data.page}&search=${data.search}`)
+   const res =  postApiWithoutToken(`/api/projects/web/list`, data)
    return res
 }
 
