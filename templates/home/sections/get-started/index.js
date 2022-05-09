@@ -13,7 +13,7 @@ export default function GetStarted() {
   const [plateformFilterShow, setPlateformFilterShow] = useState(false)
   const [industryFilterShow, setIndustryFilterShow] = useState(false)
   const [ page, setPage ] = useState(1)
-  const [ limit, setLimit ] = useState(5)
+  const [ limit, setLimit ] = useState(15)
   const [ totalPages, setTotalPages ] = useState(0)
   const [ search, setSearch ] = useState("")
   const [ loadingIs, setLoading ] = useState(false)

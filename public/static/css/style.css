@@ -170,7 +170,7 @@ img {
     padding: 0;
 }
 
-.mideel-mene ul.varymenu li a.sinup {
+.mideel-mene ul.varymenu li .sinup {
     background: #CA373C;
     border-radius: 21px;
     font-size: 17px;
@@ -179,7 +179,7 @@ img {
     padding: 10px 25px;
     transition: 0.5s all;
 }
-.mideel-mene ul.varymenu li a.sinup:hover {
+.mideel-mene ul.varymenu li .sinup:hover {
     color: #fff;
     box-shadow: 277px 0 0 0 #313b79 inset;
 }
@@ -1048,7 +1048,7 @@ footer {
     .mideel-mene ul.varymenu li a, .mideel-mene ul.varymenu li .link { 
         font-size: 20px; 
     }
-    .mideel-mene ul.varymenu li a.sinup { 
+    .mideel-mene ul.varymenu li .sinup { 
         font-size: 15px; 
         padding: 8px 20px;
     }
@@ -1196,7 +1196,7 @@ footer {
         .mideel-mene ul.list-menu li a { 
             font-size: 15px; 
         }
-        .mideel-mene ul.varymenu li a.sinup { 
+        .mideel-mene ul.varymenu li .sinup { 
             padding: 8px 15px;
         }
         .mideel-mene ul li {

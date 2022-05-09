@@ -1,12 +1,74 @@
+import { CircularProgress } from "@mui/material"
 import Link from "next/link"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { toast } from "react-toastify"
+import Login from "../../templates/login"
+import Signup from "../../templates/signup"
+import { getUser } from "../../utils/api-Request"
+import { getToken, removeToken } from "../../utils/constants"
 
 const Header = () => {
+    const [isLoggedin, setIsLoggedin] = useState(false)
+    const [user, setUser] = useState({
+        loading: false,
+        data: null,
+        status: 0,
+        message: ""
+    })
     const [activeSearch, setActiveSearch] = useState(false)
+    const [modal, setModal] = useState(false)
+    const logout = () => {
+        setIsLoggedin(false)
+        setUser({
+            loading: false,
+            data: null,
+            status: 0,
+            message: ""
+        })
+        removeToken()
 
+    }
+    const handleModal = (action) => {
+        setModal(action)
+    }
     const toggleSearchShow = () => {
         setActiveSearch(!activeSearch)
     }
+
+    const fetchUserDetails = async () => {
+        try {
+            setUser((v) => ({
+                ...v,
+                loading: true
+            }))
+            const res = await getUser()
+            if (res.status == 200) {
+                setUser((v) => ({
+                    ...v,
+                    loading: false,
+                    data: res.data
+                }))
+            }
+        } catch (error) {
+            toast.error(error.response.data.message || error.response.statusText);
+            setUser((v) => ({
+                ...v,
+                loading: false
+            }))
+        }
+    }
+
+    useEffect(() => {
+        if (isLoggedin && !user?.data) {
+
+            fetchUserDetails()
+        }
+    }, [isLoggedin])
+
+    useEffect(() => {
+        setIsLoggedin(Boolean(getToken()))
+    }, [])
+
     return (
         <header>
             <div className="main-header">
@@ -70,9 +132,16 @@ const Header = () => {
                                 </li>
 
                                 <li>
-                                    <Link href="/">
-                                        <a className="sinup">Sing up</a>
-                                    </Link>
+                                    {user.loading
+                                        ?
+                                        <CircularProgress />
+                                        :
+                                        user.data
+                                            ?
+                                            <button className="btn sinup" onClick={logout}>Logout</button>
+                                            :
+                                            <button className="btn sinup" onClick={() => handleModal('signup')}>Signup</button>}
+
                                 </li>
                                 <li>
                                     <Link href="/">
@@ -99,6 +168,8 @@ const Header = () => {
                     </div>
                 </div>
             </div>
+            <Signup show={modal == "signup"} handleModal={handleModal} setIsLoggedin={setIsLoggedin} />
+            <Login show={modal == "login"} handleModal={handleModal} setIsLoggedin={setIsLoggedin} />
         </header>
 
     )

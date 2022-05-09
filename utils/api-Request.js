@@ -1,21 +1,30 @@
-import { getApiWithoutToken, postApiWithoutToken } from "./api-interface";
+import { getApi, getApiWithoutToken, postApiWithoutToken } from "./api-interface";
 
 export const projectList = (data) =>{
-   const res =  postApiWithoutToken(`/api/projects/web/list`, data)
-   return res
+   return postApiWithoutToken(`/api/projects/web/list`, data)
 }
 
 export const projectListFeatured = (data) =>{
-   const res =  getApiWithoutToken(`/api/projects/web/featured-list?limit=${data.limit}&page=${data.page}&search=${data.search}`)
-   return res
+   return getApiWithoutToken(`/api/projects/web/featured-list?limit=${data.limit}&page=${data.page}&search=${data.search}`)
 }
 
 export const packageList = (data) =>{
-   const res =  getApiWithoutToken(`/api/packages/web/list`)
-   return res
+   return getApiWithoutToken(`/api/packages/web/list`)
 }
 
 export const sectorList = () => {
-   const res = getApiWithoutToken(`/api/sectors/web/list`)
-   return res
+   return getApiWithoutToken(`/api/sectors/web/list`)
+}
+
+
+export const loginUser = (data) =>{
+   return postApiWithoutToken(`/api/webUser/login`, data)
+}
+
+export const registerUser = (data) =>{
+   return postApiWithoutToken(`/api/webUser/register`, data)
+}
+
+export const getUser = (data) =>{
+   return getApi(`/api/users/getuser`)
 }
