@@ -1,13 +1,15 @@
 import { CircularProgress } from "@mui/material"
 import Link from "next/link"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import { toast } from "react-toastify"
 import Login from "../../templates/login"
 import Signup from "../../templates/signup"
 import { getUser } from "../../utils/api-Request"
 import { getToken, removeToken } from "../../utils/constants"
+import AppContext from "../../appContext/index"
 
 const Header = () => {
+    const {state} = useContext(AppContext)
     const [isLoggedin, setIsLoggedin] = useState(false)
     const [user, setUser] = useState({
         loading: false,
@@ -125,7 +127,7 @@ const Header = () => {
                                 <li>
                                     <Link href="/">
                                         <a className="cart">
-                                            <span className="cart-nub">0</span>
+                                            <span className="cart-nub">{state.countIs}</span>
                                             <i className="fa fa-shopping-cart" aria-hidden="true"></i>
                                         </a>
                                     </Link>
