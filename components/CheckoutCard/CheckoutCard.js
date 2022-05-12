@@ -1,6 +1,6 @@
 import React from "react";
 
-function CartInfoCard() {
+function CartInfoCard({ cartListIs, cartTotal }) {
   return (
     <div
       className="card container"
@@ -11,6 +11,7 @@ function CartInfoCard() {
         padding: "15px",
       }}
     >
+      {console.log(cartListIs, 'cartListIs')}
       <p
         className="bg-danger py-2 my-2 text-center text-white"
         style={{ borderRadius: "20px" }}
@@ -19,26 +20,18 @@ function CartInfoCard() {
         Cart Details
       </p>
 
-      <div className="d-flex flex-row justify-content-between">
-        <p>1 X Ala Carte</p>
-        <p>₹ 24</p>
-      </div>
-      <div className="d-flex flex-row justify-content-between">
-        <p>1 X Ala Carte</p>
-        <p>₹ 24</p>
-      </div>
-      <div className="d-flex flex-row justify-content-between">
-        <p>1 X Ala Carte</p>
-        <p>₹ 24</p>
-      </div>
-      <div className="d-flex flex-row justify-content-between">
-        <p>1 X Ala Carte</p>
-        <p>₹ 24</p>
-      </div>
+      {cartListIs.map((el, i) => {
+        return (<div key={`cart-total-${i}`} className="d-flex flex-row justify-content-between">
+          <p>{el.quantity} X {el.productInfo.projectTitle}</p>
+          <p>₹ {el.productInfo.price}</p>
+        </div>)
+      })}
+
+
       <hr />
       <div className="d-flex flex-row justify-content-between">
         <p>Total Amount</p>
-        <p>₹ 96</p>
+        <p>₹ {cartTotal}</p>
       </div>
       <div className="d-flex flex-row justify-content-between">
         <p>Coupon Discount</p>
@@ -47,7 +40,7 @@ function CartInfoCard() {
 
       <button className="btn btn-danger mb-3" style={{ borderRadius: "20px" }}>
         {" "}
-        Pay ₹ 96{" "}
+        Pay ₹ {cartTotal}{" "}
       </button>
     </div>
   );
