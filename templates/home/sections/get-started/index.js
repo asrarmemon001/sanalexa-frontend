@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { plateformList } from "../../../../utils/plateform";
 import { ImageBaseUrl } from "../../../../utils/Baseurl";
 import {
@@ -14,8 +14,12 @@ import ReactPaginate from "react-paginate";
 import "react-toastify/dist/ReactToastify.min.css";
 import { toast, ToastContainer } from "react-toastify";
 import ProjectCard from "../../../../components/projectCard/projectCard";
+import AppContext from "../../../../appContext";
 
 export default function GetStarted() {
+  const setCounter = useContext(AppContext);
+  let { setCartProductCount } = setCounter;
+
   const [plateformFilterShow, setPlateformFilterShow] = useState(false);
   const [industryFilterShow, setIndustryFilterShow] = useState(false);
   const [page, setPage] = useState(1);
@@ -72,19 +76,20 @@ export default function GetStarted() {
   };
 
   const handleAddtoCart = async (id, type, quantity) => {
-    // setapicall(true);
     console.log(id, type, quantity);
     const data = {
       sessionId: sessionId,
       cart: { id: String(id), type: "project", quantity: 12 },
     };
     await AddtoCart(data)
-      .then((res) =>(
-        res?.status === 200 ?
-        toast.success("successfully Added") : toast.error("somethingwent wrong")
-      ))
-      .catch((error)=>console.log(error));
+      .then((res) =>
+        res?.status === 200
+          ? toast.success("successfully Added")
+          : toast.error("somethingwent wrong")
+      )
+      .catch((error) => console.log(error));
     getCartList();
+    setCartProductCount(cartListIs?.length);
   };
 
   const togglePlateformFilter = () => {
@@ -135,6 +140,10 @@ export default function GetStarted() {
     setSessionId(key);
     getSectorList();
   }, []);
+
+  useEffect(() => {
+    setCartProductCount(cartListIs?.length);
+  }, [cartListIs]);
 
   useEffect(() => {
     getCartList();
