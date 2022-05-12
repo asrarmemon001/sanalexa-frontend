@@ -1,11 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import CartItemCard from "../components/CartItemCard/CartItemCard";
 import CartInfoCard from "../components/CheckoutCard/CheckoutCard";
 import Layout from "../components/layout";
 import { cartList, RemoveCartItem } from "../utils/api-Request";
 import { toast } from "react-toastify";
+import AppContext from "../appContext/index"
+
 
 function cart() {
+  const setCounter = useContext(AppContext);
+  let { setCartProductCount } = setCounter;
   const [cartListIs, setcartList] = useState();
   const [sessionId, setsessionId] = useState("");
   useEffect(() => {
@@ -39,8 +43,13 @@ function cart() {
       )
       .catch((error) => console.error(error));
     getCartList(sessionId);
+    
   };
-
+  
+  useEffect(() => {
+    setCartProductCount(cartListIs?.length);
+  }, [cartListIs])
+  
   return (
     <Layout>
       <div class="container cartcontainer">
