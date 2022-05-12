@@ -13,7 +13,7 @@ import { NoDataFound } from "../../../../components/NoDataFound/NoDataFound";
 import ReactPaginate from "react-paginate";
 import "react-toastify/dist/ReactToastify.min.css";
 import { toast, ToastContainer } from "react-toastify";
-import ProjectCard from "../../../../components/projectCard/projectCard";
+import ProjectCard from "../../../../components/projectCard/ProjectCard";
 import AppContext from "../../../../appContext";
 
 export default function GetStarted() {
