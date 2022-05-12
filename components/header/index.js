@@ -125,7 +125,7 @@ const Header = () => {
                                 </li>
 
                                 <li>
-                                    <Link href="/">
+                                    <Link href="/cart">
                                         <a className="cart">
                                             <span className="cart-nub">{state.cartProductCount}</span>
                                             <i className="fa fa-shopping-cart" aria-hidden="true"></i>

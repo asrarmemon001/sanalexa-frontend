@@ -1,7 +1,19 @@
-import { getApi, getApiWithoutToken, postApiWithoutToken } from "./api-interface";
+import { getApi,postApi, getApiWithoutToken, postApiWithoutToken } from "./api-interface";
 
 export const projectList = (data) =>{
    return postApiWithoutToken(`/api/projects/web/list`, data)
+}
+
+export const cartList = async (data) =>{
+   const res = await getApiWithoutToken(`/api/cart/list?sessionId=${data}`)
+   console.log(res)
+   return res
+}
+
+export const RemoveCartItem = async (data) =>{
+   const res = await postApiWithoutToken(`/api/cart/remove-cart`,data)
+   console.log(res)
+   return res
 }
 
 export const projectListFeatured = (data) =>{
@@ -19,6 +31,11 @@ export const sectorList = () => {
 
 export const loginUser = (data) =>{
    return postApiWithoutToken(`/api/webUser/login`, data)
+}
+
+export const AddtoCart = async(data) =>{
+   const res= await postApiWithoutToken(`/api/cart/add-to-cart`, data)
+   return res
 }
 
 export const registerUser = (data) =>{
