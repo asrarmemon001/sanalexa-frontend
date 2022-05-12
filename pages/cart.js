@@ -1,27 +1,45 @@
 import React, { useEffect, useState } from "react";
-import Card from "../components/card/card";
-import CartInfoCard from "../components/cardinfocard/CartInfoCard";
+import CartItemCard from "../components/CartItemCard/CartItemCard";
+import CartInfoCard from "../components/CheckoutCard/CheckoutCard";
 import Layout from "../components/layout";
-import { cartList } from "../utils/api-Request";
+import { cartList, RemoveCartItem } from "../utils/api-Request";
+import { toast } from "react-toastify";
 
 function cart() {
   const [cartListIs, setcartList] = useState();
-  const [sessionId, setsessionId] = useState(7);
+  const [sessionId, setsessionId] = useState("");
   useEffect(() => {
-    const sessionkey = sessionStorage.getItem("sessionId");
-    // setsessionId(sessionkey)
+    const sessionkey = localStorage.getItem("sessionId");
+    setsessionId(sessionkey);
   }, []);
 
   const getCartList = async (sessionId) => {
     const res = await cartList(sessionId);
     setcartList(res?.data?.data);
-    console.log(res?.data?.data);
     return res;
   };
-
+  console.log(sessionId);
   useEffect(() => {
+    if (sessionId) {
+      getCartList(sessionId);
+    }
+  }, [sessionId]);
+
+  const handleRemove = async (id, type) => {
+    const data = {
+      sessionId: sessionId,
+      id: id,
+      type: "project",
+    };
+    await RemoveCartItem(data)
+      .then((res) =>
+        res?.status === 200
+          ? toast.success("successfully Removed")
+          : toast.error("something went wrong")
+      )
+      .catch((error) => console.error(error));
     getCartList(sessionId);
-  }, []);
+  };
 
   return (
     <Layout>
@@ -36,25 +54,27 @@ function cart() {
         Shop For more than $150 and get free vouchers
       </div>
 
-      <div className="container d-flex flex-row">
-        <div className="col-lg-8" style={{ minHeight: "20vh" }}>
+      <div className="container d-flex flex-row flex-wrap ">
+        <div className="col-lg-8 col-12 ">
           {cartListIs &&
             cartListIs.map((i, index) => (
-              <Card
+              <CartItemCard
                 key={index}
-                image={i.bannerImage}
-                desc={i.projectDesc}
-                title={i.projectTitle}
-                supportDesc={i.supportingDesc}
-                type={i.type}
-                plateform={i.plateform}
-                quantity={i.quantity}
-                price={i.price}
-                id={i.id}
+                image={i.productInfo.bannerImage}
+                desc={i.productInfo.projectDesc}
+                title={i.productInfo.projectTitle}
+                supportDesc={i.productInfo.supportingDesc}
+                type={i.productInfo.type}
+                plateform={i.productInfo.plateform}
+                quantity={i.productInfo.quantity}
+                price={i.productInfo.price}
+                id={i.productInfo.id}
+                sessionId={sessionId}
+                handleRemove={handleRemove}
               />
             ))}
         </div>
-        <div className="col-lg-4 p-0" style={{ minHeight: "20vh" }}>
+        <div className=" p-0 col-lg-4 col-12" >
           <CartInfoCard />
         </div>
       </div>

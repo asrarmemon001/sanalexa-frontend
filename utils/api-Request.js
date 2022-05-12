@@ -33,8 +33,9 @@ export const loginUser = (data) =>{
    return postApiWithoutToken(`/api/webUser/login`, data)
 }
 
-export const AddtoCart = (data) =>{
-   return postApiWithoutToken(`/api/cart/add-to-cart`, data)
+export const AddtoCart = async(data) =>{
+   const res= await postApiWithoutToken(`/api/cart/add-to-cart`, data)
+   return res
 }
 
 export const registerUser = (data) =>{

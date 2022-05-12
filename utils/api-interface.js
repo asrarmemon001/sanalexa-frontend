@@ -6,6 +6,8 @@ export const postApiWithoutToken = (path, data) => {
     headers: {
       "Content-Type": "application/json"
     }
+  }).catch((error)=> {
+    console.error(error);
   });
 };
 
@@ -14,6 +16,8 @@ export const putApiWithoutToken = (path, data) => {
     headers: {
       "Content-Type": "application/json"
     }
+  }).catch((error)=> {
+    console.error(error);
   });
 };
 
@@ -22,6 +26,8 @@ export const getApiWithoutToken = (path) => {
     headers: {
       "Content-Type": "application/json"
     }
+  }).catch((error)=> {
+    console.error(error);
   });
 };
 
@@ -33,6 +39,8 @@ export const postApi = (path, data) => {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`
     }
+  }).catch((error)=> {
+    console.error(error);
   });
 };
 
@@ -44,6 +52,8 @@ export const getApi = (path, data) => {
       "Content-Type": "application/json",
       "Authorization": `Bearer ${token}`
     }
+  }).catch((error)=> {
+    console.error(error);
   });
 };
 
@@ -55,6 +65,8 @@ export const putApi = (path, data) => {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`
     }
+  }).catch((error)=> {
+    console.error(error);
   });
 };
 
@@ -66,6 +78,8 @@ export const fileUpload = (path, data) => {
       "Content-Type": "multipart/form-data",
       Authorization: `Bearer ${token}`
     }
+  }).catch((error)=> {
+    console.error(error);
   });
 };
 

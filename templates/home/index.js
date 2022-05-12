@@ -12,10 +12,10 @@ import {generateSessionId} from "../../utils/helper-functions"
 
 export default function HomePageTemplate() {
     useEffect(() => {
-        if(!sessionStorage.getItem('sessionId')){
+        if(!localStorage.getItem('sessionId')){
             const sessionKey = generateSessionId()
             console.log(sessionKey)
-            sessionStorage.setItem('sessionId',sessionKey)
+            localStorage.setItem('sessionId',sessionKey)
         }  
         AOS.init();
         AOS.refresh();

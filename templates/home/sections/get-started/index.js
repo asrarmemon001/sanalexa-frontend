@@ -11,6 +11,9 @@ import {
 import { Loader } from "../../../../components/Loader/Loader";
 import { NoDataFound } from "../../../../components/NoDataFound/NoDataFound";
 import ReactPaginate from "react-paginate";
+import "react-toastify/dist/ReactToastify.min.css";
+import { toast, ToastContainer } from "react-toastify";
+import ProjectCard from "../../../../components/projectCard/projectCard";
 
 export default function GetStarted() {
   const [plateformFilterShow, setPlateformFilterShow] = useState(false);
@@ -26,6 +29,7 @@ export default function GetStarted() {
   const [sectorListIs, setSectorList] = useState([]);
   const [cartListIs, setCartList] = useState([]);
   const [sessionId, setSessionId] = useState("");
+  const [apicall, setapicall] = useState(false);
 
   const handleOnChange = (event) => {
     setSearch(event.target.value);
@@ -68,14 +72,19 @@ export default function GetStarted() {
   };
 
   const handleAddtoCart = async (id, type, quantity) => {
+    // setapicall(true);
     console.log(id, type, quantity);
     const data = {
-      sessionId: 7,
+      sessionId: sessionId,
       cart: { id: String(id), type: "project", quantity: 12 },
     };
-    const res = await AddtoCart(data);
-    console.log(res);
-    return res;
+    await AddtoCart(data)
+      .then((res) =>(
+        res?.status === 200 ?
+        toast.success("successfully Added") : toast.error("somethingwent wrong")
+      ))
+      .catch((error)=>console.log(error));
+    getCartList();
   };
 
   const togglePlateformFilter = () => {
@@ -93,7 +102,7 @@ export default function GetStarted() {
       setSectorList(response);
     }
   };
-  console.log(cartListIs)
+  console.log(cartListIs);
   const getProjectList = async () => {
     const data = { page, limit, search, plateform, sector };
     setLoading(true);
@@ -108,7 +117,7 @@ export default function GetStarted() {
 
   const getCartList = async () => {
     setLoading(true);
-    const list = await cartList(7);
+    const list = await cartList(sessionId);
     const response = list?.data?.data;
     console.log(response);
     if (response) {
@@ -122,11 +131,14 @@ export default function GetStarted() {
   }, [page, search, plateform, sector]);
 
   useEffect(() => {
-    const key = sessionStorage.getItem("sessionId");
+    const key = localStorage.getItem("sessionId");
     setSessionId(key);
     getSectorList();
-    getCartList();
   }, []);
+
+  useEffect(() => {
+    getCartList();
+  }, [sessionId]);
 
   return (
     <section className="couressto">
@@ -254,46 +266,13 @@ export default function GetStarted() {
               ) : projectListIs?.length > 0 ? (
                 projectListIs.map((obj, index) => {
                   return (
-                    <div className=" col-lg-4 col-md-6 mb-4" key={index}>
-                      <div className="pharmaceutical-box" data-aos="fade-right">
-                        <figure>
-                          <img src={ImageBaseUrl + obj?.bannerImage} />
-                          <h5 className="Pharmacepo">{obj?.sector?.name}</h5>
-                        </figure>
-                        <div className="pharmaceutical-contant">
-                          <h4>{obj?.projectTitle}</h4>
-                          <h3>
-                            <span>${obj?.price}</span>
-                          </h3>
-                          <div className="buttons">
-                            <button
-                              className={ cartListIs.some(
-                                (cartItem) => cartItem.id == obj?.id
-                              )
-                                ? "carts bg-danger"
-                                : "carts"}
-                              onClick={() => handleAddtoCart(obj?.id, obj?.type,obj?.quantity)}
-                              disabled={
-                                cartListIs.some(
-                                  (cartItem) => cartItem.id == obj?.id
-                                )
-                                  ? true
-                                  : false
-                              }
-                            >
-                              <i className="fa fa-plus" aria-hidden="true"></i>{" "}
-                              <i
-                                className="fa fa-shopping-cart"
-                                aria-hidden="true"
-                              ></i>{" "}
-                            </button>
-                            <button href="#" className="addtubul">
-                              Add to Bundle
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    <ProjectCard
+                      obj={obj}
+                      key={index}
+                      ImageBaseUrl={ImageBaseUrl}
+                      cartListIs={cartListIs}
+                      handleAddtoCart={handleAddtoCart}
+                    />
                   );
                 })
               ) : (
