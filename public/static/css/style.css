@@ -724,6 +724,7 @@ section{
     border-radius: 6px;
     padding: 5px 0px;
     width: 100%;
+    justify-content: center;
 }
 .filterkey li:last-child {
     padding: 0;
@@ -962,6 +963,85 @@ footer {
     border-radius: 10px 10px 0 0;
     overflow: hidden;
 }
+.container.cartcontainer {
+    border-top: 1px solid #eee;
+    padding-top: 21px;
+    margin-top: 5px;
+    margin-bottom: 30px;
+}
+
+/*//////////////////*/
+.card {
+    border: 0;
+    border-bottom: 1px solid #e7e2df;
+    border-radius: 0;
+    padding-bottom: 30px;
+    padding-top: 20px;
+}
+
+.cartlist button.removeItem {
+    border: 0;
+    background-color: transparent;
+    font-size: 13px;
+    text-transform: uppercase;
+    text-decoration: underline;
+    color: #dc3545;
+}
+
+.cartlist h6 {
+    font-weight: 600;
+    font-size: 18px;
+}
+.cartlist h5.card-title {
+    font-weight: 600;
+    font-size: 18px;
+}
+.cartlist h4 {
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.topstrip {
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.text-white { 
+    border-radius: 0 !important;
+}
+
+.container.cartcontainer { 
+    position: relative;
+}
+
+.container.cartcontainer h3::after {
+    position: absolute;
+    content: "";
+    height: 5px;
+    width: 150px;
+    background-color: #f3f2f2;
+    left: 15px;
+    bottom: 0;
+    top: 65px;
+}
+.cartlist h5.card-title { 
+    margin: 0;
+    padding-bottom: 0!important;
+}
+.cartLayout {
+    padding-bottom: 70px;
+}
+.cartLayout .card {
+    border-radius: 0;
+    padding-bottom: 20px;
+    padding-top: 0;
+}
+.pharmaceutical-box img {
+    height: 180px;
+}
+ 
 
 @media only screen and (min-width: 1599px) {
     .container{

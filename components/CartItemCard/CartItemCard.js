@@ -33,13 +33,13 @@ function CardItem({
 
   return (
     <div
-      className="card mb-3"
-      style={{ borderRadius: "20px", backgroundColor: "#f8f6f5" }}
+      className="card mb-3 "
+      style={{ }}
     >
-      <div className="d-flex flex-wrap row g-0">
-        <div className="col-lg-4 col-md-4 col-12">
+      <div className="d-flex flex-wrap row g-0 cartlist">
+        <div className="col-lg-2 col-md-2 col-12">
           <Image
-            style={{ borderRadius: "20px" }}
+            style={{ borderRadius: "0px" }}
             src={`${ImageBaseUrl}Images/${imgsrc}`}
             layout="responsive"
             width={10}
@@ -47,28 +47,27 @@ function CardItem({
             objectFit="fill"
           />
         </div>
-        <div className="col-lg-8 col-md-8 col-12" >
-          <div>
-            <div className="d-flex flex-row justify-content-between">
-              <h5 className="card-title p-2">{title}</h5>
-            </div>
-            <p className="card-text mx-2">{desc}</p>
-            <div className="d-flex flex-row align-items-baseline">
-              <h4 className="mx-2">$ {price}</h4>
-              <h6 className="mx-2">Quantity:{quantity}</h6>
-              <span className="badge bg-danger mx-2 text-white">{type}</span>
-              <span className="badge bg-danger mx-2 text-white">{plateform}</span>
-            </div>
-            <div className="d-flex flex-row justify-content-start">
+        <div className="col-lg-5 col-md-6 col-12" >
+        <h5 className="card-title p-2">{title}</h5>
+        <p className="card-text mx-2">{desc}</p>
+        <span className="badge bg-danger mx-2 text-white">{type}</span>
+        <span className="badge bg-danger mx-2 text-white">{plateform}</span>
+        </div>
+        <div className="col-lg-3 col-md-10 col-12" >
+        <h6 className="mx-2">Quantity:{quantity}</h6>
+        </div>
+
+        <div className="col-lg-2 col-md-10 col-12" >
+         <h4 className="mx-2">$ {price}</h4>
+           <div className="d-flex flex-row justify-content-start">
               <button
-                className="btn btn-danger mx-2 mb-3"
+                className="removeItem"
                 onClick={() => handleRemove(id, type)}
-                style={{ borderRadius: "20px" }}
-              >
+                >
                 Remove Item
               </button>
             </div>
-          </div>
+          
         </div>
       </div>
     </div>
