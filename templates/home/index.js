@@ -26,8 +26,8 @@ export default function HomePageTemplate() {
             <CategoriesSection/>
             <GetStarted/>
             <WhatYouGet/>
-            <SubscriptionPackages/>  
-            <FeaturedCourses/>
+            <SubscriptionPackages heading="Subscription Package"/>  
+            <FeaturedCourses heading="Featured Courses"/>
             <BannerBottom/>
             <NewsletterSection/>
         </>
