@@ -91,17 +91,28 @@ const RegisterOrganization = ({handleModal, setIsLoggedin }) => {
         formik.setFieldValue(event.target.name, event.target.checked)
     }
     return (<form onSubmit={formik.handleSubmit}>
-        <div className="card-bordered px-3 pb-3">
+        <div className="card-bordered px-3 pb-3 registerForm">
+          <div class="fieldList">
             <TextField id="organization-name" className="mb-3" error={formik.errors.organizationName && formik.touched.organizationName} value={formik.values.organizationName} name="organizationName" onChange={handleChangeInput} label="Organization Name" type="text" fullWidth variant="outlined" />
             {formik.errors.organizationName && formik.touched.organizationName && <p className="text-danger px-2 text-sm fw-bold" style={{ marginTop: "-15px" }}>{formik.errors.organizationName}</p>}
+</div>
+<div class="fieldList">
             <TextField id="organization-email" className="mb-3" error={formik.errors.email && formik.touched.email} value={formik.values.email} name="email" onChange={handleChangeInput} label="Email" type="email" fullWidth variant="outlined" />
             {formik.errors.email && formik.touched.email && <p className="text-danger px-2 text-sm fw-bold" style={{ marginTop: "-15px" }}>{formik.errors.email}</p>}
+            </div>
+<div class="fieldList"> 
             <TextField id="organization-password" className="mb-3" error={formik.errors.password && formik.touched.password} value={formik.values.password} name="password" onChange={handleChangeInput} label="Password" type="password" fullWidth variant="outlined" />
             {formik.errors.password && formik.touched.password && <p className="text-danger px-2 text-sm fw-bold" style={{ marginTop: "-15px" }}>{formik.errors.password}</p>}
+            </div>
+<div class="fieldList"> 
             <TextField id="organization-phone" className="mb-3" error={formik.errors.phone && formik.touched.phone} value={formik.values.phone} name="phone" onChange={handleChangeInput} label="Phone" type="text" fullWidth variant="outlined" />
             {formik.errors.phone && formik.touched.phone && <p className="text-danger px-2 text-sm fw-bold" style={{ marginTop: "-15px" }}>{formik.errors.phone}</p>}
+            </div>
+<div class="fieldList"> 
             <TextField id="organization-location" className="mb-3" error={formik.errors.location && formik.touched.location} value={formik.values.location} name="location" onChange={handleChangeInput} label="Location" type="text" fullWidth variant="outlined" />
             {formik.errors.location && formik.touched.location && <p className="text-danger px-2 text-sm fw-bold" style={{ marginTop: "-15px" }}>{formik.errors.location}</p>}
+            </div>
+     <div class="fieldList"> 
             <TextField id="supporting-address" className="mb-3" error={formik.errors.address && formik.touched.address} value={formik.values.address} name="address" onChange={handleChangeInput} label="Address" fullWidth
                 InputProps={{
                     inputComponent: TextareaAutosize,
@@ -109,7 +120,7 @@ const RegisterOrganization = ({handleModal, setIsLoggedin }) => {
                 }}
             />
             {formik.errors.address && formik.touched.address && <p className="text-danger px-2 text-sm fw-bold" style={{ marginTop: "-15px" }}>{formik.errors.address}</p>}
-
+            </div>
         </div>
         <h5 className="text-capitalize px-4 mb-3"> Enter Organization Licence Details</h5>
         <div className="card-bordered px-3 pb-3">
@@ -220,12 +231,14 @@ const RegisterOrganization = ({handleModal, setIsLoggedin }) => {
             </div>
 
         </div>
+        <div class="fieldList fullwidth">
         <div className="mb-3 text-end px-3">
             {_organizationData.loading
                 ?
                 <button className="btn w-100 btn-primary mb-0" disabled={true}><span className="me-2 d-none">Signup </span><CircularProgress style={{ width: 14, height: 14, color: "#ffffff" }} /></button>
                 :
                 <button className="btn w-100 btn-primary mb-0" type="submit">Signup</button>}
+        </div>
         </div>
     </form>)
 }

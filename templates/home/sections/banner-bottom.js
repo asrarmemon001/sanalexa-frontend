@@ -5,17 +5,17 @@ export default function BannerBottom() {
         <section className="banner bannerbottom" style={{ backgroundImage: 'url(/static/images/banner-bottom.jpg)' }}>
             <div className="container">
                 <div className="main-banner">
-                    <div className="banner-content" data-aos="fade-right">
-                        <h1>Some Text <br />
-                            <span>Some more</span> occaecat</h1>
-                        <p>Lorem ipsum is the filler text that typically demonstrates the font and style of a text in a document or visual demonstration.</p>
+                    <div className="banner-content">
+                        <h1>Simulanis 
+<br />
+                            <span>LEARN Library</span></h1> 
                         <Link href="#"><a className="button-download-launcher">download launcher</a></Link>
                     </div>
-                    <div className="banner-img" data-aos="fade-left">
+                    <div className="banner-img">
                         <img src="/static/images/right-bott.png" />
                     </div>
                 </div>
             </div>
-        </section>
+        </section>  
     )
 }

@@ -85,7 +85,8 @@ const UserRegistration = ({setIsLoggedin, handleModal}) => {
 
 
     return (<form onSubmit={formik.handleSubmit}>
-        <div className="card-bordered px-3 pb-3">
+        <div className="card-bordered px-3 pb-3 registerForm">
+            <div class="fieldList">
             <TextField
                 id="name"
                 className="mb-3"
@@ -98,6 +99,8 @@ const UserRegistration = ({setIsLoggedin, handleModal}) => {
                 fullWidth
                 variant="outlined" />
             {formik.errors.name && formik.touched.name && <p className="text-danger px-2 text-sm fw-bold" style={{ marginTop: "-15px" }}>{formik.errors.name}</p>}
+            </div>
+            <div class="fieldList">
             <TextField
                 id="email"
                 className="mb-3"
@@ -111,6 +114,8 @@ const UserRegistration = ({setIsLoggedin, handleModal}) => {
                 fullWidth
                 variant="outlined" />
             {formik.errors.email && formik.touched.email && <p className="text-danger px-2 text-sm fw-bold" style={{ marginTop: "-15px" }}>{formik.errors.email}</p>}
+            </div>
+            <div class="fieldList">
             <TextField
                 id="password"
                 className="mb-3"
@@ -124,7 +129,9 @@ const UserRegistration = ({setIsLoggedin, handleModal}) => {
                 fullWidth
                 variant="outlined" />
             {formik.errors.password && formik.touched.password && <p className="text-danger px-2 text-sm fw-bold" style={{ marginTop: "-15px" }}>{formik.errors.password}</p>}
-            <TextField
+            </div>
+            <div class="fieldList">
+           <TextField
                 id="phone"
                 className="mb-3"
                 name="phone"
@@ -136,6 +143,8 @@ const UserRegistration = ({setIsLoggedin, handleModal}) => {
                 fullWidth
                 variant="outlined" />
             {formik.errors.phone && formik.touched.phone && <p className="text-danger px-2 text-sm fw-bold" style={{ marginTop: "-15px" }}>{formik.errors.phone}</p>}
+            </div>
+            <div class="fieldList">
             <FormControl>
                 <FormLabel id="gender-label">Gender</FormLabel>
                 <RadioGroup
@@ -150,6 +159,8 @@ const UserRegistration = ({setIsLoggedin, handleModal}) => {
                 </RadioGroup>
             </FormControl>
             {formik.errors.gender && formik.touched.gender && <p className="text-danger px-2 text-sm fw-bold" style={{ marginTop: "-15px" }}>{formik.errors.gender}</p>}
+            </div>
+            <div class="fieldList">
             <TextField
                 id="age"
                 className="mb-3"
@@ -162,6 +173,8 @@ const UserRegistration = ({setIsLoggedin, handleModal}) => {
                 fullWidth
                 variant="outlined" />
             {formik.errors.age && formik.touched.age && <p className="text-danger px-2 text-sm fw-bold" style={{ marginTop: "-15px" }}>{formik.errors.age}</p>}
+            </div>
+            <div class="fieldList"> 
             <TextField
                 id="address"
                 className="mb-3"
@@ -178,6 +191,8 @@ const UserRegistration = ({setIsLoggedin, handleModal}) => {
                 }}
             />
             {formik.errors.address && formik.touched.address && <p className="text-danger px-2 text-sm fw-bold" style={{ marginTop: "-15px" }}>{formik.errors.address}</p>}
+            </div>
+            <div class="fieldList"> 
             <FormControl fullWidth className="mb-3" size="">
                 <InputLabel id="select-location-label">Select Location</InputLabel>
                 <Select
@@ -195,7 +210,8 @@ const UserRegistration = ({setIsLoggedin, handleModal}) => {
                 </Select>
             </FormControl>
             {formik.errors.location && formik.touched.location && <p className="text-danger px-2 text-sm fw-bold" style={{ marginTop: "-15px" }}>{formik.errors.location}</p>}
-
+            </div>
+            <div class="fieldList fullwidth">
 
             <div className="mb-3 text-end">
                 {_userData.loading
@@ -203,6 +219,7 @@ const UserRegistration = ({setIsLoggedin, handleModal}) => {
                     <button className="btn w-100 btn-primary mb-0" disabled={true}><span className="me-2 d-none">Signup </span><CircularProgress style={{ width: 14, height: 14, color: "#ffffff" }} /></button>
                     :
                     <button className="btn w-100 btn-primary mb-0" type="submit">Signup</button>}
+            </div>
             </div>
         </div>
     </form>)

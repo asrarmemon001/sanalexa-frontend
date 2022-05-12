@@ -111,7 +111,7 @@ const Header = () => {
                                     </li>
                                     <li>
                                         <Link href="/">
-                                            <a> Plans Subscription</a>
+                                            <a> Plans and Subscriptions</a>
                                         </Link>
                                     </li>
                                 </ul>
@@ -142,7 +142,7 @@ const Header = () => {
                                             ?
                                             <button className="btn sinup" onClick={logout}>Logout</button>
                                             :
-                                            <button className="btn sinup" onClick={() => handleModal('signup')}>Signup</button>}
+                                            <button className="btn sinup" onClick={() => handleModal('signup')}>Sign Up</button>}
 
                                 </li>
                                 <li>
