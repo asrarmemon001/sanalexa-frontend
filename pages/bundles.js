@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import AppContext from "../appContext/index"
 
 
-function bundles() {
+function Bundles() {
   const setCounter = useContext(AppContext);
   let { setCartProductCount } = setCounter;
   const [cartListIs, setcartList] = useState();
@@ -92,4 +92,4 @@ function bundles() {
   );
 }
 
-export default bundles;
+export default Bundles;

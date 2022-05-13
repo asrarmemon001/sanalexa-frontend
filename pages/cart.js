@@ -8,7 +8,7 @@ import AppContext from "../appContext/index"
 import { NoDataFound } from "../components/NoDataFound/NoDataFound";
 
 
-function cart() {
+function Cart() {
   const setCounter = useContext(AppContext);
   let { setCartProductCount } = setCounter;
   const [cartListIs, setcartList] = useState();
@@ -54,7 +54,7 @@ function cart() {
   
   return (
     <Layout>
-      <div class="container cartcontainer">
+      <div className="container cartcontainer">
       <h3>Shoping Cart</h3>
       </div>
      
@@ -100,4 +100,4 @@ function cart() {
   );
 }
 
-export default cart;
+export default Cart;
