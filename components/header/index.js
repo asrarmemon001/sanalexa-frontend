@@ -132,7 +132,7 @@ const Header = () => {
                                         </a>
                                     </Link>
                                 </li>
-                                <li>
+                                {/* <li>
 
                                     <Link href="/bundles">
                                         <a className="cart">
@@ -140,7 +140,7 @@ const Header = () => {
                                             <i className="fa fa-file" aria-hidden="true"></i>
                                         </a>
                                     </Link>
-                                </li>
+                                </li> */}
 
                                 <li>
                                     {user.loading
