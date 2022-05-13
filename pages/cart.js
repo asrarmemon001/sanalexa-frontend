@@ -52,19 +52,20 @@ function cart() {
   
   return (
     <Layout>
+      <div class="container cartcontainer">
+      <h3>Shoping Cart</h3>
+      </div>
+     
       <div
-        className="container card-body mb-3"
+        className="container card-body mb-3 topstrip"
         style={{
-          border: "0.5px solid #DCDCDC",
-          borderRadius: "10px",
-          backgroundColor: "#f8f6f5",
         }}
       >
         Shop For more than $150 and get free vouchers
       </div>
 
-      <div className="container d-flex flex-row flex-wrap ">
-        <div className="col-lg-8 col-12 ">
+      <div className="container d-flex flex-row flex-wrap cartLayout">
+        <div className="col-lg-9 col-12 ">
           {cartListIs &&
             cartListIs.map((i, index) => (
               <CartItemCard
@@ -83,7 +84,7 @@ function cart() {
               />
             ))}
         </div>
-        <div className=" p-0 col-lg-4 col-12" >
+        <div className=" p-0 col-lg-3 col-12" >
           <CartInfoCard />
         </div>
       </div>

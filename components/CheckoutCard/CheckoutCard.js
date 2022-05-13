@@ -7,8 +7,9 @@ function CartInfoCard() {
       className="card container"
       style={{
         minHeight: "20vh",
-        backgroundColor: "#f8f6f5",
-        borderRadius: "20px",
+        backgroundColor: "#f5f5f5",
+        borderRadius: "0px",
+        padding: "15px",
       }}
     >
       <p
