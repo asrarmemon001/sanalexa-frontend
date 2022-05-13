@@ -1,4 +1,5 @@
 import React from "react";
+import Paymentgateway from "../paymentgateway/Paymentgateway";
 
 function CartInfoCard({ cartListIs, cartTotal }) {
   return (
@@ -11,7 +12,7 @@ function CartInfoCard({ cartListIs, cartTotal }) {
         padding: "15px",
       }}
     >
-      {console.log(cartListIs, 'cartListIs')}
+      {/* {console.log(cartListIs, 'cartListIs')} */}
       <p
         className="bg-danger py-2 my-2 text-center text-white"
         style={{ borderRadius: "20px" }}
@@ -39,8 +40,7 @@ function CartInfoCard({ cartListIs, cartTotal }) {
       </div>
 
       <button className="btn btn-danger mb-3" style={{ borderRadius: "20px" }}>
-        {" "}
-        Pay ₹ {cartTotal}{" "}
+        <Paymentgateway/>
       </button>
     </div>
   );
