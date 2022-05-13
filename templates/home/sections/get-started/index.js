@@ -43,6 +43,11 @@ export default function GetStarted() {
     setSearch(event.target.value);
   };
 
+  useEffect(() => {
+    const sessionkey = localStorage.getItem("sessionId");
+    setSessionId(sessionkey);
+  }, []);
+
   const getPlateform = (event) => {
     const { value, checked } = event.target;
     let data = plateform;
@@ -82,7 +87,7 @@ export default function GetStarted() {
   const handleAddtoCart = async (id, type, quantity) => {
     console.log(id, type, quantity);
     const data = {
-      sessionId: sessionId,
+      sessionId: localStorage.getItem("sessionId"),
       cart: { id: String(id), type: "project", quantity: 1 },
     };
     await AddtoCart(data)
@@ -99,7 +104,7 @@ export default function GetStarted() {
   const handleAddtoBundle = async (id, type, quantity) => {
     console.log(id, type, quantity);
     const data = {
-      sessionId: "3",
+      sessionId: localStorage.getItem("sessionId"),
       bundle: { id: String(id), type: "project", quantity: 1 },
     };
     await AddtoBundle(data)
@@ -153,7 +158,8 @@ export default function GetStarted() {
 
   const getBundleList = async () => {
     setLoading(true);
-    const list = await BundlesList(sessionId);
+    const session = localStorage.getItem("sessionId")
+    const list = await BundlesList(session);
     const response = list?.data?.data;
     if (response) {
       setLoading(false);

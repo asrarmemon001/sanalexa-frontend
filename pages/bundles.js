@@ -32,7 +32,7 @@ function bundles() {
 
   const handleRemove = async (id, type) => {
     const data = {
-      sessionId: 3,
+      sessionId:localStorage.getItem("sessionId"),
       id: id,
       type: "project",
     };

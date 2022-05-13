@@ -10,7 +10,8 @@ function ProjectCard({
   handleAddtoBundle,
   bundleListIs,
 }) {
-  const [apicall, setapicall] = useState(false);
+
+const [apicall, setapicall] = useState(false);
   return (
     <div className=" col-lg-4 col-md-6 mb-4" key={index}>
       <div className="pharmaceutical-box">
