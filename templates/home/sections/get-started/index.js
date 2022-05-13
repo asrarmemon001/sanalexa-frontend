@@ -107,7 +107,7 @@ export default function GetStarted() {
       setSectorList(response);
     }
   };
-  console.log(cartListIs);
+  // console.log(cartListIs);
   const getProjectList = async () => {
     const data = { page, limit, search, plateform, sector };
     setLoading(true);

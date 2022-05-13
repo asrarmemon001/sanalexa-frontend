@@ -1,4 +1,5 @@
 import React from "react";
+import Paymentgateway from "../paymentgateway/Paymentgateway";
 
 function CartInfoCard() {
   return (
@@ -45,8 +46,7 @@ function CartInfoCard() {
       </div>
 
       <button className="btn btn-danger mb-3" style={{ borderRadius: "20px" }}>
-        {" "}
-        Pay ₹ 96{" "}
+        <Paymentgateway/>
       </button>
     </div>
   );

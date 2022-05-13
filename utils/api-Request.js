@@ -9,9 +9,20 @@ export const cartList = async (data) =>{
    console.log(res)
    return res
 }
+export const BundlesList = async (data) =>{
+   const res = await getApiWithoutToken(`/api/bundle/list?sessionId=${data}`)
+   console.log(res)
+   return res
+}
 
 export const RemoveCartItem = async (data) =>{
    const res = await postApiWithoutToken(`/api/cart/remove-cart`,data)
+   console.log(res)
+   return res
+}
+
+export const RemoveBundleList = async (data) =>{
+   const res = await postApiWithoutToken(`/api/bundle/remove-bundle`,data)
    console.log(res)
    return res
 }
@@ -35,6 +46,11 @@ export const loginUser = (data) =>{
 
 export const AddtoCart = async(data) =>{
    const res= await postApiWithoutToken(`/api/cart/add-to-cart`, data)
+   return res
+}
+
+export const AddtoBundle = async(data) =>{
+   const res= await postApiWithoutToken(`/api/cart/add-to-bundle`, data)
    return res
 }
 
