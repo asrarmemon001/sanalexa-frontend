@@ -5,7 +5,7 @@ function ProjectCard({ ImageBaseUrl, obj, cartListIs,index,handleAddtoCart }) {
   const [apicall, setapicall] = useState(false);
   return (
     <div className=" col-lg-4 col-md-6 mb-4" key={index}>
-      <div className="pharmaceutical-box" data-aos="fade-right">
+      <div className="pharmaceutical-box">
         <figure>
           <img src={ImageBaseUrl + obj?.bannerImage} />
           <h5 className="Pharmacepo">{obj?.sector?.name}</h5>

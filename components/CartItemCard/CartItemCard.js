@@ -54,7 +54,7 @@ function CardItem({
         <span className="badge bg-danger mx-2 text-white">{plateform}</span>
         </div>
         <div className="col-lg-3 col-md-10 col-12" >
-        <h6 className="mx-2">Quantity:{quantity}</h6>
+        {/* <h6 className="mx-2">Quantity:{quantity}</h6> */}
         </div>
 
         <div className="col-lg-2 col-md-10 col-12" >

@@ -12,7 +12,7 @@ function CartInfoCard({ cartListIs, cartTotal }) {
         padding: "15px",
       }}
     >
-      {/* {console.log(cartListIs, 'cartListIs')} */}
+      
       <p
         className="bg-danger py-2 my-2 text-center text-white"
         style={{ borderRadius: "20px" }}
@@ -23,7 +23,7 @@ function CartInfoCard({ cartListIs, cartTotal }) {
 
       {cartListIs.map((el, i) => {
         return (<div key={`cart-total-${i}`} className="d-flex flex-row justify-content-between">
-          <p>{el.quantity} X {el.productInfo.projectTitle}</p>
+          <p>{el.productInfo.projectTitle}</p>
           <p>₹ {el.productInfo.price}</p>
         </div>)
       })}
