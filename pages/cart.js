@@ -58,13 +58,13 @@ function Cart() {
       <h3>Shoping Cart</h3>
       </div>
      
-      <div
+      {/* <div
         className="container card-body mb-3 topstrip"
         style={{
         }}
       >
         Shop For more than $150 and get free vouchers
-      </div>
+      </div> */}
 
       <div className="container d-flex flex-row flex-wrap cartLayout">
        {cartListIs && cartListIs.length
