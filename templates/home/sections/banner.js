@@ -5,10 +5,8 @@ export default function BannerSection() {
         <div className="container">
             <div className="main-banner">
                 <div className="banner-content" data-aos="fade-right">
-                    <h1>excepteur sint
-                        occaecat cupidatat</h1>
-                    <p>Lorem ipsum is the filler text that typically demonstrates the font and style of a
-                        text in a document or visual demonstration.</p>
+                    <h1>Simulanis LEARN Library</h1>
+                    <p></p>
                     <Link href="#">
                         <a className="button-download-launcher">download launcher</a>
                     </Link>

@@ -231,7 +231,7 @@ const RegisterOrganization = ({handleModal, setIsLoggedin }) => {
             </div>
 
         </div>
-        <div class="fieldList fullwidth">
+        <div class="fieldList fullwidth ml-0">
         <div className="mb-3 text-end px-3">
             {_organizationData.loading
                 ?

@@ -125,13 +125,22 @@ const Header = () => {
                                 </li>
 
                                 <li>
-                                    <Link href="/">
+                                    <Link href="/cart">
                                         <a className="cart">
                                             <span className="cart-nub">{state.cartProductCount}</span>
                                             <i className="fa fa-shopping-cart" aria-hidden="true"></i>
                                         </a>
                                     </Link>
                                 </li>
+                                {/* <li>
+
+                                    <Link href="/bundles">
+                                        <a className="cart">
+                                            <span className="cart-nub">{state.cartProductCount}</span>
+                                            <i className="fa fa-file" aria-hidden="true"></i>
+                                        </a>
+                                    </Link>
+                                </li> */}
 
                                 <li>
                                     {user.loading

@@ -1460,7 +1460,6 @@ body .btn-primary:hover,body .btn-primary:focus {
     text-align: center;
 }
 /************************************/
-
 /*//////////////////*/
 .card {
     border: 0;
@@ -1533,6 +1532,10 @@ body .btn-primary:hover,body .btn-primary:focus {
     height: 180px;
 }
  
+
+
+
+
 
 
 @media only screen and (min-width: 1599px) {

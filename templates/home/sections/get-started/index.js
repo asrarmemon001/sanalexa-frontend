@@ -1,107 +1,154 @@
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { plateformList } from "../../../../utils/plateform";
 import { ImageBaseUrl } from "../../../../utils/Baseurl";
-import { projectList, sectorList } from "../../../../utils/api-Request";
+import {
+  projectList,
+  sectorList,
+  cartList,
+  AddtoCart,
+} from "../../../../utils/api-Request";
 import { Loader } from "../../../../components/Loader/Loader";
 import { NoDataFound } from "../../../../components/NoDataFound/NoDataFound";
-import ReactPaginate from 'react-paginate';
+import ReactPaginate from "react-paginate";
+import "react-toastify/dist/ReactToastify.min.css";
+import { toast, ToastContainer } from "react-toastify";
+import ProjectCard from "../../../../components/projectCard/ProjectCard";
+import AppContext from "../../../../appContext";
 
 export default function GetStarted() {
+  const setCounter = useContext(AppContext);
+  let { setCartProductCount } = setCounter;
 
-
-  const [plateformFilterShow, setPlateformFilterShow] = useState(false)
-  const [industryFilterShow, setIndustryFilterShow] = useState(false)
-  const [ page, setPage ] = useState(1)
-  const [ limit, setLimit ] = useState(15)
-  const [ totalPages, setTotalPages ] = useState(0)
-  const [ search, setSearch ] = useState("")
-  const [ loadingIs, setLoading ] = useState(false)
-  const [ projectListIs, setProjectList ] = useState([])
-  const [ plateform, setplateform ] = useState([])
-  const [ sector , setSector ] = useState([])
-  const [ sectorListIs, setSectorList ] = useState([])
-
+  const [plateformFilterShow, setPlateformFilterShow] = useState(false);
+  const [industryFilterShow, setIndustryFilterShow] = useState(false);
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(6);
+  const [totalPages, setTotalPages] = useState(0);
+  const [search, setSearch] = useState("");
+  const [loadingIs, setLoading] = useState(false);
+  const [projectListIs, setProjectList] = useState([]);
+  const [plateform, setplateform] = useState([]);
+  const [sector, setSector] = useState([]);
+  const [sectorListIs, setSectorList] = useState([]);
+  const [cartListIs, setCartList] = useState([]);
+  const [sessionId, setSessionId] = useState("");
+  const [apicall, setapicall] = useState(false);
 
   const handleOnChange = (event) => {
-    setSearch(event.target.value)
-  }
+    setPage(1)
+    setSearch(event.target.value);
+  };
 
   const getPlateform = (event) => {
     const { value, checked } = event.target;
-    let data = plateform
-    if(checked){
-      data.push(value)
-    }else{
-      data.pop(value)
+    let data = plateform;
+    if (checked) {
+      data.push(value);
+    } else {
+      data.pop(value);
     }
-    setplateform(data)
-    getProjectList()
-  }
+    setplateform(data);
+    getProjectList();
+  };
 
-  const getSectors = (event) =>{
-    const { value, checked } = event.target;    
-    let data = sector
-    if(checked){
-      data.push(value)
-    }else{
-      data.pop(value)
+  const getSectors = (event) => {
+    const { value, checked } = event.target;
+    let data = sector;
+    if (checked) {
+      data.push(value);
+    } else {
+      data.pop(value);
     }
-    setSector(data)
-    getProjectList()
-  }
-
+    setSector(data);
+    getProjectList();
+  };
 
   const handleFilterChange = (event, status) => {
-    if(status === "plateform"){
-      getPlateform(event)     
-    }else if(status === "sector"){
-      getSectors(event)
+    if (status === "plateform") {
+      getPlateform(event);
+    } else if (status === "sector") {
+      getSectors(event);
     }
-  }
+  };
 
   const handlePageClick = (data) => {
-    setPage(data?.selected +1)
-  }
+    setPage(data?.selected + 1);
+  };
+
+  const handleAddtoCart = async (id, type, quantity) => {
+    console.log(id, type, quantity);
+    const data = {
+      sessionId: sessionId,
+      cart: { id: String(id), type: "project", quantity: 1 },
+    };
+    await AddtoCart(data)
+      .then((res) =>
+        res?.status === 200
+          ? toast.success("successfully Added")
+          : toast.error("somethingwent wrong")
+      )
+      .catch((error) => console.log(error));
+    getCartList();
+    setCartProductCount(cartListIs?.length);
+  };
 
   const togglePlateformFilter = () => {
-    setPlateformFilterShow(!plateformFilterShow)
-  }
+    setPlateformFilterShow(!plateformFilterShow);
+  };
 
   const toggleIndustryFilter = () => {
-    setIndustryFilterShow(!industryFilterShow)
-  }
+    setIndustryFilterShow(!industryFilterShow);
+  };
 
-  const getSectorList = async() => {
-    const list = await sectorList()
-    const response = list?.data?.data
-    if(response){
-      setSectorList(response)
+  const getSectorList = async () => {
+    const list = await sectorList();
+    const response = list?.data?.data;
+    if (response) {
+      setSectorList(response);
     }
-  }
+  };
+  // console.log(cartListIs);
+  const getProjectList = async () => {
+    const data = { page, limit, search, plateform, sector };
+    setLoading(true);
+    const list = await projectList(data);
+    const response = list?.data?.data;
+    if (response) {
+      setLoading(false);
+      setTotalPages(list?.data?.totalPages);
+      setProjectList(response);
+    }
+  };
 
-  const getProjectList = async() => {
-    const data = { page, limit, search, plateform, sector }
-    setLoading(true)
-    const list = await projectList(data)
-    const response = list?.data?.data
-    if(response){
-      setLoading(false)
-      setTotalPages(list?.data?.totalPages)
-      setProjectList(response)
+  const getCartList = async () => {
+    setLoading(true);
+    const list = await cartList(sessionId);
+    const response = list?.data?.data;
+    console.log(response);
+    if (response) {
+      setLoading(false);
+      setCartList(response);
     }
-  }
-  
+  };
 
   useEffect(() => {
-    getProjectList()
-  },[page, search, plateform, sector])
-
+    getProjectList();
+  }, [page, search, plateform, sector]);
 
   useEffect(() => {
-    getSectorList()
-  },[])
+    const key = localStorage.getItem("sessionId");
+    setSessionId(key);
+    getSectorList();
+  }, []);
 
+  useEffect(() => {
+    setCartProductCount(cartListIs?.length);
+  }, [cartListIs]);
+
+  useEffect(() => {
+    getCartList();
+  }, [sessionId]);
 
   return (
     <section className="couressto">
@@ -111,7 +158,6 @@ export default function GetStarted() {
         </div>
         <div className="row">
           <div className="col-lg-3 col-md-4">
-
             <div className="filltercode" data-aos="fade-right">
               <div className="fillter-inp">
                 <div className="main-filter">
@@ -128,115 +174,143 @@ export default function GetStarted() {
                     <ul className="filterkey">
                       <li className={plateformFilterShow ? "current" : ""}>
                         <div className="plus" onClick={togglePlateformFilter}>
-                          <i className="fa fa-desktop" aria-hidden="true"></i> <span className="platform">Platform</span>
-                          <i className="fa fa-angle-down" aria-hidden="true"></i></div>
+                          <i className="fa fa-desktop" aria-hidden="true"></i>{" "}
+                          <span className="platform">Platform</span>
+                          <i
+                            className="fa fa-angle-down"
+                            aria-hidden="true"
+                          ></i>
+                        </div>
                         <div className="filterbut">
                           {plateformList?.map((obj, index) => {
-                            return(
-                              <label className="control" for={obj?.id} key={index}>
-                                <input type="checkbox" name={obj?.name} value={obj?.id} id={obj?.id} onChange={(e) => handleFilterChange(e,"plateform")}/>
+                            return (
+                              <label
+                                className="control"
+                                for={obj?.id}
+                                key={index}
+                              >
+                                <input
+                                  type="checkbox"
+                                  name={obj?.name}
+                                  value={obj?.id}
+                                  id={obj?.id}
+                                  onChange={(e) =>
+                                    handleFilterChange(e, "plateform")
+                                  }
+                                />
                                 <span className="control__content">
                                   {obj?.name}
                                 </span>
                               </label>
-                            )
+                            );
                           })}
                         </div>
-
                       </li>
 
                       <li className={industryFilterShow ? "current" : ""}>
-                        <div className="plus" onClick={toggleIndustryFilter}><i className="fa fa-industry" aria-hidden="true"></i> <span className="platform">Industrie
-                          specific</span> <i className="fa fa-angle-down" aria-hidden="true"></i></div>
+                        <div className="plus" onClick={toggleIndustryFilter}>
+                          <i className="fa fa-industry" aria-hidden="true"></i>{" "}
+                          <span className="platform">Industrie specific</span>{" "}
+                          <i
+                            className="fa fa-angle-down"
+                            aria-hidden="true"
+                          ></i>
+                        </div>
                         <div className="filterbut">
                           {sectorListIs?.map((obj, index) => {
-                            return(
-                              <label className="control" for={obj?.id} key={index}>
-                                <input type="checkbox" name={obj?.name} value={obj?.id} id={obj?.id} onChange={(e) => handleFilterChange(e, "sector")}/>
+                            return (
+                              <label
+                                className="control"
+                                for={obj?.id}
+                                key={index}
+                              >
+                                <input
+                                  type="checkbox"
+                                  name={obj?.name}
+                                  value={obj?.id}
+                                  id={obj?.id}
+                                  onChange={(e) =>
+                                    handleFilterChange(e, "sector")
+                                  }
+                                />
                                 <span className="control__content">
                                   {obj?.name}
                                 </span>
                               </label>
-                            )
+                            );
                           })}
                         </div>
-
                       </li>
 
-                      <li><a href="#" className="show-more">Show more</a></li>
+                      <li>
+                        <a href="#" className="show-more">
+                          Show more
+                        </a>
+                      </li>
                     </ul>
-
                   </div>
-
                 </div>
               </div>
 
-              <div className="fillter-serche">
-
-              </div>
+              <div className="fillter-serche"></div>
             </div>
           </div>
-          
+
           {/* Projects************************ */}
 
           <div className="col-lg-9 col-md-8">
-
             <div className="search-container" data-aos="fade-up">
               <i className="fa fa-search" aria-hidden="true"></i>
-              <input type="text" placeholder=" Search Keywords" name="search" value={search} onChange={handleOnChange}/>
-
+              <input
+                type="text"
+                placeholder=" Search Keywords"
+                name="search"
+                value={search}
+                onChange={handleOnChange}
+              />
             </div>
 
             <div className="row mb-4">
-              {loadingIs ? 
-                <Loader /> :
-                projectListIs?.length > 0 ? 
-                projectListIs.map((obj,index) => {
-                  return(
-                    <div className=" col-lg-4 col-md-6 mb-4" key={index}>
-                      <div className="pharmaceutical-box" data-aos="fade-right">
-                        <figure>
-                          <img src={ImageBaseUrl + obj?.bannerImage} />
-                          <h5 className="Pharmacepo">{obj?.sector?.name}</h5>
-                        </figure>
-                        <div className="pharmaceutical-contant">
-                          <h4>{obj?.projectTitle}</h4>
-                          <h3><span>${obj?.price}</span></h3>
+              {loadingIs ? (
+                <Loader />
+              ) : projectListIs?.length > 0 ? (
+                projectListIs.map((obj, index) => {
+                  return (
+                    <ProjectCard
+                      obj={obj}
+                      key={index}
+                      ImageBaseUrl={ImageBaseUrl}
+                      cartListIs={cartListIs}
+                      handleAddtoCart={handleAddtoCart}
+                    />
+                  );
+                })
+              ) : (
+                <NoDataFound />
+              )}
 
-                          <div className="buttons">
-                            <button className="carts"><i className="fa fa-plus" aria-hidden="true"></i> <i className="fa fa-shopping-cart"
-                              aria-hidden="true"></i> </button>
-                            <button href="#" className="addtubul">Add to Bundle</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  )
-                }): <NoDataFound />
-                }
-
-                {/* Pagination *********************** */}
+              {/* Pagination *********************** */}
               <div className="col-12">
-              <ReactPaginate
+                <ReactPaginate
                   breakLabel="..."
                   className="pagination"
-                  nextLabel={<i className="fa fa-angle-right" aria-hidden="true"></i>}
+                  nextLabel={
+                    <i className="fa fa-angle-right" aria-hidden="true"></i>
+                  }
                   onPageChange={handlePageClick}
                   pageRangeDisplayed={5}
                   pageCount={totalPages}
-                  previousLabel={<i className="fa fa-angle-left" aria-hidden="true"></i>}
+                  previousLabel={
+                    <i className="fa fa-angle-left" aria-hidden="true"></i>
+                  }
                   renderOnZeroPageCount={null}
                 />
               </div>
-
-
-         
             </div>
           </div>
           {/* Projects************************ */}
         </div>
       </div>
     </section>
-
-  )
+  );
 }
