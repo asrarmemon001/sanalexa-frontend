@@ -1,16 +1,16 @@
 import React, { useEffect, useState, useContext } from "react";
 import CartItemCard from "../components/CartItemCard/CartItemCard";
-import CartInfoCard from "../components/CheckoutCard/CheckoutCard";
 import Layout from "../components/layout";
-import { BundlesList, RemoveBundleItem } from "../utils/api-Request";
+import { BundlesList, RemoveBundleList } from "../utils/api-Request";
 import { toast } from "react-toastify";
 import AppContext from "../appContext/index"
+import BundleCard from "../components/BundleCard/BundleCard";
 
 
 function bundles() {
   const setCounter = useContext(AppContext);
-  let { setCartProductCount } = setCounter;
-  const [cartListIs, setcartList] = useState();
+  let { setBundleCount } = setCounter;
+  const [bundleListIs, setbundleList] = useState();
   const [sessionId, setsessionId] = useState("");
 
   useEffect(() => {
@@ -18,40 +18,38 @@ function bundles() {
     setsessionId(sessionkey);
   }, []);
 
-  const getCartList = async (sessionId) => {
+  const getBundleList = async (sessionId) => {
     const res = await BundlesList(sessionId);
-    setcartList(res?.data?.data);
+    setbundleList(res?.data?.data);
     return res;
   };
-
-  console.log(sessionId);
   
   useEffect(() => {
     if (sessionId) {
-      getCartList(sessionId);
+      getBundleList(sessionId);
     }
   }, [sessionId]);
 
   const handleRemove = async (id, type) => {
     const data = {
-      sessionId: sessionId,
+      sessionId: 3,
       id: id,
       type: "project",
     };
-    await RemoveBundleItem(data)
+    await RemoveBundleList(data)
       .then((res) =>
         res?.status === 200
           ? toast.success("successfully Removed")
           : toast.error("something went wrong")
       )
       .catch((error) => console.error(error));
-    getCartList(sessionId);
+    getBundleList(sessionId);
     
   };
   
   useEffect(() => {
-    setCartProductCount(cartListIs?.length);
-  }, [cartListIs])
+    setBundleCount(bundleListIs?.length);
+  }, [bundleListIs])
   
   return (
     <Layout>
@@ -68,9 +66,9 @@ function bundles() {
 
       <div className="container d-flex flex-row flex-wrap ">
         <div className="col-lg-12 col-12 ">
-          {cartListIs &&
-            cartListIs.map((i, index) => (
-              <CartItemCard
+          {bundleListIs &&
+            bundleListIs.map((i, index) => (
+              <BundleCard
                 key={index}
                 image={i.productInfo.bannerImage}
                 desc={i.productInfo.projectDesc}

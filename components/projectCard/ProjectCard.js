@@ -1,7 +1,15 @@
 import React, { useState } from "react";
 import { Loader } from "../Loader/Loader";
 
-function ProjectCard({ ImageBaseUrl, obj, cartListIs,index,handleAddtoCart }) {
+function ProjectCard({
+  ImageBaseUrl,
+  obj,
+  cartListIs,
+  index,
+  handleAddtoCart,
+  handleAddtoBundle,
+  bundleListIs,
+}) {
   const [apicall, setapicall] = useState(false);
   return (
     <div className=" col-lg-4 col-md-6 mb-4" key={index}>
@@ -40,7 +48,22 @@ function ProjectCard({ ImageBaseUrl, obj, cartListIs,index,handleAddtoCart }) {
                 <i className="fa fa-shopping-cart" aria-hidden="true"></i>{" "}
               </button>
             )}
-            <button href="#" className="addtubul">
+            <button
+              href="#"
+              className={
+                bundleListIs.some((bundleItem) => bundleItem.id == obj?.id)
+                  ? "addtubul bg-danger"
+                  :"addtubul"
+              }
+              onClick={() => {
+                handleAddtoBundle(obj?.id, obj?.type, obj?.quantity);
+              }}
+              disabled={
+                bundleListIs.some((cartItem) => cartItem.id == obj?.id)
+                  ? true
+                  : false
+              }
+            >
               Add to Bundle
             </button>
           </div>

@@ -9,13 +9,16 @@ import { useState } from 'react'
 
 function MyApp({ Component, pageProps }) {
   const [cartProductCount, setCartProductCount] = useState(0)
+  const [BundleCount, setBundleCount] = useState(0)
   return (
     <AppContext.Provider
       value={{
         state: {
-          cartProductCount: cartProductCount
+          cartProductCount: cartProductCount,
+          BundleCount: BundleCount
         },
-        setCartProductCount: setCartProductCount
+        setCartProductCount: setCartProductCount,
+        setBundleCount:setBundleCount
       }}
     >
       <Component {...pageProps} />
