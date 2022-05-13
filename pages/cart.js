@@ -5,12 +5,14 @@ import Layout from "../components/layout";
 import { cartList, RemoveCartItem } from "../utils/api-Request";
 import { toast } from "react-toastify";
 import AppContext from "../appContext/index"
+import { NoDataFound } from "../components/NoDataFound/NoDataFound";
 
 
 function cart() {
   const setCounter = useContext(AppContext);
   let { setCartProductCount } = setCounter;
   const [cartListIs, setcartList] = useState();
+  const [cartTotal, setCartTotal] = useState(0)
   const [sessionId, setsessionId] = useState("");
   useEffect(() => {
     const sessionkey = localStorage.getItem("sessionId");
@@ -20,9 +22,9 @@ function cart() {
   const getCartList = async (sessionId) => {
     const res = await cartList(sessionId);
     setcartList(res?.data?.data);
+    setCartTotal(res?.data?.cartTotal)
     return res;
-  };
-  console.log(sessionId);
+  }; 
   useEffect(() => {
     if (sessionId) {
       getCartList(sessionId);
@@ -65,6 +67,9 @@ function cart() {
       </div>
 
       <div className="container d-flex flex-row flex-wrap cartLayout">
+       {cartListIs && cartListIs.length
+       ?
+       <>
         <div className="col-lg-9 col-12 ">
           {cartListIs &&
             cartListIs.map((i, index) => (
@@ -76,7 +81,7 @@ function cart() {
                 supportDesc={i.productInfo.supportingDesc}
                 type={i.productInfo.type}
                 plateform={i.productInfo.plateform}
-                quantity={i.productInfo.quantity}
+                quantity={i.quantity}
                 price={i.productInfo.price}
                 id={i.productInfo.id}
                 sessionId={sessionId}
@@ -85,8 +90,11 @@ function cart() {
             ))}
         </div>
         <div className=" p-0 col-lg-3 col-12" >
-          <CartInfoCard />
+          <CartInfoCard cartListIs={cartListIs} cartTotal={cartTotal}/>
         </div>
+        </>
+        :
+        <NoDataFound />}
       </div>
     </Layout>
   );

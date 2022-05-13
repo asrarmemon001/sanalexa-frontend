@@ -39,8 +39,8 @@ const Signup = ({ handleModal, show, setIsLoggedin }) => {
                 <Modal.Title>Signup </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <div className="card-bordered px-3 pb-3">
-                    <FormControl>
+                <div className="card-bordered px-3 pb-3 col-md-6">
+                    <FormControl class="registers">
                         <FormLabel id="gender-label">Register as</FormLabel>
                         <RadioGroup
                             row

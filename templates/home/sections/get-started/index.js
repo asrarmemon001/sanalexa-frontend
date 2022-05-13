@@ -13,7 +13,7 @@ import { NoDataFound } from "../../../../components/NoDataFound/NoDataFound";
 import ReactPaginate from "react-paginate";
 import "react-toastify/dist/ReactToastify.min.css";
 import { toast, ToastContainer } from "react-toastify";
-import ProjectCard from "../../../../components/projectCard/projectCard";
+import ProjectCard from "../../../../components/projectCard/ProjectCard";
 import AppContext from "../../../../appContext";
 
 export default function GetStarted() {
@@ -23,7 +23,7 @@ export default function GetStarted() {
   const [plateformFilterShow, setPlateformFilterShow] = useState(false);
   const [industryFilterShow, setIndustryFilterShow] = useState(false);
   const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(15);
+  const [limit, setLimit] = useState(6);
   const [totalPages, setTotalPages] = useState(0);
   const [search, setSearch] = useState("");
   const [loadingIs, setLoading] = useState(false);
@@ -36,6 +36,7 @@ export default function GetStarted() {
   const [apicall, setapicall] = useState(false);
 
   const handleOnChange = (event) => {
+    setPage(1)
     setSearch(event.target.value);
   };
 
@@ -79,7 +80,7 @@ export default function GetStarted() {
     console.log(id, type, quantity);
     const data = {
       sessionId: sessionId,
-      cart: { id: String(id), type: "project", quantity: 12 },
+      cart: { id: String(id), type: "project", quantity: 1 },
     };
     await AddtoCart(data)
       .then((res) =>
