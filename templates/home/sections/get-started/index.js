@@ -7,6 +7,8 @@ import {
   sectorList,
   cartList,
   AddtoCart,
+  BundlesList,
+  AddtoBundle,
 } from "../../../../utils/api-Request";
 import { Loader } from "../../../../components/Loader/Loader";
 import { NoDataFound } from "../../../../components/NoDataFound/NoDataFound";
@@ -18,7 +20,7 @@ import AppContext from "../../../../appContext";
 
 export default function GetStarted() {
   const setCounter = useContext(AppContext);
-  let { setCartProductCount } = setCounter;
+  let { setCartProductCount, setBundleCount } = setCounter;
 
   const [plateformFilterShow, setPlateformFilterShow] = useState(false);
   const [industryFilterShow, setIndustryFilterShow] = useState(false);
@@ -32,6 +34,7 @@ export default function GetStarted() {
   const [sector, setSector] = useState([]);
   const [sectorListIs, setSectorList] = useState([]);
   const [cartListIs, setCartList] = useState([]);
+  const [bundleListIs, setbundleList] = useState([]);
   const [sessionId, setSessionId] = useState("");
   const [apicall, setapicall] = useState(false);
 
@@ -93,6 +96,23 @@ export default function GetStarted() {
     setCartProductCount(cartListIs?.length);
   };
 
+  const handleAddtoBundle = async (id, type, quantity) => {
+    console.log(id, type, quantity);
+    const data = {
+      sessionId: "3",
+      bundle: { id: String(id), type: "project", quantity: 1 },
+    };
+    await AddtoBundle(data)
+      .then((res) =>
+        res?.status === 200
+          ? toast.success("successfully Added")
+          : toast.error("somethingwent wrong")
+      )
+      .catch((error) => console.log(error));
+    getBundleList();
+    setBundleCount(bundleListIs?.length);
+  };
+
   const togglePlateformFilter = () => {
     setPlateformFilterShow(!plateformFilterShow);
   };
@@ -125,10 +145,19 @@ export default function GetStarted() {
     setLoading(true);
     const list = await cartList(sessionId);
     const response = list?.data?.data;
-    console.log(response);
     if (response) {
       setLoading(false);
       setCartList(response);
+    }
+  };
+
+  const getBundleList = async () => {
+    setLoading(true);
+    const list = await BundlesList(sessionId);
+    const response = list?.data?.data;
+    if (response) {
+      setLoading(false);
+      setbundleList(response);
     }
   };
 
@@ -145,6 +174,9 @@ export default function GetStarted() {
   useEffect(() => {
     setCartProductCount(cartListIs?.length);
   }, [cartListIs]);
+  useEffect(() => {
+    setBundleCount(bundleListIs?.length);
+  }, [bundleListIs]);
 
   useEffect(() => {
     getCartList();
@@ -282,6 +314,8 @@ export default function GetStarted() {
                       ImageBaseUrl={ImageBaseUrl}
                       cartListIs={cartListIs}
                       handleAddtoCart={handleAddtoCart}
+                      bundleListIs={bundleListIs}
+                      handleAddtoBundle={handleAddtoBundle}
                     />
                   );
                 })

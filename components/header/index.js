@@ -132,15 +132,15 @@ const Header = () => {
                                         </a>
                                     </Link>
                                 </li>
-                                {/* <li>
+                                <li>
 
                                     <Link href="/bundles">
                                         <a className="cart">
-                                            <span className="cart-nub">{state.cartProductCount}</span>
+                                            <span className="cart-nub">{state.BundleCount}</span>
                                             <i className="fa fa-file" aria-hidden="true"></i>
                                         </a>
                                     </Link>
-                                </li> */}
+                                </li>
 
                                 <li>
                                     {user.loading
