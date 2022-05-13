@@ -55,7 +55,7 @@ function Bundles() {
   
   return (
     <Layout>
-      <div
+      {/* <div
         className="container card-body mb-3"
         style={{
           border: "0.5px solid #DCDCDC",
@@ -64,7 +64,7 @@ function Bundles() {
         }}
       >
         Shop For more than $150 and get free vouchers
-      </div>
+      </div> */}
 
       <div className="container d-flex flex-row flex-wrap ">
         <div className="col-lg-12 col-12 ">
