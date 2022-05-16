@@ -43,7 +43,7 @@ function BundleCard({
             </div>
             <p className="card-text mx-2">{desc}</p>
             <div className="d-flex flex-row align-items-baseline">
-              <h4 className="mx-2">$ {price}</h4>
+              <h4 className="mx-2">₹ {price}</h4>
               <h6 className="mx-2">Quantity:{quantity}</h6>
               <span className="badge bg-danger mx-2 text-white">{type}</span>
               <span className="badge bg-danger mx-2 text-white">{plateform}</span>

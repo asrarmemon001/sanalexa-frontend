@@ -56,3 +56,7 @@ export const registerUser = (data) =>{
 export const getUser = (data) => {
    return getApi(`/api/users/getuser`)
 }
+
+export const getProjectDetailsById =(id)=>{
+   return getApiWithoutToken(`/api/projects/projectDetailsById?id=${id}`)
+}

@@ -5,21 +5,44 @@ import 'react-toastify/dist/ReactToastify.css';
 import AppContext from "../appContext/index"
 import '../styles/globals.css'
 import { ToastContainer, toast } from 'react-toastify';
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { cartList, sectorList } from "../utils/api-Request";
+import useFetchSectordetails from "../hooks/getSectorList";
+import { getSession, setSession } from "../utils/constants";
 
 function MyApp({ Component, pageProps }) {
-  const [cartProductCount, setCartProductCount] = useState(0)
+  const [cartProduct, setCartProduct] = useState(null)
+  const [sectors, setSectors] = useState(null)
+  const [cartTotal, setCartTotal] = useState(0)
+  useFetchSectordetails(setSectors)
+  const fetchCartList = async () => {
+    const list = await cartList(getSession());
+    setCartProduct(list?.data?.data || null);
+    setCartTotal(list?.data?.cartTotal || 0)
+
+  };
+  useEffect(() => {
+    if (!Boolean(getSession())) {
+      setSession()
+    }
+    fetchCartList()
+  }, [])
   return (
     <AppContext.Provider
       value={{
         state: {
-          cartProductCount: cartProductCount
+          cartProduct,
+          sectors,
+          cartTotal
         },
-        setCartProductCount: setCartProductCount
+        setCartProduct,
+        setSectors,
+        fetchCartList
       }}
     >
+      {console.log(cartProduct,'cartProduct')}
       <Component {...pageProps} />
-      <ToastContainer />
+      <ToastContainer style={{ zIndex: 999999 }} />
     </AppContext.Provider>)
 }
 

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react" 
+import React, { useEffect } from "react"
 import AOS from "aos";
 import FeaturedCourses from "../../components/featured-courses";
 import SubscriptionPackages from "../../components/subscription-packages";
@@ -7,20 +7,20 @@ import NewsletterSection from "../../components/newsletter";
 import ShiftHandoverFaq from "./shift-handover-faq";
 import ShiftHandover from "./shift-handover";
 import ProductDetailsMain from "./details-main"
-export default function ProductDetailsTemplate() {
+export default function ProductDetailsTemplate({ productDetails }) {
     useEffect(() => {
         AOS.init();
         AOS.refresh();
     }, []);
     return (
         <>
-        <ProductDetailsMain/>
-            <ShiftHandover/>
-            <ShiftHandoverFaq/>
+            <ProductDetailsMain productDetails={productDetails}/>
+            <ShiftHandover />
+            <ShiftHandoverFaq />
             <FeaturedCourses heading="You May Also Like" />
             <SubscriptionPackages heading="Subscription Package" />
-            <BannerBottom/>
-            <NewsletterSection/>
+            <BannerBottom />
+            <NewsletterSection />
         </>
     )
 } 

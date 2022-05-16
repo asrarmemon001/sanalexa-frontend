@@ -9,7 +9,7 @@ import AppContext from "../appContext/index"
 
 function Bundles() {
   const setCounter = useContext(AppContext);
-  let { setCartProductCount } = setCounter;
+  let { setCartProduct } = setCounter;
   const [cartListIs, setcartList] = useState();
   const [sessionId, setsessionId] = useState("");
 
@@ -50,7 +50,7 @@ function Bundles() {
   };
   
   useEffect(() => {
-    setCartProductCount(cartListIs?.length);
+    setCartProduct(cartListIs);
   }, [cartListIs])
   
   return (

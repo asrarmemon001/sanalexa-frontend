@@ -31,13 +31,14 @@ function CartInfoCard({ cartListIs, cartTotal }) {
 
       <hr />
       <div className="d-flex flex-row justify-content-between">
-        <p>Total Amount</p>
-        <p>₹ {cartTotal}</p>
-      </div>
-      <div className="d-flex flex-row justify-content-between">
         <p>Coupon Discount</p>
         <p>₹ 0</p>
       </div>
+      <div className="d-flex flex-row justify-content-between">
+        <p>Total Amount</p>
+        <p>₹ {cartTotal}</p>
+      </div>
+      
 
       <button className="btn btn-danger mb-3" style={{ borderRadius: "20px" }}>
         <Paymentgateway/>
