@@ -1,7 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
+import Login from "../../templates/login";
+import Signup from "../../templates/signup";
 import Paymentgateway from "../paymentgateway/Paymentgateway";
 
 function CartInfoCard({ cartListIs, cartTotal }) {
+  const [show, setshow] = useState(false)
+  const [Modal ,setModal] = useState(false)
+  const [isLoggedin, setIsLoggedin] = useState(false)
+
+  
+  const userLogin = false
+
+  const handleModal = (action) => {
+    setModal(action)
+}
+
   return (
     <div
       className="card container"
@@ -40,7 +53,15 @@ function CartInfoCard({ cartListIs, cartTotal }) {
       </div>
 
       <button className="btn btn-danger mb-3" style={{ borderRadius: "20px" }}>
-        <Paymentgateway/>
+        {
+         userLogin ?  
+         <Paymentgateway/>
+         :
+         <button onClick={()=>(handleModal("login"))}>Login</button>
+        }
+        <Login show={Modal == "login"} handleModal={handleModal} setIsLoggedin={setIsLoggedin}/>
+        <Signup show={Modal == "signup"} handleModal={handleModal} setIsLoggedin={setIsLoggedin} />
+
       </button>
     </div>
   );

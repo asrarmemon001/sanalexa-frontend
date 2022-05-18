@@ -1,21 +1,25 @@
 import React, { useEffect, useState, useContext } from "react";
 import CartItemCard from "../components/CartItemCard/CartItemCard";
 import Layout from "../components/layout";
-import { BundlesList, RemoveBundleList } from "../utils/api-Request";
+import { BundlesList, DefaultBundlesList, RemoveBundleList } from "../utils/api-Request";
 import { toast } from "react-toastify";
 import AppContext from "../appContext/index"
 import BundleCard from "../components/BundleCard/BundleCard";
+import { BundleSection } from "../components/BundleSection/BundleSection";
 
 
 function bundles() {
   const setCounter = useContext(AppContext);
   let { setBundleCount } = setCounter;
   const [bundleListIs, setbundleList] = useState();
+  const [defaultBundles, setDefaultBundles] = useState();
   const [sessionId, setsessionId] = useState("");
 
+console.log(defaultBundles)
   useEffect(() => {
     const sessionkey = localStorage.getItem("sessionId");
     setsessionId(sessionkey);
+    DefaultBundlesList().then(res => setDefaultBundles(res?.data?.data)).catch((error)=>(console.error(error)))
   }, []);
 
   const getBundleList = async (sessionId) => {
@@ -63,7 +67,15 @@ function bundles() {
       >
         Shop For more than $150 and get free vouchers
       </div>
-
+      <div>
+        {
+          defaultBundles?.map((i)=>(
+            <BundleSection sections={i}/>
+          ))
+        }
+      </div>
+      <br />
+        <h3 className="text-center">Custom Bundles</h3>
       <div className="container d-flex flex-row flex-wrap ">
         <div className="col-lg-12 col-12 ">
           {bundleListIs &&
