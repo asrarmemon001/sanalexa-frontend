@@ -1,9 +1,15 @@
+import AOS from "aos"
 import Image from "next/image"
 import Link from "next/link"
+import { useEffect } from "react"
 import BannerSection from "../../components/banner-section"
 import { ImageBaseUrl } from "../../utils/Baseurl"
 
 const SubscriptionPlansListTemplates = ({ subsciptionList }) => {
+    useEffect(() => {
+        AOS.init();
+        AOS.refresh();
+    }, []);
     return (
         <>
             <BannerSection>

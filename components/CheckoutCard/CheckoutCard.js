@@ -41,7 +41,7 @@ function CartInfoCard({ cartListIs, cartTotal }) {
       
 
       <button className="btn btn-danger mb-3" style={{ borderRadius: "20px" }}>
-        <Paymentgateway/>
+        <Paymentgateway cartListIs={cartListIs} cartTotal={cartTotal} />
       </button>
     </div>
   );

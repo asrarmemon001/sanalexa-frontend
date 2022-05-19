@@ -60,3 +60,7 @@ export const getUser = (data) => {
 export const getProjectDetailsById =(id)=>{
    return getApiWithoutToken(`/api/projects/projectDetailsById?id=${id}`)
 }
+
+export const paymentApi = (data) =>{
+   return postApi(`/api/payment/checkout-payment`, data)
+}

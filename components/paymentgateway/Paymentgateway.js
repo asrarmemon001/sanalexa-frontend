@@ -1,42 +1,9 @@
+import { useState } from "react";
+import { paymentApi } from "../../utils/api-Request";
+import { getSession } from "../../utils/constants";
+
 export default function paymentgateway(props) {
-  const makePayment = async () => {
-    console.log("here...");
-    const res = await initializeRazorpay();
-
-    if (!res) {
-      alert("Razorpay SDK Failed to load");
-      return;
-    }
-
-    // Make API call to the serverless API
-    const data = await fetch("/api/razorpay", { method: "POST" }).then((t) =>
-      t.json()
-    );
-    console.log(data);
-    var options = {
-      key: process.env.RAZORPAY_KEY, // Enter the Key ID generated from the Dashboard
-      name: "Rugved Patel",
-      currency: data.currency,
-      amount: data.amount,
-      order_id: data.id,
-      description: "Thankyou for your test donation",
-      image: "https://manuarora.in/logo.png",
-      handler: function (response) {
-        // Validate payment at server - using webhooks is a better idea.
-        alert(response.razorpay_payment_id);
-        alert(response.razorpay_order_id);
-        alert(response.razorpay_signature);
-      },
-      prefill: {
-        name: "Rugved Patel",
-        email: "patelrugved7@gmail.com",
-        contact: "4204204200",
-      },
-    };
-
-    const paymentObject = new window.Razorpay(options);
-    paymentObject.open();
-  };
+  const [paymentRes, setPaymentRes] = useState(null)
   const initializeRazorpay = () => {
     return new Promise((resolve) => {
       const script = document.createElement("script");
@@ -52,6 +19,36 @@ export default function paymentgateway(props) {
       document.body.appendChild(script);
     });
   };
-  return <div onClick={makePayment}>
-      Pay</div>;
+
+  const makePayment = async () => { 
+    const res = await initializeRazorpay();
+
+    if (!res) {
+      alert("Razorpay SDK Failed to load");
+      return;
+    }
+
+    // Make API call to the serverless API
+    const result = await paymentApi({sessionId:getSession(), type:'cart'})
+    const data = result.data;
+
+    var options = {
+      key: "rzp_test_BSTTztDODhkhRQ", // Enter the Key ID generated from the Dashboard
+      name: "Simulanis",
+      currency: data.currency,
+      amount: data.amount,
+      order_id: data.id,
+      description: "Thank you for choosing Simulanis",
+      image: "/static/images/logo.png",
+      handler: function (response) {
+        // Validate payment at server - using webhooks is a better idea.
+        setPaymentRes(response)
+      },
+    };
+
+    const paymentObject = new window.Razorpay(options);
+    paymentObject.open();
+  };
+  console.log(paymentRes,'paymentRes')
+  return <div onClick={makePayment}>Pay</div>;
 }
