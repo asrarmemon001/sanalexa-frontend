@@ -135,7 +135,7 @@ const Header = () => {
                                         </Menu>
                                     </li>
                                     <li>
-                                        <Link href="/">
+                                        <Link href="/plans-and-subscriptions">
                                             <a> Plans and Subscriptions</a>
                                         </Link>
                                     </li>
