@@ -140,9 +140,10 @@ const Header = () => {
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link href="/">
-                                            <a> Create Bundle</a>
+                                        <Link href="/bundles">
+                                            <a>Create Bundle</a>
                                         </Link>
+                                            <p>{state.bundleProduct?.length || 0}</p>
                                     </li>
                                 </ul>
                             </div>

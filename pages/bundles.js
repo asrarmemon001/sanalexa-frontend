@@ -2,25 +2,29 @@ import React, { useEffect, useState, useContext } from "react";
 import CartItemCard from "../components/CartItemCard/CartItemCard";
 import CartInfoCard from "../components/CheckoutCard/CheckoutCard";
 import Layout from "../components/layout";
-import { BundlesList, RemoveBundleItem } from "../utils/api-Request";
+import { BundlesList, DefaultBundlesList, RemoveBundleItem, RemoveBundleList } from "../utils/api-Request";
 import { toast } from "react-toastify";
 import AppContext from "../appContext/index"
+import { BundleSection } from "../components/BundleSection/BundleSection";
 
 
 function Bundles() {
   const setCounter = useContext(AppContext);
-  let { setCartProduct } = setCounter;
-  const [cartListIs, setcartList] = useState();
+  let { setBundleProduct } = setCounter;
+  const [BundleListIs, setBundleList] = useState();
   const [sessionId, setsessionId] = useState("");
+  const [defaultBundles, setDefaultBundles] = useState();
+
 
   useEffect(() => {
     const sessionkey = localStorage.getItem("sessionId");
     setsessionId(sessionkey);
+    DefaultBundlesList().then(res => setDefaultBundles(res?.data?.data)).catch((error)=>(console.error(error)))
   }, []);
 
-  const getCartList = async (sessionId) => {
+  const getBundleList = async (sessionId) => {
     const res = await BundlesList(sessionId);
-    setcartList(res?.data?.data);
+    setBundleList(res?.data?.data);
     return res;
   };
 
@@ -28,7 +32,7 @@ function Bundles() {
   
   useEffect(() => {
     if (sessionId) {
-      getCartList(sessionId);
+      getBundleList(sessionId);
     }
   }, [sessionId]);
 
@@ -38,20 +42,20 @@ function Bundles() {
       id: id,
       type: "project",
     };
-    await RemoveBundleItem(data)
+    await RemoveBundleList(data)
       .then((res) =>
         res?.status === 200
           ? toast.success("successfully Removed")
           : toast.error("something went wrong")
       )
       .catch((error) => console.error(error));
-    getCartList(sessionId);
+    getBundleList(sessionId);
     
   };
   
   useEffect(() => {
-    setCartProduct(cartListIs);
-  }, [cartListIs])
+    setBundleProduct(BundleListIs);
+  }, [BundleListIs])
   
   return (
     <Layout>
@@ -65,11 +69,22 @@ function Bundles() {
       >
         Shop For more than $150 and get free vouchers
       </div> */}
+      <div>
+       <div>
+        {
+          defaultBundles?.map((i)=>(
+            <BundleSection sections={i}/>
+          ))
+        }
+      </div>
+      <br />
+        <h3 className="text-center">Custom Bundles</h3>
+      </div> 
 
       <div className="container d-flex flex-row flex-wrap ">
         <div className="col-lg-12 col-12 ">
-          {cartListIs &&
-            cartListIs.map((i, index) => (
+          {BundleListIs &&
+            BundleListIs.map((i, index) => (
               <CartItemCard
                 key={index}
                 image={i.productInfo.bannerImage}

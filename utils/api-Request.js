@@ -12,6 +12,11 @@ export const BundlesList = async (data) =>{
    console.log(res)
    return res
 }
+export const DefaultBundlesList = async (data) =>{
+   const res = await getApiWithoutToken(`/api/bundle/default-list`)
+   console.log(res)
+   return res
+}
 
 export const RemoveCartItem = async (data) => {
    return await postApiWithoutToken(`/api/cart/remove-cart`, data)
@@ -45,7 +50,7 @@ export const AddtoCart = async (data) => {
 }
 
 export const AddtoBundle = async(data) =>{
-   const res= await postApiWithoutToken(`/api/cart/add-to-bundle`, data)
+   const res= await postApiWithoutToken(`/api/bundle/add-to-bundle`, data)
    return res
 }
 
