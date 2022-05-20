@@ -1,25 +1,42 @@
-import React from "react";
+import React, { useContext } from "react";
 import Image from "next/image";
 import { ImageBaseUrl } from "../../utils/Baseurl";
-import { RemoveBundleList } from "../../utils/api-Request";
+import { removeItemBundleList } from "../../utils/api-Request";
+import { getSession } from "../../utils/constants";
+import { toast } from "react-toastify";
+import AppContext from "../../appContext";
 
 function BundleCard({
   image,
   desc,
   title,
-  id,
-  supportDesc,
+  id, 
   type,
-  plateform,
-  quantity,
-  price,
-  sessionId,
-  handleRemove
+  plateform, 
 }) {
-    
+  const appContext = useContext(AppContext)
+  const { fetchBundleList } = appContext
   const images = image?.split("/");
   const imgsrc = images ? encodeURI(images[1]) : "";
 
+  const handleRemove = async (id) => {
+    try {
+      const data = {
+        sessionId: getSession(),
+        id: id,
+        type: "project",
+      };
+      const res = await removeItemBundleList(data)
+      if (res.status == 200) {
+        toast.success("successfully Removed")
+        fetchBundleList()
+      }
+
+    } catch (error) {
+      toast.error("something went wrong")
+      console.log(error, 'handleRemove bundle')
+    }
+  };
   return (
     <div
       className="card mb-3"
@@ -42,17 +59,13 @@ function BundleCard({
               <h5 className="card-title p-2">{title}</h5>
             </div>
             <p className="card-text mx-2">{desc}</p>
-            <div className="d-flex flex-row align-items-baseline">
-              <h4 className="mx-2">₹ {price}</h4>
-              <h6 className="mx-2">Quantity:{quantity}</h6>
-              <span className="badge bg-danger mx-2 text-white">{type}</span>
+            <div className="d-flex flex-row align-items-baseline mb-4">
               <span className="badge bg-danger mx-2 text-white">{plateform}</span>
             </div>
             <div className="d-flex flex-row justify-content-start">
               <button
-                className="btn btn-danger mx-2 mb-3"
+                className="btn btn-link text-danger"
                 onClick={() => handleRemove(id, type)}
-                style={{ borderRadius: "20px" }}
               >
                 Remove Item
               </button>

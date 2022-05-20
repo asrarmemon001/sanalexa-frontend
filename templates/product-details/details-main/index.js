@@ -75,7 +75,7 @@ const ProductDetailsMain = ({ productDetails: { id, projectTitle, bannerImage, p
                                     {/* <a href="#">Read More</a> */}
                                 </p>
 
-                                <h4>${price}</h4>
+                                <h4>₹{price}</h4>
                                 <div className="recommended">
                                     <h4>Recommended Services</h4>
                                     <div className="all-check-box">

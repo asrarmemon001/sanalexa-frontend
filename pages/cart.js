@@ -52,21 +52,38 @@ function Cart() {
           <>
             <div className="col-lg-9 col-12 ">
               {cartListIs &&
-                cartListIs.map((i, index) => (
-                  <CartItemCard
-                    key={index}
-                    image={i.productInfo.bannerImage}
-                    desc={i.productInfo.projectDesc}
-                    title={i.productInfo.projectTitle}
-                    supportDesc={i.productInfo.supportingDesc}
-                    type={i.productInfo.type}
-                    plateform={i.productInfo.plateform}
-                    quantity={i.quantity}
-                    price={i.productInfo.price}
-                    id={i.productInfo.id}
-                    sessionId={getSession()}
-                    handleRemove={handleRemove}
-                  />
+                cartListIs.map((el, index) => (
+                 el.type == "project"
+                 ?
+                 <CartItemCard
+                 key={index}
+                 image={el.productInfo.bannerImage}
+                 desc={el.productInfo.projectDesc}
+                 title={el.productInfo.projectTitle}
+                 supportDesc={el.productInfo.supportingDesc}
+                 type={el.type}
+                 plateform={el.productInfo.plateform}
+                 quantity={el.quantity}
+                 price={el.productInfo.price}
+                 id={el.productInfo.id}
+                 sessionId={getSession()}
+                 handleRemove={handleRemove}
+               />
+               :
+               <CartItemCard
+               key={index}
+               image={el.productInfo.bannerImage}
+               desc={el.productInfo.packagesDesc}
+               title={el.productInfo.packagesName}
+              //  supportDesc={el.productInfo.supportingDesc}
+               type={el.type}
+              //  plateform={el.productInfo.plateform}
+               quantity={el.quantity}
+               price={el.productInfo.price}
+               id={el.productInfo.id}
+               sessionId={getSession()}
+               handleRemove={handleRemove}
+             />
                 ))}
             </div>
             <div className=" p-0 col-lg-3 col-12" >

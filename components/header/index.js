@@ -140,8 +140,9 @@ const Header = () => {
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link href="/">
-                                            <a> Create Bundle</a>
+                                        <Link href="/bundles">
+                                       
+                                            <a> Create Bundle <span className="badge badge-danger">{state.bundleProduct?.length || 0}</span></a>
                                         </Link>
                                     </li>
                                 </ul>

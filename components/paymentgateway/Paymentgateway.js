@@ -1,9 +1,17 @@
-import { useState } from "react";
+import { CircularProgress } from "@mui/material";
+import { useRouter } from "next/router";
+import { useContext, useState } from "react";
+import { toast } from "react-toastify";
+import AppContext from "../../appContext";
 import { paymentApi } from "../../utils/api-Request";
 import { getSession } from "../../utils/constants";
 
 export default function paymentgateway(props) {
+  const router = useRouter()
+  const appContext = useContext(AppContext);
+  const {fetchCartList} = appContext;
   const [paymentRes, setPaymentRes] = useState(null)
+  const [loading, setLoading] = useState(false)
   const initializeRazorpay = () => {
     return new Promise((resolve) => {
       const script = document.createElement("script");
@@ -21,6 +29,8 @@ export default function paymentgateway(props) {
   };
 
   const makePayment = async () => { 
+   try{
+    setLoading(true)
     const res = await initializeRazorpay();
 
     if (!res) {
@@ -30,8 +40,7 @@ export default function paymentgateway(props) {
 
     // Make API call to the serverless API
     const result = await paymentApi({sessionId:getSession(), type:'cart'})
-    const data = result.data;
-
+    const data = result.data;   
     var options = {
       key: "rzp_test_BSTTztDODhkhRQ", // Enter the Key ID generated from the Dashboard
       name: "Simulanis",
@@ -40,15 +49,30 @@ export default function paymentgateway(props) {
       order_id: data.id,
       description: "Thank you for choosing Simulanis",
       image: "/static/images/logo.png",
-      handler: function (response) {
+      handler: function (response) {       
         // Validate payment at server - using webhooks is a better idea.
         setPaymentRes(response)
+        router.push("/payment/success")
+        // validatePaymentVerification({"order_id": razorpayOrderId, "payment_id": razorpayPaymentId }, signature, secret);
+
       },
+      // callback_url: "http://localhost:3000/",
     };
 
     const paymentObject = new window.Razorpay(options);
+    paymentObject.on('payment.failed', function (response){
+      router.push("/payment/failed")
+});
     paymentObject.open();
-  };
-  console.log(paymentRes,'paymentRes')
-  return <div onClick={makePayment}>Pay</div>;
+    router.push("/payment/verifying-payment-status")
+    setTimeout(()=>{
+      fetchCartList()
+      setLoading(false)
+    },3000)
+   }catch(error){
+     toast.error("Something went wrong.")
+     setLoading(false)
+   }
+  }; 
+  return <button disabled={loading}  className="btn btn-danger mb-3" style={{ borderRadius: "20px" }} onClick={makePayment}>{loading ? <CircularProgress size={16}/> : 'Pay'}</button>;
 }
