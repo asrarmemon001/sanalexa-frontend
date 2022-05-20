@@ -213,19 +213,19 @@ const RegisterOrganization = ({handleModal, setIsLoggedin }) => {
                 <div className="col-md-3">
                     <div className="form-check form-switch d-flex align-items-center mb-3  is-filled">
                         <input className="form-check-input" type="checkbox" id="heartRate" name="heartRate" checked={formik.values.heartRate} onChange={handleChangeInputCheckbox} />
-                        <label className="form-check-label mb-0 ms-2" for="heartRate">Heart Rate</label>
+                        <label className="form-check-label mb-0 ms-2" htmlFor="heartRate">Heart Rate</label>
                     </div>
                 </div>
                 <div className="col-md-3">
                     <div className="form-check form-switch d-flex align-items-center mb-3  is-filled">
                         <input className="form-check-input" type="checkbox" id="heatMap" name="heatMap" checked={formik.values.heatMap} onChange={handleChangeInputCheckbox} />
-                        <label className="form-check-label mb-0 ms-2" for="heatMap">Heat Map</label>
+                        <label className="form-check-label mb-0 ms-2" htmlFor="heatMap">Heat Map</label>
                     </div>
                 </div>
                 <div className="col-md-3">
                     <div className="form-check form-switch d-flex align-items-center mb-3  is-filled">
                         <input className="form-check-input" type="checkbox" id="brainWave" name="brainWave" checked={formik.values.brainWave} onChange={handleChangeInputCheckbox} />
-                        <label className="form-check-label mb-0 ms-2" for="brainWave">Brain Wave</label>
+                        <label className="form-check-label mb-0 ms-2" htmlFor="brainWave">Brain Wave</label>
                     </div>
                 </div>
             </div>

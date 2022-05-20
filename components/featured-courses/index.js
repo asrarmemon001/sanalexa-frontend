@@ -5,6 +5,7 @@ import { NoDataFound } from "../NoDataFound/NoDataFound";
 import { projectListFeatured } from "../../utils/api-Request";
 import { ImageBaseUrl } from "../../utils/Baseurl";
 import { useRouter } from "next/router";
+import ProjectCard from "../projectCard/ProjectCard";
 export default function FeaturedCourses({ heading }) {
   const [page, setPage] = useState(1)
   const [limit, setLimit] = useState(5)
@@ -99,25 +100,7 @@ export default function FeaturedCourses({ heading }) {
               {
                 projectListIs.map((obj, index) => {
                   return (
-
-                    <div className="packageItem px-3" key={`sli-${index}`}>
-                      <div className="pharmaceutical-box">
-                        <figure onClick={()=>router.push(`/product-details/${obj.id}`)} style={{cursor:'pointer'}}>
-                          <img src={ImageBaseUrl + obj?.bannerImage} />
-                          <h5 className="Pharmacepo">{obj?.sector?.name}</h5>
-                        </figure>
-                        <div className="pharmaceutical-contant">
-                          <h4 onClick={()=>router.push(`/product-details/${obj.id}`)} style={{cursor:'pointer'}}>{obj?.projectTitle}</h4>
-                          <h3><span>${obj?.price}</span></h3>
-
-                          <div className="buttons">
-                            <button className="carts"><i className="fa fa-plus" aria-hidden="true"></i>
-                              <i className="fa fa-shopping-cart" aria-hidden="true"></i> </button>
-                            <button href="#" className="addtubul">Add to Bundle</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    <ProjectCard key={`sl-${index}`} obj={obj} index={index} classes={"packageItem px-3"}/>
                   )
                 })}
             </Slider> : <NoDataFound />

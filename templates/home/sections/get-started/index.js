@@ -18,7 +18,7 @@ import AppContext from "../../../../appContext";
 
 export default function GetStarted() {
   const setCounter = useContext(AppContext);
-  let { setCartProductCount } = setCounter;
+  let { setCartProduct } = setCounter;
 
   const [plateformFilterShow, setPlateformFilterShow] = useState(false);
   const [industryFilterShow, setIndustryFilterShow] = useState(false);
@@ -42,11 +42,11 @@ export default function GetStarted() {
 
   const getPlateform = (event) => {
     const { value, checked } = event.target;
-    let data = plateform;
+    let data = plateform; 
     if (checked) {
       data.push(value);
     } else {
-      data.pop(value);
+      data=data.filter(el=>el != value);
     }
     setplateform(data);
     getProjectList();
@@ -58,7 +58,7 @@ export default function GetStarted() {
     if (checked) {
       data.push(value);
     } else {
-      data.pop(value);
+     data = data.filter((el)=>el != value);
     }
     setSector(data);
     getProjectList();
@@ -76,22 +76,21 @@ export default function GetStarted() {
     setPage(data?.selected + 1);
   };
 
-  const handleAddtoCart = async (id, type, quantity) => {
-    console.log(id, type, quantity);
-    const data = {
-      sessionId: sessionId,
-      cart: { id: String(id), type: "project", quantity: 1 },
-    };
-    await AddtoCart(data)
-      .then((res) =>
-        res?.status === 200
-          ? toast.success("successfully Added")
-          : toast.error("somethingwent wrong")
-      )
-      .catch((error) => console.log(error));
-    getCartList();
-    setCartProductCount(cartListIs?.length);
-  };
+  // const handleAddtoCart = async (id, type, quantity) => { 
+  //   const data = {
+  //     sessionId: sessionId,
+  //     cart: { id: String(id), type: "project", quantity: 1 },
+  //   };
+  //   await AddtoCart(data)
+  //     .then((res) =>
+  //       res?.status === 200
+  //         ? toast.success("successfully Added")
+  //         : toast.error("somethingwent wrong")
+  //     )
+  //     .catch((error) => console.log(error));
+  //   getCartList();
+  //   setCartProduct(cartListIs);
+  // };
 
   const togglePlateformFilter = () => {
     setPlateformFilterShow(!plateformFilterShow);
@@ -121,16 +120,16 @@ export default function GetStarted() {
     }
   };
 
-  const getCartList = async () => {
-    setLoading(true);
-    const list = await cartList(sessionId);
-    const response = list?.data?.data;
-    console.log(response);
-    if (response) {
-      setLoading(false);
-      setCartList(response);
-    }
-  };
+  // const getCartList = async () => {
+  //   setLoading(true);
+  //   const list = await cartList(sessionId);
+  //   const response = list?.data?.data;
+  //   console.log(response);
+  //   if (response) {
+  //     setLoading(false);
+  //     setCartList(response);
+  //   }
+  // };
 
   useEffect(() => {
     getProjectList();
@@ -142,13 +141,13 @@ export default function GetStarted() {
     getSectorList();
   }, []);
 
-  useEffect(() => {
-    setCartProductCount(cartListIs?.length);
-  }, [cartListIs]);
+  // useEffect(() => {
+  //   setCartProduct(cartListIs);
+  // }, [cartListIs]);
 
-  useEffect(() => {
-    getCartList();
-  }, [sessionId]);
+  // useEffect(() => {
+  //   getCartList();
+  // }, [sessionId]);
 
   return (
     <section className="couressto">
@@ -186,11 +185,12 @@ export default function GetStarted() {
                             return (
                               <label
                                 className="control"
-                                for={obj?.id}
+                                htmlFor={obj?.id}
                                 key={index}
                               >
                                 <input
                                   type="checkbox"
+                                  checked={plateform?.includes(obj.id)}
                                   name={obj?.name}
                                   value={obj?.id}
                                   id={obj?.id}
@@ -198,7 +198,7 @@ export default function GetStarted() {
                                     handleFilterChange(e, "plateform")
                                   }
                                 />
-                                <span className="control__content">
+                                <span className={plateform?.includes(obj.id) ? 'bg-danger text-white control__content' : "control__content"}>
                                   {obj?.name}
                                 </span>
                               </label>
@@ -221,19 +221,20 @@ export default function GetStarted() {
                             return (
                               <label
                                 className="control"
-                                for={obj?.id}
+                                htmlFor={obj?.id}
                                 key={index}
                               >
                                 <input
                                   type="checkbox"
                                   name={obj?.name}
+                                  checked={sector?.includes(obj.id.toString())}
                                   value={obj?.id}
                                   id={obj?.id}
                                   onChange={(e) =>
                                     handleFilterChange(e, "sector")
                                   }
                                 />
-                                <span className="control__content">
+                                 <span className={sector?.includes(obj.id.toString()) ? 'bg-danger text-white control__content' : "control__content"}>
                                   {obj?.name}
                                 </span>
                               </label>
@@ -279,9 +280,7 @@ export default function GetStarted() {
                     <ProjectCard
                       obj={obj}
                       key={index}
-                      ImageBaseUrl={ImageBaseUrl}
-                      cartListIs={cartListIs}
-                      handleAddtoCart={handleAddtoCart}
+                      classes=" col-lg-4 col-md-6 mb-4"
                     />
                   );
                 })

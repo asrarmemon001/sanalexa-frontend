@@ -58,7 +58,7 @@ function CardItem({
         </div>
 
         <div className="col-lg-2 col-md-10 col-12" >
-         <h4 className="mx-2">$ {price}</h4>
+         <h4 className="mx-2">₹ {price}</h4>
            <div className="d-flex flex-row justify-content-start">
               <button
                 className="removeItem"

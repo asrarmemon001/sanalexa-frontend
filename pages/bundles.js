@@ -1,61 +1,32 @@
 import React, { useEffect, useState, useContext } from "react";
-import CartItemCard from "../components/CartItemCard/CartItemCard";
-import CartInfoCard from "../components/CheckoutCard/CheckoutCard";
 import Layout from "../components/layout";
-import { BundlesList, RemoveBundleItem } from "../utils/api-Request";
-import { toast } from "react-toastify";
 import AppContext from "../appContext/index"
+import BundleCard from "../components/BundleCard/BundleCard";
+import { BundleSection } from "../components/BundleSection/BundleSection";
+import { getDefaultBundlesList } from "../utils/api-Request";
+import { NoDataFound } from "../components/NoDataFound/NoDataFound";
 
 
-function Bundles() {
-  const setCounter = useContext(AppContext);
-  let { setCartProductCount } = setCounter;
-  const [cartListIs, setcartList] = useState();
-  const [sessionId, setsessionId] = useState("");
+function bundles() {
+  const conntextApi = useContext(AppContext);
+  const { bundleProduct, bundleTotal } = conntextApi.state;
+  const [defaultBundles, setDefaultBundles] = useState(null);
 
+  const fetchDefaultBundleList = async () => {
+    try {
+      const response = await getDefaultBundlesList()
+      setDefaultBundles(response.data.data)
+    } catch (error) {
+      console.log(error, 'fetchDefaultBundleList')
+    }
+  }
   useEffect(() => {
-    const sessionkey = localStorage.getItem("sessionId");
-    setsessionId(sessionkey);
+    fetchDefaultBundleList()
   }, []);
 
-  const getCartList = async (sessionId) => {
-    const res = await BundlesList(sessionId);
-    setcartList(res?.data?.data);
-    return res;
-  };
-
-  console.log(sessionId);
-  
-  useEffect(() => {
-    if (sessionId) {
-      getCartList(sessionId);
-    }
-  }, [sessionId]);
-
-  const handleRemove = async (id, type) => {
-    const data = {
-      sessionId: sessionId,
-      id: id,
-      type: "project",
-    };
-    await RemoveBundleItem(data)
-      .then((res) =>
-        res?.status === 200
-          ? toast.success("successfully Removed")
-          : toast.error("something went wrong")
-      )
-      .catch((error) => console.error(error));
-    getCartList(sessionId);
-    
-  };
-  
-  useEffect(() => {
-    setCartProductCount(cartListIs?.length);
-  }, [cartListIs])
-  
   return (
     <Layout>
-      {/* <div
+      <div
         className="container card-body mb-3"
         style={{
           border: "0.5px solid #DCDCDC",
@@ -64,32 +35,52 @@ function Bundles() {
         }}
       >
         Shop For more than $150 and get free vouchers
-      </div> */}
-
-      <div className="container d-flex flex-row flex-wrap ">
-        <div className="col-lg-12 col-12 ">
-          {cartListIs &&
-            cartListIs.map((i, index) => (
-              <CartItemCard
-                key={index}
-                image={i.productInfo.bannerImage}
-                desc={i.productInfo.projectDesc}
-                title={i.productInfo.projectTitle}
-                supportDesc={i.productInfo.supportingDesc}
-                type={i.productInfo.type}
-                plateform={i.productInfo.plateform}
-                quantity={i.productInfo.quantity}
-                price={i.productInfo.price}
-                id={i.productInfo.id}
-                sessionId={sessionId}
-                handleRemove={handleRemove}
-              />
-            ))}
-        </div>
-       
       </div>
+    
+      
+      <h3 className="text-center">Custom Bundle</h3>
+      <p className="text-center" style={{fontWeight:600}}>₹ {bundleTotal}</p>
+      <div className="container d-flex flex-row flex-wrap mb-4"> 
+        {bundleProduct?.length ?
+          <>
+            {bundleProduct.map((el, index) => (
+              <div className="col-md-4 ">
+                <BundleCard
+                  key={`bundle-${index}`}
+                  image={el.productInfo.bannerImage}
+                  desc={el.productInfo.projectDesc}
+                  title={el.productInfo.projectTitle}
+                  supportDesc={el.productInfo.supportingDesc}
+                  type={el.type}
+                  plateform={el.productInfo.plateform}
+                  quantity={el.quantity}
+                  price={el.productInfo.price}
+                  id={el.productInfo.id}
+                />
+              </div>
+            ))}
+            <div className="col-12">
+              <div className="d-flex justify-content-end w-100">
+                <button className="btn btn-danger my-4 mr-3">Checkout</button>
+              </div>
+            </div>
+
+          </>
+          :
+          <NoDataFound />}
+
+      </div>
+
+      <div>
+        {
+          defaultBundles?.map((el, i) => (
+            <BundleSection key={`dfBundle-${i}`} sections={el} />
+          ))
+        }
+      </div>
+
     </Layout>
   );
 }
 
-export default Bundles;
+export default bundles;

@@ -1,39 +1,41 @@
 import React, { useEffect } from "react"
-import BannerSection from "./sections/banner";
-// import BannerBottom from "./sections/banner-bottom";
 import CategoriesSection from "./sections/categories";
-// import FeaturedCourses from "./sections/featured-courses";
 import GetStarted from "./sections/get-started";
-// import NewsletterSection from "./sections/newsletter";
-// import SubscriptionPackages from "./sections/subscription-packages";
 import WhatYouGet from "./sections/what-you-get";
 import AOS from "aos";
-import {generateSessionId} from "../../utils/helper-functions"
 import SubscriptionPackages from "../../components/subscription-packages";
 import FeaturedCourses from "../../components/featured-courses";
 import BannerBottom from "../../components/banner-bottom";
 import NewsletterSection from "../../components/newsletter";
+import BannerSection from "../../components/banner-section";
+import Link from "next/link";
 
 export default function HomePageTemplate() {
     useEffect(() => {
-        if(!localStorage.getItem('sessionId')){
-            const sessionKey = generateSessionId()
-            console.log(sessionKey)
-            localStorage.setItem('sessionId',sessionKey)
-        }  
         AOS.init();
         AOS.refresh();
-      }, []);
+    }, []);
     return (
         <>
-            <BannerSection />
-            <CategoriesSection/>
-            <GetStarted/>
-            <WhatYouGet/>
-            <SubscriptionPackages heading="Subscription Package"/>  
-            <FeaturedCourses heading="Featured Courses"/>
-            <BannerBottom/>
-            <NewsletterSection/>
+            <BannerSection>
+                <div className="banner-content" data-aos="fade-right">
+                    <h1>Simulanis LEARN Library</h1>
+                    <p></p>
+                    <Link href="#">
+                        <a className="button-download-launcher">download launcher</a>
+                    </Link>
+                </div>
+                <div className="banner-img" data-aos="fade-left">
+                    <img src="/static/images/image2.png" />
+                </div>
+            </BannerSection>
+            <CategoriesSection />
+            <GetStarted />
+            <WhatYouGet />
+            <SubscriptionPackages heading="Subscription Package" />
+            <FeaturedCourses heading="Featured Courses" />
+            <BannerBottom />
+            <NewsletterSection />
         </>
     )
 } 

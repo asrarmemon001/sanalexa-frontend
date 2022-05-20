@@ -1,15 +1,22 @@
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Slider from "react-slick";
-import { packageList } from "../../utils/api-Request";
+import { AddtoCart, packageList } from "../../utils/api-Request";
 import { ImageBaseUrl } from "../../utils/Baseurl";
 import { Loader } from "../Loader/Loader";
 import { NoDataFound } from "..//NoDataFound/NoDataFound";
+import { getSession } from "../../utils/constants";
+import { toast } from "react-toastify";
+import AppContext from "../../appContext";
+import { useRouter } from "next/router";
+import { CircularProgress } from "@mui/material";
 
 export default function SubscriptionPackages({ heading }) {
+    const apiContext = useContext(AppContext)
     const [packListIs, setPackList] = useState([])
     const [loadingIs, setLoading] = useState(false)
-
+    const router = useRouter()
+    const [apicall, setapicall] = useState(false);
     const getPackageList = async () => {
         setLoading(true)
         const list = await packageList()
@@ -75,6 +82,32 @@ export default function SubscriptionPackages({ heading }) {
             }
         ]
     };
+
+    const handleAddtoCart = async (id) => {
+        setapicall(true)
+        const data = {
+            sessionId: getSession(),
+            cart: { id: String(id), type: "package", quantity: 1 },
+        };
+        await AddtoCart(data)
+            .then((res) => {
+                if (res?.status == 200) {
+                    toast.success("Package added to cart")
+                } else {
+                    toast.error("somethingwent wrong");
+                }
+                apiContext.fetchCartList()
+                router.push("/cart")
+                setapicall(false)
+            }
+            )
+            .catch((error) => { setapicall(false); console.log(error) });
+    };
+
+    const isPackageExistInCart = (id) => {
+        return Boolean(apiContext.state.cartProduct?.find(el => el.id == id && el.type == 'package'))
+    }
+
     return (<section className="what-you-get" style={{ backgroundImage: 'url(/static/images/slider-bg.png)' }}>
         <div className="container">
             <div className="title" data-aos="fade-down">
@@ -90,10 +123,25 @@ export default function SubscriptionPackages({ heading }) {
                                     <div className="packageItem px-3 mb-2" key={index}>
                                         <figure className="package-img" style={{ backgroundImage: `url(${ImageBaseUrl + obj?.bannerImage})` }} />
                                         <div className="content-area text-center">
-                                            <h3>{obj?.packagesName}</h3>
-                                            <Link href="#">
-                                                <a className="button-download-launcher border-only">Pay & Subscription</a>
-                                            </Link>
+                                            <h3 className="mb-2">{obj?.packagesName}</h3>
+                                            <h6 className="mb-2">₹ {obj?.price}</h6>
+
+                                            <button className="btn btn-danger w-100 p-3" onClick={() => {
+                                                !isPackageExistInCart(obj.id) &&
+                                                    handleAddtoCart(obj?.id);
+                                            }}
+                                                disabled={
+                                                    isPackageExistInCart(obj.id)
+                                                        ? true
+                                                        : false
+                                                } style={{ borderRadius: 40 }}>{apicall ? (
+                                                    <CircularProgress size={20} />) :
+                                                    isPackageExistInCart(obj.id)
+                                                    ?
+                                                    "Added in Cart"
+                                                    :
+                                                    'Pay & Subscription'}</button>
+
                                         </div>
                                     </div>
                                 )

@@ -6,34 +6,17 @@ import { cartList, RemoveCartItem } from "../utils/api-Request";
 import { toast } from "react-toastify";
 import AppContext from "../appContext/index"
 import { NoDataFound } from "../components/NoDataFound/NoDataFound";
+import { getSession } from "../utils/constants";
 
 
 function Cart() {
-  const setCounter = useContext(AppContext);
-  let { setCartProductCount } = setCounter;
-  const [cartListIs, setcartList] = useState();
-  const [cartTotal, setCartTotal] = useState(0)
-  const [sessionId, setsessionId] = useState("");
-  useEffect(() => {
-    const sessionkey = localStorage.getItem("sessionId");
-    setsessionId(sessionkey);
-  }, []);
-
-  const getCartList = async (sessionId) => {
-    const res = await cartList(sessionId);
-    setcartList(res?.data?.data);
-    setCartTotal(res?.data?.cartTotal)
-    return res;
-  }; 
-  useEffect(() => {
-    if (sessionId) {
-      getCartList(sessionId);
-    }
-  }, [sessionId]);
-
+  const appContext = useContext(AppContext);
+  let { fetchCartList, state } = appContext;
+  const cartListIs = state.cartProduct;
+  const cartTotal = state.cartTotal;
   const handleRemove = async (id, type) => {
     const data = {
-      sessionId: sessionId,
+      sessionId: getSession(),
       id: id,
       type: "project",
     };
@@ -44,20 +27,17 @@ function Cart() {
           : toast.error("something went wrong")
       )
       .catch((error) => console.error(error));
-    getCartList(sessionId);
-    
+      await fetchCartList()
+
   };
-  
-  useEffect(() => {
-    setCartProductCount(cartListIs?.length);
-  }, [cartListIs])
-  
+
+
   return (
     <Layout>
       <div className="container cartcontainer">
-      <h3>Shoping Cart</h3>
+        <h3>Shoping Cart</h3>
       </div>
-     
+
       <div
         className="container card-body mb-3 topstrip"
         style={{
@@ -67,34 +47,51 @@ function Cart() {
       </div>
 
       <div className="container d-flex flex-row flex-wrap cartLayout">
-       {cartListIs && cartListIs.length
-       ?
-       <>
-        <div className="col-lg-9 col-12 ">
-          {cartListIs &&
-            cartListIs.map((i, index) => (
-              <CartItemCard
-                key={index}
-                image={i.productInfo.bannerImage}
-                desc={i.productInfo.projectDesc}
-                title={i.productInfo.projectTitle}
-                supportDesc={i.productInfo.supportingDesc}
-                type={i.productInfo.type}
-                plateform={i.productInfo.plateform}
-                quantity={i.quantity}
-                price={i.productInfo.price}
-                id={i.productInfo.id}
-                sessionId={sessionId}
-                handleRemove={handleRemove}
-              />
-            ))}
-        </div>
-        <div className=" p-0 col-lg-3 col-12" >
-          <CartInfoCard cartListIs={cartListIs} cartTotal={cartTotal}/>
-        </div>
-        </>
-        :
-        <NoDataFound />}
+        {cartListIs && cartListIs.length
+          ?
+          <>
+            <div className="col-lg-9 col-12 ">
+              {cartListIs &&
+                cartListIs.map((el, index) => (
+                 el.type == "project"
+                 ?
+                 <CartItemCard
+                 key={index}
+                 image={el.productInfo.bannerImage}
+                 desc={el.productInfo.projectDesc}
+                 title={el.productInfo.projectTitle}
+                 supportDesc={el.productInfo.supportingDesc}
+                 type={el.type}
+                 plateform={el.productInfo.plateform}
+                 quantity={el.quantity}
+                 price={el.productInfo.price}
+                 id={el.productInfo.id}
+                 sessionId={getSession()}
+                 handleRemove={handleRemove}
+               />
+               :
+               <CartItemCard
+               key={index}
+               image={el.productInfo.bannerImage}
+               desc={el.productInfo.packagesDesc}
+               title={el.productInfo.packagesName}
+              //  supportDesc={el.productInfo.supportingDesc}
+               type={el.type}
+              //  plateform={el.productInfo.plateform}
+               quantity={el.quantity}
+               price={el.productInfo.price}
+               id={el.productInfo.id}
+               sessionId={getSession()}
+               handleRemove={handleRemove}
+             />
+                ))}
+            </div>
+            <div className=" p-0 col-lg-3 col-12" >
+              <CartInfoCard cartListIs={cartListIs} cartTotal={cartTotal} />
+            </div>
+          </>
+          :
+          <NoDataFound />}
       </div>
     </Layout>
   );

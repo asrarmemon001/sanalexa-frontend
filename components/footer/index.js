@@ -21,9 +21,9 @@ const Footer = () => {
                                 <div className="massage-box">
                                     <img src="/static/images/email.png" />
                                     <h5>EMAIL </h5>
-                                    <Link href="test@gmail.com">
-                                        <a>test@gmail.com</a>
-                                    </Link>
+                                    {/* <Link href="test@gmail.com"> */}
+                                        <span>test@gmail.com</span>
+                                    {/* </Link> */}
                                 </div>
                             </div>
 
@@ -31,9 +31,9 @@ const Footer = () => {
                                 <div className="massage-box">
                                     <img src="/static/images/massage.png" />
                                     <h5>PHONE </h5>
-                                    <Link href="tel 123 456 7890">
-                                        <a>Connect Now</a>
-                                    </Link>
+                                    {/* <Link href="tel 123 456 7890"> */}
+                                        <span>Connect Now</span>
+                                    {/* </Link> */}
                                 </div>
                             </div>
 

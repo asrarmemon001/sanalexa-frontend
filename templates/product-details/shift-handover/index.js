@@ -44,8 +44,8 @@ const ShiftHandover = () => {
                     <div id="material-tabs">
                         <ul>
                             {tabPanels.tabs.map((el, ii) => {
-                                return (<li>
-                                    <span id={el.id} key={`tab-${ii}`} onClick={()=>handleActiveTab(ii)} className={tabPanels.activeTab == ii ? "active" : ''}>{el.name}</span></li>)
+                                return (<li  key={`tab-${ii}`}>
+                                    <span id={el.id} onClick={()=>handleActiveTab(ii)} className={tabPanels.activeTab == ii ? "active" : ''}>{el.name}</span></li>)
                             })}
                         </ul>
                     </div>

@@ -12,7 +12,7 @@ function CartInfoCard({ cartListIs, cartTotal }) {
         padding: "15px",
       }}
     >
-      
+
       <p
         className="bg-danger py-2 my-2 text-center text-white"
         style={{ borderRadius: "20px" }}
@@ -22,26 +22,34 @@ function CartInfoCard({ cartListIs, cartTotal }) {
       </p>
 
       {cartListIs.map((el, i) => {
-        return (<div key={`cart-total-${i}`} className="d-flex flex-row justify-content-between">
-          <p>{el.productInfo.projectTitle}</p>
+        return (el.type == "project"
+        ?
+        <div key={`cart-total-${i}`} className="d-flex flex-row justify-content-between">
+          <p>{el.productInfo.projectTitle} {" "}<strong className="text-info d-none badge">project</strong></p>
           <p>₹ {el.productInfo.price}</p>
-        </div>)
+        </div>
+        :
+        <div key={`cart-total-${i}`} className="d-flex flex-row justify-content-between">
+        <p>{el.productInfo.packagesName} {" "}<strong className="text-info d-none badge">package</strong></p>
+        <p>₹ {el.productInfo.price}</p>
+      </div>)
       })}
 
 
       <hr />
       <div className="d-flex flex-row justify-content-between">
-        <p>Total Amount</p>
-        <p>₹ {cartTotal}</p>
-      </div>
-      <div className="d-flex flex-row justify-content-between">
         <p>Coupon Discount</p>
         <p>₹ 0</p>
       </div>
+      <div className="d-flex flex-row justify-content-between">
+        <p>Total Amount</p>
+        <p>₹ {cartTotal}</p>
+      </div>
 
-      <button className="btn btn-danger mb-3" style={{ borderRadius: "20px" }}>
-        <Paymentgateway/>
-      </button>
+
+
+      <Paymentgateway cartListIs={cartListIs} cartTotal={cartTotal} />
+
     </div>
   );
 }
