@@ -12,7 +12,7 @@ function BundleItem({
     
   return (
       
-    <div className="card col-lg-4" style={{maxWidth:"18rem"}}>
+    <div className="card col-lg-3">
     <Image src={`${ImageBaseUrl}Images/${imgsrc}`} width="120px" height="120px"/>
     <div className="card-body">
         <h5>{projectTitle}</h5>

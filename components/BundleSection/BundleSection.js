@@ -3,12 +3,14 @@ import React from "react";
 import BundleItem from "../BundleItem/BundleItem";
 
 export const BundleSection = ({ sections }) => {
-  return (
-    <div className="container d-flex flex-column align-items-center">
-      <h3 className="text-center">{sections?.sector?.name}</h3>
-      <h5 className="text-center">{sections?.packages?.packagesName}</h5> 
-      <p className="text-center" style={{fontWeight:600}}>₹ {sections?.packages?.price || 0}</p>
-      <div className="d-flex flex-row justify-content-start m-auto container flex-wrap">
+  return ( 
+     <div className="container d-flex flex-column align-items-center bundleListOut">
+       <h3 className="text-center">{sections?.sector?.name}</h3>
+ <div class="tophead"><div
+        className="container"><h3 className="text-center">{sections?.packages?.packagesName} <span> - ₹ {sections?.packages?.price || 0}</span></h3></div> 
+        <i class="fa fa-caret-down" aria-hidden="true"></i> 
+         </div>       
+      <div className="d-flex flex-row justify-content-start m-auto container flex-wrap bundleList">
         {sections.projects?.map((el, i) => (
           <BundleItem
             key={`bItem-${i}`}

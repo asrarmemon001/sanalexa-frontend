@@ -26,25 +26,20 @@ function bundles() {
 
   return (
     <Layout>
+      <div class="container cartcontainer"><h3>Create Bundle</h3></div>
       <div
-        className="container card-body mb-3"
-        style={{
-          border: "0.5px solid #DCDCDC",
-          borderRadius: "10px",
-          backgroundColor: "#f8f6f5",
-        }}
-      >
+        className="container card-body mb-3">
         Shop For more than $150 and get free vouchers
       </div>
     
-      
-      <h3 className="text-center">Custom Bundle</h3>
-      <p className="text-center" style={{fontWeight:600}}>₹ {bundleTotal}</p>
-      <div className="container d-flex flex-row flex-wrap mb-4"> 
+      <div class="tophead"><div
+        className="container"><h3 className="text-center">Custom Bundle <span> - ₹ {bundleTotal}</span></h3></div> </div>
+
+      <div className="container d-flex flex-row flex-wrap mb-4 custombundel "> 
         {bundleProduct?.length ?
           <>
             {bundleProduct.map((el, index) => (
-              <div className="col-md-4 ">
+              <div className="col-md-9 cartlist ">
                 <BundleCard
                   key={`bundle-${index}`}
                   image={el.productInfo.bannerImage}
@@ -59,7 +54,7 @@ function bundles() {
                 />
               </div>
             ))}
-            <div className="col-12">
+            <div className="col-md-3 col-12">
               <div className="d-flex justify-content-end w-100">
                 <button className="btn btn-danger my-4 mr-3">Checkout</button>
               </div>
