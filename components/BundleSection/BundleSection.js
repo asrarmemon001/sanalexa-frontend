@@ -6,9 +6,9 @@ export const BundleSection = ({ sections }) => {
   return ( 
      <div className="container d-flex flex-column align-items-center bundleListOut">
        <h3 className="text-center">{sections?.sector?.name}</h3>
- <div class="tophead"><div
+ <div className="tophead"><div
         className="container"><h3 className="text-center">{sections?.packages?.packagesName} <span> - ₹ {sections?.packages?.price || 0}</span></h3></div> 
-        <i class="fa fa-caret-down" aria-hidden="true"></i> 
+        <i className="fa fa-caret-down" aria-hidden="true"></i> 
          </div>       
       <div className="d-flex flex-row justify-content-start m-auto container flex-wrap bundleList">
         {sections.projects?.map((el, i) => (

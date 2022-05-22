@@ -237,7 +237,7 @@ header.darkHeader {
     background-color: #fff;
     left: 0;
     width: 100%;
-    z-index: 99999;
+    z-index: 999;
     top: 0;
     position: fixed;
 }
@@ -2370,8 +2370,8 @@ box-shadow: 277px 0 0 0 #3a437e inset;}
 .mideel-mene ul li:last-child a span.badge.badge-danger {
     position: absolute;
     border-radius: 100px;
-    right: 0px;
-    top: 0px;
+    right: -18px;
+    top: -12px;
 }
 .bord {
     padding: 50px 100px 50px;
@@ -2511,7 +2511,7 @@ padding-top: 0;
 .bundleList .card {
     padding-bottom: 15px;
 }
-i.fa.fa-caret-down {
+i.fa.fa-caret-down, i.fa.fa-caret-up {
     position: absolute;
     right: 20px;
     top: 50%;

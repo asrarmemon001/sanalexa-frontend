@@ -1,7 +1,7 @@
 import React from "react";
 import Paymentgateway from "../paymentgateway/Paymentgateway";
 
-function CartInfoCard({ cartListIs, cartTotal }) {
+function CartInfoCard({ cartListIs, cartTotal, title, type }) {
   return (
     <div
       className="card container"
@@ -17,8 +17,7 @@ function CartInfoCard({ cartListIs, cartTotal }) {
         className="bg-danger py-2 my-2 text-center text-white"
         style={{ borderRadius: "20px" }}
       >
-        {" "}
-        Cart Details
+        {title}
       </p>
 
       {cartListIs.map((el, i) => {
@@ -48,7 +47,7 @@ function CartInfoCard({ cartListIs, cartTotal }) {
 
 
 
-      <Paymentgateway cartListIs={cartListIs} cartTotal={cartTotal} />
+      <Paymentgateway cartListIs={cartListIs} cartTotal={cartTotal} type={type} />
 
     </div>
   );

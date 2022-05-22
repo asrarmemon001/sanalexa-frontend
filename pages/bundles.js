@@ -5,6 +5,7 @@ import BundleCard from "../components/BundleCard/BundleCard";
 import { BundleSection } from "../components/BundleSection/BundleSection";
 import { getDefaultBundlesList } from "../utils/api-Request";
 import { NoDataFound } from "../components/NoDataFound/NoDataFound";
+import CartInfoCard from "../components/CheckoutCard/CheckoutCard";
 
 
 function bundles() {
@@ -26,20 +27,20 @@ function bundles() {
 
   return (
     <Layout>
-      <div class="container cartcontainer"><h3>Create Bundle</h3></div>
+      <div className="container cartcontainer"><h3>Bundle List</h3></div>
       <div
         className="container card-body mb-3">
         Shop For more than $150 and get free vouchers
       </div>
-    
-      <div class="tophead"><div
+
+      <div className="tophead"><div
         className="container"><h3 className="text-center">Custom Bundle <span> - ₹ {bundleTotal}</span></h3></div> </div>
 
-      <div className="container d-flex flex-row flex-wrap mb-4 custombundel "> 
+      <div className="container d-flex flex-row flex-wrap mb-4 custombundel ">
         {bundleProduct?.length ?
           <>
-            {bundleProduct.map((el, index) => (
-              <div className="col-md-9 cartlist ">
+            <div className="col-md-9 cartlist ">
+              {bundleProduct.map((el, index) => (
                 <BundleCard
                   key={`bundle-${index}`}
                   image={el.productInfo.bannerImage}
@@ -52,14 +53,16 @@ function bundles() {
                   price={el.productInfo.price}
                   id={el.productInfo.id}
                 />
-              </div>
-            ))}
-            <div className="col-md-3 col-12">
+              ))}
+            </div>
+            {/* <div className="col-md-3 col-12">
               <div className="d-flex justify-content-end w-100">
                 <button className="btn btn-danger my-4 mr-3">Checkout</button>
               </div>
+            </div> */}
+            <div className=" p-0 col-lg-3 col-12" >
+              <CartInfoCard cartListIs={bundleProduct} title="Bundle Details" cartTotal={bundleTotal} type="bundle"/>
             </div>
-
           </>
           :
           <NoDataFound />}

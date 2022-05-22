@@ -55,7 +55,7 @@ const Header = () => {
                 }))
             }
         } catch (error) {
-            toast.error(error.response.data.message || error.response.statusText);
+            toast.error(error.response?.data?.message || error.response.statusText);
             setUser((v) => ({
                 ...v,
                 loading: false
@@ -139,7 +139,7 @@ const Header = () => {
                                             <a> Plans and Subscriptions</a>
                                         </Link>
                                     </li>
-                                    <li>
+                                    <li className="position-relative">
                                         <Link href="/bundles">
                                        
                                             <a> Create Bundle <span className="badge badge-danger">{state.bundleProduct?.length || 0}</span></a>
