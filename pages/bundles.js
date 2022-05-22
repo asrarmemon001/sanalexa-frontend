@@ -27,14 +27,14 @@ function bundles() {
 
   return (
     <Layout>
-      <div className="container cartcontainer"><h3>Bundle List</h3></div>
+      <div className="container cartcontainer"><h3>Bundle Checkout</h3></div>
       <div
         className="container card-body mb-3">
         Shop For more than $150 and get free vouchers
       </div>
 
-      <div className="tophead"><div
-        className="container"><h3 className="text-center">Custom Bundle <span> - ₹ {bundleTotal}</span></h3></div> </div>
+      <div className="tophead py-3"><div
+        className="container"><h3 className="text-center">Checkout details </h3></div> </div>
 
       <div className="container d-flex flex-row flex-wrap mb-4 custombundel ">
         {bundleProduct?.length ?

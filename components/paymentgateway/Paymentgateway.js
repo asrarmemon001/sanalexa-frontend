@@ -4,12 +4,13 @@ import { useContext, useState } from "react";
 import { toast } from "react-toastify";
 import AppContext from "../../appContext";
 import { paymentApi } from "../../utils/api-Request";
-import { getSession } from "../../utils/constants";
+import { getSession, getToken } from "../../utils/constants";
 
 export default function paymentgateway({type}) {
   const router = useRouter()
   const appContext = useContext(AppContext);
-  const { fetchCartList, fetchBundleList } = appContext;
+  const { fetchCartList, fetchBundleList, loginSignupModal } = appContext;
+  const { isLoggedin } = appContext.state;
   const [paymentRes, setPaymentRes] = useState(null)
   const [loading, setLoading] = useState(false)
   const initializeRazorpay = () => {
@@ -30,6 +31,12 @@ export default function paymentgateway({type}) {
 
   const makePayment = async () => {
     try {
+      if(!Boolean(isLoggedin)){
+        // router.push("/payment/failed")
+        loginSignupModal('login')
+        console.log('loginSignupModal')
+        return
+      }
       setLoading(true)
       const res = await initializeRazorpay();
 
