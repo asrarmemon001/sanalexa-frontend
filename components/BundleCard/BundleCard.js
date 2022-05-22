@@ -89,7 +89,9 @@ function BundleCard({
               <div className="col-12">
                 {/* <div className="col-12 py-4"> */}
                   <div className="border px-2 pt-4 row">
-                    {project.map((el, i) => {
+                    {project && project.length
+                    ?
+                    project.map((el, i) => {
                       return (<AccordianItem
                         classes={`col-lg-3 col-md-4 col-12`}
                         key={`listofi-${i}`}
@@ -101,7 +103,9 @@ function BundleCard({
                         plateform={el.plateform}
                         price={el.price}
                       />)
-                    })}
+                    })
+                  :
+                  <NoDataFound/>}
                   </div>
                 {/* </div> */}
               </div>
