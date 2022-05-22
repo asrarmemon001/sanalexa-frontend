@@ -16,7 +16,7 @@
     "aos": "^2.3.4",
     "axios": "^0.27.2",
     "formik": "^2.2.9",
-    "next": "12.1.5",
+    "next": "^12.1.7-canary.10",
     "razorpay": "^2.8.1",
     "react": "18.1.0",
     "react-bootstrap-v5": "^1.4.0",

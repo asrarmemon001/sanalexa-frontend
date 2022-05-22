@@ -237,7 +237,7 @@ header.darkHeader {
     background-color: #fff;
     left: 0;
     width: 100%;
-    z-index: 99999;
+    z-index: 999;
     top: 0;
     position: fixed;
 }
@@ -1637,7 +1637,7 @@ body .btn-primary:hover,body .btn-primary:focus {
     } */
 
     .mideel-mene ul.list-menu li {
-        padding: 0px 40px 0px 0px;
+        padding: 0px 15px 0px 0px;
     }
 
     .mideel-mene ul.varymenu li a,
@@ -1664,7 +1664,7 @@ body .btn-primary:hover,body .btn-primary:focus {
     }
 
     .mideel-mene ul li:last-child {
-        padding: 0;
+        position: relative;
     }
 
     .banner-content h1 {
@@ -2346,3 +2346,199 @@ body .btn-primary:hover,body .btn-primary:focus {
 .image-p-s {height: 350px;}
 
 .image-p-s img {object-fit: cover;}
+
+/**************plans-subscription******************/
+
+.banner-plans {
+    background-color: #f1f9ff;
+    padding: 70px 0px;
+}
+.banner-plans  a.subscriptiondwonlod {
+    background: #CA373C;
+    border-radius: 21px;
+    font-size: 17px;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 25px;
+    transition: 0.5s all;
+    margin-top: 0px;
+    display: inline-block;
+}
+.banner-plans  a.subscriptiondwonlod:hover{
+box-shadow: 277px 0 0 0 #3a437e inset;}
+
+.mideel-mene ul li:last-child a span.badge.badge-danger {
+    position: absolute;
+    border-radius: 100px;
+    right: -18px;
+    top: -12px;
+}
+.bord {
+    padding: 50px 100px 50px;
+    border-radius: 0;
+    display: flex;
+    align-items: center;
+    position: relative;
+    border-radius: 10px;
+}
+.bord h1 {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 22px;
+    color: #271B1B;
+}
+.bord h4 {
+    color: #FF3434;
+    font-weight: 600;
+    font-size: 18px;
+}
+.bord p {
+    font-size: 16px;
+    line-height: 35px;
+    color: #271B1B;
+    margin: 0;
+}
+.bord button.btn.btn-link {
+    border: 0;
+    background-color: #3a437e;
+    text-transform: uppercase;
+    text-decoration: underline;
+    color: #dc3545;
+    display: inline-block;
+    text-decoration: none;
+    color: #fff;
+    margin-left: 14px;
+    border-radius: 50px;
+    height: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.bord  button.btn.btn-danger  { 
+    border-radius: 50px;
+    text-transform: uppercase;
+    height: 40px;
+}
+.bord button.btn.btn-link:hover{
+    box-shadow: 277px 0 0 0 #dc3545 inset;
+
+}
+.bord  button.btn.btn-danger:hover {
+    box-shadow: 277px 0 0 0 #313b79 inset;
+    border-color: #313b79;
+}
+.bord img{
+    border-radius:20px;
+}
+h5.card-title {
+    font-weight: 600;
+    font-size: 18px;
+}
+.bord:after {
+    content: "";
+    background-image: url(/static/images/slider-bg2.png);
+    width: 145px;
+    height: 104px;
+    position: absolute;
+    top: 40px;
+    left: 269px;
+}
+.bord::before {
+    content: "";
+    background-image: url(/static/images/round-shap.png);
+    width: 145px;
+    height: 145px;
+    position: absolute;
+    right: 77px;
+    background-repeat: no-repeat;
+    top: 40px;
+    z-index: 999;
+    background-size: 170px;
+    opacity: 0.5;
+}
+
+.bord:nth-child(odd) {
+    background-color:rgba(248, 246, 245, 1);
+}
+.subscription-plans{
+padding-top: 0;
+}
+.bord:nth-child(odd) .col-md-6:nth-child(2) {
+    padding-left: 45px;
+}
+.tophead {
+    background: #fff4f4;padding: 10px;
+}
+ 
+.tophead h3 span {
+    color: #ca373c;
+}
+.tophead h3 {
+    font-size: 20px;
+    color: #313b79;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
+.custombundel .card {
+    padding-bottom: 18px;
+    padding-top: 0px;
+}
+.custombundel {
+    margin-top: 40px;
+}
+.tophead {
+    background: #fff4f4;
+    padding: 10px;
+    width: 100%;    
+    position: relative;cursor: pointer;
+}
+.bundleList .card-body {
+    padding: 10px 0;
+}
+.bundleList .card-body h5 {
+    font-weight: 600;
+    font-size: 16px;
+    color: #313b79;
+    line-height: 1;
+    margin-bottom: 5px;
+}
+.bundleList .card-body p.card-text {
+    font-size: 14px;
+    font-weight: 500;
+}
+.bundleList .card {
+    padding-bottom: 15px;
+}
+i.fa.fa-caret-down, i.fa.fa-caret-up {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+
+@media only screen and (max-width: 1199px) {
+    .bord {
+        padding: 50px 50px 50px;
+    }
+
+}
+@media only screen and (max-width: 767px) {
+    .bord {
+        padding: 50px 15px 50px;
+    }
+
+    .bord:nth-child(odd) .col-md-6:nth-child(2) {
+        padding-left: 0;
+    }
+    .bord .col-md-6:nth-child(2){
+padding-top: 45px;
+text-align: center;
+
+
+    }
+
+
+}

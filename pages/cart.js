@@ -18,7 +18,7 @@ function Cart() {
     const data = {
       sessionId: getSession(),
       id: id,
-      type: "project",
+      type,
     };
     await RemoveCartItem(data)
       .then((res) =>
@@ -51,6 +51,7 @@ function Cart() {
           ?
           <>
             <div className="col-lg-9 col-12 ">
+              {console.log(cartListIs,'cartListIs')}
               {cartListIs &&
                 cartListIs.map((el, index) => (
                  el.type == "project"
@@ -77,17 +78,18 @@ function Cart() {
                title={el.productInfo.packagesName}
               //  supportDesc={el.productInfo.supportingDesc}
                type={el.type}
-              //  plateform={el.productInfo.plateform}
+               project={el.project}
                quantity={el.quantity}
                price={el.productInfo.price}
                id={el.productInfo.id}
                sessionId={getSession()}
                handleRemove={handleRemove}
+
              />
                 ))}
             </div>
             <div className=" p-0 col-lg-3 col-12" >
-              <CartInfoCard cartListIs={cartListIs} cartTotal={cartTotal} />
+              <CartInfoCard cartListIs={cartListIs} type="cart" title="Cart Details" cartTotal={cartTotal} />
             </div>
           </>
           :
