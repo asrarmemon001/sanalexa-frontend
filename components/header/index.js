@@ -8,10 +8,12 @@ import { getUser } from "../../utils/api-Request"
 import { getToken, removeToken } from "../../utils/constants"
 import AppContext from "../../appContext/index"
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import { useRouter } from "next/router"
 
 const Header = () => {
     const appContext = useContext(AppContext)
-    const { user, sectors, bundleProduct, cartProduct } = appContext.state;
+    const router = useRouter()
+    const { user, sectors, bundleProduct, cartProduct, cartLoading, bundleLoading } = appContext.state;
     const { loginSignupModal, setIsLoggedin, setUser } = appContext;
     const [industriesDropdown, setIndustriesDropdown] = useState(false);
     const [userDropdown, setUserDropdown] = useState(false);
@@ -105,7 +107,13 @@ const Header = () => {
                                     <li className="position-relative">
                                         <Link href="/bundles">
 
-                                            <a> Create Bundle <span className="badge badge-danger">{bundleProduct?.length || 0}</span></a>
+                                            <a> Create Bundle <span className="badge badge-danger">
+                                                {bundleLoading
+                                                    ?
+                                                    <CircularProgress size={15} />
+                                                    :
+                                                    `${bundleProduct?.length || 0}`
+                                                }</span></a>
                                         </Link>
                                     </li>
                                 </ul>
@@ -121,7 +129,13 @@ const Header = () => {
                                 <li>
                                     <Link href="/cart">
                                         <a className="cart">
-                                            <span className="cart-nub">{cartProduct?.length || 0}</span>
+                                            <span className="cart-nub">
+                                                {cartLoading
+                                                    ?
+                                                    <CircularProgress size={15} />
+                                                    :
+                                                    `${cartProduct?.length || 0}`
+                                                }</span>
                                             <i className="fa fa-shopping-cart" aria-hidden="true"></i>
                                         </a>
                                     </Link>
@@ -158,6 +172,9 @@ const Header = () => {
                                                     anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
 
                                                 >
+                                                    {/* <MenuItem className="py-2 px-4 text-sm font-weight-bold dropdown-item mb-1" onClick={()=>router.push('/orders')}>
+                                                        Orders
+                                                    </MenuItem> */}
                                                     <MenuItem className="py-2 px-4 text-sm font-weight-bold dropdown-item mb-1" onClick={logout}>
                                                         Logout
                                                     </MenuItem>
