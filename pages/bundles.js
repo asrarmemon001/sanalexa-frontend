@@ -86,9 +86,16 @@ function bundles() {
       <div className="tophead py-3 mb-4">
         <div className="container"><h3 className="text-center">Default Bundles </h3></div> </div>
       <div>
+      {console.log(defaultBundles,'dddddddd')}
         {
           defaultBundles?.map((el, i) => (
-            <BundleSection key={`dfBundle-${i}`} sections={el} />
+            <div key={`dfBundlee-${i}`}>
+          
+              <h3 className="text-center">{el?.sector?.name}</h3> 
+            {el.packages.map((ell, ii)=>{
+              return <BundleSection key={`dfBundle-${ii}`} sections={ell.projects} packages={ell.packages} />
+            })}
+            </div>
           ))
         }
       </div>
