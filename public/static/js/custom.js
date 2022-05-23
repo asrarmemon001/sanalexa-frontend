@@ -9,6 +9,13 @@ $(window).scroll(function() {
     } else {
         $("header").removeClass("darkHeader");
     }
- });
+ }); 
+ $(document).ready(function(){
+    $(".collapsebutton").click(function(){
+      $(this).toggleClass("opentoggle");
+      alert('sssss');
+    });
+  }); 
+
 
 
