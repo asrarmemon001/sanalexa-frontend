@@ -116,7 +116,8 @@ const RegisterOrganization = ({ handleModal, setIsLoggedin }) => {
                 <TextField id="supporting-address" className="mb-3" error={formik.errors.address && formik.touched.address} value={formik.values.address} name="address" onChange={handleChangeInput} label="Address" fullWidth
                     InputProps={{
                         inputComponent: TextareaAutosize,
-                        minRows: 4
+                        minRows: 4,
+                        maxRows:4
                     }}
                 />
                 {formik.errors.address && formik.touched.address && <p className="text-danger px-2 text-sm fw-bold" style={{ marginTop: "-15px" }}>{formik.errors.address}</p>}
@@ -177,6 +178,7 @@ const RegisterOrganization = ({ handleModal, setIsLoggedin }) => {
                 ?
                 <>
                     <FormControl fullWidth className="mb-3" size="">
+                        {console.log(organizationType,'organizationType')}
                         <InputLabel id="select-login-type-label">Login Type</InputLabel>
                         <Select
                             labelId="select-login-type-label"

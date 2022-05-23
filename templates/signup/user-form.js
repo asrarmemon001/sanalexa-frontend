@@ -187,12 +187,14 @@ const UserRegistration = ({setIsLoggedin, handleModal}) => {
                 fullWidth
                 InputProps={{
                     inputComponent: TextareaAutosize,
-                    minRows: 4
+                    minRows: 4,
+                    maxRows:4
                 }}
             />
             {formik.errors.address && formik.touched.address && <p className="text-danger px-2 text-sm fw-bold" style={{ marginTop: "-15px" }}>{formik.errors.address}</p>}
             </div>
             <div className="fieldList"> 
+            {console.log(locationList,'locationList')}
             <FormControl fullWidth className="mb-3" size="">
                 <InputLabel id="select-location-label">Select Location</InputLabel>
                 <Select

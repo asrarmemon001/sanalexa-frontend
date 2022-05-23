@@ -1421,7 +1421,7 @@ button.addtubul { font-family: 'Montserrat';
 }
  
 body .modal,.modal-backdrop { 
-    z-index: 99999;
+    z-index: 1200;
 }
 .registerForm {
     padding-bottom: 0!important;
