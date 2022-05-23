@@ -1,11 +1,7 @@
 import { Button, CircularProgress, Menu, MenuItem } from "@mui/material"
 import Link from "next/link"
-import { useEffect, useState, useContext } from "react"
-import { toast } from "react-toastify"
-import Login from "../../templates/login"
-import Signup from "../../templates/signup"
-import { getUser } from "../../utils/api-Request"
-import { getToken, removeToken } from "../../utils/constants"
+import { useState, useContext } from "react" 
+import { removeSession, removeToken, setSession } from "../../utils/constants"
 import AppContext from "../../appContext/index"
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { useRouter } from "next/router"
@@ -14,7 +10,7 @@ const Header = () => {
     const appContext = useContext(AppContext)
     const router = useRouter()
     const { user, sectors, bundleProduct, cartProduct, cartLoading, bundleLoading } = appContext.state;
-    const { loginSignupModal, setIsLoggedin, setUser } = appContext;
+    const { loginSignupModal, setIsLoggedin, setUser, fetchCartList, fetchBundleList } = appContext;
     const [industriesDropdown, setIndustriesDropdown] = useState(false);
     const [userDropdown, setUserDropdown] = useState(false);
 
@@ -29,7 +25,11 @@ const Header = () => {
             message: ""
         })
         removeToken()
+        removeSession()
         setUserDropdown(false)
+        setSession()
+        fetchCartList()
+        fetchBundleList()
 
     }
 
