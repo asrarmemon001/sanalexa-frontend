@@ -1,27 +1,21 @@
 import { Button, CircularProgress, Menu, MenuItem } from "@mui/material"
 import Link from "next/link"
-import { useEffect, useState, useContext } from "react"
-import { toast } from "react-toastify"
-import Login from "../../templates/login"
-import Signup from "../../templates/signup"
-import { getUser } from "../../utils/api-Request"
-import { getToken, removeToken } from "../../utils/constants"
+import { useState, useContext } from "react" 
+import { removeSession, removeToken, setSession } from "../../utils/constants"
 import AppContext from "../../appContext/index"
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import { useRouter } from "next/router"
 
 const Header = () => {
-    const { state } = useContext(AppContext)
-    const [isLoggedin, setIsLoggedin] = useState(false)
+    const appContext = useContext(AppContext)
+    const router = useRouter()
+    const { user, sectors, bundleProduct, cartProduct, cartLoading, bundleLoading } = appContext.state;
+    const { loginSignupModal, setIsLoggedin, setUser, fetchCartList, fetchBundleList } = appContext;
     const [industriesDropdown, setIndustriesDropdown] = useState(false);
     const [userDropdown, setUserDropdown] = useState(false);
-    const [user, setUser] = useState({
-        loading: false,
-        data: null,
-        status: 0,
-        message: ""
-    })
+
     const [activeSearch, setActiveSearch] = useState(false)
-    const [modal, setModal] = useState(false)
+
     const logout = () => {
         setIsLoggedin(false)
         setUser({
@@ -31,48 +25,19 @@ const Header = () => {
             message: ""
         })
         removeToken()
+        removeSession()
+        setUserDropdown(false)
+        setSession()
+        fetchCartList()
+        fetchBundleList()
 
     }
-    const handleModal = (action) => {
-        setModal(action)
-    }
+
     const toggleSearchShow = () => {
         setActiveSearch(!activeSearch)
     }
 
-    const fetchUserDetails = async () => {
-        try {
-            setUser((v) => ({
-                ...v,
-                loading: true
-            }))
-            const res = await getUser()
-            if (res.status == 200) {
-                setUser((v) => ({
-                    ...v,
-                    loading: false,
-                    data: res.data
-                }))
-            }
-        } catch (error) {
-            toast.error(error.response.data.message || error.response.statusText);
-            setUser((v) => ({
-                ...v,
-                loading: false
-            }))
-        }
-    }
 
-    useEffect(() => {
-        if (isLoggedin && !user?.data) {
-
-            fetchUserDetails()
-        }
-    }, [isLoggedin])
-
-    useEffect(() => {
-        setIsLoggedin(Boolean(getToken()))
-    }, [])
 
     return (
         <header>
@@ -120,9 +85,9 @@ const Header = () => {
                                                 'aria-labelledby': 'basic-button',
                                             }}
                                         >
-                                            {state.sectors
+                                            {sectors
                                                 ?
-                                                state.sectors.map((el) => {
+                                                sectors.map((el) => {
                                                     return (<MenuItem key={el.id + 'sector'} className="py-2 px-4 text-sm font-weight-bold dropdown-item mb-1">
                                                         {el.name}
                                                     </MenuItem>)
@@ -139,10 +104,16 @@ const Header = () => {
                                             <a> Plans and Subscriptions</a>
                                         </Link>
                                     </li>
-                                    <li>
+                                    <li className="position-relative">
                                         <Link href="/bundles">
-                                       
-                                            <a> Create Bundle <span className="badge badge-danger">{state.bundleProduct?.length || 0}</span></a>
+
+                                            <a> Create Bundle <span className="badge badge-danger">
+                                                {bundleLoading
+                                                    ?
+                                                    <CircularProgress size={15} />
+                                                    :
+                                                    `${bundleProduct?.length || 0}`
+                                                }</span></a>
                                         </Link>
                                     </li>
                                 </ul>
@@ -158,7 +129,13 @@ const Header = () => {
                                 <li>
                                     <Link href="/cart">
                                         <a className="cart">
-                                            <span className="cart-nub">{state.cartProduct?.length || 0}</span>
+                                            <span className="cart-nub">
+                                                {cartLoading
+                                                    ?
+                                                    <CircularProgress size={15} />
+                                                    :
+                                                    `${cartProduct?.length || 0}`
+                                                }</span>
                                             <i className="fa fa-shopping-cart" aria-hidden="true"></i>
                                         </a>
                                     </Link>
@@ -168,7 +145,7 @@ const Header = () => {
                                 <li>
                                     {user.loading
                                         ?
-                                        <CircularProgress size={30}/>
+                                        <CircularProgress size={30} />
                                         :
                                         user.data
                                             ?
@@ -193,15 +170,18 @@ const Header = () => {
                                                     }}
                                                     transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                                                     anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-                                            
+
                                                 >
+                                                    {/* <MenuItem className="py-2 px-4 text-sm font-weight-bold dropdown-item mb-1" onClick={()=>router.push('/orders')}>
+                                                        Orders
+                                                    </MenuItem> */}
                                                     <MenuItem className="py-2 px-4 text-sm font-weight-bold dropdown-item mb-1" onClick={logout}>
                                                         Logout
                                                     </MenuItem>
                                                 </Menu>
                                             </>
                                             :
-                                            <button className="btn sinup" onClick={() => handleModal('signup')}>Sign Up</button>}
+                                            <button className="btn sinup" onClick={() => loginSignupModal('signup')}>Sign Up</button>}
 
                                 </li>
                                 <li>
@@ -222,15 +202,14 @@ const Header = () => {
                     <div className={`search-form-main ${activeSearch ? 'active-search' : ""}`}>
                         <form role="search" method="get" className="search-form" action="sitename.com/">
                             <label>
-                                <input type="search" className="search-field" placeholder="Search …"  name="s" />
+                                <input type="search" className="search-field" placeholder="Search …" name="s" />
                             </label>
                             <input type="submit" className="search-submit" value="Search" />
                         </form>
                     </div>
                 </div>
             </div>
-            <Signup show={modal == "signup"} handleModal={handleModal} setIsLoggedin={setIsLoggedin} />
-            <Login show={modal == "login"} handleModal={handleModal} setIsLoggedin={setIsLoggedin} />
+
         </header>
 
     )

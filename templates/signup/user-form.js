@@ -86,7 +86,7 @@ const UserRegistration = ({setIsLoggedin, handleModal}) => {
 
     return (<form onSubmit={formik.handleSubmit}>
         <div className="card-bordered px-3 pb-3 registerForm">
-            <div class="fieldList">
+            <div className="fieldList">
             <TextField
                 id="name"
                 className="mb-3"
@@ -100,7 +100,7 @@ const UserRegistration = ({setIsLoggedin, handleModal}) => {
                 variant="outlined" />
             {formik.errors.name && formik.touched.name && <p className="text-danger px-2 text-sm fw-bold" style={{ marginTop: "-15px" }}>{formik.errors.name}</p>}
             </div>
-            <div class="fieldList">
+            <div className="fieldList">
             <TextField
                 id="email"
                 className="mb-3"
@@ -115,7 +115,7 @@ const UserRegistration = ({setIsLoggedin, handleModal}) => {
                 variant="outlined" />
             {formik.errors.email && formik.touched.email && <p className="text-danger px-2 text-sm fw-bold" style={{ marginTop: "-15px" }}>{formik.errors.email}</p>}
             </div>
-            <div class="fieldList">
+            <div className="fieldList">
             <TextField
                 id="password"
                 className="mb-3"
@@ -130,7 +130,7 @@ const UserRegistration = ({setIsLoggedin, handleModal}) => {
                 variant="outlined" />
             {formik.errors.password && formik.touched.password && <p className="text-danger px-2 text-sm fw-bold" style={{ marginTop: "-15px" }}>{formik.errors.password}</p>}
             </div>
-            <div class="fieldList">
+            <div className="fieldList">
            <TextField
                 id="phone"
                 className="mb-3"
@@ -144,7 +144,7 @@ const UserRegistration = ({setIsLoggedin, handleModal}) => {
                 variant="outlined" />
             {formik.errors.phone && formik.touched.phone && <p className="text-danger px-2 text-sm fw-bold" style={{ marginTop: "-15px" }}>{formik.errors.phone}</p>}
             </div>
-            <div class="fieldList">
+            <div className="fieldList">
             <FormControl>
                 <FormLabel id="gender-label">Gender</FormLabel>
                 <RadioGroup
@@ -160,7 +160,7 @@ const UserRegistration = ({setIsLoggedin, handleModal}) => {
             </FormControl>
             {formik.errors.gender && formik.touched.gender && <p className="text-danger px-2 text-sm fw-bold" style={{ marginTop: "-15px" }}>{formik.errors.gender}</p>}
             </div>
-            <div class="fieldList">
+            <div className="fieldList">
             <TextField
                 id="age"
                 className="mb-3"
@@ -174,7 +174,7 @@ const UserRegistration = ({setIsLoggedin, handleModal}) => {
                 variant="outlined" />
             {formik.errors.age && formik.touched.age && <p className="text-danger px-2 text-sm fw-bold" style={{ marginTop: "-15px" }}>{formik.errors.age}</p>}
             </div>
-            <div class="fieldList"> 
+            <div className="fieldList"> 
             <TextField
                 id="address"
                 className="mb-3"
@@ -187,12 +187,14 @@ const UserRegistration = ({setIsLoggedin, handleModal}) => {
                 fullWidth
                 InputProps={{
                     inputComponent: TextareaAutosize,
-                    minRows: 4
+                    minRows: 4,
+                    maxRows:4
                 }}
             />
             {formik.errors.address && formik.touched.address && <p className="text-danger px-2 text-sm fw-bold" style={{ marginTop: "-15px" }}>{formik.errors.address}</p>}
             </div>
-            <div class="fieldList"> 
+            <div className="fieldList"> 
+            {console.log(locationList,'locationList')}
             <FormControl fullWidth className="mb-3" size="">
                 <InputLabel id="select-location-label">Select Location</InputLabel>
                 <Select
@@ -211,7 +213,7 @@ const UserRegistration = ({setIsLoggedin, handleModal}) => {
             </FormControl>
             {formik.errors.location && formik.touched.location && <p className="text-danger px-2 text-sm fw-bold" style={{ marginTop: "-15px" }}>{formik.errors.location}</p>}
             </div>
-            <div class="fieldList fullwidth">
+            <div className="fieldList fullwidth">
 
             <div className="mb-3 text-end">
                 {_userData.loading

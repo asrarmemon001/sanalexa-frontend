@@ -4,31 +4,58 @@ import "slick-carousel/slick/slick-theme.css";
 import 'react-toastify/dist/ReactToastify.css';
 import AppContext from "../appContext/index"
 import '../styles/globals.css'
-import { ToastContainer } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import { useEffect, useState } from 'react'
-import { cartList, getUserBundlesList } from "../utils/api-Request";
+import { cartList, getUser, getUserBundlesList } from "../utils/api-Request";
 import useFetchSectordetails from "../hooks/getSectorList";
-import { getSession, setSession } from "../utils/constants";
+import { getSession, getToken, setSession } from "../utils/constants";
+import Signup from "../templates/signup";
+import Login from "../templates/login";
 
 function MyApp({ Component, pageProps }) {
   const [cartProduct, setCartProduct] = useState(null)
+  const [cartLoading, setCartLoading] = useState(false)
+  const [bundleLoading, setBundleLoading] = useState(false)
   const [bundleProduct, setBundleProduct] = useState(null)
+  const [isLoggedin, setIsLoggedin] = useState(false)
+  const [modal, setModal] = useState(false)
+  const [user, setUser] = useState({
+    loading: false,
+    data: null,
+    status: 0,
+    message: ""
+  })
   const [sectors, setSectors] = useState(null)
   const [cartTotal, setCartTotal] = useState(0)
   const [bundleTotal, setBundleTotal] = useState(0)
   useFetchSectordetails(setSectors)
   const fetchCartList = async () => {
-    const list = await cartList(getSession());
-    setCartProduct(list?.data?.data || null);
-    setCartTotal(list?.data?.cartTotal || 0)
+    try {
+      setCartLoading(true)
+      const list = await cartList(getSession());
+      setCartProduct(list?.data?.data || null);
+      setCartTotal(list?.data?.cartTotal || 0)
+      setCartLoading(false)
+    } catch (error) {
+      setCartLoading(false)
+      toast.error("Something went wrong")
+    }
 
   };
-
+  const handleModal = (action) => {
+    setModal(action)
+  }
   const fetchBundleList = async () => {
-    const list = await getUserBundlesList(getSession());
-    setBundleProduct(list?.data?.data || null);
-    setBundleTotal(list?.data?.bundleTotal || 0)
-
+    try {
+      setBundleLoading(true)
+      const list = await getUserBundlesList(getSession());
+      setBundleProduct(list?.data?.data || null);
+      setBundleTotal(list?.data?.bundleTotal || 0)
+      setBundleLoading(false)
+    } catch (error) {
+      setBundleLoading(false)
+      toast.error("Something went wrong")
+    }
   };
 
   useEffect(() => {
@@ -38,6 +65,41 @@ function MyApp({ Component, pageProps }) {
     fetchCartList()
     fetchBundleList()
   }, [])
+
+
+  const fetchUserDetails = async () => {
+    try {
+      setUser((v) => ({
+        ...v,
+        loading: true
+      }))
+      const res = await getUser()
+      if (res.status == 200) {
+        setUser((v) => ({
+          ...v,
+          loading: false,
+          data: res.data
+        }))
+      }
+    } catch (error) {
+      toast.error(error.response?.data?.message || error.response.statusText);
+      setUser((v) => ({
+        ...v,
+        loading: false
+      }))
+    }
+  }
+
+  useEffect(() => {
+    if (isLoggedin && !user?.data) {
+
+      fetchUserDetails()
+    }
+  }, [isLoggedin])
+
+  useEffect(() => {
+    setIsLoggedin(Boolean(getToken()))
+  }, [])
   return (
     <AppContext.Provider
       value={{
@@ -46,16 +108,26 @@ function MyApp({ Component, pageProps }) {
           sectors,
           cartTotal,
           bundleProduct,
-          bundleTotal
+          bundleTotal,
+          isLoggedin,
+          user,
+          cartLoading,
+          bundleLoading
         },
         setCartProduct,
         setSectors,
         fetchCartList,
-        fetchBundleList
+        fetchBundleList,
+        fetchUserDetails,
+        loginSignupModal: handleModal,
+        setIsLoggedin,
+        setUser
       }}
-    > 
+    >
       <Component {...pageProps} />
       <ToastContainer style={{ zIndex: 999999 }} />
+      <Signup show={modal == "signup"} handleModal={handleModal} setIsLoggedin={setIsLoggedin} />
+      <Login show={modal == "login"} handleModal={handleModal} setIsLoggedin={setIsLoggedin} />
     </AppContext.Provider>)
 }
 

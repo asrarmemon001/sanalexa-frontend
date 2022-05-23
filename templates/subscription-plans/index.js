@@ -48,7 +48,7 @@ const SubscriptionPlansListTemplates = ({ subsciptionList }) => {
         <>
          <div className="banner-plans">
          <div className="container">
-          <div className="banner-content-ple">
+          <div className="banner-content-ple"> 
               <h2>Plans & Subscription</h2>
               <p>Excepteure sint accaecat cupidatat non proident,sunt in culpa qui officia deserunt </p>
           <a href="#" className="subscriptiondwonlod">Download launcher</a>
@@ -60,7 +60,8 @@ const SubscriptionPlansListTemplates = ({ subsciptionList }) => {
 
                     <div className="col-12">
                         {subsciptionList.map((el, i) => {
-                            return (
+                            return (el.project?.length
+                                ?
                                 <div className={`row bord ${(i % 2 != 0) ? `flex-row-reverse` : ``}`} key={`package-${el.id}`}>
                                     <div className="col-md-6  image-p-s">
                                         <Image src={`${ImageBaseUrl}${el.bannerImage}`} layout="fill" />
@@ -69,7 +70,7 @@ const SubscriptionPlansListTemplates = ({ subsciptionList }) => {
                                         <h1>{el.packagesName}</h1>
                                         <h4>₹ {el.price}</h4>
                                         <p>{el.packagesDesc}</p>
-                                        <p style={{ fontWeight: 600 }}>0 Modules</p>
+                                        <p style={{ fontWeight: 600 }}>{el.project?.length || 0} Modules</p>
                                         <button className="btn btn-danger" onClick={() => {
                                             !isPackageExistInCart(el.id) &&
                                                 handleAddtoCart(el?.id);
@@ -90,6 +91,7 @@ const SubscriptionPlansListTemplates = ({ subsciptionList }) => {
                                     </div>
 
                                 </div>
+                                : null
 
                             )
                         })}

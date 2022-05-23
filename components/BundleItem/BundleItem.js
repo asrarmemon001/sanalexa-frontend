@@ -5,7 +5,8 @@ import { ImageBaseUrl } from '../../utils/Baseurl';
 function BundleItem({
     projectDesc,
     img,
-    projectTitle    
+    projectTitle,
+    price    
 }) {
     const images = img?.split("/");
     const imgsrc = images ? encodeURI(images[1]) : "";  
@@ -17,6 +18,7 @@ function BundleItem({
     <div className="card-body">
         <h5>{projectTitle}</h5>
       <p className="card-text">{projectDesc}</p>
+      <p className="card-text"> ₹ {price}</p>
     </div>
   </div>
   )
