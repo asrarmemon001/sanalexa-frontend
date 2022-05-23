@@ -73,7 +73,8 @@ function CardItem({
             {list ? <div className="list-panel col-12">
               <div className="row">
                 <div className="col-12 py-4">
-                  <div className="border px-2 pt-4">
+                <div className="col-12">
+                <div className="border px-2 pt-4 row">
                     {project && project.length
                     ?
                     project.map((el, i) => {
@@ -92,6 +93,7 @@ function CardItem({
                   :
                   <NoDataFound message={"No modules found in this package"}/>}
                   </div>
+                </div>
                 </div>
               </div>
             </div> : null}

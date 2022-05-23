@@ -120,6 +120,8 @@ export default function SubscriptionPackages({ heading }) {
                         packListIs?.length > 0 ?
                             packListIs?.map((obj, index) => {
                                 return (
+                                    obj.project?.length
+                                    ?
                                     <div className="packageItem px-3 mb-2" key={index}>
                                         <figure className="package-img" style={{ backgroundImage: `url(${ImageBaseUrl + obj?.bannerImage})` }} />
                                         <div className="content-area text-center">
@@ -144,6 +146,8 @@ export default function SubscriptionPackages({ heading }) {
 
                                         </div>
                                     </div>
+                                    :
+                                    null
                                 )
                             }) :
                             <NoDataFound />
