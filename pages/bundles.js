@@ -8,7 +8,7 @@ import { NoDataFound } from "../components/NoDataFound/NoDataFound";
 import CartInfoCard from "../components/CheckoutCard/CheckoutCard";
 
 
-function bundles() {
+function Bundles() {
   const conntextApi = useContext(AppContext);
   const { bundleProduct, bundleTotal } = conntextApi.state;
   const [defaultBundles, setDefaultBundles] = useState(null);
@@ -104,4 +104,4 @@ function bundles() {
   );
 }
 
-export default bundles;
+export default Bundles;

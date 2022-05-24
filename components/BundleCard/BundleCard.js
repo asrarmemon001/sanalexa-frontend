@@ -105,7 +105,7 @@ function BundleCard({
                       />)
                     })
                   :
-                  <NoDataFound/>}
+                  ''}
                   </div>
                 {/* </div> */}
               </div>
