@@ -6,7 +6,7 @@ import AppContext from "../../appContext";
 import { paymentApi } from "../../utils/api-Request";
 import { getSession, getToken } from "../../utils/constants";
 
-export default function paymentgateway({type}) {
+export default function Paymentgateway({type}) {
   const router = useRouter()
   const appContext = useContext(AppContext);
   const { fetchCartList, fetchBundleList, loginSignupModal } = appContext;
