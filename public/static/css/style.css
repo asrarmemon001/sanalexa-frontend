@@ -369,6 +369,7 @@ img {
     font-size: 17px;
     color: #fff;
     text-decoration: none;
+    background: #CA373C;
     padding: 10px 25px;
     transition: 0.5s all;
     border: 1px solid #fff;
@@ -378,7 +379,7 @@ img {
 .main-header::after {
     content: "";
     background-color: #ca373c;
-    width: 299px;
+    width: 8%;
     height: calc(100% - 0px);
     position: absolute;
     right: -36px;
@@ -1602,9 +1603,6 @@ body .btn-primary:hover,body .btn-primary:focus {
 
 @media only screen and (max-width: 1599px) {
 
-    .main-header::after {
-        width: 235px;
-    }
 
 
 
@@ -1844,7 +1842,7 @@ body .btn-primary:hover,body .btn-primary:focus {
 
 @media only screen and (max-width: 1199px) {
     .main-header::after {
-        width: 265px;
+        width: 8%;
     }
     .buttons button.addtubul {
         width: 111px;
@@ -1982,7 +1980,7 @@ body .btn-primary:hover,body .btn-primary:focus {
 
 @media only screen and (max-width: 991px) {
     .main-header::after {
-        width: 260px;
+        width: 15%;
     }
     span.mainhunm {
         position: relative;
