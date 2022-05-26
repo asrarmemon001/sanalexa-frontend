@@ -1,6 +1,7 @@
 import { CircularProgress } from "@mui/material";
 import Image from "next/image";
-import { useContext, useState } from "react"
+import { useRouter } from "next/router";
+import { useContext, useEffect, useState } from "react"
 import Slider from "react-slick";
 import { toast } from "react-toastify";
 import AppContext from "../../../appContext";
@@ -12,7 +13,7 @@ const ProductDetailsMain = ({ productDetails: { id, projectTitle, bannerImage, p
     const [apicall, setapicall] = useState(false);
     const [bundleApicall, setBundleApicall] = useState(false);
     const { state } = apiContext;
-    const [sliderImages, setSliderImages] = useState([bannerImage])
+    const [sliderImages, setSliderImages] = useState(null)
     const settings = {
         customPaging: function (i) {
             return (
@@ -81,21 +82,24 @@ const ProductDetailsMain = ({ productDetails: { id, projectTitle, bannerImage, p
         return Boolean(apiContext.state.bundleProduct?.find(el => el.id == id && el.type == 'project'))
     }
 
-
+    const router = useRouter()
+    useEffect(()=>{ 
+        setSliderImages([bannerImage]) 
+    },[router.asPath])
     return (
         <section className="product-Gallery">
             <div className="container">
                 <div className="outer">
                     <div className="row">
                         <div className="col-lg-6 col-md-12">
-                            <Slider {...settings}>
+                          {sliderImages ?  <Slider {...settings}>
                                 {sliderImages.map((image, index) => {
                                     return (<div className="item next-image-to-normal" key={`slideimage-${index}`}>
                                         <Image src={ImageBaseUrl + image} layout="fill" className="slide-image" />
                                     </div>)
                                 })}
 
-                            </Slider>
+                            </Slider> : null}
                         </div>
                         <div className="col-lg-6 col-md-12">
                             <div className="shift-content">

@@ -1,6 +1,6 @@
 import { Button, CircularProgress, Menu, MenuItem } from "@mui/material"
 import Link from "next/link"
-import { useState, useContext } from "react" 
+import { useState, useContext, useEffect } from "react"
 import { removeSession, removeToken, setSession } from "../../utils/constants"
 import AppContext from "../../appContext/index"
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
@@ -38,7 +38,9 @@ const Header = () => {
     }
 
 
-
+    useEffect(() => {
+        setIndustriesDropdown(false)
+    }, [router.asPath])
     return (
         <header>
             <div className="main-header">
@@ -88,9 +90,23 @@ const Header = () => {
                                             {sectors
                                                 ?
                                                 sectors.map((el) => {
-                                                    return (<MenuItem key={el.id + 'sector'} className="py-2 px-4 text-sm font-weight-bold dropdown-item mb-1">
-                                                        {el.name}
-                                                    </MenuItem>)
+                                                    return (el.projects?.length ?
+                                                        <div className="position-relative">
+                                                            <MenuItem key={el.id + 'sector'} className="py-2 px-4 text-sm font-weight-bold dropdown-item mb-1">
+                                                                {el.name}
+                                                            </MenuItem>
+                                                            <div className="bg-light">
+                                                                {el.projects.map((ell) => {
+                                                                    return (
+                                                                        <Link key={ell.id + 'proj'} href={`/product-details/${ell.id}`}>
+                                                                            <a className="py-2 px-4 text-sm d-block font-weight-bold mb-1"> {ell.projectTitle}</a>
+                                                                        </Link>
+                                                                    )
+                                                                })
+                                                                }
+                                                            </div>
+                                                        </div> : null
+                                                    )
                                                 })
                                                 :
                                                 <MenuItem className="py-2 px-4 text-sm font-weight-bold dropdown-item mb-1">
