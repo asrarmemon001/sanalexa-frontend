@@ -18,12 +18,12 @@ import { toast, ToastContainer } from "react-toastify";
 import ProjectCard from "../../../../components/projectCard/ProjectCard";
 import AppContext from "../../../../appContext";
 import { getSession } from "../../../../utils/constants";
+import Paymentgateway from "../../../../components/paymentgateway/Paymentgateway";
 
 export default function GetStarted() {
   const setCounter = useContext(AppContext);
   let { setCartProduct, state,fetchBundleList} = setCounter;
   let bundleProducts = state.bundleProduct;
-  console.log(setCounter);
   const [plateformFilterShow, setPlateformFilterShow] = useState(false);
   const [bundleList, setBundleList] = useState([]);
   const [industryFilterShow, setIndustryFilterShow] = useState(false);
@@ -172,7 +172,9 @@ export default function GetStarted() {
   // useEffect(() => {
   //   getCartList();
   // }, [sessionId]);
-  console.log(`${ImageBaseUrl}${bundleProducts?.[0].productInfo.bannerImage}`);
+  
+  let defaultCardNumber = bundleProducts?.length ? 4-bundleProducts?.length : 4
+
   return (
     <section className="couressto">
       <div className="container">
@@ -189,14 +191,19 @@ export default function GetStarted() {
                   </div>
               ))
             }
+            {[...Array(defaultCardNumber)]?.map((i) => (
+              <>
+              <Image src="/vercel.svg" height="180px" width="180px"/>
+              </>
+
+            ))}
+            
+
            
           </div>
           <div className="d-flex flex-column">
-            <button className="btn bg-danger text-white control__content" disabled={bundleProducts.length > 2 ? false : true}>Checkout</button>
-            
-            <button className="bg-danger text-white control__content">Gift</button>
-            <div>$ 567</div>
-          </div>
+            <Paymentgateway className="bg-danger text-white control__content" style={{width:"100px"}} disabled={bundleProducts?.length > 2 ? false : true}/>
+             $ {state?.bundleTotal}        </div>
         </div>
         <div></div>
 
