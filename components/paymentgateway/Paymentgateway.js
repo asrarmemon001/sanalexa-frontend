@@ -1,18 +1,27 @@
 import { CircularProgress } from "@mui/material";
 import { useRouter } from "next/router";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import AppContext from "../../appContext";
 import { paymentApi } from "../../utils/api-Request";
 import { getSession, getToken } from "../../utils/constants";
 
-export default function Paymentgateway({type}) {
+export default function Paymentgateway({ type }) {
   const router = useRouter()
   const appContext = useContext(AppContext);
   const { fetchCartList, fetchBundleList, loginSignupModal } = appContext;
   const { isLoggedin } = appContext.state;
   const [paymentRes, setPaymentRes] = useState(null)
+  const [processPaymentAfterLogin, setProcessPaymentAfterLogin] = useState(false)
   const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    if (isLoggedin && processPaymentAfterLogin) {
+      makePayment()
+      setProcessPaymentAfterLogin()
+    }
+  }, [isLoggedin])
+  
   const initializeRazorpay = () => {
     return new Promise((resolve) => {
       const script = document.createElement("script");
@@ -31,10 +40,10 @@ export default function Paymentgateway({type}) {
 
   const makePayment = async () => {
     try {
-      if(!Boolean(isLoggedin)){
+      if (!Boolean(isLoggedin)) {
         // router.push("/payment/failed")
         loginSignupModal('login')
-        console.log('loginSignupModal')
+        setProcessPaymentAfterLogin(true)
         return
       }
       setLoading(true)
@@ -65,7 +74,7 @@ export default function Paymentgateway({type}) {
         },
         // callback_url: "http://localhost:3000/",
       };
-      
+
       const paymentObject = new window.Razorpay(options);
       paymentObject.on('payment.failed', function (response) {
         router.push("/payment/failed")
@@ -73,13 +82,13 @@ export default function Paymentgateway({type}) {
       paymentObject.open();
       router.push("/payment/verifying-payment-status")
       setTimeout(() => {
-        if(type=="cart"){
+        if (type == "cart") {
           fetchCartList()
-        }else{
+        } else {
 
           fetchBundleList()
         }
-        
+
         setLoading(false)
       }, 3000)
     } catch (error) {
