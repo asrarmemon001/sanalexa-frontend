@@ -6,7 +6,7 @@ import AppContext from "../../appContext";
 import { paymentApi } from "../../utils/api-Request";
 import { getSession, getToken } from "../../utils/constants";
 
-export default function Paymentgateway({ type }) {
+export default function Paymentgateway({ type,disabled }) {
   const router = useRouter()
   const appContext = useContext(AppContext);
   const { fetchCartList, fetchBundleList, loginSignupModal } = appContext;
@@ -96,5 +96,5 @@ export default function Paymentgateway({ type }) {
       setLoading(false)
     }
   };
-  return <button disabled={loading} className="btn btn-danger mb-3" style={{ borderRadius: "20px" }} onClick={makePayment}>{loading ? <CircularProgress size={16} /> : 'Pay'}</button>;
+  return <button disabled={loading || disabled} className="btn btn-danger mb-3" style={{ borderRadius: "20px" }} onClick={makePayment}>{loading ? <CircularProgress size={16} /> : 'Pay'}</button>;
 }
