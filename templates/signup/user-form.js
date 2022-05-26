@@ -193,8 +193,7 @@ const UserRegistration = ({setIsLoggedin, handleModal}) => {
             />
             {formik.errors.address && formik.touched.address && <p className="text-danger px-2 text-sm fw-bold" style={{ marginTop: "-15px" }}>{formik.errors.address}</p>}
             </div>
-            <div className="fieldList"> 
-            {console.log(locationList,'locationList')}
+            <div className="fieldList">  
             <FormControl fullWidth className="mb-3" size="">
                 <InputLabel id="select-location-label">Select Location</InputLabel>
                 <Select

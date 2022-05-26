@@ -177,8 +177,7 @@ const RegisterOrganization = ({ handleModal, setIsLoggedin }) => {
             {formik.values.licenceType === "Logins" || formik.values.licenceType === "Hardwares & Logins"
                 ?
                 <>
-                    <FormControl fullWidth className="mb-3" size="">
-                        {console.log(organizationType,'organizationType')}
+                    <FormControl fullWidth className="mb-3" size=""> 
                         <InputLabel id="select-login-type-label">Login Type</InputLabel>
                         <Select
                             labelId="select-login-type-label"

@@ -38,8 +38,7 @@ function Bundles() {
 
       <div className="container d-flex flex-row flex-wrap mb-4 custombundel ">
         {bundleProduct?.length ?
-          <>
-          {console.log(bundleProduct,'bundleProduct')}
+          <> 
             <div className="col-md-9 cartlist ">
               {bundleProduct.map((el, index) => (
                el.type == "project"
@@ -85,8 +84,7 @@ function Bundles() {
       </div>
       <div className="tophead py-3 mb-4">
         <div className="container"><h3 className="text-center">Default Bundles </h3></div> </div>
-      <div>
-      {console.log(defaultBundles,'dddddddd')}
+      <div> 
         {
           defaultBundles?.map((el, i) => (
             <div key={`dfBundlee-${i}`}>
