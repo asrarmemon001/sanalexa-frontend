@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from 'next/image'
 import { useContext, useEffect, useState } from "react";
 import { plateformList } from "../../../../utils/plateform";
 import { ImageBaseUrl } from "../../../../utils/Baseurl";
@@ -7,6 +8,7 @@ import {
   sectorList,
   cartList,
   AddtoCart,
+  removeItemBundleList,
 } from "../../../../utils/api-Request";
 import { Loader } from "../../../../components/Loader/Loader";
 import { NoDataFound } from "../../../../components/NoDataFound/NoDataFound";
@@ -15,12 +17,15 @@ import "react-toastify/dist/ReactToastify.min.css";
 import { toast, ToastContainer } from "react-toastify";
 import ProjectCard from "../../../../components/projectCard/ProjectCard";
 import AppContext from "../../../../appContext";
+import { getSession } from "../../../../utils/constants";
+import Paymentgateway from "../../../../components/paymentgateway/Paymentgateway";
 
 export default function GetStarted() {
   const setCounter = useContext(AppContext);
-  let { setCartProduct } = setCounter;
-
+  let { setCartProduct, state,fetchBundleList} = setCounter;
+  let bundleProducts = state.bundleProduct;
   const [plateformFilterShow, setPlateformFilterShow] = useState(false);
+  const [bundleList, setBundleList] = useState([]);
   const [industryFilterShow, setIndustryFilterShow] = useState(false);
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(6);
@@ -36,17 +41,17 @@ export default function GetStarted() {
   const [apicall, setapicall] = useState(false);
 
   const handleOnChange = (event) => {
-    setPage(1)
+    setPage(1);
     setSearch(event.target.value);
   };
 
   const getPlateform = (event) => {
     const { value, checked } = event.target;
-    let data = plateform; 
+    let data = plateform;
     if (checked) {
       data.push(value);
     } else {
-      data=data.filter(el=>el != value);
+      data = data.filter((el) => el != value);
     }
     setplateform(data);
     getProjectList();
@@ -58,7 +63,7 @@ export default function GetStarted() {
     if (checked) {
       data.push(value);
     } else {
-     data = data.filter((el)=>el != value);
+      data = data.filter((el) => el != value);
     }
     setSector(data);
     getProjectList();
@@ -76,7 +81,7 @@ export default function GetStarted() {
     setPage(data?.selected + 1);
   };
 
-  // const handleAddtoCart = async (id, type, quantity) => { 
+  // const handleAddtoCart = async (id, type, quantity) => {
   //   const data = {
   //     sessionId: sessionId,
   //     cart: { id: String(id), type: "project", quantity: 1 },
@@ -91,6 +96,24 @@ export default function GetStarted() {
   //   getCartList();
   //   setCartProduct(cartListIs);
   // };
+  const handleRemove = async (id, type) => {
+    try {
+      const data = {
+        sessionId: getSession(),
+        id: id,
+        type,
+      };
+      const res = await removeItemBundleList(data)
+      if (res.status == 200) {
+        toast.success("successfully Removed")
+        fetchBundleList()
+      }
+
+    } catch (error) {
+      toast.error("something went wrong")
+      console.log(error, 'handleRemove bundle')
+    }
+  };
 
   const togglePlateformFilter = () => {
     setPlateformFilterShow(!plateformFilterShow);
@@ -134,6 +157,7 @@ export default function GetStarted() {
   useEffect(() => {
     getProjectList();
   }, [page, search, plateform, sector]);
+  useEffect(() => {}, []);
 
   useEffect(() => {
     const key = localStorage.getItem("sessionId");
@@ -148,6 +172,8 @@ export default function GetStarted() {
   // useEffect(() => {
   //   getCartList();
   // }, [sessionId]);
+  
+  let defaultCardNumber = bundleProducts?.length ? 4-bundleProducts?.length : 4
 
   return (
     <section className="couressto">
@@ -155,6 +181,32 @@ export default function GetStarted() {
         <div className="title">
           <h3>Courses to get you started </h3>
         </div>
+        <div className="border h-100 d-flex">
+          <div className="d-flex col-md-10">
+            {
+              bundleProducts?.slice(0,4)?.map((i, key)=>(
+                <div className="d-flex flex-column col-md-3" key={key}>
+                <Image src={`${ImageBaseUrl}${i.productInfo.bannerImage}`} height="180px" width="180px"/>
+                <button  onClick={()=>{handleRemove(i.productInfo.id,i.type)}}>x</button>
+                  </div>
+              ))
+            }
+            {[...Array(defaultCardNumber)]?.map((i) => (
+              <>
+              <Image src="/vercel.svg" height="180px" width="180px"/>
+              </>
+
+            ))}
+            
+
+           
+          </div>
+          <div className="d-flex flex-column">
+            <Paymentgateway className="bg-danger text-white control__content" style={{width:"100px"}} disabled={bundleProducts?.length > 2 ? false : true}/>
+             $ {state?.bundleTotal}        </div>
+        </div>
+        <div></div>
+
         <div className="row">
           <div className="col-lg-3 col-md-4">
             <div className="filltercode" data-aos="fade-right">
@@ -198,7 +250,13 @@ export default function GetStarted() {
                                     handleFilterChange(e, "plateform")
                                   }
                                 />
-                                <span className={plateform?.includes(obj.id) ? 'bg-danger text-white control__content' : "control__content"}>
+                                <span
+                                  className={
+                                    plateform?.includes(obj.id)
+                                      ? "bg-danger text-white control__content"
+                                      : "control__content"
+                                  }
+                                >
                                   {obj?.name}
                                 </span>
                               </label>
@@ -234,7 +292,13 @@ export default function GetStarted() {
                                     handleFilterChange(e, "sector")
                                   }
                                 />
-                                 <span className={sector?.includes(obj.id.toString()) ? 'bg-danger text-white control__content' : "control__content"}>
+                                <span
+                                  className={
+                                    sector?.includes(obj.id.toString())
+                                      ? "bg-danger text-white control__content"
+                                      : "control__content"
+                                  }
+                                >
                                   {obj?.name}
                                 </span>
                               </label>
