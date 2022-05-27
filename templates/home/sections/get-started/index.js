@@ -181,11 +181,11 @@ export default function GetStarted() {
         <div className="title">
           <h3>Courses to get you started </h3>
         </div>
-        <div className="border h-100 d-flex">
-          <div className="d-flex col-md-10">
+        <div className="mb-5 mobwrep h-100 d-flex">
+          <div className="d-flex col-md-9 pl-0 col-sm-12 vercel img-no"> 
             {
               bundleProducts?.slice(0,4)?.map((i, key)=>(
-                <div className="d-flex flex-column col-md-3" key={key}>
+                <div className="d-flex flex-column   vercel" key={key}>
                 <Image src={`${ImageBaseUrl}${i.productInfo.bannerImage}`} height="180px" width="180px"/>
                 <button  onClick={()=>{handleRemove(i.productInfo.id,i.type)}}>x</button>
                   </div>
@@ -197,13 +197,17 @@ export default function GetStarted() {
               </>
 
             ))}
-            
-
+             
            
           </div>
-          <div className="d-flex flex-column">
+          <div className="col-md-3 col-sm-12 text-right pr-0 paddi">
+            <div className="flexclas">
+            <div className="dolarret">
+          $ {state?.bundleTotal}
+          </div>
             <Paymentgateway className="bg-danger text-white control__content" style={{width:"100px"}} disabled={bundleProducts?.length > 2 ? false : true}/>
-             $ {state?.bundleTotal}        </div>
+                    </div>
+                    </div>
         </div>
         <div></div>
 
