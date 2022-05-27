@@ -56,14 +56,14 @@ const UserRegistration = ({setIsLoggedin, handleModal}) => {
                 }))
                 const res = await registerUser(values) 
                 if (res.status == 200) {
-                  setToken(res.data.data.token)
-                  toast.success(res.data.message);
-                  handleModal(false)
-                  setIsLoggedin(true)
-                  setUserData((v)=>({
-                    ...v,
-                    loading:false
-                  }))
+                //   setToken(res.data.data.token)
+                //   toast.success(res.data.message);
+                handleModal("otp", {email:values.email})
+                //   setIsLoggedin(true)
+                //   setUserData((v)=>({
+                //     ...v,
+                //     loading:false
+                //   }))
                 }
               } catch (error) {
                 toast.error(error.response.data.message || error.response.statusText);
@@ -187,12 +187,13 @@ const UserRegistration = ({setIsLoggedin, handleModal}) => {
                 fullWidth
                 InputProps={{
                     inputComponent: TextareaAutosize,
-                    minRows: 4
+                    minRows: 4,
+                    maxRows:4
                 }}
             />
             {formik.errors.address && formik.touched.address && <p className="text-danger px-2 text-sm fw-bold" style={{ marginTop: "-15px" }}>{formik.errors.address}</p>}
             </div>
-            <div className="fieldList"> 
+            <div className="fieldList">  
             <FormControl fullWidth className="mb-3" size="">
                 <InputLabel id="select-location-label">Select Location</InputLabel>
                 <Select

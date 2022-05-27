@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { ImageBaseUrl } from "../../utils/Baseurl";
 import { RemoveCartItem } from "../../utils/api-Request";
+import { NoDataFound } from "../NoDataFound/NoDataFound";
 
 function CardItem({
   image,
@@ -72,8 +73,11 @@ function CardItem({
             {list ? <div className="list-panel col-12">
               <div className="row">
                 <div className="col-12 py-4">
-                  <div className="border px-2 pt-4">
-                    {project.map((el, i) => {
+                <div className="col-12">
+                <div className="border px-2 pt-4 row">
+                    {project && project.length
+                    ?
+                    project.map((el, i) => {
                       return (<AccordianItem
                         classes={`col-lg-3 col-md-4 col-12`}
                         key={`listofi-${i}`}
@@ -85,8 +89,11 @@ function CardItem({
                         plateform={el.plateform}
                         price={el.price}
                       />)
-                    })}
+                    })
+                  :
+                  <NoDataFound message={"No modules found in this package"}/>}
                   </div>
+                </div>
                 </div>
               </div>
             </div> : null}

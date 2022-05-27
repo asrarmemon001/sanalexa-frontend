@@ -60,7 +60,8 @@ const SubscriptionPlansListTemplates = ({ subsciptionList }) => {
 
                     <div className="col-12">
                         {subsciptionList.map((el, i) => {
-                            return (
+                            return (el.project?.length
+                                ?
                                 <div className={`row bord ${(i % 2 != 0) ? `flex-row-reverse` : ``}`} key={`package-${el.id}`}>
                                     <div className="col-md-6  image-p-s">
                                         <Image src={`${ImageBaseUrl}${el.bannerImage}`} layout="fill" />
@@ -90,6 +91,7 @@ const SubscriptionPlansListTemplates = ({ subsciptionList }) => {
                                     </div>
 
                                 </div>
+                                : null
 
                             )
                         })}

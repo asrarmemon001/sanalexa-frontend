@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Modal } from "react-bootstrap-v5"
 import { loginValidationSchema } from "./validation";
 import { CircularProgress, TextField } from "@mui/material";
@@ -23,26 +23,30 @@ const Login = ({ handleModal, show, setIsLoggedin }) => {
     validationSchema: loginValidationSchema,
     onSubmit: async (values) => {
       try {
-        setLoginData((v)=>({
+        setLoginData((v) => ({
           ...v,
-          loading:true
+          loading: true
         }))
         const res = await loginUser(values)
         if (res.status == 200) {
-          setToken(res.data.data.token)
-          toast.success(res.data.message);
-          handleModal(false)
-          setIsLoggedin(true)
-          setLoginData((v)=>({
-            ...v,
-            loading:false
-          }))
+          if (res.data.data.user.emailVerified) {
+            setToken(res.data.data.token)
+            toast.success(res.data.message);
+            handleModal(false)
+            setIsLoggedin(true)
+            setLoginData((v) => ({
+              ...v,
+              loading: false
+            }))
+          } else {
+            handleModal("otp", { email: values.email })
+          }
         }
       } catch (error) {
         toast.error(error.response.data.message || error.response.statusText);
-        setLoginData((v)=>({
+        setLoginData((v) => ({
           ...v,
-          loading:false
+          loading: false
         }))
       }
 
@@ -52,8 +56,14 @@ const Login = ({ handleModal, show, setIsLoggedin }) => {
   const handleChange = (event) => {
     formik.setFieldValue(event.target.name, event.target.value)
   }
-
-
+  useEffect(() => {
+    setLoginData({
+      loading: false,
+      data: null,
+      message: "",
+      status: 0
+    })
+  }, [show])
   return (
     <Modal show={show} onHide={() => handleModal(false)} centered>
       <Modal.Header closeButton>

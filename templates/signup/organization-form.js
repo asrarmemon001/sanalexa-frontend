@@ -62,14 +62,14 @@ const RegisterOrganization = ({ handleModal, setIsLoggedin }) => {
                 }))
                 const res = await registerUser(values)
                 if (res.status == 200) {
-                    setToken(res.data.data.token)
-                    toast.success(res.data.message);
-                    handleModal(false)
-                    setIsLoggedin(true)
-                    setOrganizationData((v) => ({
-                        ...v,
-                        loading: false
-                    }))
+                    // setToken(res.data.data.token)
+                    // toast.success(res.data.message);
+                    handleModal("otp", {email:values.email})
+                    // setIsLoggedin(true)
+                    // setOrganizationData((v) => ({
+                    //     ...v,
+                    //     loading: false
+                    // }))
                 }
             } catch (error) {
                 toast.error(error.response.data.message || error.response.statusText);
@@ -116,7 +116,8 @@ const RegisterOrganization = ({ handleModal, setIsLoggedin }) => {
                 <TextField id="supporting-address" className="mb-3" error={formik.errors.address && formik.touched.address} value={formik.values.address} name="address" onChange={handleChangeInput} label="Address" fullWidth
                     InputProps={{
                         inputComponent: TextareaAutosize,
-                        minRows: 4
+                        minRows: 4,
+                        maxRows:4
                     }}
                 />
                 {formik.errors.address && formik.touched.address && <p className="text-danger px-2 text-sm fw-bold" style={{ marginTop: "-15px" }}>{formik.errors.address}</p>}
@@ -176,7 +177,7 @@ const RegisterOrganization = ({ handleModal, setIsLoggedin }) => {
             {formik.values.licenceType === "Logins" || formik.values.licenceType === "Hardwares & Logins"
                 ?
                 <>
-                    <FormControl fullWidth className="mb-3" size="">
+                    <FormControl fullWidth className="mb-3" size=""> 
                         <InputLabel id="select-login-type-label">Login Type</InputLabel>
                         <Select
                             labelId="select-login-type-label"

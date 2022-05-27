@@ -1,17 +1,19 @@
 import { CircularProgress } from "@mui/material";
 import Image from "next/image";
-import { useContext, useState } from "react"
+import { useRouter } from "next/router";
+import { useContext, useEffect, useState } from "react"
 import Slider from "react-slick";
 import { toast } from "react-toastify";
 import AppContext from "../../../appContext";
-import { AddtoCart } from "../../../utils/api-Request";
+import { addtoBundleApi, AddtoCart } from "../../../utils/api-Request";
 import { ImageBaseUrl } from "../../../utils/Baseurl";
 import { getSession } from "../../../utils/constants";
 const ProductDetailsMain = ({ productDetails: { id, projectTitle, bannerImage, price, projectDesc } }) => {
     const apiContext = useContext(AppContext)
     const [apicall, setapicall] = useState(false);
+    const [bundleApicall, setBundleApicall] = useState(false);
     const { state } = apiContext;
-    const [sliderImages, setSliderImages] = useState([bannerImage])
+    const [sliderImages, setSliderImages] = useState(null)
     const settings = {
         customPaging: function (i) {
             return (
@@ -52,20 +54,52 @@ const ProductDetailsMain = ({ productDetails: { id, projectTitle, bannerImage, p
             )
             .catch((error) => { setapicall(false); console.log(error) });
     };
+
+
+    const handleAddtoBundle = async (id) => {
+        setBundleApicall(true)
+        const data = {
+            sessionId: getSession(),
+            bundle: { id: String(id), type: "project", quantity: 1 },
+        };
+        await addtoBundleApi(data)
+            .then((res) => {
+                if (res?.status == 200) {
+                    toast.success("Product added to bundle")
+                } else {
+                    toast.error("something went wrong");
+                }
+                apiContext.fetchBundleList()
+                setBundleApicall(false)
+            }
+            )
+            .catch((error) => { setBundleApicall(false); console.log(error) });
+    };
+
+
+
+    const isProductExistInBundle = (id) => {
+        return Boolean(apiContext.state.bundleProduct?.find(el => el.id == id && el.type == 'project'))
+    }
+
+    const router = useRouter()
+    useEffect(()=>{ 
+        setSliderImages([bannerImage]) 
+    },[router.asPath])
     return (
         <section className="product-Gallery">
             <div className="container">
                 <div className="outer">
                     <div className="row">
                         <div className="col-lg-6 col-md-12">
-                            <Slider {...settings}>
+                          {sliderImages ?  <Slider {...settings}>
                                 {sliderImages.map((image, index) => {
                                     return (<div className="item next-image-to-normal" key={`slideimage-${index}`}>
-                                        <Image  src={ImageBaseUrl + image} layout="fill" className="slide-image" />
+                                        <Image src={ImageBaseUrl + image} layout="fill" className="slide-image" />
                                     </div>)
                                 })}
 
-                            </Slider>
+                            </Slider> : null}
                         </div>
                         <div className="col-lg-6 col-md-12">
                             <div className="shift-content">
@@ -145,7 +179,27 @@ const ProductDetailsMain = ({ productDetails: { id, projectTitle, bannerImage, p
                                             <button className="addtubul"><i className="fa fa-briefcase" aria-hidden="true"></i>Buy Now</button>
                                         </div>
                                         <div className="bundle">
-                                            <button className="addtubul">Add to bundle</button>
+                                            <button
+                                                className={
+                                                    'addtubul btn btn-danger'
+                                                }
+                                                onClick={() => {
+                                                    !isProductExistInBundle(id) &&
+                                                        handleAddtoBundle(id, 'product', 1);
+                                                }}
+                                                disabled={
+                                                    isProductExistInBundle(id)
+                                                        ? true
+                                                        : false
+                                                }
+                                            >
+                                                {bundleApicall ? (
+                                                    <CircularProgress size={20} />) :
+                                                    isProductExistInBundle(id)
+                                                        ? "Added to Bundle"
+                                                        :
+                                                        'Add to Bundle'}
+                                            </button>
                                             <button className="addtubul">Discover Entire Packge</button>
                                         </div>
                                         <div className="wishlist">

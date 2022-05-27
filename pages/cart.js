@@ -50,8 +50,7 @@ function Cart() {
         {cartListIs && cartListIs.length
           ?
           <>
-            <div className="col-lg-9 col-12 ">
-              {console.log(cartListIs,'cartListIs')}
+            <div className="col-lg-9 col-12 "> 
               {cartListIs &&
                 cartListIs.map((el, index) => (
                  el.type == "project"

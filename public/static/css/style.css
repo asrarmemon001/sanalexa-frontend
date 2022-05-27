@@ -84,6 +84,27 @@ h3 {
     background-color: inherit;
     color: #7c848a;
 }
+.mideel-mene ul.list-menu li.nav-item button {
+    padding: 0;
+    font-size: 17px;
+    font-weight: 500;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: capitalize;
+    position: relative;
+    color: #000;
+}
+
+
+.mideel-mene ul.list-menu li.nav-item button::after{
+    content: "";
+    background-color: #ca373c;
+    width: 0;
+    height: 2px;
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    transition: 0.5s; 
+}
 
 .all-teb ul li {
     padding: 10px 35px;
@@ -160,10 +181,10 @@ h3 {
     top: -10px;
     font-size: 12px;
     background-color: #ca373c;
-    padding: 5px;
+    padding: 4px;
     border-radius: 100px;
-    width: 20px;
-    height: 20px;
+    width: 17px;
+    height: 17px;
     text-align: center;
     line-height: 0.8;
     right: -10px;
@@ -313,9 +334,23 @@ img {
     font-weight: 500;
     font-size: 17px;
     line-height: 21px;
-    text-transform: uppercase;
+    text-transform: capitalize;
     color: #000;
     text-decoration: none;
+    position: relative;
+}
+.mideel-mene ul.list-menu li a::after {
+    content: "";
+    background-color: #ca373c;
+    width: 0;
+    height: 2px;
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    transition: 0.5s;
+}
+.mideel-mene ul.list-menu li.nav-item button:hover::after, .mideel-mene ul.list-menu li a:hover::after {
+    width: 100%;
 }
 
 .mideel-mene ul.varymenu li a,
@@ -330,15 +365,28 @@ img {
 }
 
 .mideel-mene ul.varymenu li .sinup {
-    background: #CA373C;
-    border-radius: 21px;
+    border-radius: 28px;
     font-size: 17px;
     color: #fff;
     text-decoration: none;
+    background: #CA373C;
     padding: 10px 25px;
     transition: 0.5s all;
+    border: 1px solid #fff;
+    position: relative;
+    z-index: 99;
 }
-
+.main-header::after {
+    content: "";
+    background-color: #ca373c;
+    width: 8%;
+    height: calc(100% - 0px);
+    position: absolute;
+    right: -36px;
+    transform: skew(328deg);
+    top: 0;
+    z-index: 9;
+}
 .mideel-mene ul.varymenu li .sinup:hover {
     color: #fff;
     box-shadow: 277px 0 0 0 #313b79 inset;
@@ -373,6 +421,7 @@ img {
 .main-header {
     padding: 25px 0px;
     position: relative;
+    overflow: hidden;
 }
 
 .banner {
@@ -1421,7 +1470,7 @@ button.addtubul { font-family: 'Montserrat';
 }
  
 body .modal,.modal-backdrop { 
-    z-index: 99999;
+    z-index: 1200;
 }
 .registerForm {
     padding-bottom: 0!important;
@@ -1554,6 +1603,9 @@ body .btn-primary:hover,body .btn-primary:focus {
 
 @media only screen and (max-width: 1599px) {
 
+
+
+
     .buttons button.addtubul {
         width: 125px;
     }
@@ -1617,11 +1669,16 @@ body .btn-primary:hover,body .btn-primary:focus {
     }
 
     .main-header {
-        padding: 15px 0px;
+        padding: 10px 0px;
     }
 
     .mideel-mene ul.list-menu li a {
         font-size: 15px;
+    }
+    
+    
+    .mideel-mene ul.list-menu li.nav-item button { 
+        font-size: 15px; 
     }
 
     .varymenu li:last-child {
@@ -1637,12 +1694,12 @@ body .btn-primary:hover,body .btn-primary:focus {
     } */
 
     .mideel-mene ul.list-menu li {
-        padding: 0px 15px 0px 0px;
+        padding: 0px 18px 0px 0px;
     }
 
     .mideel-mene ul.varymenu li a,
     .mideel-mene ul.varymenu li .link {
-        font-size: 20px;
+        font-size: 16px;
     }
 
     .mideel-mene ul.varymenu li .sinup {
@@ -1744,7 +1801,7 @@ body .btn-primary:hover,body .btn-primary:focus {
     a.button-download-launcher {
         font-size: 15px;
         height: 45px;
-        line-height: 40px;
+        line-height: 48px;
     }
 
     .content-area a.button-download-launcher.border-only {
@@ -1784,6 +1841,9 @@ body .btn-primary:hover,body .btn-primary:focus {
 
 
 @media only screen and (max-width: 1199px) {
+    .main-header::after {
+        width: 8%;
+    }
     .buttons button.addtubul {
         width: 111px;
     } 
@@ -1827,9 +1887,7 @@ body .btn-primary:hover,body .btn-primary:focus {
         padding: 25px 0px;
     }
 
-    .mideel-mene ul.list-menu li a {
-        font-size: 15px;
-    }
+    
 
     .mideel-mene ul.varymenu li .sinup {
         padding: 8px 15px;
@@ -1921,7 +1979,13 @@ body .btn-primary:hover,body .btn-primary:focus {
 
 
 @media only screen and (max-width: 991px) {
-
+    .main-header::after {
+        width: 15%;
+    }
+    span.mainhunm {
+        position: relative;
+        z-index: 9999;
+    }
     .cart-but * {
         margin-right: 10px;
     }
@@ -2045,6 +2109,7 @@ body .btn-primary:hover,body .btn-primary:focus {
 
     .mideel-mene {
         width: 35%;
+        justify-content: end;
     }
 
     .search-form-main {
@@ -2065,6 +2130,12 @@ body .btn-primary:hover,body .btn-primary:focus {
     .search-container i.fa.fa-search {
         right: 150px;
         top: 8px;
+    }
+    .mideel-mene ul.varymenu li:nth-child(3) {
+        padding-right: 0;
+    }
+    .mideel-mene ul.varymenu li:nth-child(2) {
+        margin-right: 30px;
     }
 }
 
@@ -2329,6 +2400,7 @@ body .btn-primary:hover,body .btn-primary:focus {
     .fieldList:nth-child(2n) {
         margin-left: 0;
     }
+    
 }
 
 
@@ -2370,8 +2442,8 @@ box-shadow: 277px 0 0 0 #3a437e inset;}
 .mideel-mene ul li:last-child a span.badge.badge-danger {
     position: absolute;
     border-radius: 100px;
-    right: -18px;
-    top: -12px;
+    right: -10px;
+    top: -10px;
 }
 .bord {
     padding: 50px 100px 50px;
@@ -2517,7 +2589,9 @@ i.fa.fa-caret-down, i.fa.fa-caret-up {
     top: 50%;
     transform: translateY(-50%);
 }
-
+.toggleCollapse {
+    width: 100%;
+}
 
 @media only screen and (max-width: 1199px) {
     .bord {
@@ -2529,7 +2603,7 @@ i.fa.fa-caret-down, i.fa.fa-caret-up {
     .bord {
         padding: 50px 15px 50px;
     }
-
+    
     .bord:nth-child(odd) .col-md-6:nth-child(2) {
         padding-left: 0;
     }
@@ -2539,6 +2613,21 @@ text-align: center;
 
 
     }
+  
 
 
 }
+
+
+
+
+@media only screen and (max-width: 450px) {
+
+    .main-header::after {
+        width: 200px;
+    }
+}
+
+.otp-form > div {justify-content: center;}
+
+.otp-form > div > div input {width: 38px!important;border-radius: 4px;border-style: solid;padding: 8px 0px;}

@@ -11,12 +11,16 @@ import useFetchSectordetails from "../hooks/getSectorList";
 import { getSession, getToken, setSession } from "../utils/constants";
 import Signup from "../templates/signup";
 import Login from "../templates/login";
+import OTPVerification from "../templates/otp-verification";
 
 function MyApp({ Component, pageProps }) {
   const [cartProduct, setCartProduct] = useState(null)
+  const [cartLoading, setCartLoading] = useState(false)
+  const [bundleLoading, setBundleLoading] = useState(false)
   const [bundleProduct, setBundleProduct] = useState(null)
   const [isLoggedin, setIsLoggedin] = useState(false)
   const [modal, setModal] = useState(false)
+  const [modalPayload, setModalPayload] = useState("")
   const [user, setUser] = useState({
     loading: false,
     data: null,
@@ -28,19 +32,33 @@ function MyApp({ Component, pageProps }) {
   const [bundleTotal, setBundleTotal] = useState(0)
   useFetchSectordetails(setSectors)
   const fetchCartList = async () => {
-    const list = await cartList(getSession());
-    setCartProduct(list?.data?.data || null);
-    setCartTotal(list?.data?.cartTotal || 0)
+    try {
+      setCartLoading(true)
+      const list = await cartList(getSession());
+      setCartProduct(list?.data?.data || null);
+      setCartTotal(list?.data?.cartTotal || 0)
+      setCartLoading(false)
+    } catch (error) {
+      setCartLoading(false)
+      toast.error("Something went wrong")
+    }
 
   };
-  const handleModal = (action) => {
+  const handleModal = (action, payload) => {
     setModal(action)
+    setModalPayload(payload)
   }
   const fetchBundleList = async () => {
-    const list = await getUserBundlesList(getSession());
-    setBundleProduct(list?.data?.data || null);
-    setBundleTotal(list?.data?.bundleTotal || 0)
-
+    try {
+      setBundleLoading(true)
+      const list = await getUserBundlesList(getSession());
+      setBundleProduct(list?.data?.data || null);
+      setBundleTotal(list?.data?.bundleTotal || 0)
+      setBundleLoading(false)
+    } catch (error) {
+      setBundleLoading(false)
+      toast.error("Something went wrong")
+    }
   };
 
   useEffect(() => {
@@ -95,14 +113,16 @@ function MyApp({ Component, pageProps }) {
           bundleProduct,
           bundleTotal,
           isLoggedin,
-          user
+          user,
+          cartLoading,
+          bundleLoading
         },
         setCartProduct,
         setSectors,
         fetchCartList,
         fetchBundleList,
         fetchUserDetails,
-        loginSignupModal:handleModal,
+        loginSignupModal: handleModal,
         setIsLoggedin,
         setUser
       }}
@@ -111,6 +131,7 @@ function MyApp({ Component, pageProps }) {
       <ToastContainer style={{ zIndex: 999999 }} />
       <Signup show={modal == "signup"} handleModal={handleModal} setIsLoggedin={setIsLoggedin} />
       <Login show={modal == "login"} handleModal={handleModal} setIsLoggedin={setIsLoggedin} />
+      <OTPVerification show={modal == "otp"} handleModal={handleModal} setIsLoggedin={setIsLoggedin} modalPayload={modalPayload} setModalPayload={setModalPayload}/>
     </AppContext.Provider>)
 }
 
