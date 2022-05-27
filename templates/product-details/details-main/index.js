@@ -8,7 +8,8 @@ import AppContext from "../../../appContext";
 import { addtoBundleApi, AddtoCart } from "../../../utils/api-Request";
 import { ImageBaseUrl } from "../../../utils/Baseurl";
 import { getSession } from "../../../utils/constants";
-const ProductDetailsMain = ({ productDetails: { id, projectTitle, bannerImage, price, projectDesc } }) => {
+const ProductDetailsMain = ({ productDetails }) => {
+    const { id, projectTitle, bannerImage, price, projectDesc } = productDetails;
     const apiContext = useContext(AppContext)
     const [apicall, setapicall] = useState(false);
     const [bundleApicall, setBundleApicall] = useState(false);
@@ -88,6 +89,7 @@ const ProductDetailsMain = ({ productDetails: { id, projectTitle, bannerImage, p
     },[router.asPath])
     return (
         <section className="product-Gallery">
+            {console.log(productDetails,'productDetails')}
             <div className="container">
                 <div className="outer">
                     <div className="row">

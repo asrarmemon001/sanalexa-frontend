@@ -59,15 +59,20 @@ const OTPVerification = ({ handleModal, show, setIsLoggedin, modalPayload }) => 
     }
   }, [modalPayload])
 
-  const handleResendOtp = async() => {
-    const data = { email : modalPayload?.email }
+  const handleResendOtp = async () => {
+    const data = { email: modalPayload?.email }
     const resendOtpIs = await resendOtp(data);
-    if(resendOtpIs){
+    if (resendOtpIs) {
       const MsgIs = resendOtpIs?.data?.message
       toast.success(MsgIs);
     }
   }
+  useEffect(() => {
+    return () => {
+      formik.resetForm()
+    }
 
+  }, [])
   return (
     <Modal show={show} onHide={() => { }} centered>
 
@@ -82,6 +87,7 @@ const OTPVerification = ({ handleModal, show, setIsLoggedin, modalPayload }) => 
             onChange={handleChange}
             hasErrored={Boolean(formik.touched.otp) && Boolean(formik.errors.otp)}
             errorStyle={{ borderColor: "#ff0000" }}
+            isInputNum={true}
             className="text-center"
             numInputs={6}
             separator={<span>-</span>}

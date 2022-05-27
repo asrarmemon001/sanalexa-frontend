@@ -15,7 +15,7 @@ export default function ProductDetailsTemplate({ productDetails }) {
     return (
         <>
             <ProductDetailsMain productDetails={productDetails}/>
-            <ShiftHandover />
+            <ShiftHandover productDetails={productDetails}/>
             <ShiftHandoverFaq />
             <FeaturedCourses heading="You May Also Like" />
             <SubscriptionPackages heading="Subscription Package" />

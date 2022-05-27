@@ -1,32 +1,23 @@
 import { useState } from "react"
-const TabDescriptionContent = () => {
+const TabDescriptionContent = ({data}) => {
     return (<div id="tab1">
         <div className="tsb-meneg">
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the Then adjust its left property and width property. Add a transition in your CSS, et voil  .</p>
-            <div className="teb-under-con">
-                <h5>Details</h5>
-                <ul>
-                    <li><p><i className="fa fa-tint" aria-hidden="true"></i><span> Duration: 20mins</span></p></li>
-                    <li><p><i className="fa fa-tint" aria-hidden="true"></i><span> Duration: 20mins</span></p></li>
-                    <li><p><i className="fa fa-pagelines" aria-hidden="true"></i><span> Duration: 20mins</span></p></li>
-                    <li><p><i className="fa fa-tint" aria-hidden="true"></i><span> Duration: 20mins</span></p></li>
-                </ul>
-            </div>
+            <div dangerouslySetInnerHTML={{__html:data}}/>
         </div>
     </div>)
 }
 
-const TabWhatYouLearnContent = () => {
+const TabWhatYouLearnContent = ({data}) => {
     return (<div id="tab2">
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the Then adjust its left property and width property. Add a transition in your CSS,</p>
-    </div>)
+         <div dangerouslySetInnerHTML={{__html:data}}/>
+         </div>)
 }
-const ShiftHandover = () => {
+const ShiftHandover = ({productDetails}) => {
     const [tabPanels, setTabPanels] = useState({
         activeTab: 0,
         tabs: [
-            { id: "tab1-tab", name: "Description", panelDetails: <TabDescriptionContent /> },
-            { id: "tab2-tab", name: "What you will learn", panelDetails: <TabWhatYouLearnContent /> }
+            { id: "tab1-tab", name: "Description", panelDetails: <TabDescriptionContent data={productDetails.shift_handover_description}/> },
+            { id: "tab2-tab", name: "What you will learn", panelDetails: <TabWhatYouLearnContent data={productDetails.shift_handover_about}/> }
         ]
     })
 
