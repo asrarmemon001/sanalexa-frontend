@@ -78,3 +78,7 @@ export const verifyOTPApi = async(data) =>{
    return await postApiWithoutToken(`/api/webUser/otp-verify`, data)
   
 }
+
+export const resendOtp = async(data) => {
+   return await postApiWithoutToken(`/api/webUser/resend-otp`, data)
+}
