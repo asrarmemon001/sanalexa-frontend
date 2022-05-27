@@ -62,14 +62,14 @@ const RegisterOrganization = ({ handleModal, setIsLoggedin }) => {
                 }))
                 const res = await registerUser(values)
                 if (res.status == 200) {
-                    setToken(res.data.data.token)
-                    toast.success(res.data.message);
-                    handleModal(false)
-                    setIsLoggedin(true)
-                    setOrganizationData((v) => ({
-                        ...v,
-                        loading: false
-                    }))
+                    // setToken(res.data.data.token)
+                    // toast.success(res.data.message);
+                    handleModal("otp", {email:values.email})
+                    // setIsLoggedin(true)
+                    // setOrganizationData((v) => ({
+                    //     ...v,
+                    //     loading: false
+                    // }))
                 }
             } catch (error) {
                 toast.error(error.response.data.message || error.response.statusText);

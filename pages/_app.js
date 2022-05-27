@@ -11,6 +11,7 @@ import useFetchSectordetails from "../hooks/getSectorList";
 import { getSession, getToken, setSession } from "../utils/constants";
 import Signup from "../templates/signup";
 import Login from "../templates/login";
+import OTPVerification from "../templates/otp-verification";
 
 function MyApp({ Component, pageProps }) {
   const [cartProduct, setCartProduct] = useState(null)
@@ -19,6 +20,7 @@ function MyApp({ Component, pageProps }) {
   const [bundleProduct, setBundleProduct] = useState(null)
   const [isLoggedin, setIsLoggedin] = useState(false)
   const [modal, setModal] = useState(false)
+  const [modalPayload, setModalPayload] = useState("")
   const [user, setUser] = useState({
     loading: false,
     data: null,
@@ -42,8 +44,9 @@ function MyApp({ Component, pageProps }) {
     }
 
   };
-  const handleModal = (action) => {
+  const handleModal = (action, payload) => {
     setModal(action)
+    setModalPayload(payload)
   }
   const fetchBundleList = async () => {
     try {
@@ -128,6 +131,7 @@ function MyApp({ Component, pageProps }) {
       <ToastContainer style={{ zIndex: 999999 }} />
       <Signup show={modal == "signup"} handleModal={handleModal} setIsLoggedin={setIsLoggedin} />
       <Login show={modal == "login"} handleModal={handleModal} setIsLoggedin={setIsLoggedin} />
+      <OTPVerification show={modal == "otp"} handleModal={handleModal} setIsLoggedin={setIsLoggedin} modalPayload={modalPayload} setModalPayload={setModalPayload}/>
     </AppContext.Provider>)
 }
 

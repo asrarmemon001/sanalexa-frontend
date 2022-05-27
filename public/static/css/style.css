@@ -2627,3 +2627,7 @@ text-align: center;
         width: 200px;
     }
 }
+
+.otp-form > div {justify-content: center;}
+
+.otp-form > div > div input {width: 38px!important;border-radius: 4px;border-style: solid;padding: 8px 0px;}

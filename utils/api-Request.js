@@ -73,3 +73,8 @@ export const addtoBundleApi = async(data) =>{
    return await postApiWithoutToken(`/api/bundle/add-to-bundle`, data)
   
 }
+
+export const verifyOTPApi = async(data) =>{
+   return await postApiWithoutToken(`/api/webUser/otp-verify`, data)
+  
+}
