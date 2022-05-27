@@ -32,6 +32,66 @@ h3 {
     align-items: center;
     margin-bottom: 5px;
 }
+/******************new******************************/
+.vercel{
+    position: relative;
+}
+.vercel> span {
+    border: 1px solid #d6d5d5!important;
+    margin-right: 15px!important;
+    width: 70px!important;
+    height: 70px!important;
+    border-radius: 5px;
+    padding: 5px!important;
+}
+.vercel button {
+    position: absolute;
+    right: 18px;
+    top: 3px;
+    border: 1px solid #ccc!important;
+    background-color: #ffffff87;
+    width: 20px;
+    height: 22px;
+    line-height: 0.68;
+    font-size: 18px;
+    border-radius: 100px;
+}
+.img-no> span img {
+    display: none!important;
+}
+
+
+ul.MuiMenu-list li.dropdown-item span.MuiTouchRipple-root::after {
+    content: "\f105";
+    position: absolute;
+    font-size: 15px;
+    font-family: 'FontAwesome';
+    right: 10px;
+    line-height: 3;
+}
+.MuiMenu-list .bg-light {
+    margin-left: 140px!important;
+    margin-top: -40px;
+}
+.flexclas {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.MuiMenu-list .bg-light a, .MuiMenu-list .bg-light a:hover{
+    color: #000;
+    text-decoration: none;
+}
+.flexclas button {
+    margin-bottom: 0!important;
+    width: 115px;
+}
+.mobwrep {
+    align-items: center;
+}
+/******************new******************************/
+
+
 
 .all-teb ul a,
 .all-teb #material-tabs ul span {
@@ -1844,6 +1904,10 @@ body .btn-primary:hover,body .btn-primary:focus {
     .main-header::after {
         width: 8%;
     }
+    .MuiMenu-list .bg-light {
+        margin-left: 140px!important;
+        margin-top: -35px;
+    }
     .buttons button.addtubul {
         width: 111px;
     } 
@@ -2140,6 +2204,21 @@ body .btn-primary:hover,body .btn-primary:focus {
 }
 
 @media only screen and (max-width: 767px) {
+    .mobwrep {
+        flex-wrap: wrap;
+    }
+    .img-no {
+        padding-left: 15px!important;
+    }
+    .vercel> span { 
+        margin-right: 12px!important; 
+    }
+    .paddi {
+        padding-right: 15px!important;
+    }
+    .vercel {
+        margin-bottom: 10px;
+    }
     .devices-available a { 
         font-size: 18px; 
     }
