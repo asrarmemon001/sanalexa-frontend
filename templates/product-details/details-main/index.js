@@ -36,7 +36,7 @@ const ProductDetailsMain = ({ productDetails }) => {
         return Boolean(apiContext.state.cartProduct?.find(el => el.id == id && el.type == 'project'))
     }
 
-    const handleAddtoCart = async (id) => {
+    const handleAddtoCart = async (id, type) => {
         setapicall(true)
         const data = {
             sessionId: getSession(),
@@ -46,6 +46,9 @@ const ProductDetailsMain = ({ productDetails }) => {
             .then((res) => {
                 if (res?.status == 200) {
                     toast.success("Product added to cart")
+                    if(type == 'buy'){
+                        router.push('/cart')
+                    }
                 } else {
                     toast.error("somethingwent wrong");
                 }
@@ -162,8 +165,37 @@ const ProductDetailsMain = ({ productDetails }) => {
                                                             <i className="fa fa-cart-plus" aria-hidden="true"></i> Add to cart
                                                         </>}
                                             </button>
-                                            {/* <button className="addtubul"> <i className="fa fa-cart-plus" aria-hidden="true"></i> Add to cart</button> */}
-                                            <button className="addtubul"><i className="fa fa-briefcase" aria-hidden="true"></i>Buy Now</button>
+                                           
+                                            <button
+                                                className={
+                                                    isProductExistInCart(id)
+                                                        ? "btn btn-danger"
+                                                        : "addtubul"
+                                                }
+                                                onClick={() => {
+                                                    !isProductExistInCart(id) ?
+                                                        handleAddtoCart(id, 'buy')
+                                                        :
+                                                        router.push("/cart")
+                                                }}
+                                                // disabled={
+                                                //     isProductExistInCart(id)
+                                                //         ? true
+                                                //         : false
+                                                // }
+                                            >
+                                                {apicall ? (
+                                                    <CircularProgress size={20} />) :
+                                                    isProductExistInCart(id)
+                                                        ?
+                                                        <>
+                                                            <i className="fa fa-briefcase" aria-hidden="true"></i> Checkout
+                                                        </>
+                                                        :
+                                                        <>
+                                                            <i className="fa fa-briefcase" aria-hidden="true"></i> Buy now
+                                                        </>}
+                                            </button>
                                         </div>
                                         <div className="bundle">
                                             <button
