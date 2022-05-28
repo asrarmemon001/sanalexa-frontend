@@ -9,7 +9,7 @@ import { addtoBundleApi, AddtoCart } from "../../../utils/api-Request";
 import { ImageBaseUrl } from "../../../utils/Baseurl";
 import { getSession } from "../../../utils/constants";
 const ProductDetailsMain = ({ productDetails }) => {
-    const { id, projectTitle, bannerImage, price, projectDesc } = productDetails;
+    const { id, projectTitle, bannerImage, price, projectDesc, services } = productDetails;
     const apiContext = useContext(AppContext)
     const [apicall, setapicall] = useState(false);
     const [bundleApicall, setBundleApicall] = useState(false);
@@ -84,17 +84,16 @@ const ProductDetailsMain = ({ productDetails }) => {
     }
 
     const router = useRouter()
-    useEffect(()=>{ 
-        setSliderImages([bannerImage]) 
-    },[router.asPath])
+    useEffect(() => {
+        setSliderImages([bannerImage])
+    }, [router.asPath])
     return (
         <section className="product-Gallery">
-            {console.log(productDetails,'productDetails')}
             <div className="container">
                 <div className="outer">
                     <div className="row">
                         <div className="col-lg-6 col-md-12">
-                          {sliderImages ?  <Slider {...settings}>
+                            {sliderImages ? <Slider {...settings}>
                                 {sliderImages.map((image, index) => {
                                     return (<div className="item next-image-to-normal" key={`slideimage-${index}`}>
                                         <Image src={ImageBaseUrl + image} layout="fill" className="slide-image" />
@@ -113,39 +112,25 @@ const ProductDetailsMain = ({ productDetails }) => {
 
                                 <h4>₹{price}</h4>
                                 <div className="recommended">
-                                    <h4>Recommended Services</h4>
-                                    <div className="all-check-box">
-                                        <div className="form-check">
-                                            <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                                            <label className="form-check-label" htmlFor="flexCheckDefault">
-                                                User Manual
-                                            </label>
-                                        </div>
-                                        <div className="form-check">
-                                            <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                                            <label className="form-check-label" htmlFor="flexCheckDefault">
-                                                Content Library
-                                            </label>
-                                        </div>
-                                        <div className="form-check">
-                                            <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                                            <label className="form-check-label" htmlFor="flexCheckDefault">
-                                                Oculus Quest 2
-                                            </label>
-                                        </div>
-                                        <div className="form-check">
-                                            <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                                            <label className="form-check-label" htmlFor="flexCheckDefault">
-                                                HTC Vive
-                                            </label>
-                                        </div>
-                                        <div className="form-check">
-                                            <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                                            <label className="form-check-label" htmlFor="flexCheckDefault">
-                                                XR Station (containing all the deliverables)
-                                            </label>
-                                        </div>
-                                    </div>
+                                    {services && services.length
+                                        ?
+                                        <>
+                                            <h4>Recommended Services</h4>
+                                            <div className="all-check-box">
+                                                {services.map((el, i) => {
+                                                    return (
+                                                        <div className="form-check" key={`services${i}`}>
+                                                            <input className="form-check-input" type="checkbox" value="" id={`service-${el.name}`} />
+                                                            <label className="form-check-label" htmlFor={`service-${el.name}`}>
+                                                                {el.name} - <span className="text-primary">₹ {el.price}</span>
+                                                            </label>
+                                                        </div>
+                                                    )
+                                                })}
+                                            </div>
+                                        </>
+                                        :
+                                        null}
                                     <div className="detail-all-butoon">
                                         <div className="cart-but">
                                             {/* <input type="number" id="quantity" name="quantity" min="1" max="20" value="1" /> */}
