@@ -56,12 +56,12 @@ h3 {
     font-size: 18px;
     border-radius: 100px;
 }
-.img-no> span img {
+.img-no > span img {
     display: none!important;
 }
 
 
-ul.MuiMenu-list li.dropdown-item span.MuiTouchRipple-root::after {
+ul.MuiMenu-list .cu-2  li.dropdown-item span.MuiTouchRipple-root::after {
     content: "\f105";
     position: absolute;
     font-size: 15px;

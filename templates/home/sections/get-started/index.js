@@ -203,9 +203,14 @@ export default function GetStarted() {
           <div className="col-md-3 col-sm-12 text-right pr-0 paddi">
             <div className="flexclas">
             <div className="dolarret">
-          $ {state?.bundleTotal}
+            ₹ {state?.bundleTotal}
           </div>
-            <Paymentgateway className="bg-danger text-white control__content" style={{width:"100px"}} disabled={bundleProducts?.length > 2 ? false : true}/>
+            <Paymentgateway 
+            className="bg-danger text-white control__content" 
+            style={{width:"100px"}} 
+            disabled={bundleProducts?.length > 2 && bundleProducts?.length < 5 ? false : true}
+            cartListIs={bundleProducts} cartTotal={state?.bundleTotal} type={'bundle'}
+            />
                     </div>
                     </div>
         </div>

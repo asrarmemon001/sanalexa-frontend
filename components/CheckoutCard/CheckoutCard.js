@@ -22,16 +22,16 @@ function CartInfoCard({ cartListIs, cartTotal, title, type }) {
 
       {cartListIs.map((el, i) => {
         return (el.type == "project"
-        ?
-        <div key={`cart-total-${i}`} className="d-flex flex-row justify-content-between">
-          <p>{el.productInfo.projectTitle} {" "}<strong className="text-info d-none badge">project</strong></p>
-          <p>₹ {el.productInfo.price}</p>
-        </div>
-        :
-        <div key={`cart-total-${i}`} className="d-flex flex-row justify-content-between">
-        <p>{el.productInfo.packagesName} {" "}<strong className="text-info d-none badge">package</strong></p>
-        <p>₹ {el.productInfo.price}</p>
-      </div>)
+          ?
+          <div key={`cart-total-${i}`} className="d-flex flex-row justify-content-between">
+            <p>{el.productInfo.projectTitle} {" "}<strong className="text-info d-none badge">project</strong></p>
+            <p>₹ {el.productInfo.price}</p>
+          </div>
+          :
+          <div key={`cart-total-${i}`} className="d-flex flex-row justify-content-between">
+            <p>{el.productInfo.packagesName} {" "}<strong className="text-info d-none badge">package</strong></p>
+            <p>₹ {el.productInfo.price}</p>
+          </div>)
       })}
 
 
@@ -47,7 +47,11 @@ function CartInfoCard({ cartListIs, cartTotal, title, type }) {
 
 
 
-      <Paymentgateway cartListIs={cartListIs} cartTotal={cartTotal} type={type} />
+      {type == 'bundle' && (cartListIs.length < 3  || cartListIs.length > 4)
+        ?
+        <button disabled={true} className="btn btn-danger mb-3" style={{ borderRadius: "20px" }} >Pay</button>
+        :
+        <Paymentgateway cartListIs={cartListIs} cartTotal={cartTotal} type={type} />}
 
     </div>
   );

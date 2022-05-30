@@ -44,58 +44,58 @@ const SubscriptionPlansListTemplates = ({ subsciptionList }) => {
     const isPackageExistInCart = (id) => {
         return Boolean(apiContext.state.cartProduct?.find(el => el.id == id && el.type == 'package'))
     }
+    const listOfSubscriptions = subsciptionList.filter(el => el.project?.length)
     return (
         <>
-         <div className="banner-plans">
-         <div className="container">
-          <div className="banner-content-ple"> 
-              <h2>Plans & Subscription</h2>
-              <p>Excepteure sint accaecat cupidatat non proident,sunt in culpa qui officia deserunt </p>
-          <a href="#" className="subscriptiondwonlod">Download launcher</a>
-          </div>
+            <div className="banner-plans">
+                <div className="container">
+                    <div className="banner-content-ple">
+                        <h2>Plans & Subscription</h2>
+                        <p>Excepteure sint accaecat cupidatat non proident,sunt in culpa qui officia deserunt </p>
+                        <a href="#" className="subscriptiondwonlod">Download launcher</a>
+                    </div>
 
-         </div>
-         </div>
+                </div>
+            </div>
             <section className="subscription-plans">
 
-                    <div className="col-12">
-                        {subsciptionList.map((el, i) => {
-                            return (el.project?.length
-                                ?
-                                <div className={`row bord ${(i % 2 != 0) ? `flex-row-reverse` : ``}`} key={`package-${el.id}`}>
-                                    <div className="col-md-6  image-p-s">
-                                        <Image src={`${ImageBaseUrl}${el.bannerImage}`} layout="fill" />
-                                    </div>
-                                    <div className="col-md-6 ">
-                                        <h1>{el.packagesName}</h1>
-                                        <h4>₹ {el.price}</h4>
-                                        <p>{el.packagesDesc}</p>
-                                        <p style={{ fontWeight: 600 }}>{el.project?.length || 0} Modules</p>
-                                        <button className="btn btn-danger" onClick={() => {
-                                            !isPackageExistInCart(el.id) &&
-                                                handleAddtoCart(el?.id);
-                                        }}
-                                            disabled={
-                                                isPackageExistInCart(el.id)
-                                                    ? true
-                                                    : false
-                                            } >{apicall ? (
-                                                <CircularProgress size={20} />) :
-                                                isPackageExistInCart(el.id)
-                                                    ?
-                                                    "Added in Cart"
-                                                    :
-                                                    'Buy Subscription'}</button>
-                                        <button className="btn btn-link">Know more</button>
+                <div className="col-12">
+                    {listOfSubscriptions.map((el, i) => {
+                        return (<div className={`row bord ${(i % 2 != 0) ? `flex-row-reverse` : ``}`} key={`package-${el.id}`}>
+                            <div className="col-md-6  image-p-s">
+                                <Image src={`${ImageBaseUrl}${el.bannerImage}`} layout="fill" />
+                            </div>
+                            <div className="col-md-6 ">
+                                <h1>{el.packagesName}</h1>
+                                <h4>₹ {el.price}</h4>
+                                <p>{el.packagesDesc}</p>
+                                <p style={{ fontWeight: 600 }}>{el.project?.length || 0} Modules</p>
+                                <button className="btn btn-danger" onClick={() => {
+                                    !isPackageExistInCart(el.id) &&
+                                        handleAddtoCart(el?.id);
+                                }}
+                                    disabled={
+                                        isPackageExistInCart(el.id)
+                                            ? true
+                                            : false
+                                    } >{apicall ? (
+                                        <CircularProgress size={20} />) :
+                                        isPackageExistInCart(el.id)
+                                            ?
+                                            "Added in Cart"
+                                            :
+                                            'Buy Subscription'}</button>
+                                <Link href={`/plans-and-subscriptions/details/${el.id}`}>
+                                    <a className="btn btn-link">Know more</a>
+                                </Link>
 
-                                    </div>
+                            </div>
 
-                                </div>
-                                : null
+                        </div>
 
-                            )
-                        })}
-                    </div>
+                        )
+                    })}
+                </div>
             </section>
         </>
     )

@@ -109,7 +109,7 @@ const Header = () => {
                       {sectors ? (
                         sectors.map((el) => {
                           return el.projects?.length ? (
-                            <div className="position-relative">
+                            <div className="position-relative cu-2">
                               <MenuItem
                                 key={el.id + "sector"}
                                 onClick={() => {

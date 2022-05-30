@@ -2,7 +2,7 @@ import Layout from "../../components/layout"
 import SubscriptionPlansListTemplates from "../../templates/subscription-plans"
 import { packageList } from "../../utils/api-Request"
 
-const SubscriptionPlans = ({ subsciptionList }) => {
+const SubscriptionPlans = ({ subsciptionList }) => { 
     return (
         <Layout>
             <SubscriptionPlansListTemplates subsciptionList={subsciptionList} />
@@ -12,10 +12,9 @@ const SubscriptionPlans = ({ subsciptionList }) => {
 
 export async function getServerSideProps() {
     try {
-        const subscriptionPlansResponse = await packageList()
+        const subscriptionPlansResponse = await packageList()       
         return { props: { subsciptionList: subscriptionPlansResponse?.data?.data || null } }
-    } catch (error) {
-        console.log(error, 'subsciptionListErr')
+    } catch (error) { 
         return { props: { subsciptionList: null } }
 
     }

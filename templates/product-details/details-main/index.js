@@ -207,7 +207,7 @@ const ProductDetailsMain = ({ productDetails }) => {
                                                         handleAddtoBundle(id, 'product', 1);
                                                 }}
                                                 disabled={
-                                                    isProductExistInBundle(id)
+                                                    apiContext?.state?.bundleProduct?.length >= 4 && !isProductExistInBundle(id)
                                                         ? true
                                                         : false
                                                 }

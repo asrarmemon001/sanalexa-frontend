@@ -69,16 +69,20 @@ export const removeItemBundleList = async (data) => {
 
 }
 
-export const addtoBundleApi = async(data) =>{
+export const addtoBundleApi = async (data) => {
    return await postApiWithoutToken(`/api/bundle/add-to-bundle`, data)
-  
+
 }
 
-export const verifyOTPApi = async(data) =>{
+export const verifyOTPApi = async (data) => {
    return await postApiWithoutToken(`/api/webUser/otp-verify`, data)
-  
+
 }
 
-export const resendOtp = async(data) => {
+export const resendOtp = async (data) => {
    return await postApiWithoutToken(`/api/webUser/resend-otp`, data)
+}
+
+export const getPackageDetailByIdApi = (id) => {
+   return getApiWithoutToken(`/api/packages/web/detailsById?id=${id}`)
 }
