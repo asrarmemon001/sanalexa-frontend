@@ -14,7 +14,7 @@ import { getSession } from "../../utils/constants"
 
 const SubscriptionPlanDetailsTemplates = ({ subsciptionDetails }) => {
     const { packagesName, packagesDesc, bannerImage, price, projects } = subsciptionDetails;
-    console.log(projects, 'subsciptionDetails')
+  
     return (
         <>
             <div className="banner-plans">

@@ -37,8 +37,7 @@ function ProjectCard({ obj, index, classes }) {
         setapicall(false);
         console.log(error);
       });
-  };
-console.log(obj)
+  }; 
   const handleAddtoBundle = async (id) => {
     setBundleApicall(true);
     const data = {
@@ -93,8 +92,7 @@ console.log(obj)
       console.log(error, "handleRemove bundle");
     }
   };
-
-console.log()
+ 
 
   return (
     <div className={classes} key={index}>
