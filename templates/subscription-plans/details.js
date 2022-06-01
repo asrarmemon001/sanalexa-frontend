@@ -42,7 +42,7 @@ const SubscriptionPlanDetailsTemplates = ({ subsciptionDetails }) => {
                                     <h4>{el.projectDesc}</h4>
 
                                     <Link href={`/product-details/${el.id}`}>
-                                        <a className="btn btn-link">Know more</a>
+                                        <a className="btn btn-link px-0">See details</a>
                                     </Link>
 
 

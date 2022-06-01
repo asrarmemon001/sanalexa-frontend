@@ -13,6 +13,7 @@ const ProductDetailsMain = ({ productDetails }) => {
     const apiContext = useContext(AppContext)
     const [apicall, setapicall] = useState(false);
     const [bundleApicall, setBundleApicall] = useState(false);
+    const [selectServices, setSelectedServices] = useState([])
     const { state } = apiContext;
     const [sliderImages, setSliderImages] = useState(null)
     const settings = {
@@ -46,7 +47,7 @@ const ProductDetailsMain = ({ productDetails }) => {
             .then((res) => {
                 if (res?.status == 200) {
                     toast.success("Product added to cart")
-                    if(type == 'buy'){
+                    if (type == 'buy') {
                         router.push('/cart')
                     }
                 } else {
@@ -86,10 +87,38 @@ const ProductDetailsMain = ({ productDetails }) => {
         return Boolean(apiContext.state.bundleProduct?.find(el => el.id == id && el.type == 'project'))
     }
 
+    const handleSelectedServices = (el, selected) => {
+        const oldData = selectServices
+        if (selected) {
+            setSelectedServices([...oldData, el])
+        } else {
+            const excludeElelment = oldData.filter((l) => !(l.name == el.name && l.price == el.price))
+            setSelectedServices([...excludeElelment])
+        }
+
+    }
+    const isServiceSelected = (el) => {
+        const oldData = selectServices
+        return oldData.find(l=>(l.name == el.name && l.price == el.price))
+    }
     const router = useRouter()
     useEffect(() => {
         setSliderImages([bannerImage])
     }, [router.asPath])
+
+    const calculatePrice=()=>{
+        const p = Number(price);
+        let sp = 0;
+        for(let i = 0; i < selectServices.length; i++){
+            sp = sp + Number(selectServices[i].price)
+        }
+        selectServices?.length ? selectServices.reduce((total, el)=>{
+            return Number(total) + Number(el.price)
+
+        }) : 0
+        return p + sp
+        
+    }
     return (
         <section className="product-Gallery">
             <div className="container">
@@ -113,7 +142,7 @@ const ProductDetailsMain = ({ productDetails }) => {
                                     {/* <a href="#">Read More</a> */}
                                 </p>
 
-                                <h4>₹{price}</h4>
+                                <h4>₹{calculatePrice()}</h4>
                                 <div className="recommended">
                                     {services && services.length
                                         ?
@@ -123,7 +152,7 @@ const ProductDetailsMain = ({ productDetails }) => {
                                                 {services.map((el, i) => {
                                                     return (
                                                         <div className="form-check" key={`services${i}`}>
-                                                            <input className="form-check-input" type="checkbox" value="" id={`service-${el.name}`} />
+                                                            <input className="form-check-input" type="checkbox" id={`service-${el.name}`} checked={isServiceSelected(el)} onChange={(e) => handleSelectedServices(el, e.target.checked)} />
                                                             <label className="form-check-label" htmlFor={`service-${el.name}`}>
                                                                 {el.name} - <span className="text-primary">₹ {el.price}</span>
                                                             </label>
@@ -165,7 +194,7 @@ const ProductDetailsMain = ({ productDetails }) => {
                                                             <i className="fa fa-cart-plus" aria-hidden="true"></i> Add to cart
                                                         </>}
                                             </button>
-                                           
+
                                             <button
                                                 className={
                                                     isProductExistInCart(id)
@@ -178,11 +207,11 @@ const ProductDetailsMain = ({ productDetails }) => {
                                                         :
                                                         router.push("/cart")
                                                 }}
-                                                // disabled={
-                                                //     isProductExistInCart(id)
-                                                //         ? true
-                                                //         : false
-                                                // }
+                                            // disabled={
+                                            //     isProductExistInCart(id)
+                                            //         ? true
+                                            //         : false
+                                            // }
                                             >
                                                 {apicall ? (
                                                     <CircularProgress size={20} />) :
