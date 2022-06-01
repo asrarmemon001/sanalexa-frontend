@@ -18,7 +18,7 @@ function BundleItem({
     <div className="card-body">
         <h5>{projectTitle}</h5>
       <p className="card-text">{projectDesc}</p>
-      <p className="card-text"> ₹ {price}</p>
+      {/* <p className="card-text"> ₹ {price}</p> */}
     </div>
   </div>
   )

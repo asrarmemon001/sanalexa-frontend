@@ -86,3 +86,7 @@ export const resendOtp = async (data) => {
 export const getPackageDetailByIdApi = (id) => {
    return getApiWithoutToken(`/api/packages/web/detailsById?id=${id}`)
 }
+
+export const directPayemntAndCheckoutBundleApi = (data) => {
+   return postApi(`/api/payment/direct-checkout-payment-bundle`, data)
+}
