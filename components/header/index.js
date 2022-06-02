@@ -185,6 +185,11 @@ const Header = () => {
                       </a>
                     </Link>
                   </li>
+                  { user.data && <li>
+                    <Link href="/my-learning">
+                      <a> My Learning</a>
+                    </Link>
+                    </li>}
                 </ul>
               </div>
               <ul className="varymenu">
@@ -208,7 +213,7 @@ const Header = () => {
                     </a>
                   </Link>
                 </li>
-
+                
                 <li>
                   {user.loading ? (
                     <CircularProgress size={30} />

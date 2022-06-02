@@ -90,3 +90,6 @@ export const getPackageDetailByIdApi = (id) => {
 export const directPayemntAndCheckoutBundleApi = (data) => {
    return postApi(`/api/payment/direct-checkout-payment-bundle`, data)
 }
+export const getProjectList = async () => {
+   return await getApi(`/api/projects/list?page=1&limit=1000000`)
+}
