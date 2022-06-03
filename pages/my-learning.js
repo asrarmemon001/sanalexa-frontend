@@ -26,6 +26,7 @@ function MyLearning() {
               {myProject && myProject.length > 0 &&  
               myProject?.map((obj, i) => ( 
                 <div
+                    key={i}
                     className="card mb-3 bg-light border col-8 py-3 mt-5">
                     <div className="d-flex flex-wrap row g-0">
                         <div className="col-lg-3 col-md-3 col-12">
@@ -47,7 +48,7 @@ function MyLearning() {
 
                        {obj.plateform == 'webgl' &&  <div className="col-md-3 col-12 m-auto">
                             <div className="d-flex justify-content-end w-100">
-                                <a className="btn btn-danger my-4 mr-3" href={`${ImageBaseUrl}/${obj.webGlFile}`} target="_blank"  data-toggle="tooltip" data-original-title="Play">
+                                <a className="btn btn-danger my-4 mr-3" href={`${ImageBaseUrl}/${obj.webGlFile}`} target="_blank" rel="noreferrer" data-toggle="tooltip" data-original-title="Play">
                                     Play
                                   </a>
                             </div>
