@@ -34,7 +34,7 @@ function Bundles() {
       </div>
 
       <div className="tophead py-3">
-        <div className="container"><h3 className="text-center">Checkout details </h3></div> </div>
+        <div className="container"><h3 className="text-center">Checkout details</h3></div> </div>
 
       <div className="container d-flex flex-row flex-wrap mb-4 custombundel ">
         {bundleProduct?.length ?
@@ -54,6 +54,7 @@ function Bundles() {
                quantity={el.quantity}
                price={el.productInfo.price}
                id={el.productInfo.id}
+               selectServices={el.selectServices}
              />
              :
              <BundleCard
@@ -85,13 +86,14 @@ function Bundles() {
       <div className="tophead py-3 mb-4">
         <div className="container"><h3 className="text-center">Default Bundles </h3></div> </div>
       <div> 
+        {console.log(defaultBundles,'defaultBundles')}
         {
           defaultBundles?.map((el, i) => (
             <div key={`dfBundlee-${i}`}>
           
               <h3 className="text-center">{el?.sector?.name}</h3> 
             {el.packages.map((ell, ii)=>{
-              return <BundleSection key={`dfBundle-${ii}`} sections={ell.projects} packages={ell.packages} />
+              return <BundleSection key={`dfBundle-${ii}`} bundlePrice={ell?.bundlePrice} sections={ell.projects} packages={ell.packages} />
             })}
             </div>
           ))

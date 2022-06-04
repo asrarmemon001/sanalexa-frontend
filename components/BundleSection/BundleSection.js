@@ -7,13 +7,13 @@ import { directPayemntAndCheckoutBundleApi } from "../../utils/api-Request";
 import BundleItem from "../BundleItem/BundleItem";
 import DirectPaymentANdCheckoutBundle from "../paymentgateway/directCheckoutPaymentBundle";
 
-export const BundleSection = ({ sections, packages }) => {
+export const BundleSection = ({ sections, packages, bundlePrice }) => {
   const [accordian, setAccordian] = useState(false)
     return (
     <div className="container d-flex flex-column align-items-center bundleListOut mb-4">
       {/* <h3 className="text-center">{sections?.sector?.name}</h3>  */}
       <div className="tophead py-3" onClick={() => setAccordian(!accordian)}><div
-        className="container"><h3 className="text-center">{packages?.packagesName} <span> - ₹ {packages?.price || 0}</span></h3></div>
+        className="container"><h3 className="text-center">{packages?.packagesName} <span> - ₹ {bundlePrice || 0}</span></h3></div>
         <i className={`fa fa-caret-${accordian ? 'up' : 'down'}`} aria-hidden="true"></i>
       </div>
       {accordian

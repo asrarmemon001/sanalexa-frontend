@@ -13,7 +13,8 @@ function BundleCard({
   id, 
   type,
   plateform, 
-  project
+  project,
+  selectServices
 }) {
   const appContext = useContext(AppContext)
   const { fetchBundleList } = appContext;
@@ -59,7 +60,19 @@ function BundleCard({
           <span className="badge bg-danger mx-2 text-white">{type}</span>
           <span className="badge bg-danger mx-2 text-white">{plateform}</span>
         </div>
-        <div className="col-lg-3 col-md-3 col-12" ></div>
+        <div className="col-lg-3 col-md-3 col-12" >
+        {selectServices?.length
+            ?
+            <>
+              <h6 className="mx-2">Selected Services</h6>
+              {selectServices.map(el => {
+                return <span key={`pservice-${el.id}`} className="badge mx-2 text-dark text-left d-block">{el.name} - ₹{el.price}</span>
+              })}
+
+            </>
+            :
+            null}
+        </div>
         <div className="col-lg-2 col-md-2 col-12" >
         
             

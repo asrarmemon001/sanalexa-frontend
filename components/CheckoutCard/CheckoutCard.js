@@ -2,6 +2,14 @@ import React from "react";
 import Paymentgateway from "../paymentgateway/Paymentgateway";
 
 function CartInfoCard({ cartListIs, cartTotal, title, type }) {
+  const calculateProductPriceWithSelectedServices=(price, services)=>{
+    let servicesPrice = 0;
+    for(let i = 0; i < services?.length; i++){
+      servicesPrice = servicesPrice + Number(services[i].price)
+    }
+
+    return Number(price)+servicesPrice
+  }
   return (
     <div
       className="card container"
@@ -25,7 +33,7 @@ function CartInfoCard({ cartListIs, cartTotal, title, type }) {
           ?
           <div key={`cart-total-${i}`} className="d-flex flex-row justify-content-between">
             <p>{el.productInfo.projectTitle} {" "}<strong className="text-info d-none badge">project</strong></p>
-            <p>₹ {el.productInfo.price}</p>
+            <p>₹ {calculateProductPriceWithSelectedServices(el.productInfo.price,el.selectServices )}</p>
           </div>
           :
           <div key={`cart-total-${i}`} className="d-flex flex-row justify-content-between">

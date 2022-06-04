@@ -2,14 +2,14 @@ import { useState } from "react"
 const TabDescriptionContent = ({data}) => {
     return (<div id="tab1">
         <div className="tsb-meneg">
-            <div dangerouslySetInnerHTML={{__html:data}}/>
+            <div dangerouslySetInnerHTML={{__html:data || `<div className="muted">No data found</div>`}}/>
         </div>
     </div>)
 }
 
 const TabWhatYouLearnContent = ({data}) => {
     return (<div id="tab2">
-         <div dangerouslySetInnerHTML={{__html:data}}/>
+         <div dangerouslySetInnerHTML={{__html:data || `<div className="muted">No data found</div>`}}/>
          </div>)
 }
 const ShiftHandover = ({productDetails}) => {

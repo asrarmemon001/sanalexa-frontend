@@ -41,7 +41,7 @@ const ProductDetailsMain = ({ productDetails }) => {
         setapicall(true)
         const data = {
             sessionId: getSession(),
-            cart: { id: String(id), type: "project", quantity: 1 },
+            cart: { id: String(id), type: "project", quantity: 1, selectServices },
         };
         await AddtoCart(data)
             .then((res) => {
@@ -65,7 +65,7 @@ const ProductDetailsMain = ({ productDetails }) => {
         setBundleApicall(true)
         const data = {
             sessionId: getSession(),
-            bundle: { id: String(id), type: "project", quantity: 1 },
+            bundle: { id: String(id), type: "project", quantity: 1, selectServices },
         };
         await addtoBundleApi(data)
             .then((res) => {
@@ -120,7 +120,7 @@ const ProductDetailsMain = ({ productDetails }) => {
         
     }
     return (
-        <section className="product-Gallery">
+        <section className="product-Gallery"> 
             <div className="container">
                 <div className="outer">
                     <div className="row">
@@ -152,7 +152,7 @@ const ProductDetailsMain = ({ productDetails }) => {
                                                 {services.map((el, i) => {
                                                     return (
                                                         <div className="form-check" key={`services${i}`}>
-                                                            <input className="form-check-input" type="checkbox" id={`service-${el.name}`} checked={isServiceSelected(el)} onChange={(e) => handleSelectedServices(el, e.target.checked)} />
+                                                            <input className="form-check-input" type="checkbox" id={`service-${el.name}`}  checked={isServiceSelected(el)} onChange={(e) => handleSelectedServices(el, e.target.checked)} />
                                                             <label className="form-check-label" htmlFor={`service-${el.name}`}>
                                                                 {el.name} - <span className="text-primary">₹ {el.price}</span>
                                                             </label>

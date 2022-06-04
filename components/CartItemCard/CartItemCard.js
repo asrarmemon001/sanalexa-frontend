@@ -13,7 +13,8 @@ function CardItem({
   plateform,
   price,
   project,
-  handleRemove
+  handleRemove,
+  selectServices
 }) {
   const images = image?.split("/");
   const imgsrc = images ? encodeURI(images[1]) : "";
@@ -42,7 +43,17 @@ function CardItem({
           <span className="badge bg-danger mx-2 text-white">{plateform}</span>
         </div>
         <div className="col-lg-3 col-md-10 col-12" >
-          {/* <h6 className="mx-2">Quantity:{quantity}</h6> */}
+         {selectServices?.length
+            ?
+            <>
+              <h6 className="mx-2">Selected Services</h6>
+              {selectServices.map(el => {
+                return <span key={`pservice-${el.id}`} className="badge mx-2 text-dark text-left d-block">{el.name} - ₹{el.price}</span>
+              })}
+
+            </>
+            :
+            null}
 
         </div>
 
@@ -73,27 +84,27 @@ function CardItem({
             {list ? <div className="list-panel col-12">
               <div className="row">
                 <div className="col-12 py-4">
-                <div className="col-12">
-                <div className="border px-2 pt-4 row">
-                    {project && project.length
-                    ?
-                    project.map((el, i) => {
-                      return (<AccordianItem
-                        classes={`col-lg-3 col-md-4 col-12`}
-                        key={`listofi-${i}`}
-                        image={el.bannerImage}
-                        desc={el.projectDesc}
-                        title={el.projectTitle}
-                        id={el.id}
-                        type={'project'}
-                        plateform={el.plateform}
-                        price={el.price}
-                      />)
-                    })
-                  :
-                  <NoDataFound message={"No modules found in this package"}/>}
+                  <div className="col-12">
+                    <div className="border px-2 pt-4 row">
+                      {project && project.length
+                        ?
+                        project.map((el, i) => {
+                          return (<AccordianItem
+                            classes={`col-lg-3 col-md-4 col-12`}
+                            key={`listofi-${i}`}
+                            image={el.bannerImage}
+                            desc={el.projectDesc}
+                            title={el.projectTitle}
+                            id={el.id}
+                            type={'project'}
+                            plateform={el.plateform}
+                            price={el.price}
+                          />)
+                        })
+                        :
+                        <NoDataFound message={"No modules found in this package"} />}
+                    </div>
                   </div>
-                </div>
                 </div>
               </div>
             </div> : null}

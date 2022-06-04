@@ -57,6 +57,7 @@ function Cart() {
                  ?
                  <CartItemCard
                  key={index}
+                 selectServices={el?.selectServices}
                  image={el.productInfo.bannerImage}
                  desc={el.productInfo.projectDesc}
                  title={el.productInfo.projectTitle}
