@@ -58,7 +58,7 @@ function BundleCard({
           <h5 className="card-title p-2">{title}</h5>
           <p className="card-text mx-2">{desc}</p>
           <span className="badge bg-danger mx-2 text-white">{type}</span>
-          <span className="badge bg-danger mx-2 text-white">{plateform}</span>
+          <span className="badge bg-danger mx-2 text-white">{plateform.join(", ").replace("_" , " ")}</span>
         </div>
         <div className="col-lg-3 col-md-3 col-12" >
         {selectServices?.length
@@ -168,7 +168,7 @@ const AccordianItem = ({
         <h5 className="card-title p-2">{title}</h5>
         <p className="card-text mx-2">{desc}</p>
         <span className="badge bg-danger mx-2 text-white">{type}</span>
-        <span className="badge bg-danger mx-2 text-white mb-2">{plateform}</span>
+        <span className="badge bg-danger mx-2 text-white mb-2">{plateform.join(", ").replace("_" , " ")}</span>
         {/* <h4 className="mx-2">₹ {price}</h4> */}
       </div>
 
