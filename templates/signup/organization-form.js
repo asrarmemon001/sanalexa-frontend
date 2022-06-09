@@ -123,7 +123,7 @@ const RegisterOrganization = ({ handleModal, setIsLoggedin }) => {
                 {formik.errors.address && formik.touched.address && <p className="text-danger px-2 text-sm fw-bold" style={{ marginTop: "-15px" }}>{formik.errors.address}</p>}
             </div>
         </div>
-        <h5 className="text-capitalize px-4 mb-3"> Enter Organization Licence Details</h5>
+        {/* <h5 className="text-capitalize px-4 mb-3"> Enter Organization Licence Details</h5>
         <div className="card-bordered px-3 pb-3">
             <FormControl fullWidth className="mb-3" size="">
                 <InputLabel id="select-license-type-label">Licence Type</InputLabel>
@@ -231,7 +231,7 @@ const RegisterOrganization = ({ handleModal, setIsLoggedin }) => {
                 </div>
             </div>
 
-        </div>
+        </div> */}
         <div className="fieldList fullwidth ml-0">
             <div className="mb-3 text-end px-3">
                 {_organizationData.loading

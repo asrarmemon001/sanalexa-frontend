@@ -23,15 +23,15 @@ export const validationSchema_org = yup.object({
     address: yup
         .string()
         .required("Enter Address"),
-    licenceType: yup.string().required("Select licence type"),
-    hardwaresType: yup.string().when("licenceType", {
-        is: (v) => { return (v === 'Hardwares & Logins') || (v === 'Hardwares') },
-        then: yup.string().required("Select Hardware type"),
-    }),
-    hardwaresAllowed: yup.string().nullable().matches(RegExp('^[0-9]+$'), "Enter valid no.").when("hardwaresType", {
-        is: 'Limited',
-        then: yup.string().required("Select Hardware Allowed"),
-    }),
+    // licenceType: yup.string().required("Select licence type"),
+    // hardwaresType: yup.string().when("licenceType", {
+    //     is: (v) => { return (v === 'Hardwares & Logins') || (v === 'Hardwares') },
+    //     then: yup.string().required("Select Hardware type"),
+    // }),
+    // hardwaresAllowed: yup.string().nullable().matches(RegExp('^[0-9]+$'), "Enter valid no.").when("hardwaresType", {
+    //     is: 'Limited',
+    //     then: yup.string().required("Select Hardware Allowed"),
+    // }),
     loginsType: yup.string().when("licenceType", {
         is: (v) => { return (v === 'Logins') || (v === 'Hardwares & Logins') },
         then: yup.string().required("Select Login type"),
