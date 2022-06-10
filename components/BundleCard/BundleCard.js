@@ -61,7 +61,7 @@ function BundleCard({
           <br />  */}
           {plateform && plateform.length > 0 &&
           plateform.map((obj) => (
-             <span className="badge bg-danger mx-2 text-white">{obj}</span>
+             <span key={obj} className="badge bg-danger mx-2 text-white">{obj}</span>
           ))}
         </div>
         <div className="col-lg-3 col-md-3 col-12" >

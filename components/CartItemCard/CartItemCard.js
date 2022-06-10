@@ -43,7 +43,7 @@ function CardItem({
           {/* <span className="badge bg-danger mx-2 text-white">{plateform.join(", ").replace("_" , " ")}</span> */}
           {plateform && plateform.length > 0 &&
           plateform.map((obj) => (
-             <span className="badge bg-danger mx-2 text-white">{obj}</span>
+             <span key={obj} className="badge bg-danger mx-2 text-white">{obj}</span>
           ))}
         </div>
         <div className="col-lg-3 col-md-10 col-12" >
@@ -158,7 +158,7 @@ const AccordianItem = ({
         
         {plateform && plateform.length > 0 &&
           plateform.map((obj) => (
-             <span className="badge bg-danger mx-2 text-white">{obj}</span>
+             <span key={obj} className="badge bg-danger mx-2 text-white">{obj}</span>
           ))}
         {/* <h4 className="mx-2">₹ {price}</h4> */}
       </div>

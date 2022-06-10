@@ -49,7 +49,7 @@ function MyLearning() {
                                     <p className="card-text mx-2">{obj.projectDesc}</p>
                                     {obj.plateform && obj.plateform.length > 0 &&
                                         obj.plateform.map((o) => (
-                                            <span className="badge bg-danger mx-2 text-white">{o}</span>
+                                            <span key={o} className="badge bg-danger mx-2 text-white">{o}</span>
                                         ))}
                                 </div>
                                 <div className="col-md-3 col-12 m-auto">
