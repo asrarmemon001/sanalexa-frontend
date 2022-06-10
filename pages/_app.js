@@ -12,6 +12,7 @@ import { getSession, getToken, setSession } from "../utils/constants";
 import Signup from "../templates/signup";
 import Login from "../templates/login";
 import OTPVerification from "../templates/otp-verification";
+import PlayType from "../templates/game/play"
 
 function MyApp({ Component, pageProps }) {
   const [cartProduct, setCartProduct] = useState(null)
@@ -67,7 +68,7 @@ function MyApp({ Component, pageProps }) {
     }
     fetchCartList()
     fetchBundleList()
-  }, [])
+  }, []) 
 
 
   const fetchUserDetails = async () => {
@@ -123,6 +124,7 @@ function MyApp({ Component, pageProps }) {
         fetchBundleList,
         fetchUserDetails,
         loginSignupModal: handleModal,
+        playTypeModal: handleModal,
         setIsLoggedin,
         setUser
       }}
@@ -132,6 +134,7 @@ function MyApp({ Component, pageProps }) {
       <Signup show={modal == "signup"} handleModal={handleModal} setIsLoggedin={setIsLoggedin} />
       <Login show={modal == "login"} handleModal={handleModal} setIsLoggedin={setIsLoggedin} />
       <OTPVerification show={modal == "otp"} handleModal={handleModal} setIsLoggedin={setIsLoggedin} modalPayload={modalPayload} setModalPayload={setModalPayload}/>
+      <PlayType show={modal == "play"} handleModal={handleModal} ></PlayType>
     </AppContext.Provider>)
 }
 
