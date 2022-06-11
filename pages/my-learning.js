@@ -43,7 +43,7 @@ function MyLearning() {
                         <div className="col-lg-5 col-md-5 col-12" >
                             <h5 className="card-title p-2">{obj.projectTitle}</h5>
                             <p className="card-text mx-2">{obj.projectDesc}</p>
-                            <span className="badge bg-danger mx-2 text-white">{obj.plateform.join(", ").replace("_"," ")}</span>
+                            <span className="badge bg-danger mx-2 text-white">{obj?.plateform?.join(", ").replace("_"," ")}</span>
                         </div>  
                        {obj.plateform.includes('webgl') && obj.webGlFile &&  <div className="col-md-3 col-12 m-auto">
                             <div className="d-flex justify-content-end w-100">
