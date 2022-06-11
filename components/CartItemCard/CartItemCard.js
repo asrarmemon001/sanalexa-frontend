@@ -14,7 +14,8 @@ function CardItem({
   price,
   project,
   handleRemove,
-  selectServices
+  selectServices,
+  el
 }) {
   const images = image?.split("/");
   const imgsrc = images ? encodeURI(images[1]) : "";
@@ -42,12 +43,12 @@ function CardItem({
           {/* <span className="badge bg-danger mx-2 text-white">{type}</span> */}
           {/* <span className="badge bg-danger mx-2 text-white">{plateform.join(", ").replace("_" , " ")}</span> */}
           {plateform && plateform.length > 0 &&
-          plateform.map((obj) => (
-             <span key={obj} className="badge bg-danger mx-2 text-white">{obj}</span>
-          ))}
+            plateform.map((obj) => (
+              <span key={obj} className="badge bg-danger mx-2 text-white">{obj}</span>
+            ))}
         </div>
         <div className="col-lg-3 col-md-10 col-12" >
-         {selectServices?.length
+          {selectServices?.length
             ?
             <>
               <h6 className="mx-2">Selected Services</h6>
@@ -62,7 +63,11 @@ function CardItem({
         </div>
 
         <div className="col-lg-2 col-md-10 col-12" >
-          <h4 className="mx-2">₹ {price}</h4>
+          {type == "package" && Boolean(el?.dayMonthYear) && Boolean(el?.noOfDayMonthYear)
+            ?
+            <h4 className="mx-2" style={{ whiteSpace: "nowrap" }}>₹ {price} / {el?.noOfDayMonthYear} {el?.dayMonthYear}</h4>
+            :
+            <h4 className="mx-2">₹ {price}</h4>}
           <div className="d-flex flex-row justify-content-start">
             <button
               className="removeItem"
@@ -155,10 +160,10 @@ const AccordianItem = ({
         <h5 className="card-title p-2">{title}</h5>
         <p className="card-text mx-2">{desc}</p>
         {/* <span className="badge bg-danger mx-2 text-white">{type}</span> */}
-        
+
         {plateform && plateform.length > 0 &&
           plateform.map((obj) => (
-             <span key={obj} className="badge bg-danger mx-2 text-white">{obj}</span>
+            <span key={obj} className="badge bg-danger mx-2 text-white">{obj}</span>
           ))}
         {/* <h4 className="mx-2">₹ {price}</h4> */}
       </div>

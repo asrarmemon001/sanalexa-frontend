@@ -84,6 +84,7 @@ function Cart() {
                id={el.productInfo.id}
                sessionId={getSession()}
                handleRemove={handleRemove}
+               el={el}
 
              />
                 ))}

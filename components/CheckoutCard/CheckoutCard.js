@@ -2,13 +2,13 @@ import React from "react";
 import Paymentgateway from "../paymentgateway/Paymentgateway";
 
 function CartInfoCard({ cartListIs, cartTotal, title, type }) {
-  const calculateProductPriceWithSelectedServices=(price, services)=>{
+  const calculateProductPriceWithSelectedServices = (price, services) => {
     let servicesPrice = 0;
-    for(let i = 0; i < services?.length; i++){
+    for (let i = 0; i < services?.length; i++) {
       servicesPrice = servicesPrice + Number(services[i].price)
     }
 
-    return Number(price)+servicesPrice
+    return Number(price) + servicesPrice
   }
   return (
     <div
@@ -33,12 +33,16 @@ function CartInfoCard({ cartListIs, cartTotal, title, type }) {
           ?
           <div key={`cart-total-${i}`} className="d-flex flex-row justify-content-between">
             <p>{el.productInfo.projectTitle} {" "}<strong className="text-info d-none badge">project</strong></p>
-            <p>₹ {calculateProductPriceWithSelectedServices(el.productInfo.price,el.selectServices )}</p>
+            <p>₹ {calculateProductPriceWithSelectedServices(el.productInfo.price, el.selectServices)}</p>
           </div>
           :
           <div key={`cart-total-${i}`} className="d-flex flex-row justify-content-between">
-            <p>{el.productInfo.packagesName} {" "}<strong className="text-info d-none badge">package</strong></p>
-            <p>₹ {el.productInfo.price}</p>
+            <p>{el.productInfo.packagesName} {" "}{Boolean(el?.noOfDayMonthYear) && Boolean(el?.dayMonthYear) ? <strong className="text-danger badge">{el?.noOfDayMonthYear} {el?.dayMonthYear}</strong> : null}</p>
+
+            <p style={{whiteSpace:"nowrap"}}>₹ {el.productInfo.price}</p>
+
+
+
           </div>)
       })}
 
@@ -55,7 +59,7 @@ function CartInfoCard({ cartListIs, cartTotal, title, type }) {
 
 
 
-      {type == 'bundle' && (cartListIs.length < 3  || cartListIs.length > 4)
+      {type == 'bundle' && (cartListIs.length < 3 || cartListIs.length > 4)
         ?
         <button disabled={true} className="btn btn-danger mb-3" style={{ borderRadius: "20px" }} >Pay</button>
         :

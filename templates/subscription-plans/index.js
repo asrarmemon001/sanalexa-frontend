@@ -20,11 +20,11 @@ const SubscriptionPlansListTemplates = ({ subsciptionList }) => {
         AOS.refresh();
     }, []);
 
-    const handleAddtoCart = async (id) => {
+    const handleAddtoCart = async (el) => {
         setapicall(true)
         const data = {
             sessionId: getSession(),
-            cart: { id: String(id), type: "package", quantity: 1 },
+            cart: { id: String(el.id), type: "package", quantity: 1, noOfDayMonthYear:el.noOfDayMonthYear, dayMonthYear:el.dayMonthYear },
         };
         await AddtoCart(data)
             .then((res) => {
@@ -60,6 +60,7 @@ const SubscriptionPlansListTemplates = ({ subsciptionList }) => {
             <section className="subscription-plans">
 
                 <div className="col-12">
+                    {console.log(listOfSubscriptions,'listOfSubscriptions')}
                     {listOfSubscriptions.map((el, i) => {
                         return (<div className={`row bord ${(i % 2 != 0) ? `flex-row-reverse` : ``}`} key={`package-${el.id}`}>
                             <div className="col-md-6  image-p-s">
@@ -67,12 +68,12 @@ const SubscriptionPlansListTemplates = ({ subsciptionList }) => {
                             </div>
                             <div className="col-md-6 ">
                                 <h1>{el.packagesName}</h1>
-                                <h4>₹ {el.price}</h4>
+                                <h4>₹ {el.price} / {el?.noOfDayMonthYear} {el?.dayMonthYear}</h4>
                                 <p>{el.packagesDesc}</p>
                                 <p style={{ fontWeight: 600 }}>{el.project?.length || 0} Modules</p>
                                 <button className="btn btn-danger" onClick={() => {
                                     !isPackageExistInCart(el.id) &&
-                                        handleAddtoCart(el?.id);
+                                        handleAddtoCart(el);
                                 }}
                                     disabled={
                                         isPackageExistInCart(el.id)
