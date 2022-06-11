@@ -39,8 +39,12 @@ function CardItem({
         <div className="col-lg-5 col-md-6 col-12" >
           <h5 className="card-title p-2">{title}</h5>
           <p className="card-text mx-2">{desc}</p>
-          <span className="badge bg-danger mx-2 text-white">{type}</span>
-          <span className="badge bg-danger mx-2 text-white">{plateform?.join(", ").replace("_" , " ")}</span>
+          {/* <span className="badge bg-danger mx-2 text-white">{type}</span> */}
+          {/* <span className="badge bg-danger mx-2 text-white">{plateform.join(", ").replace("_" , " ")}</span> */}
+          {plateform && plateform.length > 0 &&
+          plateform.map((obj) => (
+             <span key={obj} className="badge bg-danger mx-2 text-white">{obj}</span>
+          ))}
         </div>
         <div className="col-lg-3 col-md-10 col-12" >
          {selectServices?.length
@@ -150,8 +154,12 @@ const AccordianItem = ({
       <div className="col-12" >
         <h5 className="card-title p-2">{title}</h5>
         <p className="card-text mx-2">{desc}</p>
-        <span className="badge bg-danger mx-2 text-white">{type}</span>
-        <span className="badge bg-danger mx-2 text-white mb-2">{plateform?.join(", ").replace("_" , " ")}</span>
+        {/* <span className="badge bg-danger mx-2 text-white">{type}</span> */}
+        
+        {plateform && plateform.length > 0 &&
+          plateform.map((obj) => (
+             <span key={obj} className="badge bg-danger mx-2 text-white">{obj}</span>
+          ))}
         {/* <h4 className="mx-2">₹ {price}</h4> */}
       </div>
 

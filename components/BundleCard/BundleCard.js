@@ -57,8 +57,12 @@ function BundleCard({
         <div className="col-lg-5 col-md-5 col-12" >
           <h5 className="card-title p-2">{title}</h5>
           <p className="card-text mx-2">{desc}</p>
-          <span className="badge bg-danger mx-2 text-white">{type}</span>
-          <span className="badge bg-danger mx-2 text-white">{plateform?.join(", ").replace("_" , " ")}</span>
+          {/* <span className="badge bg-danger mx-2 text-white">{type}</span>
+          <br />  */}
+          {plateform && plateform.length > 0 &&
+          plateform.map((obj) => (
+             <span key={obj} className="badge bg-danger mx-2 text-white">{obj}</span>
+          ))}
         </div>
         <div className="col-lg-3 col-md-3 col-12" >
         {selectServices?.length

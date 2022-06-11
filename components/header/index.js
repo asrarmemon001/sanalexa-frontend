@@ -266,9 +266,9 @@ const Header = () => {
                   ) : (
                     <button
                       className="btn sinup"
-                      onClick={() => loginSignupModal("signup")}
+                      onClick={() => loginSignupModal("login")}
                     >
-                      Sign Up
+                      Login
                     </button>
                   )}
                 </li>
