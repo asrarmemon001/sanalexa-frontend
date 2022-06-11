@@ -86,7 +86,6 @@ function Bundles() {
       <div className="tophead py-3 mb-4">
         <div className="container"><h3 className="text-center">Default Bundles </h3></div> </div>
       <div> 
-        {console.log(defaultBundles,'defaultBundles')}
         {
           defaultBundles?.map((el, i) => (
             <div key={`dfBundlee-${i}`}>

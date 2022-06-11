@@ -60,7 +60,6 @@ const SubscriptionPlansListTemplates = ({ subsciptionList }) => {
             <section className="subscription-plans">
 
                 <div className="col-12">
-                    {console.log(listOfSubscriptions,'listOfSubscriptions')}
                     {listOfSubscriptions.map((el, i) => {
                         return (<div className={`row bord ${(i % 2 != 0) ? `flex-row-reverse` : ``}`} key={`package-${el.id}`}>
                             <div className="col-md-6  image-p-s">
