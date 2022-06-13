@@ -1,7 +1,7 @@
 import { getApi, postApi, getApiWithoutToken, postApiWithoutToken } from "./api-interface";
 
 export const projectList = (data) => {
-   return postApiWithoutToken(`/api/projects/web/list`, data)
+   return postApi(`/api/projects/web/list`, data)
 }
 
 export const cartList = async (data) => {
@@ -22,11 +22,11 @@ export const RemoveBundleList = async (data) => {
 }
 
 export const projectListFeatured = (data) => {
-   return getApiWithoutToken(`/api/projects/web/featured-list?limit=${data.limit}&page=${data.page}&search=${data.search}`)
+   return getApi(`/api/projects/web/featured-list?limit=${data.limit}&page=${data.page}&search=${data.search}`)
 }
 
 export const packageList = (data) => {
-   return getApiWithoutToken(`/api/packages/web/list`)
+   return getApi(`/api/packages/web/list`)
 }
 
 export const sectorList = () => {
@@ -51,7 +51,7 @@ export const getUser = (data) => {
 }
 
 export const getProjectDetailsById = (id) => {
-   return getApiWithoutToken(`/api/projects/projectDetailsById?id=${id}`)
+   return getApi(`/api/projects/projectDetailsById?id=${id}`)
 }
 
 export const paymentApi = (data) => {
@@ -92,4 +92,7 @@ export const directPayemntAndCheckoutBundleApi = (data) => {
 }
 export const getProjectList = async () => {
    return await getApi(`/api/projects/list?page=1&limit=1000000`)
+}
+export const getProjectAndPackage = async () => {
+   return await getApi(`/api/projects/list-plans`)
 }

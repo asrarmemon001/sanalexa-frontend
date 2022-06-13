@@ -16,7 +16,7 @@ function ProjectCard({ obj, index, classes }) {
   const [apicall, setapicall] = useState(false);
   const [bundleApicall, setBundleApicall] = useState(false);
   const apiContext = useContext(AppContext);
-  let { fetchBundleList } = apiContext;
+  let { fetchBundleList, playTypeModal } = apiContext;
   const handleAddtoCart = async (id) => {
     setapicall(true);
     const data = {
@@ -37,7 +37,7 @@ function ProjectCard({ obj, index, classes }) {
         setapicall(false);
         console.log(error);
       });
-  }; 
+  };
   const handleAddtoBundle = async (id) => {
     setBundleApicall(true);
     const data = {
@@ -92,7 +92,7 @@ function ProjectCard({ obj, index, classes }) {
       console.log(error, "handleRemove bundle");
     }
   };
- 
+
 
   return (
     <div className={classes} key={index}>
@@ -113,8 +113,8 @@ function ProjectCard({ obj, index, classes }) {
           </h4>
           <h3>
             <span>₹{obj?.price}</span>
-          </h3> 
-          <div className="buttons">
+          </h3>
+          {!obj.isBuyed && <div className="buttons">
             <button
               className={
                 isProductExistInCart(obj.id) ? "carts bg-danger" : "carts"
@@ -144,11 +144,11 @@ function ProjectCard({ obj, index, classes }) {
                 isProductExistInBundle(obj.id) ? "btn btn-danger" : "btn"
               }
               onClick={() => {
-                isProductExistInBundle(obj.id) 
+                isProductExistInBundle(obj.id)
                   ? handleRemove(obj?.id, obj?.type)
                   : handleAddtoBundle(obj?.id, obj?.type, obj?.quantity);
               }}
-              disabled={apiContext?.state?.bundleProduct?.length >= 4 && !isProductExistInBundle(obj.id) }
+              disabled={apiContext?.state?.bundleProduct?.length >= 4 && !isProductExistInBundle(obj.id)}
             >
               {bundleApicall ? (
                 <CircularProgress size={20} />
@@ -158,7 +158,14 @@ function ProjectCard({ obj, index, classes }) {
                 "Add to Bundle"
               )}
             </button>
+          </div>}
+          {obj.isBuyed && 
+          <div className="buttons">
+            <button className="btn btn-danger w-100" target="_blank" rel="noreferrer" onClick={(e) => playTypeModal('play', obj)} data-toggle="tooltip" data-original-title="Play">
+              Play
+            </button>
           </div>
+          }
         </div>
       </div>
     </div>

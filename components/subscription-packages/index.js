@@ -123,12 +123,13 @@ export default function SubscriptionPackages({ heading }) {
                                     obj.project?.length
                                     ?
                                     <div className="packageItem px-3 mb-2" key={index}>
-                                        <figure className="package-img" style={{ backgroundImage: `url(${ImageBaseUrl + obj?.bannerImage})` }} />
+                                        <figure className="package-img" style={{ backgroundImage: `url('${ImageBaseUrl + obj?.bannerImage}')` }} />
                                         <div className="content-area text-center">
                                             <h3 className="mb-2">{obj?.packagesName}</h3>
+                                            
                                             <h6 className="mb-2">₹ {obj?.price}</h6>
 
-                                            <button className="btn btn-danger w-100 p-3" onClick={() => {
+                                            {!obj.isBuyed && <button className="btn btn-danger w-100 p-3" onClick={() => {
                                                 !isPackageExistInCart(obj.id) &&
                                                     handleAddtoCart(obj?.id);
                                             }}
@@ -142,7 +143,22 @@ export default function SubscriptionPackages({ heading }) {
                                                     ?
                                                     "Added in Cart"
                                                     :
-                                                    'Pay & Subscription'}</button>
+                                                    'Pay & Subscription'}</button>}
+                                            {obj.isBuyed && <button className="btn btn-danger w-100 p-3" onClick={() => {
+                                                !isPackageExistInCart(obj.id) &&
+                                                    handleAddtoCart(obj?.id);
+                                            }}
+                                                disabled={
+                                                    isPackageExistInCart(obj.id)
+                                                        ? true
+                                                        : false
+                                                } style={{ borderRadius: 40 }}>{apicall ? (
+                                                    <CircularProgress size={20} />) :
+                                                    isPackageExistInCart(obj.id)
+                                                    ?
+                                                    "Added in Cart"
+                                                    :
+                                                    'Re Subscripe'}</button>}
 
                                         </div>
                                     </div>

@@ -1,73 +1,67 @@
-import { useFormik } from "formik";
 import { useEffect, useState } from "react";
-import { Button, Modal } from "react-bootstrap-v5"
-// import { loginValidationSchema } from "./validation";
-import { CircularProgress, TextField } from "@mui/material";
-import { loginUser } from "../../utils/api-Request";
-import { toast } from "react-toastify";
+import { Modal } from "react-bootstrap-v5"
+import { apiBaseUrl } from "../../utils/Baseurl";
+import {
+  FormControl,
+  RadioGroup,
+  Radio,
+  FormLabel,
+  FormControlLabel
+} from "@mui/material";
 
-const PlayType = ({ handleModal, show }) => {
-    
-  const [_loginData, setLoginData] = useState({
-    loading: false,
-    data: null,
-    message: "",
-    status: 0
-  })
+const PlayType = ({ handleModal, show, modalPayload }) => {
+  const [type, setType] = useState('');
+  const [project, setProject] = useState({});
+  useEffect(() => {
+    if (modalPayload) {
+      setProject(modalPayload);
+      console.log(modalPayload);
+    }
 
-//   const formik = useFormik({
-//     initialValues: {
-//       email: '',
-//       password: '',
-//     },
-//     validationSchema: loginValidationSchema,
-//     onSubmit: async (values) => {
-//       try {
-//         setLoginData((v) => ({
-//           ...v,
-//           loading: true
-//         }))
-//         const res = await loginUser(values)
-      
-//       } catch (error) {
-//         toast.error(error.response.data.message || error.response.statusText);
-//         setLoginData((v) => ({
-//           ...v,
-//           loading: false
-//         }))
-//       }
+  }, [modalPayload])
 
-//     }
-//   });
-
-  const handleChange = (event) => {
-    formik.setFieldValue(event.target.name, event.target.value)
+  const playNow = () => {
+    console.log(type)
+    if (type === 'webgl') {
+      window.open(apiBaseUrl + '/' + project.webGlFile); 
+    }
   }
- 
+
   return (
     <Modal show={show} onHide={() => handleModal(false)} centered>
       <Modal.Header closeButton>
-        <Modal.Title>Login</Modal.Title>
+        <Modal.Title>Choose plateform</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <h6 className="text-center mb-4">Welcome back!</h6>
-        {/* <form className="text-start" onSubmit={formik.handleSubmit}>
-          <TextField id="form-email" disabled={_loginData.loading} className="mb-3" error={formik.errors.email && formik.touched.email} size="small" label="Email" fullWidth variant="outlined" name="email" type="text" onChange={handleChange} />
-          {formik.errors.email && formik.touched.email && <p className="text-danger px-2 text-sm fw-bold" style={{ marginTop: "-15px" }}>{formik.errors.email}</p>}
-          <TextField id="form-password" disabled={_loginData.loading} className="mb-3" error={formik.errors.password && formik.touched.password} size="small" label="Password" fullWidth variant="outlined" name="password" type="password" onChange={handleChange} />
-          {formik.errors.password && formik.touched.password && <p className="text-danger px-2 text-sm fw-bold" style={{ marginTop: "-15px" }}>{formik.errors.password}</p>}
-          <div className="text-center">
-            {_loginData.loading
-              ?
-              <button className="btn btn-primary w-100 my-4 mb-2 d-flex justify-content-center align-items-center" disabled={true}><span className="me-2 d-none">Sign in </span><CircularProgress style={{ width: 20, height: 20, color: "#ffffff" }} /></button>
-              : <button type="submit" className="btn btn-primary w-100 my-4 mb-2 d-flex justify-content-center align-items-center">Sign in</button>}
-          </div>
-          <p className="mt-4 text-sm text-center">
-            Not Registered{' '}
-            <span className="text-primary" style={{ cursor: 'pointer' }} onClick={() => handleModal("signup")}>Click here</span>
-          </p>
-        </form> */}
+        <h6 className="text-center mb-4">Which plateform You want to play</h6>
 
+        <div className="card-bordered px-3 pb-3">
+          <FormControl className="registers">
+            <RadioGroup
+              row
+              aria-labelledby="gender-label"
+              name="gender"
+              value={type}
+              style={{display: 'grid'}}
+              onChange={(e) => {
+                setType(e.target.value);
+              }}
+            >
+              {
+              project && project.plateform && project.plateform.length > 0 && 
+              project.plateform.map((obj) => (
+                <FormControlLabel value={obj} control={<Radio />} label={`Want To Play at ${obj}`} />
+              )) }
+            </RadioGroup>
+          </FormControl>
+          <div >
+            <div className="d-flex w-100">
+              <button className="btn btn-danger my-4 mr-3 text-white w-100" target="_blank" rel="noreferrer" data-toggle="tooltip" data-original-title="Play" onClick={(e) => playNow()}>
+                Play
+              </button>
+            </div>
+          </div>
+        </div>
       </Modal.Body>
     </Modal>
   )
