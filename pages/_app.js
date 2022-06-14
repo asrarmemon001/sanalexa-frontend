@@ -134,7 +134,7 @@ function MyApp({ Component, pageProps }) {
       <Signup show={modal == "signup"} handleModal={handleModal} setIsLoggedin={setIsLoggedin} />
       <Login show={modal == "login"} handleModal={handleModal} setIsLoggedin={setIsLoggedin} />
       <OTPVerification show={modal == "otp"} handleModal={handleModal} setIsLoggedin={setIsLoggedin} modalPayload={modalPayload} setModalPayload={setModalPayload}/>
-      <PlayType show={modal == "play"} handleModal={handleModal} ></PlayType>
+      <PlayType show={modal == "play"} handleModal={handleModal} modalPayload={modalPayload}></PlayType>
     </AppContext.Provider>)
 }
 

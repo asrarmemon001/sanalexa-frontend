@@ -9,8 +9,11 @@ import { addtoBundleApi, AddtoCart } from "../../../utils/api-Request";
 import { ImageBaseUrl } from "../../../utils/Baseurl";
 import { getSession } from "../../../utils/constants";
 const ProductDetailsMain = ({ productDetails }) => {
-    const { id, projectTitle, bannerImage, price, projectDesc, services } = productDetails;
+    const { id, projectTitle, bannerImage, price, projectDesc, services, isBuyed } = productDetails;
     const apiContext = useContext(AppContext)
+    const {
+        playTypeModal
+    } = apiContext;
     const [apicall, setapicall] = useState(false);
     const [bundleApicall, setBundleApicall] = useState(false);
     const [selectServices, setSelectedServices] = useState([])
@@ -119,6 +122,7 @@ const ProductDetailsMain = ({ productDetails }) => {
         return p + sp
         
     }
+    console.log(productDetails);
     return (
         <section className="product-Gallery"> 
             <div className="container">
@@ -164,7 +168,7 @@ const ProductDetailsMain = ({ productDetails }) => {
                                         :
                                         null}
                                     <div className="detail-all-butoon">
-                                        <div className="cart-but">
+                                        { !isBuyed && <> <div className="cart-but">
                                             {/* <input type="number" id="quantity" name="quantity" min="1" max="20" value="1" /> */}
                                             <button
                                                 className={
@@ -250,6 +254,13 @@ const ProductDetailsMain = ({ productDetails }) => {
                                             </button>
                                             <button className="addtubul">Discover Entire Packge</button>
                                         </div>
+                                        </>}
+                                        {
+                                            isBuyed && 
+                                            <button className="btn btn-danger my-4 mr-3 text-white" target="_blank" rel="noreferrer" onClick={(e) => playTypeModal('play', productDetails)} data-toggle="tooltip" data-original-title="Play">
+                                                Play
+                                            </button>
+                                        }
                                         <div className="wishlist">
                                             <button className="addtubul"> <i className="fa fa-cart-plus" aria-hidden="true"></i>  Add to wishlist</button>
                                             <button className="addtubul"><i className="fa fa-download" aria-hidden="true"></i> Download launcher</button>

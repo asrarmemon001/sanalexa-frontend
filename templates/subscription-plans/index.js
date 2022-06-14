@@ -82,7 +82,7 @@ const SubscriptionPlansListTemplates = ({ subsciptionList }) => {
 
                                 <p>{el.packagesDesc}</p>
                                 <p style={{ fontWeight: 600 }}>{el.project?.length || 0} Modules</p>
-                                <button className="btn btn-danger" onClick={() => {
+                                { !el.isBuyed && <button className="btn btn-danger" onClick={() => {
                                     !isPackageExistInCart(el.id) &&
                                         handleAddtoCart(el);
                                 }}
@@ -96,7 +96,22 @@ const SubscriptionPlansListTemplates = ({ subsciptionList }) => {
                                             ?
                                             "Added in Cart"
                                             :
-                                            'Buy Subscription'}</button>
+                                            'Buy Subscription'}</button>}
+                                            { el.isBuyed && <button className="btn btn-danger" onClick={() => {
+                                    !isPackageExistInCart(el.id) &&
+                                        handleAddtoCart(el);
+                                }}
+                                    disabled={
+                                        isPackageExistInCart(el.id)
+                                            ? true
+                                            : false
+                                    } >{apicall ? (
+                                        <CircularProgress size={20} />) :
+                                        isPackageExistInCart(el.id)
+                                            ?
+                                            "Added in Cart"
+                                            :
+                                            'Resubscribe'}</button>}
                                 <Link href={`/plans-and-subscriptions/details/${el.id}`}>
                                     <a className="btn btn-link">Know more</a>
                                 </Link>

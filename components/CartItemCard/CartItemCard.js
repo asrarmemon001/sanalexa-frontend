@@ -62,7 +62,7 @@ function CardItem({
 
         </div>
 
-        <div className="col-lg-2 col-md-10 col-12" >
+        <div className="col-lg-2 col-md-10 col-12" > 
           {type == "package" && Boolean(el?.dayMonthYear) && Boolean(el?.noOfDayMonthYear)
             ?
             <h4 className="mx-2" style={{ whiteSpace: "nowrap" }}>₹ {price} / {el?.noOfDayMonthYear} {el?.dayMonthYear}</h4>
@@ -98,7 +98,8 @@ function CardItem({
                       {project && project.length
                         ?
                         project.map((el, i) => {
-                          return (<AccordianItem
+                          return (
+                          <AccordianItem
                             classes={`col-lg-3 col-md-4 col-12`}
                             key={`listofi-${i}`}
                             image={el.bannerImage}
@@ -108,7 +109,8 @@ function CardItem({
                             type={'project'}
                             plateform={el.plateform}
                             price={el.price}
-                          />)
+                          />
+                          )
                         })
                         :
                         <NoDataFound message={"No modules found in this package"} />}
