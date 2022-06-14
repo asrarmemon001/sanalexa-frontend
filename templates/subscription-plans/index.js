@@ -22,10 +22,16 @@ const SubscriptionPlansListTemplates = ({ subsciptionList }) => {
 
     const handleAddtoCart = async (el) => {
         setapicall(true)
-        const data = {
+        let data = {
             sessionId: getSession(),
-            cart: { id: String(el.id), type: "package", quantity: 1, noOfDayMonthYear:el.noOfDayMonthYear, dayMonthYear:el.dayMonthYear },
+            cart: { id: String(el.id), type: "package", quantity: 1 },
         };
+
+        if (Boolean(el?.noOfDayMonthYear) && Boolean(el?.dayMonthYear)) {
+            data.cart.noOfDayMonthYear = el.noOfDayMonthYear;
+            data.cart.dayMonthYear = el.dayMonthYear;
+        }
+
         await AddtoCart(data)
             .then((res) => {
                 if (res?.status == 200) {
@@ -67,7 +73,13 @@ const SubscriptionPlansListTemplates = ({ subsciptionList }) => {
                             </div>
                             <div className="col-md-6 ">
                                 <h1>{el.packagesName}</h1>
-                                <h4>₹ {el.price} / {el?.noOfDayMonthYear} {el?.dayMonthYear}</h4>
+                                {Boolean(el?.noOfDayMonthYear) && Boolean(el?.dayMonthYear)
+                                    ?
+                                    <h4>₹ {el.price} / {el?.noOfDayMonthYear} {el?.dayMonthYear}</h4>
+                                    :
+                                    <h4>₹ {el.price}</h4>
+                                }
+
                                 <p>{el.packagesDesc}</p>
                                 <p style={{ fontWeight: 600 }}>{el.project?.length || 0} Modules</p>
                                 <button className="btn btn-danger" onClick={() => {
