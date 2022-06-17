@@ -547,7 +547,7 @@ header.darkHeader .mideel-mene ul li a.humb span.mainhunm span.line{
 .main-header {
     padding: 25px 0px;
     position: relative;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 .banner {

@@ -5,6 +5,7 @@ import { removeSession, removeToken, setSession } from "../../utils/constants";
 import AppContext from "../../appContext/index";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { useRouter } from "next/router";
+import { toast } from "react-toastify";
 
 const Header = () => {
   const appContext = useContext(AppContext);
@@ -27,8 +28,26 @@ const Header = () => {
   const [industriesDropdown, setIndustriesDropdown] = useState(false);
   const [userDropdown, setUserDropdown] = useState(false);
   const [submenuShow, setSubmenuShow] = useState(-1);
-
   const [activeSearch, setActiveSearch] = useState(false);
+  const [ searchIs, setSearchIs ] = useState('')
+
+  const handleChange = (e) => {
+    setSearchIs(e.target.value)
+  }
+
+  const handleSubmit = (e) => {
+    if(searchIs){
+      e.preventDefault()
+      // const { searchIs } = router.query
+      // router.push(`/search/${searchIs}`)
+      router.push({
+        pathname: '/search/[searchIs]',
+        query: { searchIs },
+      })
+    }else{
+      toast.error("Please enter some value")
+    }
+  }
 
   const logout = () => {
     setIsLoggedin(false);
@@ -306,9 +325,10 @@ const Header = () => {
                   className="search-field"
                   placeholder="Search …"
                   name="s"
+                  onChange={handleChange}
                 />
               </label>
-              <input type="submit" className="search-submit" value="Search" />
+              <input type="submit" className="search-submit" value="Search" onClick={handleSubmit}/>
             </form>
           </div>
         </div>
