@@ -75,8 +75,7 @@ const Header = () => {
 
   return (
     <header>
-      <div className="main-header">
-        <div className="container">
+      <div className="main-header"> 
           <div className="maneg-header">
             <div className="logo">
               <Link href="/">
@@ -90,11 +89,7 @@ const Header = () => {
             <div className="mideel-mene">
               <div className="ferty">
                 <ul className="list-menu">
-                  <li>
-                    <Link href="/">
-                      <a>Home </a>
-                    </Link>
-                  </li>
+                 
                   <li>
                     <Link href="/about">
                       <a>About Us </a>
@@ -203,6 +198,11 @@ const Header = () => {
                           )}
                         </span>
                       </a>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="#">
+                      <a>Contact Us </a>
                     </Link>
                   </li>
                   { user.data && <li>
@@ -331,7 +331,7 @@ const Header = () => {
               <input type="submit" className="search-submit" value="Search" onClick={handleSubmit}/>
             </form>
           </div>
-        </div>
+         
       </div>
     </header>
   );
