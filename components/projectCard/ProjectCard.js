@@ -101,16 +101,36 @@ function ProjectCard({ obj, index, classes }) {
           style={{ cursor: "pointer" }}
           onClick={() => router.push(`/product-details/${obj.id}`)}
         >
-          <img src={ImageBaseUrl + obj?.bannerImage} />
-          <h5 className="Pharmacepo">{obj?.sector?.name}</h5>
-        </figure>
-        <div className="pharmaceutical-contant">
-          <h4
+          <p
             style={{ cursor: "pointer" }}
             onClick={() => router.push(`/product-details/${obj.id}`)}
           >
             {obj?.projectTitle}
-          </h4>
+          </p>
+          <img src={ImageBaseUrl + obj?.bannerImage} />
+        </figure>
+        <div className="pharmaceutical-contant">
+          <h5>{obj?.sector?.name}</h5>
+          <p>Lorem Ipsum is simply dummy text of the printing...</p>
+          
+          <div className="userswithicon">
+          <div className="review-item">
+            <div className="review-icon">
+             <ul>
+               <li><i className="fa fa-user" aria-hidden="true"></i> 45,896</li> 
+             </ul>
+            </div>
+            <div className="prodwerp">
+              <ul>
+                <li><a href="#" className="girditemea"><i className="fa fa-desktop" aria-hidden="true"></i></a></li>
+                <li><a href="#" className="girditemea"><i className="fa fa-laptop" aria-hidden="true"></i></a></li>
+                <li><a href="#" className="girditemea"><i className="fa fa-mobile" aria-hidden="true"></i></a></li>
+                <li><a href="#" className="girditemea"><i className="fa fa-gamepad" aria-hidden="true"></i></a></li> 
+              </ul>
+            </div>
+
+           </div>
+          </div>
           <h3>
             <span>₹{obj?.price}</span>
           </h3>
@@ -129,8 +149,7 @@ function ProjectCard({ obj, index, classes }) {
                 <CircularProgress size={20} />
               ) : (
                 <>
-                  <i className="fa fa-plus" aria-hidden="true"></i>{" "}
-                  <i className="fa fa-shopping-cart" aria-hidden="true"></i>{" "}
+                  <i className="fa fa-shopping-cart" aria-hidden="true"></i> <span>Add to Cart</span>{""}
                 </>
               )}
             </button>
@@ -153,10 +172,10 @@ function ProjectCard({ obj, index, classes }) {
               {bundleApicall ? (
                 <CircularProgress size={20} />
               ) : isProductExistInBundle(obj.id) ? (
-                "Remove from Bundle"
+                <i className='fa fa-times' aria-hidden='true'></i>
               ) : (
-                "Add to Bundle"
-              )}
+                <i className='fa fa-database' aria-hidden='true'></i>
+              )} <span>Add to Bundle</span>
             </button>
           </div>}
           {obj.isBuyed && 
@@ -166,6 +185,7 @@ function ProjectCard({ obj, index, classes }) {
             </button>
           </div>
           }
+ 
         </div>
       </div>
     </div>

@@ -18,7 +18,7 @@ export default function ProductDetailsTemplate({ productDetails }) {
             <ShiftHandover productDetails={productDetails}/>
             <ShiftHandoverFaq />
             <FeaturedCourses heading="You May Also Like" />
-            <SubscriptionPackages heading="Subscription Package" />
+            <SubscriptionPackages heading="SUBSCRIPTION PACKAGE" />
             <BannerBottom />
             <NewsletterSection />
         </>

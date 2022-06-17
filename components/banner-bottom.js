@@ -6,14 +6,13 @@ export default function BannerBottom() {
             <div className="container">
                 <div className="main-banner">
                     <div className="banner-content">
-                        <h1>Simulanis 
- <br />
-                            <span>LEARN Library</span></h1>
-                         <Link href="#"><a className="button-download-launcher">download launcher</a></Link>
+                        <h1>Whan us to deploy paint  Simulator at your site?</h1>
+                        <p>Our technical experts will respond to your query at the earliest.</p>
+                         <Link href="#"><a className="button-download-launcher">Contact</a></Link>
                     </div>
-                    <div className="banner-img">
+                    {/* <div className="banner-img">
                         <img src="/static/images/right-bott.png" />
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </section>

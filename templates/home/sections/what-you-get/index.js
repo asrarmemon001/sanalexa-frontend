@@ -4,7 +4,9 @@ export default function WhatYouGet() {
     return (<section className="what-you-get" style={{ backgroundImage: 'url(/static/images/what-bg.png)' }}>
         <div className="container">
             <div className="title" data-aos="fade-up">
-                <h3>What You Get</h3>
+                <h3>WHAT YOU GET</h3>
+                <h6>Find the exact right 3D content for your needs Lorem Ipsum is simply dummy text of the printing
+</h6>
             </div>
             <div className="row row-center justify-content-center">
                 <div className=" col-lg-4 col-md-6">
@@ -46,7 +48,7 @@ export default function WhatYouGet() {
             </div>
             <div className="text-center" data-aos="fade-down">
                 <Link href="#">
-                    <a className="button-download-launcher">download launcher</a>
+                    <a className="button-download-launcher"><i className="fa fa-download" aria-hidden="true"></i> download launcher</a>
                 </Link>
             </div>
         </div>

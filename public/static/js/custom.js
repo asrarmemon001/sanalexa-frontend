@@ -15,7 +15,25 @@ $(window).scroll(function() {
       $(this).toggleClass("opentoggle");
       alert('sssss');
     });
+
+    $(".girditem a.girdfilter").click(function(){
+      $(".girdsestem").removeClass("viewlist");
+      $(".girdsestem").addClass("active");
+    });
+
+    $(".girditem a.viewfilter").click(function(){
+      $(".girdsestem").removeClass("active");
+      $(".girdsestem").addClass("viewlist");
+    });
+
+ 
+
+
   }); 
 
+  
+
+
+////////////////////
 
 

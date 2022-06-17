@@ -62,7 +62,8 @@ const Header = () => {
             <div className="logo">
               <Link href="/">
                 <a>
-                  <img src="/static/images/logo.png" />
+                  <img src="/static/images/Simulanis-Logo-white.svg" />
+                  <img src="/static/images/Simulanis-Logo.svg" />
                 </a>
               </Link>
             </div>
@@ -193,11 +194,11 @@ const Header = () => {
                 </ul>
               </div>
               <ul className="varymenu">
-                <li>
+                {/* <li>
                   <span className="sarchi link" onClick={toggleSearchShow}>
                     <i className="fa fa-search" aria-hidden="true"></i>
                   </span>
-                </li>
+                </li> */}
 
                 <li>
                   <Link href="/cart">
@@ -268,7 +269,8 @@ const Header = () => {
                       className="btn sinup"
                       onClick={() => loginSignupModal("login")}
                     >
-                      Login
+                      <i className="fa fa-user-circle" aria-hidden="true"></i>
+
                     </button>
                   )}
                 </li>

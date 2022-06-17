@@ -3,7 +3,7 @@ import Link from "next/link";
 function CategoryItem({ classes, image, link, title }) {
     return (
         <div className={classes}>
-            <div className="indastry" data-aos="fade-right">
+            <div className="indastry">
                 <div className="indastry-img">
                     <img src={image} />
                 </div>
@@ -24,14 +24,20 @@ export default function CategoriesSection() {
         <section className="farmertical">
             <div className="container">
                 <div className="main-farmertycal">
-                    <div className="row">
-                        <CategoryItem classes="col-lg-4 col-md-6" link="#" image="/static/images/farmulty.png" title="Pharmaceutical"/>
-                        <CategoryItem classes="col-lg-4 col-md-6" link="#" image="/static/images/car.png" title="Automotive"/>
-                        <CategoryItem classes="col-lg-4 col-md-6" link="#" image="/static/images/factory.png" title="Oil and Gas"/>
-                        <CategoryItem classes="col-lg-4 col-md-6" link="#" image="/static/images/paint.png" title="Paint"/>
-                        <CategoryItem classes="col-lg-4 col-md-6" link="#" image="/static/images/seting.png" title="Automotion"/>
-                        <CategoryItem classes="col-lg-4 col-md-6" link="#" image="/static/images/customer.png" title="Contraction"/>
-                    </div>
+                        <CategoryItem classes="listitem-farmertycal" link="#" image="/static/images/farmulty.png" title="Pharmaceutical"/>
+                     
+                        <CategoryItem classes="listitem-farmertycal" link="#" image="/static/images/car.png" title="Automotive"/>
+                       
+                        <CategoryItem classes="listitem-farmertycal" link="#" image="/static/images/factory.png" title="Oil and Gas"/>
+                       
+                        <CategoryItem classes="listitem-farmertycal" link="#" image="/static/images/paint.png" title="Paint"/>
+                    
+                       
+                     <CategoryItem classes="listitem-farmertycal" link="#" image="/static/images/seting.png" title="Automotion"/>
+                   
+                    
+                     <CategoryItem classes="listitem-farmertycal" link="#" image="/static/images/customer.png" title="Contraction"/>
+                  
                 </div>
             </div>
         </section>

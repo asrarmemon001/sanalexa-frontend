@@ -56,10 +56,61 @@ h3 {
     font-size: 18px;
     border-radius: 100px;
 }
+figure.package-img p {
+    top: 10px;
+    bottom: auto;
+    font-size: 20px;
+}
+.img-no> span::after {
+    content: "";
+    text-align: center;
+    font-size: 25px;
+    left: 0;
+    right: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.img-no> span:first-child::after {
+    content: "1"; 
+}
+.img-no> span:nth-child(2)::after {
+    content: "2"; 
+}
+.img-no> span:nth-child(3)::after {
+    content: "3"; 
+}
+.img-no> span:nth-child(4)::after {
+    content: "4"; 
+}
+.mideel-mene ul li:nth-child(2) {
+    padding-right: 0;
+}
+
+
+.title h3 {
+    font-weight: 700;
+}
+
+.title h6 {
+    color: #000;
+    font-size: 20px;
+}
+
 .img-no > span img {
     display: none!important;
 }
-
+.pharmaceutical-contant h5 {
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 0;
+    width: 81%;
+}
+.pharmaceutical-contant p {
+    font-size: 9px;
+    margin-bottom: 0;
+    width: 81%;
+}
 
 ul.MuiMenu-list .cu-2  li.dropdown-item span.MuiTouchRipple-root::after {
     content: "\f105";
@@ -88,9 +139,15 @@ ul.MuiMenu-list .cu-2  li.dropdown-item span.MuiTouchRipple-root::after {
 }
 .mobwrep {
     align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ccc;
 }
-/******************new******************************/
 
+
+/******************new******************************/
+.review-icon ul li {
+    color: #303c7a;
+}
 
 
 .all-teb ul a,
@@ -149,15 +206,18 @@ ul.MuiMenu-list .cu-2  li.dropdown-item span.MuiTouchRipple-root::after {
     font-size: 17px;
     font-weight: 500;
     font-family: 'Montserrat', sans-serif;
-    text-transform: capitalize;
+    text-transform: uppercase;
     position: relative;
+    color: #fff;
+}
+header.darkHeader .mideel-mene ul.list-menu li.nav-item button{
     color: #000;
 }
 
 
 .mideel-mene ul.list-menu li.nav-item button::after{
     content: "";
-    background-color: #ca373c;
+    background-color: #f7ad18;
     width: 0;
     height: 2px;
     position: absolute;
@@ -218,7 +278,11 @@ ul.MuiMenu-list .cu-2  li.dropdown-item span.MuiTouchRipple-root::after {
     border-radius: 10px;
     min-height: 220px;
 }
-
+.btn-danger.disabled, .btn-danger:disabled {
+    color: #000;
+    background-color: #f7ad18;
+    border-color: #f7ad18;
+}
 .all-teb h3 {
     text-align: center;
     font-weight: 500;
@@ -250,7 +314,23 @@ ul.MuiMenu-list .cu-2  li.dropdown-item span.MuiTouchRipple-root::after {
     right: -10px;
     color: #fff;
 }
-
+.bannerbottom .banner-content {
+    width: 60%;
+    padding: 45px 100px 15px 64px;
+    position: relative;
+}
+.bannerbottom .banner-content::after {
+    content: "";
+    border-color: white transparent transparent transparent;
+    border-width: 306px 100px 0 0;
+    border-style: solid;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+}
 .buttons button.addtubul {
     width: 190px;
 }
@@ -311,11 +391,8 @@ main {
 }
 
 
-
-
-header.darkHeader {
+header {
     right: 0;
-    background-color: #fff;
     left: 0;
     width: 100%;
     z-index: 999;
@@ -323,35 +400,10 @@ header.darkHeader {
     position: fixed;
 }
 
-
-
-
-
-.banner::before {
-    content: "";
-    position: absolute;
-    top: 45px;
-    background-image: url(../images/dots.png);
-    background-repeat: no-repeat;
-    left: 100px;
-    width: 150px;
-    height: 150px;
-    z-index: 9;
-    background-size: 95px;
+header.darkHeader { 
+    background-color: #fff; 
 }
 
-.main-banner::after {
-    content: "";
-    position: absolute;
-    background-image: url(../images/dots.png);
-    background-repeat: no-repeat;
-    right: -92px;
-    width: 150px;
-    height: 150px;
-    z-index: 999;
-    background-size: 95px;
-    bottom: -130px;
-}
 
 section {
     padding: 60px 0;
@@ -367,15 +419,23 @@ img {
     justify-content: space-between;
 }
 
-/* .logo {
-    width: 30%;
-} */
-
+.logo a img {
+    width: 175px;
+}
+.logo a img:nth-child(2) {
+    display: none;
+}
+header.darkHeader .logo a img:first-child {
+    display: none;
+}
+header.darkHeader .logo a img:nth-child(2) {
+    display: block;
+}
 .mideel-mene {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    /* width: 70%; */
+     width: 80%;
 }
 
 .mideel-mene ul {
@@ -394,14 +454,18 @@ img {
     font-weight: 500;
     font-size: 17px;
     line-height: 21px;
-    text-transform: capitalize;
-    color: #000;
+    text-transform: uppercase;
+    color: #fff;
     text-decoration: none;
     position: relative;
 }
+
+header.darkHeader .mideel-mene ul.list-menu li a{
+    color: #000;
+}
 .mideel-mene ul.list-menu li a::after {
     content: "";
-    background-color: #ca373c;
+    background-color: #f7ad18 ;
     width: 0;
     height: 2px;
     position: absolute;
@@ -426,46 +490,48 @@ img {
 
 .mideel-mene ul.varymenu li .sinup {
     border-radius: 28px;
-    font-size: 17px;
+    font-size: 35px;
     color: #fff;
     text-decoration: none;
-    background: #CA373C;
-    padding: 10px 25px;
+    background: #ffffff;
+    padding: 0px 5px;
     transition: 0.5s all;
-    border: 1px solid #fff;
     position: relative;
     z-index: 99;
+    width: 50px;
+    height: 50px;
+    line-height: 0;
 }
-.main-header::after {
-    content: "";
-    background-color: #ca373c;
-    width: 8%;
-    height: calc(100% - 0px);
-    position: absolute;
-    right: -36px;
-    transform: skew(328deg);
-    top: 0;
-    z-index: 9;
+.mideel-mene ul.varymenu li .sinup i.fa.fa-user-circle {
+    color: #252f61;
 }
+
 .mideel-mene ul.varymenu li .sinup:hover {
     color: #fff;
-    box-shadow: 277px 0 0 0 #313b79 inset;
+    box-shadow: 277px 0 0 0 #f7ad18  inset;
 }
 
 .mideel-mene ul.varymenu li a,
 .mideel-mene ul.varymenu li .link {
-    color: #000;
+    color: #fff;
     font-size: 25px;
     font-weight: 500;
+}
+header.darkHeader .mideel-mene ul.varymenu li a,
+header.darkHeader .mideel-mene ul.varymenu li .link{
+    color: #000;
 }
 
 .mideel-mene ul li a.humb span.mainhunm span.line {
     width: 30px;
     height: 4px;
     display: block;
-    background-color: #000;
+    background-color: #fff;
     margin: 5px 0px;
     margin-left: auto;
+}
+header.darkHeader .mideel-mene ul li a.humb span.mainhunm span.line{
+    background-color: #000;
 }
 
 .mideel-mene ul li a.humb span.mainhunm span.line:nth-child(2) {
@@ -492,13 +558,13 @@ img {
     position: relative;
     display: flex;
     align-items: center;
-    min-height: 620px;
+    height: 100vh;
+    justify-content: center;
 }
 
 .main-banner {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     position: relative;
     z-index: 9;
 }
@@ -512,105 +578,124 @@ img {
     bottom: 0;
     width: 100%;
     height: 100%;
-    background: rgba(47, 58, 121, 0.84);
+    background: rgba(0, 46, 91, 0.8);
+    backdrop-filter: saturate(180%) blur(0px);
 }
 
 .banner-content h1 {
     font-weight: 700;
-    font-size: 54px;
-    line-height: 66px;
+    font-size: 65px;
+    line-height: 75px;
     text-transform: uppercase;
-    color: #FFFFFF;
-    margin-bottom: 15px;
+    color: #f7ad18;
+    margin-bottom: 15px; 
 }
 
 .banner-content p {
     font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 22px;
+    font-weight: 300;
+    font-size: 28px;
+    line-height: 45px;
     color: #FFFFFF;
     font-family: 'Inter', sans-serif;
+}
+header.darkHeader button.btn.sinup {
+    background-color: #303c7a;
+}
+header.darkHeader button.btn.sinup i.fa.fa-user-circle {
+    color: #fafafa;
 }
 
 a.button-download-launcher {
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 700;
-    font-size: 18px;
+    font-size: 23px;
     line-height: 22px;
     text-transform: uppercase;
     color: #FFFFFF;
-    background: #CA373C;
-    border-radius: 45px;
-    width: 273px;
-    height: 60px;
+    background-color: #f7ad18;
+    width: 380px;
+    height: 75px;
     display: inline-block;
     text-align: center;
     line-height: 3.3;
     margin-top: 30px;
     text-decoration: none;
+    outline: 2px solid #f7ad18;
+    outline-offset: 5px;
+}
+.banner-content a.button-download-launcher:nth-child(4) {
+    background-color: transparent;
+    color: #fff;
+    border: 2px solid #CA373C;
+}
+
+a.button-download-launcher i.fa {
+    margin-right: 10px;
 }
 
 .banner-content {
-    padding-right: 235px;
+    width: 100%;
+    
 }
-
-section.farmertical {
-    background: #F9F9F6;
-    padding: 70px 0px;
+section.farmertical { 
+    padding: 0;
+    margin-top: -70px;
 }
 
 .indastry {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 30px 50px;
+    display: flex; 
+    padding: 18px 16px;
+    flex-wrap: wrap;
+    background-color: #303c7a;
+    border-right: 2px solid #f7ad18;
 }
 
-.indastry-img {
-    width: 30%;
-    min-width: 110px;
+.indastry-img { 
+    margin-right: 10px;
 }
 
-.indastry-content {
-    width: 60%;
-}
+
 
 .indastry-content h4 {
     font-family: 'Montserrat';
     font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
+    font-weight: 500;
+    font-size: 18px;
     line-height: 22px;
-    color: #271B1B;
+    color: #ffffff;
+    margin-bottom: 0;
+    margin-top: 10px;
 }
 
 .indastry-content a {
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 500;
-    font-size: 16px;
+    font-size: 15px;
     line-height: 16px;
-    color: #EE414B;
+    color: #f7ad18;
     text-decoration: none;
 }
 
 .filter-header {
     display: flex;
     align-items: center;
-    border: 1px solid #D7D7D7;
+    border: 1px solid #ccc;
     box-sizing: border-box;
-    border-radius: 6px;
     padding: 10px 25px;
     justify-content: space-between;
+    background: transparent;
+    margin-bottom: 30px;
+    border-radius: 5px;
 }
 
 .filter-title {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 50%;
+    width: 40%;
 }
 
 
@@ -684,6 +769,7 @@ section.farmertical {
     width: 100%;
     text-align: center;
     position: relative;
+    line-height: 1;
 }
 
 /* .filterkey .control input:checked ~ .control__content {
@@ -716,7 +802,7 @@ section.farmertical {
     box-sizing: border-box;
     border-radius: 6px;
     padding: 25px 25px;
-    margin: 25px 0px;
+    margin: 0px 0px;
 }
 
 .filterkey li .plus {
@@ -731,7 +817,7 @@ section.farmertical {
     line-height: 28px;
     color: #000000;
     padding-bottom: 15px;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
     text-decoration: none;
     cursor: pointer;
 }
@@ -742,7 +828,7 @@ section.farmertical {
     font-weight: 400;
     font-size: 18px;
     line-height: 22px;
-    color: #000000;
+    color: rgb(20, 20, 20);
     margin-bottom: 0;
 }
 
@@ -762,6 +848,7 @@ button.button.button--md.button--link-gray.button--icon.filter-collapse {
     flex-wrap: wrap;
     justify-content: space-between;
     display: none;
+    padding: 10px 0;
 }
 
 .filterkey li.current .filterbut {
@@ -773,17 +860,14 @@ button.button.button--md.button--link-gray.button--icon.filter-collapse {
 }
 
 .filterkey li {
-    padding: 20px 0px;
+    padding: 0px 0px;
 }
 
 .filterkey li .plus span.platform {
     width: 215px;
 }
 
-.banner-content {
-    padding-right: 50px;
-    width: 54%;
-}
+
 
 .title {
     text-align: center;
@@ -795,17 +879,7 @@ button.button.button--md.button--link-gray.button--icon.filter-collapse {
     margin-bottom: 80px;
 }
 
-.title h3::after {
-    width: 130px;
-    height: 4px;
-    content: "";
-    background-color: #000;
-    position: absolute;
-    top: 59px;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-}
+
 
 .pharmaceutical-box {
     border: 1px solid #D1D1D1;
@@ -818,25 +892,115 @@ button.button.button--md.button--link-gray.button--icon.filter-collapse {
 
 
 .pharmaceutical-contant {
-    padding: 13px 13px 0px 13px;
+    padding: 13px 13px 13px 13px;
+    position: relative;
+}
+.review-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.review-icon ul {
+    display: flex;
+    align-items: center; 
+}
+.review-item ul{
+    list-style: none;
+    margin-bottom: 0;
+}
+.prodwerp ul {
+    display: flex;
+    align-items: center;
+}
+.prodwerp ul li a {
+    color: #000;
+    font-size: 20px;
+}
+.prodwerp ul li {
+    margin: 0px 5px;
+}
+.prodwerp ul li:first-child {
+    margin-left: 0px;
+}
+.prodwerp ul li:last-child {
+    margin-right: 0px;
 }
 
+.girditem {
+    text-align: right; 
+}
+.girditem a {
+    font-size: 35px;
+    color: #b8b8b8;
+}
+a.girdfilter.active {
+    color: #303c7a;
+}
+
+.prodwerp ul li a.girditemea img {
+    height: auto;
+    width: 18px;
+}
+
+.review-icon ul li {
+    padding: 0px 3px;
+    color: #ffa00b;
+    font-size: 10px;
+}
+.review-icon ul li:first-child {
+    padding-left: 0px ;
+}
+.review-icon ul li:last-child {
+    padding-right: 0px ;
+}
 .pharmaceutical-contant h3 span {
     font-weight: 600;
-    font-size: 20px;
-    color: #FF3434;
+    font-size: 14px;
+    color: #ca373c;
 }
+.pharmaceutical-contant h3 {
+    position: absolute;
+    right: 0; 
+    padding: 5px 6px;
+    top: 5px; 
+}
+.buttons button.btn {
+    width: 48%;
+}
+.buttons button.carts {
+    width: 48%;
+    display: flex;
+    align-items: center;
+}
+.buttons button.carts span {
+    font-size: 10px;
+    letter-spacing: 0;
+    font-weight: 600;
+}
+
+.prodwerp ul li a.girditemea i {
+    color: #fff;
+    font-size: 15px;
+    padding: 1px;
+}
+
+
+
+
+
+
 
 .buttons {
     display: flex;
     justify-content: space-between;
-    padding: 20px 0;
+    padding: 10px 0;
+    padding-top: 10px;
 }
 
 .buttons button.carts {
-    background-color: #FAF2F2;
+    background-color: #ca373c;
     padding: 6px 22px;
-    color: black;
+    color: #fff;
     font-size: 22px;
     border: 0;
     letter-spacing: 6px;
@@ -861,6 +1025,7 @@ button.button.button--md.button--link-gray.button--icon.filter-collapse {
     outline: none;
     background-color: white;
     cursor: pointer;
+    width: 55px;
 }
 
 .buttons button {
@@ -868,7 +1033,7 @@ button.button.button--md.button--link-gray.button--icon.filter-collapse {
 }
 
 .buttons button:hover {
-    box-shadow: 277px 0 0 0 #313b79 inset;
+    box-shadow: 277px 0 0 0 #f7ad18 inset;
     color: #fff !important;
 }
 
@@ -904,18 +1069,44 @@ h5.Pharmacepo {
     margin-bottom: 25px;
     text-align: right;
     position: relative;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
-
+.search-container-out {
+    position: relative;
+    width: 40%;
+    margin-right: 20px;
+}
 .search-container input[type="text"] {
     padding: 10px 17px;
     border: 1px solid #D7D7D7;
     border-radius: 6px;
-    width: 40%;
+    width: 100%;
     outline: none;
     font-size: 20px;
     position: relative;
-    padding-left: 60px;
+    padding-right: 60px;
 }
+.search-container-out button.searchbut {
+    position: absolute;
+    right: 0;
+    font-size: 20px;
+    padding: 9px 22px;
+    font-weight: bold;
+    border: none;
+    bottom: 0;
+    text-align: center;
+    top: 0;
+    background-color: #f7ad18;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+.title h6 {
+    color: #000;
+    font-size: 16px;
+}
+
 
 /*************===========================********************/
 section {
@@ -938,12 +1129,12 @@ a.button-download-launcher {
 }
 
 a.button-download-launcher:hover {
-    box-shadow: 277px 0 0 0 #313b79 inset;
+    box-shadow: 380px 0 0 0 #313b79 inset;
 }
 
 .title {
     text-align: center;
-    margin-bottom: 80px;
+    margin-bottom: 75px;
 }
 
 a.button-download-launcher.border-only {
@@ -954,18 +1145,45 @@ a.button-download-launcher.border-only {
 
 .content-area h3 {
     margin-bottom: 0;
-    line-height: 1;
-    font-weight: 600;
-    font-size: 25px;
+    line-height: 1.5;
+    font-weight: bold;
+    font-size: 15px;
+    min-height: auto;
+    width: 80%;
+} 
+.content-area .review-item {
+    padding: 10px 0px;
 }
-
+.content-area h6 {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    color: #FF3434;
+    margin-top: 9px;
+    line-height: 1;
+    position: absolute;
+    right: 0;
+    padding: 5px 6px;
+    top: 12px;
+}
+.packageItem button.btn.btn-danger i.fa.fa-shopping-cart {
+    margin-right: 10px;
+}
+.content-area p {
+    width: 80%;
+    font-size: 9px;
+    margin-bottom: 0;
+}
 .content-area {
     padding: 25px 10px;
     box-shadow: 0 0 14px 0px #a9a7a7;
+    position: relative;
 }
 
 .packageItem figure {
     margin-bottom: 0;
+    position: relative;
 }
 
 a.button-download-launcher.border-only:hover {
@@ -978,7 +1196,7 @@ a.button-download-launcher.border-only:hover {
     background-repeat: no-repeat;
     background-position: center top;
     border-radius: 15px 15px 0 0;
-    min-height: 440px;
+    min-height: 256px;
 
 }
 
@@ -993,7 +1211,7 @@ a.button-download-launcher.border-only:hover {
 
 .what-you-get::before {
     content: "";
-    background-image: url(/static/images/slider-bg2.png);
+    /* background-image: url(/static/images/slider-bg2.png); */
     width: 145px;
     height: 104px;
     position: absolute;
@@ -1067,43 +1285,44 @@ button.owl-next {
 }
 
 .filter-title i.fa.fa-sliders {
-    font-size: 30px;
+    font-size: 22px;
+    color: #000;
 }
 
 
 /****************pagination*****************/
 
-.banner.bannerbottom::after {
-    position: absolute;
-    content: "";
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(202, 55, 60, 0.86);
-}
-
 .bannerbottom a.button-download-launcher {
-    color: #CA373C;
-    background: #ffff;
-    border: 2px solid #fff;
+    color: #000000;
+    background: #f7ad18;
 }
 
 .bannerbottom a.button-download-launcher:hover {
     color: #fff;
     box-shadow: none !important;
-    border: 2px solid #fff;
-    background: transparent !important;
+    background-color:#303c7a;
 }
-
+.bannerbottom .banner-content h1 {
+    font-size: 40px;
+    text-transform: capitalize;
+    color: #000;
+    line-height: 1.2;
+    margin-bottom: 0;
+}
+.bannerbottom .banner-content p {
+    color: #000;
+    font-size: 20px;
+    margin-bottom: 0;
+}
 .banner-content span {
     font-weight: 400;
 }
 
 section.banner.bannerbottom {
     min-height: 1px;
+    padding-bottom: 0;
+    height: auto;
+    padding-top: 80px;
 }
 
 .newsletter {
@@ -1245,7 +1464,11 @@ section.main-footer {
     color: #000000;
     text-decoration: none;
 }
-
+.pravesipolisi ul li a {
+    font-size: 20px;
+    color: #fff;
+    font-weight: 400;
+}
 .footer-menu li {
     padding: 20px 30px;
 }
@@ -1254,26 +1477,32 @@ section.main-footer {
     text-align: center;
     padding: 30px 0px;
 }
+.pravesipolisi ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 .copy-right p {
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 400;
-    font-size: 16px;
+    font-size: 20px;
     line-height: 20px;
-    color: #000000;
+    color: #ffffff;
+    line-height: 1.5;
 }
 
 footer {
-    background: rgba(248, 246, 245, 1);
-    padding: 88px 0px 0px 0px;
+    background: #001542;
+    padding: 20px 0px 20px 0px;
 }
-
 .pharmaceutical-contant h3 {
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 600;
-    font-size: 20px;
+    font-size: 14px;
     color: #FF3434;
     margin-top: 9px;
     margin-bottom: 0;
@@ -1284,6 +1513,15 @@ footer {
 
 .mideel-mene ul li.dropdwon {
     position: relative;
+}
+
+.pravesipolisi ul li a {
+    font-size: 15px;
+    color: #fff;
+    font-weight: 400;
+    padding: 0px 10px;
+    border-right: 1px solid #fff;
+    text-decoration: none;
 }
 
 
@@ -1300,7 +1538,37 @@ footer {
     margin: 0;
     border-radius: 10px 10px 0 0;
     overflow: hidden;
+    position: relative;
 }
+figure p {
+    background-color: #303c7a;
+    color: #fff;
+    font-size: 11px;
+    padding: 2px 5px;
+    position: absolute;
+    bottom: 108px;
+    font-weight: 600;
+    border-radius: 0px 5px 5px 0;
+}
+.buttons span {
+    font-size: 11px;
+    font-weight: 600;
+}
+.prodwerp {
+    background-color: #303c7a;
+    padding: 0 9px;
+    border-radius: 5px;
+}
+.userswithicon {
+    padding: 8px 0;
+}
+.mideel-mene ul.list-menu li.nav-item.dropdown {
+    margin-top: 4px;
+}
+
+
+
+
 
 /**************************/
 
@@ -1638,16 +1906,63 @@ body .btn-primary:hover,body .btn-primary:focus {
     padding-top: 0;
 }
 .pharmaceutical-box img {
-    height: 180px;
+    height: 150px;
 }
- 
 
+.main-farmertycal {
+    display: flex;
+    align-items: center;
+    position: relative;
+    box-shadow: 0px 5px 11px -3px rgb(0 0 0 / 30%);
+    border-top: 2px solid #f7ad18;
+}
 
+.listitem-farmertycal {
+    width: 16.67%;
+    margin: 0 auto;
+    position: relative;
+    z-index: 9;
+}
 
-
+.indastry:hover {
+    
+    background-color:#f7ad18 ;
+    transition: 0.3s;
+}
+.indastry:hover h4 {
+    color: #fff;
+}
+.indastry:hover a {
+    color: #fff;
+}
+.listitem-farmertycal:last-child .indastry {
+    border: none;
+}
+.indastry-img img {
+    max-width: 50px;
+}
+.courses .slick-track { 
+    width: 100%!important;
+}
+.packageItem button.btn.btn-danger {
+    font-size: 17px;
+    line-height: 1;
+    padding: 14px!important;
+}
+.review-icon ul li {
+    color: #716e6e;
+}
+.girditem a.girdfilter,.girditem a.viewfilter {
+    font-size: 22px;
+}
 
 
 @media only screen and (min-width: 1599px) {
+    .girditem a {
+        font-size: 20px;
+    }
+    
+    
     .container {
         max-width: 1500px;
         margin: 0 auto;
@@ -1659,13 +1974,17 @@ body .btn-primary:hover,body .btn-primary:focus {
 }
 
 
-
+.girditem a.girdfilter {
+    margin-right: 20px;
+}
 
 @media only screen and (max-width: 1599px) {
 
 
 
-
+    .indastry-img img {
+        max-width: 30px;
+    }
     .buttons button.addtubul {
         width: 125px;
     }
@@ -1688,7 +2007,8 @@ body .btn-primary:hover,body .btn-primary:focus {
 
     .search-container i.fa.fa-search {
         right: 295px;
-        top: 8px;
+        top: 9px;
+        font-size: 15px;
     }
 
     .search-container input[type="text"] {
@@ -1696,32 +2016,25 @@ body .btn-primary:hover,body .btn-primary:focus {
         padding-left: 50px;
     }
 
-    .banner {
-        min-height: 588px;
-    }
+    
 
-    section.farmertical {
-        padding: 50px 0px;
-    }
 
     section {
         padding: 50px 0;
     }
 
     h3 {
-        font-size: 30px;
+        font-size: 35px;
     }
 
-    .title h3::after {
-        top: 40px;
-    }
+   
 
     .filter-header {
         padding: 5px 15px;
     }
 
     .filter-title i.fa.fa-sliders {
-        font-size: 32px;
+        font-size: 22px;
     }
 
     .filter-title h6 {
@@ -1759,12 +2072,14 @@ body .btn-primary:hover,body .btn-primary:focus {
 
     .mideel-mene ul.varymenu li a,
     .mideel-mene ul.varymenu li .link {
-        font-size: 16px;
+        font-size: 20px;
     }
 
     .mideel-mene ul.varymenu li .sinup {
-        font-size: 15px;
-        padding: 8px 20px;
+        font-size: 20px;
+        padding: 7px 7px;
+        width: 35px;
+        height: 35px;
     }
 
     .mideel-mene ul li {
@@ -1785,14 +2100,14 @@ body .btn-primary:hover,body .btn-primary:focus {
     }
 
     .banner-content h1 {
-        font-size: 38px;
-        line-height: 1.5;
+        font-size: 50px;
+        line-height: 1.3;
     }
 
     .filterkey li .plus {
         font-size: 15px;
-        padding-bottom: 10px;
-        margin-bottom: 0px;
+        padding-bottom: 6px;
+        margin-bottom: 5px;
     }
 
     .filterkey li .plus span.platform {
@@ -1802,13 +2117,24 @@ body .btn-primary:hover,body .btn-primary:focus {
     .pharmaceutical-contant h4 {
         font-size: 16px;
     }
-
-    .pharmaceutical-contant {
-        padding: 13px 13px 0px 13px;
+    .review-icon ul li {
+        padding: 0px 1px;
     }
-
+    .prodwerp ul li {
+        margin: 0px 2px;
+    }
+    .pharmaceutical-contant {
+        padding: 13px 13px 13px 13px;
+    }
+    .prodwerp ul li a {
+        font-size: 18px;
+    }
+    .pharmaceutical-contant h3 span {
+        font-size: 16px;
+    }
+    
     .package-img {
-        min-height: 275px;
+        min-height: 190px;
     }
 
     .newsletter button {
@@ -1851,17 +2177,39 @@ body .btn-primary:hover,body .btn-primary:focus {
     }
 
     .content-area h3 {
-        font-size: 20px;
+        font-size: 17px;
+    min-height: 35px;
     }
 
     .banner-content p {
         font-size: 15px;
+        line-height: 24px;
+    }
+    section.farmertical {
+        margin-top: -40px;
     }
 
     a.button-download-launcher {
+        font-size: 20px;
+        height: 55px;
+        line-height: 58px;
+        width: 315px;
+        outline: 1px solid #f7ad18;
+    }
+    .content-area h6 {
+        font-weight: 700;
+        font-size: 17px;
+        margin-top: 20px;
+        top: 14px;
+    }
+    .search-container-out button.searchbut {
         font-size: 15px;
-        height: 45px;
-        line-height: 48px;
+        padding: 3px 22px;
+    }
+    
+    .bannerbottom .banner-content h1 {
+        font-size: 35px;
+        margin-bottom: 15px;
     }
 
     .content-area a.button-download-launcher.border-only {
@@ -1869,11 +2217,16 @@ body .btn-primary:hover,body .btn-primary:focus {
     }
 
     .indastry-content h4 {
-        font-size: 18px;
+        font-size: 14px;
+        margin-bottom: 0;
+        margin-top: 0;
+    }
+    .indastry { 
+        padding: 15px 15px;  
     }
 
     .indastry-content a {
-        font-size: 14px;
+        font-size: 13px;
     }
 
     .massage-box h5 {
@@ -1895,15 +2248,19 @@ body .btn-primary:hover,body .btn-primary:focus {
     .socail-media li a {
         width: 50px;
         height: 50px;
+        font-size: 22px;
+    }
+    .girditem a {
         font-size: 20px;
     }
 }
 
 
 @media only screen and (max-width: 1199px) {
-    .main-header::after {
-        width: 8%;
+    .logo a img {
+        width: 70px;
     }
+    
     .MuiMenu-list .bg-light {
         margin-left: 140px!important;
         margin-top: -35px;
@@ -1912,27 +2269,12 @@ body .btn-primary:hover,body .btn-primary:focus {
         width: 111px;
     } 
     .banner {
-        min-height: 500px;
+        height: 500px;
     }
     button.addtubul { 
         font-size: 14px; 
     }
-    .main-banner::after {
-        right: -92px;
-        width: 140px;
-        height: 140px;
-        background-size: 90px;
-        bottom: -90px;
-    }
-
-    .banner::before {
-        left: 95px;
-        width: 140px;
-        height: 140px;
-        z-index: 9;
-        background-size: 90px;
-    }
-
+ 
     .search-container i.fa.fa-search {
         right: 245px;
         top: 8px;
@@ -2043,9 +2385,7 @@ body .btn-primary:hover,body .btn-primary:focus {
 
 
 @media only screen and (max-width: 991px) {
-    .main-header::after {
-        width: 15%;
-    }
+  
     span.mainhunm {
         position: relative;
         z-index: 9999;
@@ -2060,26 +2400,8 @@ body .btn-primary:hover,body .btn-primary:focus {
         display: block;
     }
 
-    .banner::before {
-        left: 35px;
-        width: 100px;
-        height: 100px;
-        z-index: 9;
-        background-size: 70px;
-        top: 15px;
-    }
-
-    .main-banner::after {
-        right: -70px;
-        width: 100px;
-        height: 100px;
-        background-size: 65px;
-        bottom: -90px;
-    }
-
-
     .banner {
-        min-height: 400px;
+        height: 500px;
     }
 
     .banner-content h1 {
@@ -2096,10 +2418,7 @@ body .btn-primary:hover,body .btn-primary:focus {
         font-size: 30px;
     }
 
-    .title h3::after {
-        top: 45px;
-    }
-
+  
     section {
         padding: 45px 0;
     }
@@ -2244,7 +2563,9 @@ body .btn-primary:hover,body .btn-primary:focus {
     }
     section.farmertical {
         padding: 30px 0px;
+        margin: 0;
     }
+
 
     .bundle button.addtubul {
         width: 100%;
@@ -2313,12 +2634,7 @@ body .btn-primary:hover,body .btn-primary:focus {
         padding: 40px 0px;
     }
 
-    .banner::before {
-        left: 35px;
-        width: 45px;
-        height: 45px;
-        background-size: 45px;
-    }
+    
 
     a.button-download-launcher {
         height: auto;
@@ -2326,14 +2642,7 @@ body .btn-primary:hover,body .btn-primary:focus {
         width: 100%;
     }
 
-    .main-banner::after {
-        right: 0;
-        width: 59px;
-        height: 69px;
-        background-size: 45px;
-        bottom: -34px;
-    }
-
+  
     .banner-img {
         padding-top: 30px;
     }
@@ -2341,11 +2650,8 @@ body .btn-primary:hover,body .btn-primary:focus {
     h3 {
         font-size: 25px;
     }
-
-    .title h3::after {
-        top: 38px;
-        width: 100px;
-    }
+   
+  
 
     .filter-header {
         padding: 10px 15px;
@@ -2462,7 +2768,8 @@ body .btn-primary:hover,body .btn-primary:focus {
     }
 
     .banner {
-        min-height: auto;
+        height: auto;
+        padding: 100px 0px;
     }
 
     .what-you-get::before {
@@ -2700,12 +3007,7 @@ text-align: center;
 
 
 
-@media only screen and (max-width: 450px) {
 
-    .main-header::after {
-        width: 200px;
-    }
-}
 
 .otp-form > div {justify-content: center;}
 

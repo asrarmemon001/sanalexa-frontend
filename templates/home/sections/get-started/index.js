@@ -179,9 +179,10 @@ export default function GetStarted() {
     <section className="couressto">
       <div className="container">
         <div className="title">
-          <h3>Courses to get you started </h3>
+          <h3>COURSES TO GET YOU STARTED </h3>
+          <h6> Find the exact right 3D content for your needs Lorem Ipsum is simply dummy text of the printing</h6>
         </div>
-        <div className="mb-5 mobwrep h-100 d-flex">
+        <div className="mb-4 mobwrep h-100 d-flex">
           <div className="d-flex col-md-9 pl-0 col-sm-12 vercel img-no"> 
             {
               bundleProducts?.slice(0,4)?.map((i, key)=>(
@@ -215,7 +216,7 @@ export default function GetStarted() {
                     </div>
         </div>
         <div></div>
-
+      
         <div className="row">
           <div className="col-lg-3 col-md-4">
             <div className="filltercode" data-aos="fade-right">
@@ -334,17 +335,24 @@ export default function GetStarted() {
 
           <div className="col-lg-9 col-md-8">
             <div className="search-container" data-aos="fade-up">
-              <i className="fa fa-search" aria-hidden="true"></i>
-              <input
+              <div className="search-container-out">
+                {/* <i className="fa fa-search" aria-hidden="true"></i> */}
+               <input
                 type="text"
                 placeholder=" Search Keywords"
                 name="search"
                 value={search}
                 onChange={handleOnChange}
               />
+              <button className="searchbut">SEARCH</button>
+              </div>
+              <div className="girditem">
+                <a href="#" className="girdfilter active"><i class="fa fa-th" aria-hidden="true"></i></a>
+                <a href="#" className="viewfilter"><i class="fa fa-bars" aria-hidden="true"></i></a>
+            </div>
             </div>
 
-            <div className="row mb-4">
+            <div className="row mb-4 girdsestem">
               {loadingIs ? (
                 <Loader />
               ) : projectListIs?.length > 0 ? (

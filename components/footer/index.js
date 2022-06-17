@@ -6,7 +6,7 @@ const Footer = () => {
             <div className="main-footer">
                 <div className="mainfooter">
                     <div className="container">
-                        <div className="row">
+                        {/* <div className="row">
                             <div className="col-md-4">
                                 <div className="massage-box">
                                     <img src="/static/images/massage.png" />
@@ -21,9 +21,9 @@ const Footer = () => {
                                 <div className="massage-box">
                                     <img src="/static/images/email.png" />
                                     <h5>EMAIL </h5>
-                                    {/* <Link href="test@gmail.com"> */}
+                                   <Link href="test@gmail.com"> 
                                         <span>test@gmail.com</span>
-                                    {/* </Link> */}
+                                    </Link>
                                 </div>
                             </div>
 
@@ -31,9 +31,9 @@ const Footer = () => {
                                 <div className="massage-box">
                                     <img src="/static/images/massage.png" />
                                     <h5>PHONE </h5>
-                                    {/* <Link href="tel 123 456 7890"> */}
+                                    <Link href="tel 123 456 7890"> 
                                         <span>Connect Now</span>
-                                    {/* </Link> */}
+                                 </Link> 
                                 </div>
                             </div>
 
@@ -52,10 +52,19 @@ const Footer = () => {
                                     <li><Link href="#"><a> CONTACT</a></Link></li>
                                 </ul>
                             </div>
-                        </div>
+                        </div> */}
 
                         <div className="copy-right">
-                            <p>© 2021 Andrew Cooper International, Inc. All rights reserved.</p>
+                            <p>Simulanis Solutions Private Limited 2021. All Right Reserved.
+                            <br /> Eduguildaccerated Company
+                                </p>
+                        </div>
+                        <div className="pravesipolisi">
+                            <ul>
+                                <li><a href="#">Disclaimer.</a></li>
+                                <li><a href="#">Privacy Policy.</a></li>
+                                <li><a href="#">Terms & Condition</a></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
