@@ -347,8 +347,8 @@ export default function GetStarted() {
               <button className="searchbut">SEARCH</button>
               </div>
               <div className="girditem">
-                <a href="#" className="girdfilter active"><i class="fa fa-th" aria-hidden="true"></i></a>
-                <a href="#" className="viewfilter"><i class="fa fa-bars" aria-hidden="true"></i></a>
+                <a href="#" className="girdfilter active"><i className="fa fa-th" aria-hidden="true"></i></a>
+                <a href="#" className="viewfilter"><i className="fa fa-bars" aria-hidden="true"></i></a>
             </div>
             </div>
 
