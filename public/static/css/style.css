@@ -398,6 +398,7 @@ header {
     z-index: 999;
     top: 0;
     position: fixed;
+    padding: 0 30px;
 }
 
 header.darkHeader { 
@@ -1148,7 +1149,7 @@ a.button-download-launcher.border-only {
     line-height: 1.5;
     font-weight: bold;
     font-size: 15px;
-    min-height: auto;
+    min-height: 50px;
     width: 80%;
 } 
 .content-area .review-item {
@@ -1955,6 +1956,13 @@ body .btn-primary:hover,body .btn-primary:focus {
 .girditem a.girdfilter,.girditem a.viewfilter {
     font-size: 22px;
 }
+section.newslettersection {
+    display: none;
+}
+.pravesipolisi ul li:last-child a {
+    border: none;
+}
+
 
 
 @media only screen and (min-width: 1599px) {
@@ -2177,8 +2185,10 @@ body .btn-primary:hover,body .btn-primary:focus {
     }
 
     .content-area h3 {
-        font-size: 17px;
-    min-height: 35px;
+        font-size: 14px;
+        line-height: 1;
+        min-height: 50px;
+        width: 73%;
     }
 
     .banner-content p {
@@ -2252,6 +2262,9 @@ body .btn-primary:hover,body .btn-primary:focus {
     }
     .girditem a {
         font-size: 20px;
+    }
+    .bannerbottom .banner-content::after { 
+        border-width: 290px 100px 0 0; 
     }
 }
 
