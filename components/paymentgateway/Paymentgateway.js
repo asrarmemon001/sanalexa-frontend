@@ -6,7 +6,7 @@ import AppContext from "../../appContext";
 import { paymentApi } from "../../utils/api-Request";
 import { getSession, getToken } from "../../utils/constants";
 
-export default function Paymentgateway({ type,disabled }) {
+export default function Paymentgateway({ type, disabled }) {
   const router = useRouter()
   const appContext = useContext(AppContext);
   const { fetchCartList, fetchBundleList, loginSignupModal } = appContext;
@@ -21,7 +21,7 @@ export default function Paymentgateway({ type,disabled }) {
       setProcessPaymentAfterLogin()
     }
   }, [isLoggedin])
-  
+
   const initializeRazorpay = () => {
     return new Promise((resolve) => {
       const script = document.createElement("script");
@@ -73,6 +73,12 @@ export default function Paymentgateway({ type,disabled }) {
 
         },
         // callback_url: "http://localhost:3000/",
+        modal: {
+          escape: false, ondismiss: function () {
+
+            router.push("/payment/failed")
+          }
+        },
       };
 
       const paymentObject = new window.Razorpay(options);
