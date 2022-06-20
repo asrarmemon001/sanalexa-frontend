@@ -8,7 +8,7 @@ export default function BannerBottom() {
                     <div className="banner-content">
                         <h1>Whan us to deploy paint  Simulator at your site?</h1>
                         <p>Our technical experts will respond to your query at the earliest.</p>
-                         <Link href="#"><a className="button-download-launcher">Contact</a></Link>
+                         <Link href="#"><a className="button-download-launcher">Contact Us</a></Link>
                     </div>
                     {/* <div className="banner-img">
                         <img src="/static/images/right-bott.png" />

@@ -96,7 +96,7 @@ export default function FeaturedCourses({ heading }) {
         {loadingIs ?
           <Loader /> :
           projectListIs?.length > 0 ?
-            <Slider {...settings} className="coursesSlider owl-carousel">
+            <Slider {...settings} className="coursesSliders">
               {
                 projectListIs.map((obj, index) => {
                   return (
@@ -106,8 +106,7 @@ export default function FeaturedCourses({ heading }) {
             </Slider> : <NoDataFound />
         }
       </div>
-
-
+ 
     </div>
   </section>
 

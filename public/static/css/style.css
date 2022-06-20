@@ -124,18 +124,13 @@ ul.MuiMenu-list .cu-2  li.dropdown-item span.MuiTouchRipple-root::after {
     margin-left: 140px!important;
     margin-top: -40px;
 }
-.flexclas {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
+ 
 .MuiMenu-list .bg-light a, .MuiMenu-list .bg-light a:hover{
     color: #000;
     text-decoration: none;
 }
 .flexclas button {
-    margin-bottom: 0!important;
-    width: 115px;
+    margin-bottom: 0!important; 
 }
 .mobwrep {
     align-items: center;
@@ -606,25 +601,47 @@ header.darkHeader button.btn.sinup {
 header.darkHeader button.btn.sinup i.fa.fa-user-circle {
     color: #fafafa;
 }
+.dolarret {
+    font-size: 26px;
+    font-weight: 700;
+}
+.dolarret span {
+    font-size: 16px;
+    font-weight: 500;
+    padding-left: 8px;
+    color: #ca373c;
+}
 
-a.button-download-launcher {
+button.buy_bundle {
+    border-radius: 0px!important;
+    width: 175px;
+    font-size: 15px;
+    text-transform: none;
+    line-height: 3;
+    letter-spacing: 0.05em;
+    margin-top: 11px;
+    cursor: pointer;
+}
+button.buy_bundle i.fa.fa-arrow-right {
+    padding-right: 18px;
+    font-size: 20px;
+}
+a.button-download-launcher,.buy_bundle {
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 700;
-    font-size: 23px;
-    line-height: 22px;
+    font-size: 23px; 
     text-transform: uppercase;
     color: #FFFFFF;
     background-color: #f7ad18;
-    width: 380px;
-    height: 75px;
+    width: 380px; 
     display: inline-block;
     text-align: center;
     line-height: 3.3;
     margin-top: 30px;
-    text-decoration: none;
-    outline: 2px solid #f7ad18;
+    text-decoration: none;  
     outline-offset: 5px;
+    outline: 1px solid #f7ad18;
 }
 .banner-content a.button-download-launcher:nth-child(4) {
     background-color: transparent;
@@ -634,6 +651,7 @@ a.button-download-launcher {
 
 a.button-download-launcher i.fa {
     margin-right: 10px;
+    font-size: 24px;
 }
 
 .banner-content {
@@ -644,40 +662,57 @@ section.farmertical {
     padding: 0;
     margin-top: -70px;
 }
+.listitem-farmertycal:last-child .indastry::after {
+    opacity: 0;
+}
 
+.indastry::after {
+    position: absolute;
+    content: "";
+    border-right: 2px solid #f7ad18;
+    left: 0;
+    right: 0;
+    top: 5px;
+    bottom: 0;
+    height: 65px;
+}
 .indastry {
     display: flex; 
     padding: 18px 16px;
     flex-wrap: wrap;
-    background-color: #303c7a;
-    border-right: 2px solid #f7ad18;
+    background-color: #303c7a; 
 }
 
 .indastry-img { 
     margin-right: 10px;
 }
 
-
-
-.indastry-content h4 {
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 22px;
-    color: #ffffff;
-    margin-bottom: 0;
-    margin-top: 10px;
-}
-
-.indastry-content a {
+.indastry-content h4 a {
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 500;
     font-size: 15px;
+    line-height: 0px;
+    color: #ffffff;
+    margin-bottom: 0;
+    margin-top: 10px;
+    text-transform: uppercase;
+}
+.indastry-content h5  {
+    position: relative;
+}
+
+
+.indastry-content h5 a {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-size: 12px;
     line-height: 16px;
-    color: #f7ad18;
+    color: #e6e6e6;
     text-decoration: none;
+    position: absolute;
+    top: -3px;
+    font-weight: 300;
 }
 
 .filter-header {
@@ -928,8 +963,11 @@ button.button.button--md.button--link-gray.button--icon.filter-collapse {
 }
 
 .girditem {
-    text-align: right; 
+    text-align: right;
+    display: none;
 }
+
+
 .girditem a {
     font-size: 35px;
     color: #b8b8b8;
@@ -1076,8 +1114,7 @@ h5.Pharmacepo {
 }
 .search-container-out {
     position: relative;
-    width: 40%;
-    margin-right: 20px;
+    width: 40%; 
 }
 .search-container input[type="text"] {
     padding: 10px 17px;
@@ -1125,11 +1162,11 @@ section {
     margin-bottom: 70px;
 }
 
-a.button-download-launcher {
+a.button-download-launcher,.buy_bundle {
     transition: 0.5s all ease;
 }
 
-a.button-download-launcher:hover {
+a.button-download-launcher:hover,.buy_bundle:hover {
     box-shadow: 380px 0 0 0 #313b79 inset;
 }
 
@@ -1950,6 +1987,11 @@ body .btn-primary:hover,body .btn-primary:focus {
     line-height: 1;
     padding: 14px!important;
 }
+.packageItem button.btn.btn-danger:hover {
+    box-shadow: 380px 0 0 0 #f7ad18 inset;
+    border-color: #f7ad18;
+    color: #000;
+}
 .review-icon ul li {
     color: #716e6e;
 }
@@ -1985,7 +2027,9 @@ section.newslettersection {
 .girditem a.girdfilter {
     margin-right: 20px;
 }
-
+.coursesSlider .packageItem {
+    margin-bottom: 20px;
+}
 @media only screen and (max-width: 1599px) {
 
 
@@ -2021,7 +2065,8 @@ section.newslettersection {
 
     .search-container input[type="text"] {
         padding: 5px 17px;
-        padding-left: 50px;
+        padding-left: 5px;
+        font-size: 14px!important;
     }
 
     
@@ -2192,15 +2237,19 @@ section.newslettersection {
     }
 
     .banner-content p {
-        font-size: 15px;
+        font-size: 18px;
         line-height: 24px;
+        letter-spacing: 0.3px;
     }
     section.farmertical {
         margin-top: -40px;
     }
-
+   .farmertical .container {
+    padding: 0 50px;
+    max-width: 100%;
+}
     a.button-download-launcher {
-        font-size: 20px;
+        font-size: 18px;
         height: 55px;
         line-height: 58px;
         width: 315px;
@@ -2231,13 +2280,11 @@ section.newslettersection {
         margin-bottom: 0;
         margin-top: 0;
     }
-    .indastry { 
-        padding: 15px 15px;  
+    .indastry {
+        padding: 25px 15px;
+        padding-right: 0;
     }
-
-    .indastry-content a {
-        font-size: 13px;
-    }
+    
 
     .massage-box h5 {
         font-size: 16px;
@@ -2309,7 +2356,7 @@ section.newslettersection {
     
 
     .mideel-mene ul.varymenu li .sinup {
-        padding: 8px 15px;
+        padding: 0px 3px;
     }
 
     .mideel-mene ul li {
@@ -2317,7 +2364,7 @@ section.newslettersection {
     }
 
     .mideel-mene ul.list-menu li {
-        padding: 0px 25px 0px 0px;
+        padding: 0px 20px 0px 0px;
     }
 
     .mideel-mene {
@@ -2403,14 +2450,33 @@ section.newslettersection {
         position: relative;
         z-index: 9999;
     }
+    .logo a img {
+        width: 100px;
+    }
     .cart-but * {
         margin-right: 10px;
+    }
+    .search-container-out { 
+        width: 65%; 
     }
     .bundle button.addtubul {
         width: 35%;
     }
+    .main-banner .banner-content h1 {
+        font-size: 28px; 
+    }
+    .indastry {
+        justify-content: center;
+        text-align: center;
+    }
     .mideel-mene ul.varymenu li:last-child {
         display: block;
+    }
+    a.button-download-launcher {
+        font-size: 15px;
+        height: 45px;
+        line-height: 45px;
+        width: 260px; 
     }
 
     .banner {
@@ -2428,7 +2494,10 @@ section.newslettersection {
     }
 
     h3 {
-        font-size: 30px;
+        font-size: 25px;
+    }
+    .bannerbottom .banner-content {
+        width: 81%; 
     }
 
   
@@ -2538,6 +2607,10 @@ section.newslettersection {
 @media only screen and (max-width: 767px) {
     .mobwrep {
         flex-wrap: wrap;
+    }
+    .main-banner .banner-content h1 {
+        font-size: 40px;
+        line-height: 45px;
     }
     .img-no {
         padding-left: 15px!important;
@@ -2735,8 +2808,13 @@ section.newslettersection {
     }
 
     footer {
-        padding: 30px 0px 0px 0px;
+        padding: 30px 0px 30px 0px;
     }
+    
+    .pravesipolisi ul li a {
+        font-size: 13px; 
+        padding: 0px 10px; 
+    }    
 
     .massage-box {
         margin-bottom: 30px;
@@ -2799,7 +2877,83 @@ section.newslettersection {
     .fieldList:nth-child(2n) {
         margin-left: 0;
     }
+    .main-farmertycal { 
+        flex-wrap: wrap;
+    }
+    .indastry-img img {
+        max-width: 50px;
+    }
+    .indastry-content h4 {
+        font-size: 20px;
+    }
     
+    .indastry-content a {
+        font-size: 17px;
+    }    
+    .indastry {
+        padding: 15px 15px;
+        justify-content: start;
+        text-align: left;
+        border-bottom: 2px solid #f7ad18;
+        border-right: 0px;
+    }
+    .indastry-img {
+        margin-right: 30px;
+    }
+    .search-container { 
+        justify-content: space-between; 
+        margin: 18px 0px;
+        flex-wrap: wrap;
+    }
+    .search-container-out { 
+        width: 100%;
+        margin-right: 0;
+    }
+    .girditem { 
+        margin: 10px 0px;
+    }
+    .buttons span {
+        font-size: 14px; 
+    }
+    .buttons button.carts span {
+        font-size: 14px; 
+    }
+    .buttons button.btn { 
+        justify-content: space-around; 
+    }
+    .buttons button.carts { 
+        justify-content: space-around;
+    }
+    .bannerbottom .banner-content {
+        width: 100%;
+        padding: 20px 20px 20px 20px;
+    }
+    .bannerbottom .banner-content::after {
+        border-width: 314px 344px 0px 0px;
+        border-color: white white white white;
+    }
+    .pravesipolisi ul { 
+        margin-bottom: 0;
+    }
+    .copy-right {
+        padding: 10px 0px;
+    }
+    bannerbottom .banner-content h1 {
+        font-size: 25px;
+    }
+    .bannerbottom .banner-content p { 
+        font-size: 18px;
+        margin-bottom: 15px;
+    }
+    .listitem-farmertycal {
+        width: 100%; 
+    }
+    .indastry-content h4 {
+        font-size: 20px;
+    }
+    .indastry-content a {
+        font-size: 15px;
+    }
 }
 
 
@@ -2821,8 +2975,11 @@ section.newslettersection {
 /**************plans-subscription******************/
 
 .banner-plans {
-    background-color: #f1f9ff;
-    padding: 70px 0px;
+    background-color: #001542;
+    padding: 110px 0px 60px;
+}
+.banner-content-ple h2, .banner-content-ple p {
+    color: #fff;
 }
 .banner-plans  a.subscriptiondwonlod {
     background: #CA373C;
@@ -2993,10 +3150,38 @@ i.fa.fa-caret-down, i.fa.fa-caret-up {
 }
 
 @media only screen and (max-width: 1199px) {
+
+
     .bord {
         padding: 50px 50px 50px;
     }
 
+    .indastry {
+        padding: 10px 10px;
+    }
+    .indastry-content h4 {
+        font-size: 11px; 
+    }
+    .indastry-content a {
+        font-size: 12px;
+    }
+    
+    .buttons span {
+        font-size: 7px;
+        font-weight: 600;
+    }
+    .buttons button.btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .bannerbottom .banner-content h1 {
+        font-size: 30px;
+    }
+    .bannerbottom .banner-content {
+        overflow: hidden;
+    }
 }
 @media only screen and (max-width: 767px) {
     .bord {

@@ -125,6 +125,15 @@ const ProductDetailsMain = ({ productDetails }) => {
     console.log(productDetails);
     return (
         <section className="product-Gallery"> 
+        <div className="banner-plans">
+                <div className="container">
+                    <div className="banner-content-ple">
+                        <h2>{packagesName}</h2>
+                        <p>{packagesDesc}</p>
+                        <p>₹ {price}</p>
+                    </div>
+                </div>
+            </div>
             <div className="container">
                 <div className="outer">
                     <div className="row">

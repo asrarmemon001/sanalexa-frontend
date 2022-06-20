@@ -110,7 +110,7 @@ const Header = () => {
                       }
                       endIcon={<KeyboardArrowDownIcon />}
                     >
-                      Industries
+                      Explore
                     </Button>
                     <Menu
                       id="basic-menu"
@@ -189,7 +189,7 @@ const Header = () => {
                     <Link href="/bundles">
                       <a>
                         {" "}
-                        Create Bundle{" "}
+                        Buy Bundle{" "}
                         <span className="badge badge-danger">
                           {bundleLoading ? (
                             <CircularProgress size={15} />

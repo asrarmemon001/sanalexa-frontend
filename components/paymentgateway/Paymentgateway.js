@@ -96,5 +96,6 @@ export default function Paymentgateway({ type,disabled }) {
       setLoading(false)
     }
   };
-  return <button disabled={loading || disabled} className="btn btn-danger mb-3" style={{ borderRadius: "20px" }} onClick={makePayment}>{loading ? <CircularProgress size={16} /> : 'Pay'}</button>;
+  return <button disabled={loading || disabled} className="buy_bundle" style={{ borderRadius: "20px" }} onClick={makePayment}> <i class="fa fa-arrow-right" aria-hidden="true"></i>
+  {loading ? <CircularProgress size={16} /> : 'Buy bundle'}</button>;
 }

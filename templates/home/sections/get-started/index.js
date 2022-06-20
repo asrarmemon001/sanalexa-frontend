@@ -204,7 +204,7 @@ export default function GetStarted() {
           <div className="col-md-3 col-sm-12 text-right pr-0 paddi">
             <div className="flexclas">
             <div className="dolarret">
-            ₹ {state?.bundleTotal}
+            ₹ {state?.bundleTotal} <span>16% Discount</span>
           </div>
             <Paymentgateway 
             className="bg-danger text-white control__content" 
@@ -339,7 +339,7 @@ export default function GetStarted() {
                 {/* <i className="fa fa-search" aria-hidden="true"></i> */}
                <input
                 type="text"
-                placeholder=" Search Keywords"
+                placeholder="Worlds best XR Training mobules"
                 name="search"
                 value={search}
                 onChange={handleOnChange}

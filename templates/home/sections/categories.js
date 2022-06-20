@@ -8,10 +8,8 @@ function CategoryItem({ classes, image, link, title }) {
                     <img src={image} />
                 </div>
                 <div className="indastry-content">
-                    <h4>{title}</h4>
-                    <Link href={link}>
-                        <a>Read more</a>
-                    </Link>
+                    <h4><Link href={link}>{title}</Link></h4>
+                    <h5><Link href={link}> industry </Link></h5>
                 </div>
             </div>
         </div>
