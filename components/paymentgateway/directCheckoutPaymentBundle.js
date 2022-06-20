@@ -73,6 +73,10 @@ export default function DirectPaymentANdCheckoutBundle({ packageId }) {
 
                 },
                 // callback_url: "http://localhost:3000/",
+                modal: { escape: false, ondismiss: function(){ 
+
+                    router.push("/payment/failed")
+                   } },
             };
 
             const paymentObject = new window.Razorpay(options);

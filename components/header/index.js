@@ -44,6 +44,7 @@ const Header = () => {
         pathname: '/search/[searchIs]',
         query: { searchIs },
       })
+      setActiveSearch(false)
     }else{
       toast.error("Please enter some value")
     }
@@ -213,11 +214,11 @@ const Header = () => {
                 </ul>
               </div>
               <ul className="varymenu">
-                {/* <li>
+                <li>
                   <span className="sarchi link" onClick={toggleSearchShow}>
                     <i className="fa fa-search" aria-hidden="true"></i>
                   </span>
-                </li> */}
+                </li>
 
                 <li>
                   <Link href="/cart">
@@ -318,17 +319,18 @@ const Header = () => {
               method="get"
               className="search-form"
               action="sitename.com/"
+              onSubmit={handleSubmit}
             >
               <label>
                 <input
                   type="search"
                   className="search-field"
                   placeholder="Search …"
-                  name="s"
+                  name="search"
                   onChange={handleChange}
                 />
               </label>
-              <input type="submit" className="search-submit" value="Search" onClick={handleSubmit}/>
+              <input type="submit" className="search-submit" value="Search"/>
             </form>
           </div>
          

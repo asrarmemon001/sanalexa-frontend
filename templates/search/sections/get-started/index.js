@@ -19,10 +19,12 @@ import ProjectCard from "../../../../components/projectCard/ProjectCard";
 import AppContext from "../../../../appContext";
 import { getSession } from "../../../../utils/constants";
 import Paymentgateway from "../../../../components/paymentgateway/Paymentgateway";
+import { useRouter } from "next/router";
 
-export default function GetStarted() {
+export default function SearchGetStarted() {
+  const { query } = useRouter();
   const setCounter = useContext(AppContext);
-  let { setCartProduct, state,fetchBundleList} = setCounter;
+  let { setCartProduct, state, fetchBundleList } = setCounter;
   let bundleProducts = state.bundleProduct;
   const [plateformFilterShow, setPlateformFilterShow] = useState(false);
   const [bundleList, setBundleList] = useState([]);
@@ -81,21 +83,7 @@ export default function GetStarted() {
     setPage(data?.selected + 1);
   };
 
-  // const handleAddtoCart = async (id, type, quantity) => {
-  //   const data = {
-  //     sessionId: sessionId,
-  //     cart: { id: String(id), type: "project", quantity: 1 },
-  //   };
-  //   await AddtoCart(data)
-  //     .then((res) =>
-  //       res?.status === 200
-  //         ? toast.success("successfully Added")
-  //         : toast.error("somethingwent wrong")
-  //     )
-  //     .catch((error) => console.log(error));
-  //   getCartList();
-  //   setCartProduct(cartListIs);
-  // };
+
   const handleRemove = async (id, type) => {
     try {
       const data = {
@@ -143,21 +131,17 @@ export default function GetStarted() {
     }
   };
 
-  // const getCartList = async () => {
-  //   setLoading(true);
-  //   const list = await cartList(sessionId);
-  //   const response = list?.data?.data;
-  //   console.log(response);
-  //   if (response) {
-  //     setLoading(false);
-  //     setCartList(response);
-  //   }
-  // };
+
 
   useEffect(() => {
     getProjectList();
   }, [page, search, plateform, sector]);
-  useEffect(() => {}, []);
+
+
+  useEffect(() => {
+    setSearch(query.searchIs)
+  }, [query]);
+
 
   useEffect(() => {
     const key = localStorage.getItem("sessionId");
@@ -165,15 +149,13 @@ export default function GetStarted() {
     getSectorList();
   }, []);
 
-  // useEffect(() => {
-  //   setCartProduct(cartListIs);
-  // }, [cartListIs]);
+
 
   // useEffect(() => {
   //   getCartList();
   // }, [sessionId]);
-  
-  let defaultCardNumber = bundleProducts?.length ? 4-bundleProducts?.length : 4
+
+  let defaultCardNumber = bundleProducts?.length ? 4 - bundleProducts?.length : 4
 
   return (
     <section className="couressto">
@@ -183,43 +165,43 @@ export default function GetStarted() {
           <h6> Find the exact right 3D content for your needs Lorem Ipsum is simply dummy text of the printing</h6>
         </div>
         <div className="mb-4 mobwrep h-100 d-flex">
-          <div className="d-flex col-md-9 pl-0 col-sm-12 vercel img-no"> 
+          <div className="d-flex col-md-9 pl-0 col-sm-12 vercel img-no">
             {
-              bundleProducts?.slice(0,4)?.map((i, key)=>(
+              bundleProducts?.slice(0, 4)?.map((i, key) => (
                 <div className="d-flex flex-column   vercel" key={key}>
-                <Image src={`${ImageBaseUrl}${i.productInfo.bannerImage}`} height="180px" width="180px"/>
-                <button  onClick={()=>{handleRemove(i.productInfo.id,i.type)}}>x</button>
-                  </div>
+                  <Image src={`${ImageBaseUrl}${i.productInfo.bannerImage}`} height="180px" width="180px" />
+                  <button onClick={() => { handleRemove(i.productInfo.id, i.type) }}>x</button>
+                </div>
               ))
             }
             {[...Array(defaultCardNumber)]?.map((i) => (
               <>
-              <Image src="/vercel.svg" height="180px" width="180px"/>
+                <Image src="/vercel.svg" height="180px" width="180px" />
               </>
 
             ))}
-             
-           
+
+
           </div>
           <div className="col-md-3 col-sm-12 text-right pr-0 paddi">
             <div className="flexclas">
-            <div className="dolarret">
-            ₹ {state?.bundleTotal} <span>16% Discount</span>
+              <div className="dolarret">
+                ₹ {state?.bundleTotal}
+              </div>
+              <Paymentgateway
+                className="bg-danger text-white control__content"
+                style={{ width: "100px" }}
+                disabled={bundleProducts?.length > 2 && bundleProducts?.length < 5 ? false : true}
+                cartListIs={bundleProducts} cartTotal={state?.bundleTotal} type={'bundle'}
+              />
+            </div>
           </div>
-            <Paymentgateway 
-            className="bg-danger text-white control__content" 
-            style={{width:"100px"}} 
-            disabled={bundleProducts?.length > 2 && bundleProducts?.length < 5 ? false : true}
-            cartListIs={bundleProducts} cartTotal={state?.bundleTotal} type={'bundle'}
-            />
-                    </div>
-                    </div>
         </div>
         <div></div>
-      
+
         <div className="row">
           <div className="col-lg-3 col-md-4">
-            <div className="filltercode" data-aos="fade-right">
+            <div className="filltercode" >
               <div className="fillter-inp">
                 <div className="main-filter">
                   <div className="filter-header">
@@ -334,22 +316,22 @@ export default function GetStarted() {
           {/* Projects************************ */}
 
           <div className="col-lg-9 col-md-8">
-            <div className="search-container" data-aos="fade-up">
+            <div className="search-container">
               <div className="search-container-out">
                 {/* <i className="fa fa-search" aria-hidden="true"></i> */}
-               <input
-                type="text"
-                placeholder="Worlds best XR Training mobules"
-                name="search"
-                value={search}
-                onChange={handleOnChange}
-              />
-              <button className="searchbut">SEARCH</button>
+                <input
+                  type="text"
+                  placeholder=" Search Keywords"
+                  name="search"
+                  value={search}
+                  onChange={handleOnChange}
+                />
+                <button className="searchbut">SEARCH</button>
               </div>
               <div className="girditem">
                 <a href="#" className="girdfilter active"><i className="fa fa-th" aria-hidden="true"></i></a>
                 <a href="#" className="viewfilter"><i className="fa fa-bars" aria-hidden="true"></i></a>
-            </div>
+              </div>
             </div>
 
             <div className="row mb-4 girdsestem">
