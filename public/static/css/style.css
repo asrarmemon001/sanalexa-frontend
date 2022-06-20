@@ -500,6 +500,7 @@ header.darkHeader .mideel-mene ul.list-menu li a{
 }
 .mideel-mene ul.varymenu li .sinup i.fa.fa-user-circle {
     color: #252f61;
+    font-size: 25px;
 }
 
 .mideel-mene ul.varymenu li .sinup:hover {
@@ -1986,6 +1987,7 @@ body .btn-primary:hover,body .btn-primary:focus {
     font-size: 17px;
     line-height: 1;
     padding: 14px!important;
+    font-weight: 600;
 }
 .packageItem button.btn.btn-danger:hover {
     box-shadow: 380px 0 0 0 #f7ad18 inset;
@@ -2130,9 +2132,9 @@ section.newslettersection {
 
     .mideel-mene ul.varymenu li .sinup {
         font-size: 20px;
-        padding: 7px 7px;
-        width: 35px;
-        height: 35px;
+        padding: 3px 3px;
+        width: 33px;
+        height: 33px;
     }
 
     .mideel-mene ul li {
