@@ -20,7 +20,7 @@ function CategoryItem({ classes, image, link, title }) {
 export default function CategoriesSection() {
     return (
         <section className="farmertical">
-            <div className="container-fuild">
+            <div className="container">
                 <div className="main-farmertycal">
                         <CategoryItem classes="listitem-farmertycal" link="#" image="/static/images/farmulty.png" title="Pharmaceutical"/>
                      

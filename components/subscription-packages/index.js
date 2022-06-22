@@ -114,7 +114,7 @@ export default function SubscriptionPackages({ heading }) {
                 <h3>{heading}</h3>
             </div>
             <div className="rowCantainer">
-                <Slider {...settings} className="packegeSlider owl-carousel">
+                <Slider {...settings} className="packegeSlider">
                     {loadingIs ?
                         <Loader /> :
                         packListIs?.length > 0 ?

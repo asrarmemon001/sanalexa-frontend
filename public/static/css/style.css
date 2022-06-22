@@ -13,14 +13,17 @@ h5,
 h6,
 p,
 a {
-    font-family: 'Montserrat', sans-serif;
+        font-family: 'HelveticaNeue';
 }
 
 h3 {
-    font-size: 40px;
+    font-size: 45px;
     text-transform: capitalize;
 }
-
+.historytabcontent p {
+    font-size: 15px;
+    font-weight: 300;
+}
 .all-teb ul a.active,
 .all-teb ul span.active {
     color: #ca373c !important;
@@ -32,6 +35,119 @@ h3 {
     align-items: center;
     margin-bottom: 5px;
 }
+
+
+/************************learning**********************/
+.learningdef {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 550px;
+    position: relative;
+    z-index: 9;
+}
+.learningdef h2 {
+    font-size: 35px;
+    line-height: 40px;
+}
+.learningimg {
+    width: 200px;
+    height: 200px;
+}
+
+.learningdef a.eidtaccou {
+    font-size: 22px;
+    color: #fff;
+    line-height: 30px;
+}
+.learning-content .banner-plans {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+.learning-content .banner-plans::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    bottom: 0; 
+    background: rgba(0, 46, 91, 0.8);
+    backdrop-filter: saturate(180%) blur(0px);
+}
+
+.alltabsyel ul {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    justify-content: space-around;
+    margin-bottom: 0;
+}
+.alltabsyel {
+    padding: 30px 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+}
+.alltabsyel ul li a {
+    font-size: 25px;
+    color: #3e3e3e;
+    text-decoration: none;
+}
+.layers {
+    float: right;
+}
+.historytablist {
+    padding: 45px 0px;
+    border-bottom: 1px solid #ccc;
+}
+.historytabcontent h4 {
+    font-size: 25px;
+    line-height: 30px;
+    margin-bottom: 15px;
+}
+.historytabcontent h6 {
+    font-size: 16px;
+    color: #229300;
+    margin-top: 35px;
+}
+
+.layers a.downloadcertificate {
+    font-size: 25px;
+    background-color: #d63c3c;
+    color: #fff;
+    display: inline-block;
+    width: 315px;
+    text-align: center;
+    height: 55px;
+    line-height: 55px;
+    border-radius: 10px;
+    text-decoration: none;
+}
+.layers a.share {
+    text-decoration: none;
+    font-size: 25px;
+    color: #2a2a2a;
+    border: 1px solid #2448c1;
+    width: 150px;
+    display: inline-block;
+    text-align: center;
+    height: 55px;
+    line-height: 55px;
+    border-radius: 10px;
+    margin-left: 25px;
+}
+.layers {
+    display: flex;
+    align-items: end;
+}
+
+
+
+/************************learning**********************/
+
 /******************new******************************/
 .vercel{
     position: relative;
@@ -105,6 +221,7 @@ figure.package-img p {
     font-weight: bold;
     margin-bottom: 0;
     width: 81%;
+    min-height: 25px;
 }
 .pharmaceutical-contant p {
     font-size: 9px;
@@ -152,7 +269,7 @@ ul.MuiMenu-list .cu-2  li.dropdown-item span.MuiTouchRipple-root::after {
     font-size: 22px;
     font-weight: 500;
     color: #000;
-    font-family: 'Montserrat';
+        font-family: 'HelveticaNeue';
     text-decoration: none;
 }
 
@@ -198,9 +315,9 @@ ul.MuiMenu-list .cu-2  li.dropdown-item span.MuiTouchRipple-root::after {
 }
 .mideel-mene ul.list-menu li.nav-item button {
     padding: 0;
-    font-size: 17px;
+    font-size: 21px;
     font-weight: 500;
-    font-family: 'Montserrat', sans-serif;
+        font-family: 'HelveticaNeue';
     text-transform: uppercase;
     position: relative;
     color: #fff;
@@ -366,14 +483,14 @@ header.darkHeader .mideel-mene ul.list-menu li.nav-item button{
 .search-form-main input.search-field {
     font-size: 20px;
     padding: 10px;
-    font-family: 'Montserrat';
+        font-family: 'HelveticaNeue';
     border-radius: 5px;
     outline: none;
 }
 
 .search-form-main input.search-submit {
     font-size: 20px;
-    font-family: 'Montserrat';
+        font-family: 'HelveticaNeue';
     padding: 10px;
     background-color: #ca373c;
     color: #fff;
@@ -448,7 +565,7 @@ header.darkHeader .logo a img:nth-child(2) {
 
 .mideel-mene ul.list-menu li a {
     font-weight: 500;
-    font-size: 17px;
+    font-size: 21px;
     line-height: 21px;
     text-transform: uppercase;
     color: #fff;
@@ -594,7 +711,7 @@ header.darkHeader .mideel-mene ul li a.humb span.mainhunm span.line{
     font-size: 28px;
     line-height: 45px;
     color: #FFFFFF;
-    font-family: 'Inter', sans-serif;
+        font-family: 'HelveticaNeue';
 }
 header.darkHeader button.btn.sinup {
     background-color: #303c7a;
@@ -628,14 +745,14 @@ button.buy_bundle i.fa.fa-arrow-right {
     font-size: 20px;
 }
 a.button-download-launcher,.buy_bundle {
-    font-family: 'Montserrat';
+        font-family: 'HelveticaNeue';
     font-style: normal;
     font-weight: 700;
-    font-size: 23px; 
+    font-size: 25px; 
     text-transform: uppercase;
     color: #FFFFFF;
     background-color: #f7ad18;
-    width: 380px; 
+    width: 390px; 
     display: inline-block;
     text-align: center;
     line-height: 3.3;
@@ -689,7 +806,7 @@ section.farmertical {
 }
 
 .indastry-content h4 a {
-    font-family: 'Montserrat';
+        font-family: 'HelveticaNeue';
     font-style: normal;
     font-weight: 500;
     font-size: 15px;
@@ -703,11 +820,19 @@ section.farmertical {
     position: relative;
 }
 
+.container-fuild {
+    padding-left: 50px;
+    padding-right: 50px;
+}
+.indastry-content h4 {
+    font-size: 20px;
+    line-height: 27px;
+}
 
 .indastry-content h5 a {
-    font-family: 'Montserrat';
+        font-family: 'HelveticaNeue';
     font-style: normal;
-    font-size: 12px;
+    font-size: 16px;
     line-height: 16px;
     color: #e6e6e6;
     text-decoration: none;
@@ -781,7 +906,7 @@ section.farmertical {
 }
 
 .filterkey li a.show-more {
-    font-family: 'Montserrat';
+        font-family: 'HelveticaNeue';
     font-style: normal;
     font-weight: 400;
     font-size: 15px;
@@ -797,7 +922,7 @@ section.farmertical {
     border: 1px solid #DEDEDE;
     box-sizing: border-box;
     border-radius: 5px;
-    font-family: 'Montserrat';
+        font-family: 'HelveticaNeue';
     font-style: normal;
     font-weight: 400;
     font-size: 13px;
@@ -847,7 +972,7 @@ section.farmertical {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-family: 'Montserrat';
+        font-family: 'HelveticaNeue';
     font-style: normal;
     font-weight: 500;
     font-size: 23px;
@@ -860,7 +985,7 @@ section.farmertical {
 }
 
 .filter-title h6 {
-    font-family: 'Montserrat';
+        font-family: 'HelveticaNeue';
     font-style: normal;
     font-weight: 400;
     font-size: 18px;
@@ -919,8 +1044,7 @@ button.button.button--md.button--link-gray.button--icon.filter-collapse {
 
 
 .pharmaceutical-box {
-    border: 1px solid #D1D1D1;
-    border-radius: 17px;
+    border: 1px solid #D1D1D1; 
 }
 
 .pharmaceutical-box img {
@@ -1143,7 +1267,7 @@ h5.Pharmacepo {
 }
 .title h6 {
     color: #000;
-    font-size: 16px;
+    font-size: 20px;
 }
 
 
@@ -1168,7 +1292,7 @@ a.button-download-launcher,.buy_bundle {
 }
 
 a.button-download-launcher:hover,.buy_bundle:hover {
-    box-shadow: 380px 0 0 0 #313b79 inset;
+    box-shadow: 400px 0 0 0 #313b79 inset;
 }
 
 .title {
@@ -1194,7 +1318,7 @@ a.button-download-launcher.border-only {
     padding: 10px 0px;
 }
 .content-area h6 {
-    font-family: 'Montserrat';
+        font-family: 'HelveticaNeue';
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
@@ -1211,7 +1335,7 @@ a.button-download-launcher.border-only {
 }
 .content-area p {
     width: 80%;
-    font-size: 9px;
+    font-size: 11px;
     margin-bottom: 0;
 }
 .content-area {
@@ -1233,8 +1357,7 @@ a.button-download-launcher.border-only:hover {
 .package-img {
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: center top;
-    border-radius: 15px 15px 0 0;
+    background-position: center top; 
     min-height: 256px;
 
 }
@@ -1311,7 +1434,7 @@ button.owl-next {
     /* float: left; */
     padding: 8px 15px;
     text-decoration: none;
-    font-family: 'Montserrat';
+        font-family: 'HelveticaNeue';
     font-style: normal;
     font-weight: 400;
     font-size: 18px;
@@ -1374,7 +1497,7 @@ section.banner.bannerbottom {
     border: 1px solid #D3D3D3;
     box-sizing: border-box;
     border-radius: 62px;
-    font-family: 'Montserrat';
+        font-family: 'HelveticaNeue';
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
@@ -1388,7 +1511,7 @@ section.banner.bannerbottom {
 .newsletter button {
     background: #CA373C;
     border-radius: 50px;
-    font-family: 'Montserrat';
+        font-family: 'HelveticaNeue';
     font-style: normal;
     font-weight: 500;
     font-size: 20px;
@@ -1404,7 +1527,7 @@ section.banner.bannerbottom {
 }
 
 .newslettersection h4 {
-    font-family: 'Montserrat';
+        font-family: 'HelveticaNeue';
     font-style: normal;
     font-weight: 400;
     font-size: 29px;
@@ -1414,7 +1537,7 @@ section.banner.bannerbottom {
 }
 
 .newslettersection h4 small {
-    font-family: 'Montserrat';
+        font-family: 'HelveticaNeue';
     font-style: normal;
     font-weight: 700;
     font-size: 29px;
@@ -1495,7 +1618,7 @@ section.main-footer {
 }
 
 .footer-menu li a {
-    font-family: 'Montserrat';
+        font-family: 'HelveticaNeue';
     font-style: normal;
     font-weight: 500;
     font-size: 19px;
@@ -1524,7 +1647,7 @@ section.main-footer {
 }
 
 .copy-right p {
-    font-family: 'Montserrat';
+        font-family: 'HelveticaNeue';
     font-style: normal;
     font-weight: 400;
     font-size: 20px;
@@ -1538,7 +1661,7 @@ footer {
     padding: 20px 0px 20px 0px;
 }
 .pharmaceutical-contant h3 {
-    font-family: 'Montserrat';
+        font-family: 'HelveticaNeue';
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
@@ -1695,7 +1818,7 @@ section.shift-hendvery {
     padding: 10px 0px;
 }
 .recommended h4 {
-    font-family: 'Montserrat';
+        font-family: 'HelveticaNeue';
     font-style: normal;
     font-weight: 600;
     font-size: 15px;
@@ -1720,7 +1843,7 @@ section.shift-hendvery {
     font-size: 13px;
     line-height: 1;
     color: #494C54;
-    font-family: 'Montserrat';
+        font-family: 'HelveticaNeue';
 }
 
 .all-check-box label.form-check-label {
@@ -1728,13 +1851,13 @@ section.shift-hendvery {
     font-size: 13px;
     line-height: 1;
     color: #494C54;
-    font-family: 'Montserrat';
+        font-family: 'HelveticaNeue';
 }
 .detail-all-butoon input {
     background: #FAF2F2;
     border-radius: 6px;
     width: 123px;
-    font-family: 'Montserrat';
+        font-family: 'HelveticaNeue';
     font-style: normal;
     font-weight: 500;
     font-size: 15px;
@@ -1773,7 +1896,7 @@ section.shift-hendvery {
     background-color: #ca373c;
     color: #fff;
 }
-button.addtubul { font-family: 'Montserrat';
+button.addtubul {     font-family: 'HelveticaNeue';
     padding: 7px 15px;
     border-radius: 5px;
     font-weight: 500;
@@ -1811,7 +1934,7 @@ button.addtubul { font-family: 'Montserrat';
 }
 
 .devices-available a {
-    font-family: 'Montserrat';
+        font-family: 'HelveticaNeue';
     font-style: normal;
     font-weight: 500;
     font-size: 10px;
@@ -1981,12 +2104,12 @@ body .btn-primary:hover,body .btn-primary:focus {
     max-width: 50px;
 }
 .courses .slick-track { 
-    width: 100%!important;
+    width: 4000px!important;
 }
 .packageItem button.btn.btn-danger {
     font-size: 17px;
     line-height: 1;
-    padding: 14px!important;
+    padding: 10px 0px!important;
     font-weight: 600;
 }
 .packageItem button.btn.btn-danger:hover {
@@ -2007,7 +2130,9 @@ section.newslettersection {
     border: none;
 }
 
-
+.learning-content{
+    padding: 0;
+}
 
 @media only screen and (min-width: 1599px) {
     .girditem a {
@@ -2032,17 +2157,66 @@ section.newslettersection {
 .coursesSlider .packageItem {
     margin-bottom: 20px;
 }
+
+.tabpaneal {
+    padding-bottom: 50px;
+}
+.historytabcontent h6 img {
+    width: 15px;
+}
+.bannerbottom::after {
+    content: "";
+    background-color: transparent;
+}
 @media only screen and (max-width: 1599px) {
-
-
-
+    .historytabcontent p {
+        margin-bottom: 10px;
+    }
+    .learningdef h2 {
+        font-size: 25px;
+        line-height: 35px;
+    }
+    .learningdef a.eidtaccou {
+        font-size: 18px;
+        line-height: 20px;
+    }
+    .learningdef { 
+        width: 390px;
+    }
+    .learningimg {
+        width: 150px;
+        height: 150px;
+    }
+    
+    
+    
+    .alltabsyel ul li a {
+        font-size: 16px; 
+    }
+    .historytabcontent h4 {
+        font-size: 17px; 
+    }
+    .historytabcontent h6 {
+        font-size: 12px; 
+        margin-top: 15px;
+    }
     .indastry-img img {
         max-width: 30px;
     }
     .buttons button.addtubul {
         width: 125px;
     }
-
+    .layers a.downloadcertificate {
+        font-size: 18px;
+        height: 45px;
+        line-height: 45px;
+    }
+    .layers a.share {
+        text-decoration: none;
+        font-size: 18px;
+        height: 45px;
+        line-height: 45px;
+    }
     .copy-right p {
         font-size: 14px;
     }
@@ -2232,7 +2406,7 @@ section.newslettersection {
     }
 
     .content-area h3 {
-        font-size: 14px;
+        font-size: 20px;
         line-height: 1;
         min-height: 50px;
         width: 73%;
@@ -2269,7 +2443,7 @@ section.newslettersection {
     }
     
     .bannerbottom .banner-content h1 {
-        font-size: 35px;
+        font-size: 30px;
         margin-bottom: 15px;
     }
 
@@ -2282,8 +2456,12 @@ section.newslettersection {
         margin-bottom: 0;
         margin-top: 0;
     }
+    .indastry-content h4 a { 
+        font-size: 14px; 
+    }
+    
     .indastry {
-        padding: 25px 15px;
+        padding: 20px 15px;
         padding-right: 0;
     }
     
@@ -2312,11 +2490,49 @@ section.newslettersection {
     .girditem a {
         font-size: 20px;
     }
-    .bannerbottom .banner-content::after { 
-        border-width: 290px 100px 0 0; 
+    .bannerbottom .banner-content::after {
+        border-width: 275px 100px 0 0;
+    }
+}
+@media only screen and (max-width: 1345px) {
+    .mideel-mene ul.list-menu li a {
+        font-size: 13px;
+    }
+    .logo a img {
+        width: 115px;
+    }
+    .mideel-mene { 
+        width: 85%;
     }
 }
 
+
+@media only screen and (max-width: 1250px) {
+    .container-fuild {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .indastry-content h4 a {
+        font-size: 11px;
+    }
+    .indastry-content h5 a {
+        font-size: 11px;
+    }
+    .banner-content h1 {
+        font-size: 35px;
+    }
+    .mideel-mene ul.list-menu li.nav-item button {
+        font-size: 13px;
+    }
+    h3 {
+        font-size: 30px;
+    }
+    figure.package-img p {
+        font-size: 15px;
+    }
+    
+    
+}
 
 @media only screen and (max-width: 1199px) {
     .logo a img {
@@ -2366,7 +2582,7 @@ section.newslettersection {
     }
 
     .mideel-mene ul.list-menu li {
-        padding: 0px 20px 0px 0px;
+        padding:0px 16px 0px 0px;
     }
 
     .mideel-mene {
@@ -2441,6 +2657,12 @@ section.newslettersection {
     .newsletter button {
         font-size: 18px;
         min-width: 150px;
+    }
+    .mideel-mene ul.list-menu li a {
+        font-size: 10px;
+    }
+    .mideel-mene ul.list-menu li.nav-item button {
+        font-size: 10px;
     }
 }
 
@@ -3012,7 +3234,7 @@ box-shadow: 277px 0 0 0 #3a437e inset;}
     border-radius: 10px;
 }
 .bord h1 {
-    font-family: 'Montserrat';
+        font-family: 'HelveticaNeue';
     font-style: normal;
     font-weight: 600;
     font-size: 22px;
@@ -3150,6 +3372,10 @@ i.fa.fa-caret-down, i.fa.fa-caret-up {
 .toggleCollapse {
     width: 100%;
 }
+.slick-track { 
+    width: 4000px!important;
+}
+
 
 @media only screen and (max-width: 1199px) {
 
