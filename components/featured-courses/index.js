@@ -23,7 +23,14 @@ export default function FeaturedCourses({ heading }) {
     if (response) {
       setLoading(false)
       setTotalPages(list?.data?.totalPages)
-      setProjectList(response)
+      if(response.length && response.length < 4){
+        const arr = [...response,...response,...response,...response];
+        const arn = arr.slice(0,4)
+        setProjectList([...arn])
+      }else{ 
+        setProjectList(response)
+      }
+      
     }
   }
 
@@ -84,8 +91,7 @@ export default function FeaturedCourses({ heading }) {
         }
       }
     ]
-  };
-
+  }; 
   return (<section className="what-you-get courses">
     <div className="container">
       <div className="title" data-aos="fade-up">
@@ -103,6 +109,8 @@ export default function FeaturedCourses({ heading }) {
                     <ProjectCard key={`sl-${index}`} obj={obj} index={index} classes={"packageItem px-3"}/>
                   )
                 })}
+
+      
             </Slider> : <NoDataFound />
         }
       </div>

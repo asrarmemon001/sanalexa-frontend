@@ -1,6 +1,7 @@
 import "aos/dist/aos.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+// import "react-responsive-carousel/lib/styles/carousel.min.css";
 import 'react-toastify/dist/ReactToastify.css';
 import AppContext from "../appContext/index"
 import '../styles/globals.css'

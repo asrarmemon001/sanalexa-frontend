@@ -13,6 +13,7 @@ import { CircularProgress } from "@mui/material";
 
 export default function SubscriptionPackages({ heading }) {
     const apiContext = useContext(AppContext)
+    const { sectors } = apiContext.state;
     const [packListIs, setPackList] = useState([])
     const [loadingIs, setLoading] = useState(false)
     const router = useRouter()
@@ -23,7 +24,14 @@ export default function SubscriptionPackages({ heading }) {
         const response = list?.data?.data
         if (response) {
             setLoading(false)
-            setPackList(response)
+            const r = response.filter(el=>el.project?.length == 1) 
+            if(r.length && r.length < 3){
+                const arr = [...r,...r,...r,...r];
+                const arn = arr
+                setPackList([...arn])
+              }else{ 
+                setPackList(r)
+              } 
         }
     }
 
@@ -108,6 +116,9 @@ export default function SubscriptionPackages({ heading }) {
         return Boolean(apiContext.state.cartProduct?.find(el => el.id == id && el.type == 'package'))
     }
 
+    const getSectorName = (id) => {
+        return sectors?.find(el => el.id == id)?.name
+    } 
     return (<section className="what-you-get" style={{ backgroundImage: 'url(/static/images/slider-bg.png)' }}>
         <div className="container">
             <div className="title" data-aos="fade-down">
@@ -121,70 +132,70 @@ export default function SubscriptionPackages({ heading }) {
                             packListIs?.map((obj, index) => {
                                 return (
                                     obj.project?.length
-                                    ?
-                                    <div className="packageItem px-3 mb-2" key={index}>
-                                        <figure className="package-img" style={{ backgroundImage: `url('${ImageBaseUrl + obj?.bannerImage}')` }}>
-                                            <p>Lifesciences</p>
-                                        </figure>
-                                        <div className="content-area">
-                                            <h3>{obj?.packagesName}</h3>
-                                            <p>Lorem Ipsum is simply dummy text of the printing...</p>
-                                            <p>5 Courses</p>
-                                            <div className="review-item">
-            <div className="review-icon">
-             <ul>
-               <li><i className="fa fa-user" aria-hidden="true"></i> 45,896</li> 
-             </ul>
-            </div>
-            <div className="prodwerp">
-              <ul>
-                <li><a href="#" className="girditemea"><i className="fa fa-desktop" aria-hidden="true"></i></a></li>
-                <li><a href="#" className="girditemea"><i className="fa fa-laptop" aria-hidden="true"></i></a></li>
-                <li><a href="#" className="girditemea"><i className="fa fa-mobile" aria-hidden="true"></i></a></li>
-                <li><a href="#" className="girditemea"><i className="fa fa-gamepad" aria-hidden="true"></i></a></li> 
-              </ul>
-            </div>
+                                        ?
+                                        <div className="packageItem px-3 mb-2" key={index}>
+                                            <figure className="package-img" style={{ backgroundImage: `url('${ImageBaseUrl + obj?.bannerImage}')` }}>
+                                                <p>{getSectorName(obj.sector)}</p>
+                                            </figure>
+                                            <div className="content-area">
+                                                <h3>{obj?.packagesName}</h3>
+                                                <p>{obj?.packagesDesc}</p>
+                                                <p>{obj.project?.length} {obj.project?.length > 1 ? `Courses` : `Course`}</p>
+                                                <div className="review-item">
+                                                    <div className="review-icon">
+                                                        <ul>
+                                                            <li><i className="fa fa-user" aria-hidden="true"></i> 45,896</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div className="prodwerp">
+                                                        <ul>
+                                                            <li><a href="#" className="girditemea"><i className="fa fa-desktop" aria-hidden="true"></i></a></li>
+                                                            <li><a href="#" className="girditemea"><i className="fa fa-laptop" aria-hidden="true"></i></a></li>
+                                                            <li><a href="#" className="girditemea"><i className="fa fa-mobile" aria-hidden="true"></i></a></li>
+                                                            <li><a href="#" className="girditemea"><i className="fa fa-gamepad" aria-hidden="true"></i></a></li>
+                                                        </ul>
+                                                    </div>
 
-           </div>
-                                            <h6 className="mb-2">₹ {obj?.price}</h6>
+                                                </div>
+                                                <h6 className="mb-2">₹ {obj?.price}</h6>
 
 
-                                            {!obj.isBuyed && <button className="btn btn-danger w-100 p-3" onClick={() => {
-                                                !isPackageExistInCart(obj.id) &&
-                                                    handleAddtoCart(obj?.id);
-                                            }}
-                                                disabled={
-                                                    isPackageExistInCart(obj.id)
-                                                        ? true
-                                                        : false
-                                                } style={{ borderRadius: 6 }}><i className="fa fa-shopping-cart" aria-hidden="true"></i>{apicall ? (
-                                                    <CircularProgress size={20} />) :
-                                                    isPackageExistInCart(obj.id)
-                                                    ?
-                                                    "Added in Cart"
-                                                    :
-                                                    'Pay & Subscription'}</button>}
-                                            {obj.isBuyed && <button className="btn btn-danger w-100 p-3" onClick={() => {
-                                                !isPackageExistInCart(obj.id) &&
-                                                    handleAddtoCart(obj?.id);
-                                            }}
-                                                disabled={
-                                                    isPackageExistInCart(obj.id)
-                                                        ? true
-                                                        : false
-                                                } style={{ borderRadius: 6 }}>{apicall ? (
-                                                    <CircularProgress size={20} />) :
-                                                    isPackageExistInCart(obj.id)
-                                                    ?
-                                                    
-                                                    "Added in Cart"
-                                                    :
-                                                    'Re Subscripe'}</button>}
+                                                {!obj.isBuyed && <button className="btn btn-danger w-100 p-3" onClick={() => {
+                                                    !isPackageExistInCart(obj.id) &&
+                                                        handleAddtoCart(obj?.id);
+                                                }}
+                                                    disabled={
+                                                        isPackageExistInCart(obj.id)
+                                                            ? true
+                                                            : false
+                                                    } style={{ borderRadius: 6 }}><i className="fa fa-shopping-cart" aria-hidden="true"></i>{apicall ? (
+                                                        <CircularProgress size={20} />) :
+                                                        isPackageExistInCart(obj.id)
+                                                            ?
+                                                            "Added in Cart"
+                                                            :
+                                                            'Pay & Subscription'}</button>}
+                                                {obj.isBuyed && <button className="btn btn-danger w-100 p-3" onClick={() => {
+                                                    !isPackageExistInCart(obj.id) &&
+                                                        handleAddtoCart(obj?.id);
+                                                }}
+                                                    disabled={
+                                                        isPackageExistInCart(obj.id)
+                                                            ? true
+                                                            : false
+                                                    } style={{ borderRadius: 6 }}>{apicall ? (
+                                                        <CircularProgress size={20} />) :
+                                                        isPackageExistInCart(obj.id)
+                                                            ?
 
+                                                            "Added in Cart"
+                                                            :
+                                                            'Re Subscripe'}</button>}
+
+                                            </div>
                                         </div>
-                                    </div>
-                                    :
-                                    null
+                                        :
+                                        null
                                 )
                             }) :
                             <NoDataFound />

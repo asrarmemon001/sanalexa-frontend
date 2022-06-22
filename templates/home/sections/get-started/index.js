@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from 'next/image'
-import { useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { plateformList } from "../../../../utils/plateform";
 import { ImageBaseUrl } from "../../../../utils/Baseurl";
 import {
@@ -19,6 +19,7 @@ import ProjectCard from "../../../../components/projectCard/ProjectCard";
 import AppContext from "../../../../appContext";
 import { getSession } from "../../../../utils/constants";
 import Paymentgateway from "../../../../components/paymentgateway/Paymentgateway";
+import { debounce } from "lodash";
 
 export default function GetStarted() {
   const setCounter = useContext(AppContext);
@@ -54,7 +55,7 @@ export default function GetStarted() {
       data = data.filter((el) => el != value);
     }
     setplateform(data);
-    getProjectList();
+    handlerGetProjectList();
   };
 
   const getSectors = (event) => {
@@ -66,7 +67,7 @@ export default function GetStarted() {
       data = data.filter((el) => el != value);
     }
     setSector(data);
-    getProjectList();
+    handlerGetProjectList();
   };
 
   const handleFilterChange = (event, status) => {
@@ -131,8 +132,7 @@ export default function GetStarted() {
     }
   };
   // console.log(cartListIs);
-  const getProjectList = async () => {
-    const data = { page, limit, search, plateform, sector };
+  const getProjectList = async (data) => {   
     setLoading(true);
     const list = await projectList(data);
     const response = list?.data?.data;
@@ -154,10 +154,13 @@ export default function GetStarted() {
   //   }
   // };
 
+  const handlerGetProjectList = useCallback(debounce(getProjectList, 300), []);
+
   useEffect(() => {
-    getProjectList();
+    const data = { page, limit, search, plateform, sector };
+    handlerGetProjectList(data);
   }, [page, search, plateform, sector]);
-  useEffect(() => {}, []);
+
 
   useEffect(() => {
     const key = localStorage.getItem("sessionId");

@@ -92,10 +92,9 @@ function ProjectCard({ obj, index, classes }) {
       console.log(error, "handleRemove bundle");
     }
   };
-
-
+ 
   return (
-    <div className={classes} key={index}>
+    <div className={classes}>
       <div className="pharmaceutical-box">
         <figure
           style={{ cursor: "pointer" }}
@@ -111,7 +110,7 @@ function ProjectCard({ obj, index, classes }) {
         </figure>
         <div className="pharmaceutical-contant">
           <h5>{obj?.sector?.name}</h5>
-          <p>Lorem Ipsum is simply dummy text of the printing...</p>
+          <p>{obj?.projectDesc}</p>
           
           <div className="userswithicon">
           <div className="review-item">

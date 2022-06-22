@@ -2072,15 +2072,15 @@ body .btn-primary:hover,body .btn-primary:focus {
 }
 
 .main-farmertycal {
-    display: flex;
-    align-items: center;
+    /* display: flex;
+    align-items: center; */
     position: relative;
     box-shadow: 0px 5px 11px -3px rgb(0 0 0 / 30%);
     border-top: 2px solid #f7ad18;
 }
 
 .listitem-farmertycal {
-    width: 16.67%;
+    width: 100%;
     margin: 0 auto;
     position: relative;
     z-index: 9;
@@ -2103,9 +2103,9 @@ body .btn-primary:hover,body .btn-primary:focus {
 .indastry-img img {
     max-width: 50px;
 }
-.courses .slick-track { 
+/* .courses .slick-track { 
     width: 4000px!important;
-}
+} */
 .packageItem button.btn.btn-danger {
     font-size: 17px;
     line-height: 1;
@@ -3102,7 +3102,7 @@ section.newslettersection {
         margin-left: 0;
     }
     .main-farmertycal { 
-        flex-wrap: wrap;
+        /* flex-wrap: wrap; */
     }
     .indastry-img img {
         max-width: 50px;
@@ -3372,9 +3372,9 @@ i.fa.fa-caret-down, i.fa.fa-caret-up {
 .toggleCollapse {
     width: 100%;
 }
-.slick-track { 
+/* .slick-track { 
     width: 4000px!important;
-}
+} */
 
 
 @media only screen and (max-width: 1199px) {
