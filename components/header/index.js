@@ -207,7 +207,7 @@ const Header = () => {
                     </Link>
                   </li>
                   { user.data && <li>
-                    <Link href="/my-learning">
+                    <Link href="/learning">
                       <a> My Learning</a>
                     </Link>
                     </li>}
