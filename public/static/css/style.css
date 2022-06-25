@@ -773,7 +773,7 @@ header.darkHeader button.btn.sinup i.fa.fa-user-circle {
     font-weight: bold;
     color: #000;
     position: relative;
-    top: 10px;
+    top: 1px;
 }
 .numbrbundel {
     display: flex;
