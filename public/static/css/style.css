@@ -3,7 +3,9 @@
     padding: 0;
     box-sizing: border-box;
 }
-
+body {
+    background-color: #f2f3f5;
+}
 
 h1,
 h2,
@@ -17,18 +19,21 @@ a {
 }
 
 h3 {
-    font-size: 45px;
+    font-size: 48px;
     text-transform: capitalize;
 }
 .historytabcontent p {
-    font-size: 15px;
+    font-size: 25px;
     font-weight: 300;
+    color: #767676;
 }
 .all-teb ul a.active,
 .all-teb ul span.active {
     color: #ca373c !important;
 }
-
+.indastry-content {
+    margin-top: -15px;
+}
 .all-teb ul {
     list-style: none;
     display: flex;
@@ -75,7 +80,7 @@ h3 {
     height: 100%;
     top: 0;
     bottom: 0; 
-    background: rgba(0, 46, 91, 0.8);
+    background:rgb(17 76 136 / 80%);
     backdrop-filter: saturate(180%) blur(0px);
 }
 
@@ -85,11 +90,14 @@ h3 {
     list-style: none;
     justify-content: space-around;
     margin-bottom: 0;
+    max-width: 75%;
+    margin: 0 auto;
 }
 .alltabsyel {
     padding: 30px 10px;
     padding-bottom: 10px;
     border-bottom: 1px solid #ccc;
+    
 }
 .alltabsyel ul li a {
     font-size: 25px;
@@ -109,13 +117,13 @@ h3 {
     margin-bottom: 15px;
 }
 .historytabcontent h6 {
-    font-size: 16px;
+    font-size: 22px;
     color: #229300;
     margin-top: 35px;
 }
 
 .layers a.downloadcertificate {
-    font-size: 25px;
+    font-size: 24px;
     background-color: #d63c3c;
     color: #fff;
     display: inline-block;
@@ -123,8 +131,9 @@ h3 {
     text-align: center;
     height: 55px;
     line-height: 55px;
-    border-radius: 10px;
+    border-radius: 6px;
     text-decoration: none;
+    font-weight: 300;
 }
 .layers a.share {
     text-decoration: none;
@@ -154,38 +163,43 @@ h3 {
 }
 .vercel> span {
     border: 1px solid #d6d5d5!important;
-    margin-right: 15px!important;
-    width: 70px!important;
-    height: 70px!important;
+    margin-right: 25px!important;
+    width: 100px!important;
+    height: 100px!important;
     border-radius: 5px;
     padding: 5px!important;
 }
 .vercel button {
     position: absolute;
-    right: 18px;
-    top: 3px;
-    border: 1px solid #ccc!important;
+    right: 28px;
+    top: 1px;
+    border: none;
     background-color: #ffffff87;
-    width: 20px;
-    height: 22px;
-    line-height: 0.68;
-    font-size: 18px;
+    width: 35px;
+    height: 35px;
+    line-height: 23px;
+    font-size: 35px;
     border-radius: 100px;
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+    color: #070606;
 }
 figure.package-img p {
     top: 10px;
     bottom: auto;
-    font-size: 20px;
+    font-size: 19px;
 }
 .img-no> span::after {
     content: "";
     text-align: center;
-    font-size: 25px;
+    font-size: 30px;
     left: 0;
     right: 0;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
+    color: #00000059;
 }
 .img-no> span:first-child::after {
     content: "1"; 
@@ -199,34 +213,49 @@ figure.package-img p {
 .img-no> span:nth-child(4)::after {
     content: "4"; 
 }
-.mideel-mene ul li:nth-child(2) {
-    padding-right: 0;
-}
+ 
 
 
 .title h3 {
     font-weight: 700;
+    text-transform: uppercase;
 }
 
 .title h6 {
-    color: #000;
-    font-size: 20px;
+    color: #0b0b0b;
+    font-size: 23px;
+    margin-top: 32px;
 }
 
 .img-no > span img {
     display: none!important;
 }
 .pharmaceutical-contant h5 {
-    font-size: 15px;
-    font-weight: bold;
+    font-size: 18px;
     margin-bottom: 0;
     width: 81%;
-    min-height: 25px;
+    color: #6e6e70;
+    font-weight: 500;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 50px;
 }
 .pharmaceutical-contant p {
-    font-size: 9px;
+    font-size: 10px;
     margin-bottom: 0;
     width: 81%;
+    color: #b1b2b3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    min-height: 30px;
 }
 
 ul.MuiMenu-list .cu-2  li.dropdown-item span.MuiTouchRipple-root::after {
@@ -251,8 +280,8 @@ ul.MuiMenu-list .cu-2  li.dropdown-item span.MuiTouchRipple-root::after {
 }
 .mobwrep {
     align-items: center;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #ccc;
+    background-color: #fff;
+    padding: 30px 20px;
 }
 
 
@@ -318,9 +347,15 @@ ul.MuiMenu-list .cu-2  li.dropdown-item span.MuiTouchRipple-root::after {
     font-size: 21px;
     font-weight: 500;
         font-family: 'HelveticaNeue';
-    text-transform: uppercase;
+    text-transform: capitalize;
     position: relative;
     color: #fff;
+}
+.mideel-mene ul li:last-child a {
+    text-transform: capitalize;
+}
+.mideel-mene ul.list-menu li.nav-item button span.MuiButton-endIcon svg {
+    font-size: 30px;
 }
 header.darkHeader .mideel-mene ul.list-menu li.nav-item button{
     color: #000;
@@ -427,14 +462,15 @@ header.darkHeader .mideel-mene ul.list-menu li.nav-item button{
     color: #fff;
 }
 .bannerbottom .banner-content {
-    width: 60%;
+    width: 46%;
     padding: 45px 100px 15px 64px;
     position: relative;
+    min-height: 350px;
 }
 .bannerbottom .banner-content::after {
     content: "";
     border-color: white transparent transparent transparent;
-    border-width: 306px 100px 0 0;
+    border-width:350px 100px 0 0;
     border-style: solid;
     width: 100%;
     height: 100%;
@@ -498,9 +534,6 @@ header.darkHeader .mideel-mene ul.list-menu li.nav-item button{
     border: none;
 }
 
-main {
-    overflow-x: hidden;
-}
 
 
 header {
@@ -560,7 +593,7 @@ header.darkHeader .logo a img:nth-child(2) {
 }
 
 .mideel-mene ul.list-menu li {
-    padding: 0px 30px 0px 0px;
+    padding: 0px 50px 0px 0px;
 }
 
 .mideel-mene ul.list-menu li a {
@@ -572,7 +605,9 @@ header.darkHeader .logo a img:nth-child(2) {
     text-decoration: none;
     position: relative;
 }
-
+.mideel-mene ul.list-menu li:first-child a, .mideel-mene ul.list-menu li:last-child a {
+    text-transform: capitalize;
+}
 header.darkHeader .mideel-mene ul.list-menu li a{
     color: #000;
 }
@@ -603,17 +638,23 @@ header.darkHeader .mideel-mene ul.list-menu li a{
 
 .mideel-mene ul.varymenu li .sinup {
     border-radius: 28px;
-    font-size: 35px;
-    color: #fff;
+    font-size: 28px;
+    color:#fff;
     text-decoration: none;
     background: #ffffff;
     padding: 0px 5px;
     transition: 0.5s all;
     position: relative;
     z-index: 99;
-    width: 50px;
-    height: 50px;
+    width: 41px;
+    height: 41px;
     line-height: 0;
+}
+.mideel-mene ul.varymenu li .sinup i{
+    color:#2A527C;   
+}
+.darkHeader .mideel-mene ul.varymenu li .sinup i {
+    color: #f7f7f7;
 }
 .mideel-mene ul.varymenu li .sinup i.fa.fa-user-circle {
     color: #252f61;
@@ -621,10 +662,11 @@ header.darkHeader .mideel-mene ul.list-menu li a{
 }
 
 .mideel-mene ul.varymenu li .sinup:hover {
-    color: #fff;
-    box-shadow: 277px 0 0 0 #f7ad18  inset;
+    color: #fff; 
 }
-
+.mideel-mene ul.varymenu li .sinup:hover i {
+    color: #2A527C; 
+}
 .mideel-mene ul.varymenu li a,
 .mideel-mene ul.varymenu li .link {
     color: #fff;
@@ -666,7 +708,7 @@ header.darkHeader .mideel-mene ul li a.humb span.mainhunm span.line{
 
 .banner {
     background-size: cover;
-    background-position: center;
+    background-position: top -99px center;
     background-repeat: no-repeat;
     padding: 60px 0px;
     position: relative;
@@ -692,12 +734,12 @@ header.darkHeader .mideel-mene ul li a.humb span.mainhunm span.line{
     bottom: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 46, 91, 0.8);
+    background: rgb(2 52 118 / 72%);
     backdrop-filter: saturate(180%) blur(0px);
 }
 
 .banner-content h1 {
-    font-weight: 700;
+    font-weight: 500;
     font-size: 65px;
     line-height: 75px;
     text-transform: uppercase;
@@ -708,10 +750,10 @@ header.darkHeader .mideel-mene ul li a.humb span.mainhunm span.line{
 .banner-content p {
     font-style: normal;
     font-weight: 300;
-    font-size: 28px;
-    line-height: 45px;
+    font-size: 27px;
+    line-height: 1.3;
     color: #FFFFFF;
-        font-family: 'HelveticaNeue';
+    font-family: 'HelveticaNeue';
 }
 header.darkHeader button.btn.sinup {
     background-color: #303c7a;
@@ -720,24 +762,42 @@ header.darkHeader button.btn.sinup i.fa.fa-user-circle {
     color: #fafafa;
 }
 .dolarret {
-    font-size: 26px;
+    font-size: 35px;
     font-weight: 700;
+    line-height: 1;
+    margin-top: -10px;
+    margin-bottom: 18px;
+}
+.dolarret span.rupese {
+    font-size: 40px;
+    font-weight: bold;
+    color: #000;
+    position: relative;
+    top: 10px;
+}
+.numbrbundel {
+    display: flex;
+    align-items: end;
+}
+.numbrbundel h5 {
+    font-size: 28px;
+    color: #878787;
+    font-weight: 400;
 }
 .dolarret span {
     font-size: 16px;
-    font-weight: 500;
+    font-weight: bold;
     padding-left: 8px;
     color: #ca373c;
 }
 
 button.buy_bundle {
     border-radius: 0px!important;
-    width: 175px;
-    font-size: 15px;
-    text-transform: none;
-    line-height: 3;
+    width: 230px;
+    font-size: 24px;
+    text-transform: none; 
     letter-spacing: 0.05em;
-    margin-top: 11px;
+    margin-top: 0px;
     cursor: pointer;
 }
 button.buy_bundle i.fa.fa-arrow-right {
@@ -745,9 +805,9 @@ button.buy_bundle i.fa.fa-arrow-right {
     font-size: 20px;
 }
 a.button-download-launcher,.buy_bundle {
-        font-family: 'HelveticaNeue';
+    font-family: 'HelveticaNeue';
     font-style: normal;
-    font-weight: 700;
+    font-weight: 500;
     font-size: 25px; 
     text-transform: uppercase;
     color: #FFFFFF;
@@ -755,7 +815,7 @@ a.button-download-launcher,.buy_bundle {
     width: 390px; 
     display: inline-block;
     text-align: center;
-    line-height: 3.3;
+    line-height: 2.8;
     margin-top: 30px;
     text-decoration: none;  
     outline-offset: 5px;
@@ -778,10 +838,12 @@ a.button-download-launcher i.fa {
 }
 section.farmertical { 
     padding: 0;
-    margin-top: -70px;
+    margin-top: -33px;
 }
-.listitem-farmertycal:last-child .indastry::after {
-    opacity: 0;
+.dividerborder {
+    background-color: #d1d1d3;
+    height: 2px;
+    margin-bottom: 23px;
 }
 
 .indastry::after {
@@ -790,26 +852,49 @@ section.farmertical {
     border-right: 2px solid #f7ad18;
     left: 0;
     right: 0;
-    top: 5px;
+    top: 50%;
     bottom: 0;
-    height: 65px;
+    height: 80px;
+    transform: translateY(-50%);
 }
 .indastry {
-    display: flex; 
-    padding: 18px 16px;
+    display: flex;
+    padding: 30px 16px;
     flex-wrap: wrap;
-    background-color: #303c7a; 
+    background-color: #252f61;
+    align-items: center;
+    justify-content: center;
 }
 
 .indastry-img { 
     margin-right: 10px;
 }
-
+.main-farmertycal .slider-button span {
+    font-size: 24px;
+    line-height: 15px;
+    text-align: center;
+    color: #8f8f8f;
+}
+.main-farmertycal .slider-button { 
+    width: 28px;
+    height: 28px;
+    text-align: center;
+    background: #fff;
+    border: none!important;
+    box-shadow: 0 0 6px #5c5c5c;
+}
+.main-farmertycal button.slider-button.owl-next {
+    right: -20px;
+}
+.main-farmertycal button.slider-button.owl-prev {
+    left: -20px;
+    z-index: 9;
+}
 .indastry-content h4 a {
         font-family: 'HelveticaNeue';
     font-style: normal;
-    font-weight: 500;
-    font-size: 15px;
+    font-weight: 400;
+    font-size: 20px;
     line-height: 0px;
     color: #ffffff;
     margin-bottom: 0;
@@ -818,6 +903,8 @@ section.farmertical {
 }
 .indastry-content h5  {
     position: relative;
+    opacity: 0.7228040099143982;
+    margin-bottom: 0;
 }
 
 .container-fuild {
@@ -826,7 +913,8 @@ section.farmertical {
 }
 .indastry-content h4 {
     font-size: 20px;
-    line-height: 27px;
+    line-height: 1;    
+    margin-bottom: 5px;
 }
 
 .indastry-content h5 a {
@@ -863,6 +951,8 @@ section.farmertical {
 
 .fillter-inp {
     width: 100%;
+    background-color: #fff;
+    padding: 5px;
 }
 
 .filltercode {
@@ -1075,10 +1165,11 @@ button.button.button--md.button--link-gray.button--icon.filter-collapse {
 }
 .prodwerp ul li a {
     color: #000;
-    font-size: 20px;
+    font-size: 25px;
 }
 .prodwerp ul li {
     margin: 0px 5px;
+    line-height: 1;
 }
 .prodwerp ul li:first-child {
     margin-left: 0px;
@@ -1109,7 +1200,7 @@ a.girdfilter.active {
 .review-icon ul li {
     padding: 0px 3px;
     color: #ffa00b;
-    font-size: 10px;
+    font-size: 11px;
 }
 .review-icon ul li:first-child {
     padding-left: 0px ;
@@ -1119,7 +1210,7 @@ a.girdfilter.active {
 }
 .pharmaceutical-contant h3 span {
     font-weight: 600;
-    font-size: 14px;
+    font-size: 25px;
     color: #ca373c;
 }
 .pharmaceutical-contant h3 {
@@ -1129,7 +1220,15 @@ a.girdfilter.active {
     top: 5px; 
 }
 .buttons button.btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
     width: 48%;
+    outline: none;
+    box-shadow: none;
+}
+.buttons button.btn i.fa.fa-database {
+    margin-right: 12px;
 }
 .buttons button.carts {
     width: 48%;
@@ -1137,14 +1236,13 @@ a.girdfilter.active {
     align-items: center;
 }
 .buttons button.carts span {
-    font-size: 10px;
+    font-size: 16px;
     letter-spacing: 0;
     font-weight: 600;
 }
 
 .prodwerp ul li a.girditemea i {
     color: #fff;
-    font-size: 15px;
     padding: 1px;
 }
 
@@ -1163,9 +1261,9 @@ a.girdfilter.active {
 
 .buttons button.carts {
     background-color: #ca373c;
-    padding: 6px 22px;
+    padding: 15px 22px;
     color: #fff;
-    font-size: 22px;
+    font-size: 16px;
     border: 0;
     letter-spacing: 6px;
     cursor: pointer;
@@ -1179,17 +1277,17 @@ a.girdfilter.active {
     width: 100%;
 }
 
-.buttons button {
-    border: 1px solid;
-    padding: 7px 18px;
+.buttons button { 
+    padding: 14px 18px;
     border-radius: 5px;
     font-weight: 400;
-    font-size: 18px;
-    color: #CA373C;
+    font-size: 16px;
+    color: #fff;
     outline: none;
-    background-color: white;
+    background-color: #CA373C;
     cursor: pointer;
     width: 55px;
+    border: none;
 }
 
 .buttons button {
@@ -1239,22 +1337,28 @@ h5.Pharmacepo {
 }
 .search-container-out {
     position: relative;
-    width: 40%; 
+    width: 45%; 
+    max-width: 450px;
 }
 .search-container input[type="text"] {
     padding: 10px 17px;
-    border: 1px solid #D7D7D7;
+    border: 1px solid #b5b6b8;
     border-radius: 6px;
     width: 100%;
     outline: none;
-    font-size: 20px;
+    font-size: 15px;
     position: relative;
     padding-right: 60px;
 }
+
+    .search-container input[type="text"]::placeholder {
+        color: #3c3c3c47;
+        font-style: italic;
+    }
 .search-container-out button.searchbut {
     position: absolute;
     right: 0;
-    font-size: 20px;
+    font-size: 16px;
     padding: 9px 22px;
     font-weight: bold;
     border: none;
@@ -1264,10 +1368,14 @@ h5.Pharmacepo {
     background-color: #f7ad18;
     border-top-right-radius: 4px;
     border-bottom-right-radius: 4px;
+    width: 140px;
+    color: #151515;
+    font-family: 'HelveticaNeue';
 }
-.title h6 {
-    color: #000;
-    font-size: 20px;
+.search-container-out button.searchbut:hover {
+    background-color: #3753a0;
+    color: #fff;
+    transition: 0.5s;
 }
 
 
@@ -1278,8 +1386,9 @@ section {
 
 .listItem h3 {
     font-size: 25px;
-    font-weight: 600;
+    font-weight: 500;
     text-align: center;
+    color: #54575a;
 }
 
 .listItem {
@@ -1292,7 +1401,8 @@ a.button-download-launcher,.buy_bundle {
 }
 
 a.button-download-launcher:hover,.buy_bundle:hover {
-    box-shadow: 400px 0 0 0 #313b79 inset;
+    box-shadow: 0px 86px 0 0 #ffffff inset;
+    color: #254568;
 }
 
 .title {
@@ -1307,27 +1417,34 @@ a.button-download-launcher.border-only {
 }
 
 .content-area h3 {
-    margin-bottom: 0;
+    margin-bottom: 10px;
     line-height: 1.5;
-    font-weight: bold;
-    font-size: 15px;
-    min-height: 50px;
+    font-weight: 500;
+    font-size: 21px;
+    min-height: 63px;
     width: 80%;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    color: #6e6e70
 } 
 .content-area .review-item {
-    padding: 10px 0px;
+    padding: 20px 0px;
 }
 .content-area h6 {
-        font-family: 'HelveticaNeue';
+    font-family: 'HelveticaNeue';
     font-style: normal;
     font-weight: 600;
-    font-size: 14px;
-    color: #FF3434;
+    font-size: 25px;
+    color: #c82333;
     margin-top: 9px;
     line-height: 1;
     position: absolute;
     right: 0;
-    padding: 5px 6px;
+    padding: 5px 15px;
     top: 12px;
 }
 .packageItem button.btn.btn-danger i.fa.fa-shopping-cart {
@@ -1337,16 +1454,26 @@ a.button-download-launcher.border-only {
     width: 80%;
     font-size: 11px;
     margin-bottom: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    color: #8d8d8d;
 }
 .content-area {
-    padding: 25px 10px;
-    box-shadow: 0 0 14px 0px #a9a7a7;
+    padding: 25px 10px; 
     position: relative;
+    background: #f2f3f5;
+    border: 1px solid #c9c9c9;
 }
 
 .packageItem figure {
     margin-bottom: 0;
     position: relative;
+    border: 1px solid #c9c9c9;
+    border-bottom: navajowhite;
 }
 
 a.button-download-launcher.border-only:hover {
@@ -1368,7 +1495,8 @@ a.button-download-launcher.border-only:hover {
 
 .what-you-get {
     position: relative;
-    background-repeat: repeat;
+    background-repeat: repeat;    
+    overflow: hidden;
 }
 
 .what-you-get::before {
@@ -1382,9 +1510,14 @@ a.button-download-launcher.border-only:hover {
 }
 
 .packageItem {
-    background: #fff;
+    background: transparent;
 }
-
+.pharmaceutical-contant h3 span span.rupes {
+    position: relative;
+    top: 3px;
+    left: -6px;
+    font-size: 25px;
+}
 .owl-nav button {
     outline: none;
     width: 40px;
@@ -1408,24 +1541,30 @@ a.button-download-launcher.border-only:hover {
 
 button.owl-prev {
     position: absolute;
-    left: -50px;
+    left: -10px;
 }
 
 button.owl-next {
     position: absolute;
-    right: -50px;
+    right: -10px;
 }
 
 /****************pagination*****************/
 .pagination {
     display: flex;
-    background: #FBF9F9;
     border-radius: 6px;
     padding: 5px 0px;
     width: 100%;
-    justify-content: center;
+    justify-content: end;
 }
 
+.pagination li.selected a {
+    background-color: #ffd72f;
+    width: 38px;
+    height: 38px;
+    border-radius: 100px;
+    color: #000;
+}
 .filterkey li:last-child {
     padding: 0;
 }
@@ -1457,6 +1596,10 @@ button.owl-next {
 .bannerbottom a.button-download-launcher {
     color: #000000;
     background: #f7ad18;
+    width: 286px;    
+    font-size: 21px;
+    font-weight: 600;
+
 }
 
 .bannerbottom a.button-download-launcher:hover {
@@ -1466,10 +1609,11 @@ button.owl-next {
 }
 .bannerbottom .banner-content h1 {
     font-size: 40px;
-    text-transform: capitalize;
+    text-transform: none;
     color: #000;
     line-height: 1.2;
     margin-bottom: 0;
+    font-weight: 600;
 }
 .bannerbottom .banner-content p {
     color: #000;
@@ -1481,10 +1625,11 @@ button.owl-next {
 }
 
 section.banner.bannerbottom {
-    min-height: 1px;
     padding-bottom: 0;
     height: auto;
     padding-top: 80px;
+    min-height: 390px;
+    background-position: center;
 }
 
 .newsletter {
@@ -1661,14 +1806,15 @@ footer {
     padding: 20px 0px 20px 0px;
 }
 .pharmaceutical-contant h3 {
-        font-family: 'HelveticaNeue';
+    font-family: 'HelveticaNeue';
     font-style: normal;
     font-weight: 600;
-    font-size: 14px;
-    color: #FF3434;
+    font-size: 25px;
+    color: #ca373c;
     margin-top: 9px;
     margin-bottom: 0;
     line-height: 1;
+    right: 10px;
 }
 
 
@@ -1678,7 +1824,7 @@ footer {
 }
 
 .pravesipolisi ul li a {
-    font-size: 15px;
+    font-size: 19px;
     color: #fff;
     font-weight: 400;
     padding: 0px 10px;
@@ -1703,29 +1849,32 @@ footer {
     position: relative;
 }
 figure p {
-    background-color: #303c7a;
+    background-color: #4853ac;
     color: #fff;
-    font-size: 11px;
-    padding: 2px 5px;
+    font-size: 15px;
+    padding: 3px 14px;
     position: absolute;
-    bottom: 108px;
+    top: 12px;
     font-weight: 600;
     border-radius: 0px 5px 5px 0;
 }
 .buttons span {
-    font-size: 11px;
+    font-size: 16px;
     font-weight: 600;
 }
 .prodwerp {
-    background-color: #303c7a;
-    padding: 0 9px;
+    background-color: #3753a0;
+    padding:8px 9px 5px 9px;
     border-radius: 5px;
 }
 .userswithicon {
     padding: 8px 0;
 }
-.mideel-mene ul.list-menu li.nav-item.dropdown {
-    margin-top: 4px;
+.mideel-mene ul.list-menu li.position-relative span.badge.badge-danger {
+    position: absolute;
+    top: -8px;
+    right: -22px;
+    font-size: 14px;
 }
 
 
@@ -1736,13 +1885,16 @@ figure p {
 
 
 .slider-button {
-    top: 50%;
+    top: 42%;
     transform: translateY(-50%);
     outline: none !important;
-    width: 40px;
-    height: 40px;
-    border: 1px solid #626262 !important;
+    width: 44px;
+    height: 44px;
+    border: none;
     border-radius: 100px;
+    background: #fff;
+    box-shadow: 0 0 9px rgb(51 51 51 / 27%);
+    z-index: 99;
 }
 
 .slider-button span {
@@ -1949,8 +2101,9 @@ button.addtubul {     font-family: 'HelveticaNeue';
 .slick-slide img {width: 100%;} 
 
 .slick-dots.slick-thumb li {width: 120px;height: 84px;}
-.slick-dots{
+.slick-dots {
     position: relative;
+    display: none!important;
 }
 
 .slick-dots.slick-thumb li.slick-active {border: 1px solid grey;padding: 1px;}
@@ -2068,14 +2221,12 @@ body .btn-primary:hover,body .btn-primary:focus {
     padding-top: 0;
 }
 .pharmaceutical-box img {
-    height: 150px;
+    height: 229px;
 }
 
-.main-farmertycal {
-    /* display: flex;
-    align-items: center; */
+.main-farmertycal { 
     position: relative;
-    box-shadow: 0px 5px 11px -3px rgb(0 0 0 / 30%);
+    box-shadow: 0px 16px 22px rgb(6 6 6 / 30%);
     border-top: 2px solid #f7ad18;
 }
 
@@ -2088,7 +2239,7 @@ body .btn-primary:hover,body .btn-primary:focus {
 
 .indastry:hover {
     
-    background-color:#f7ad18 ;
+    background-color:#3A436F ;
     transition: 0.3s;
 }
 .indastry:hover h4 {
@@ -2101,14 +2252,17 @@ body .btn-primary:hover,body .btn-primary:focus {
     border: none;
 }
 .indastry-img img {
-    max-width: 50px;
+    max-width: 40px;
 }
-/* .courses .slick-track { 
-    width: 4000px!important;
-} */
+.content-area .prodwerp ul li a.girditemea i {
+    font-size: 25px;
+}
+.content-area .prodwerp ul li a {
+    font-size: 25px;
+}
 .packageItem button.btn.btn-danger {
-    font-size: 17px;
-    line-height: 1;
+    font-size: 25px;
+    line-height: 1.9;
     padding: 10px 0px!important;
     font-weight: 600;
 }
@@ -2118,8 +2272,10 @@ body .btn-primary:hover,body .btn-primary:focus {
     color: #000;
 }
 .review-icon ul li {
-    color: #716e6e;
+    color: #8d8d8d;
 }
+
+
 .girditem a.girdfilter,.girditem a.viewfilter {
     font-size: 22px;
 }
@@ -2132,7 +2288,38 @@ section.newslettersection {
 
 .learning-content{
     padding: 0;
+    background: #fff;
 }
+.packageItem button.btn.btn-danger:disabled, .packageItem button.btn.btn-danger:disabled:hover {
+    background-color: #f1717d;
+    opacity: 1;
+    color: #fff;
+    border-color: transparent;
+    cursor: no-drop!important;
+    box-shadow: none;
+}
+
+#basic-menu .MuiPaper-root.MuiPaper-elevation {
+    width: 290px;
+    border-radius: 5px; 
+}
+#basic-menu .MuiPaper-root.MuiPaper-elevation .MuiMenu-list .bg-light {
+    margin-left: 290px!important;
+    margin-top: -40px;
+    width: 226px;
+}
+#basic-menu .MuiPaper-root.MuiPaper-elevation .MuiMenu-list .bg-light>* {
+    min-height: 100px;
+    background: #fff;
+    font-weight: 400!important;
+    text-transform: capitalize;
+}
+#basic-menu .MuiPaper-root.MuiPaper-elevation li.MuiMenuItem-root {
+    font-weight: 400!important;
+    text-transform: capitalize;
+}
+
+
 
 @media only screen and (min-width: 1599px) {
     .girditem a {
@@ -2141,7 +2328,7 @@ section.newslettersection {
     
     
     .container {
-        max-width: 1500px;
+        max-width: 1610px;
         margin: 0 auto;
 
     }
@@ -2168,16 +2355,31 @@ section.newslettersection {
     content: "";
     background-color: transparent;
 }
+.historytabcontent span {
+    font-size: 25px;
+    color: #767676;
+}
+.discriptions-c {
+    min-height: 48px;
+}
+.main-farmertycal .slider-button { 
+    top: 50%;
+}
+
 @media only screen and (max-width: 1599px) {
     .historytabcontent p {
         margin-bottom: 10px;
+        font-size: 16px;
+    }
+    .historytabcontent span {
+        font-size: 15px; 
     }
     .learningdef h2 {
         font-size: 25px;
         line-height: 35px;
     }
     .learningdef a.eidtaccou {
-        font-size: 18px;
+        font-size: 15px;
         line-height: 20px;
     }
     .learningdef { 
@@ -2194,7 +2396,7 @@ section.newslettersection {
         font-size: 16px; 
     }
     .historytabcontent h4 {
-        font-size: 17px; 
+        font-size: 18px; 
     }
     .historytabcontent h6 {
         font-size: 12px; 
@@ -2226,7 +2428,7 @@ section.newslettersection {
     }
 
     .content-area {
-        padding: 35px 10px;
+        padding: 15px 10px;
     }
 
     .filterbut .control__content {
@@ -2238,16 +2440,7 @@ section.newslettersection {
         top: 9px;
         font-size: 15px;
     }
-
-    .search-container input[type="text"] {
-        padding: 5px 17px;
-        padding-left: 5px;
-        font-size: 14px!important;
-    }
-
-    
-
-
+ 
     section {
         padding: 50px 0;
     }
@@ -2296,7 +2489,7 @@ section.newslettersection {
     } */
 
     .mideel-mene ul.list-menu li {
-        padding: 0px 18px 0px 0px;
+        padding: 0px 45px 0px 0px;
     }
 
     .mideel-mene ul.varymenu li a,
@@ -2329,8 +2522,8 @@ section.newslettersection {
     }
 
     .banner-content h1 {
-        font-size: 50px;
-        line-height: 1.3;
+        font-size: 45px;
+        line-height: 1.1;
     }
 
     .filterkey li .plus {
@@ -2356,10 +2549,10 @@ section.newslettersection {
         padding: 13px 13px 13px 13px;
     }
     .prodwerp ul li a {
-        font-size: 18px;
+        font-size: 16px;
     }
     .pharmaceutical-contant h3 span {
-        font-size: 16px;
+        font-size: 20px;
     }
     
     .package-img {
@@ -2387,9 +2580,7 @@ section.newslettersection {
         height: 45px;
     }
 
-    .search-container input[type="text"] {
-        font-size: 15px;
-    }
+     
 
     .buttons button.carts {
         padding: 6px 10px;
@@ -2406,10 +2597,11 @@ section.newslettersection {
     }
 
     .content-area h3 {
-        font-size: 20px;
+        font-size: 14px;
         line-height: 1;
-        min-height: 50px;
-        width: 73%;
+        min-height: 29px;
+        width: 80%;
+        font-weight: 400;
     }
 
     .banner-content p {
@@ -2424,13 +2616,14 @@ section.newslettersection {
     padding: 0 50px;
     max-width: 100%;
 }
-    a.button-download-launcher {
-        font-size: 18px;
-        height: 55px;
-        line-height: 58px;
-        width: 315px;
-        outline: 1px solid #f7ad18;
-    }
+a.button-download-launcher {
+    font-size: 16px;
+    height: 55px;
+    line-height: 58px;
+    width: 252px;
+    outline: 1px solid #f7ad18;
+}
+
     .content-area h6 {
         font-weight: 700;
         font-size: 17px;
@@ -2438,8 +2631,9 @@ section.newslettersection {
         top: 14px;
     }
     .search-container-out button.searchbut {
-        font-size: 15px;
-        padding: 3px 22px;
+        font-size: 13px;
+        padding: 3px 15px;
+        width: 110px;
     }
     
     .bannerbottom .banner-content h1 {
@@ -2452,12 +2646,11 @@ section.newslettersection {
     }
 
     .indastry-content h4 {
-        font-size: 14px;
         margin-bottom: 0;
         margin-top: 0;
     }
     .indastry-content h4 a { 
-        font-size: 14px; 
+        font-size: 15px; 
     }
     
     .indastry {
@@ -2491,7 +2684,158 @@ section.newslettersection {
         font-size: 20px;
     }
     .bannerbottom .banner-content::after {
-        border-width: 275px 100px 0 0;
+        border-width: 300px 100px 0 0;
+    }
+    .indastry-content h5 a { 
+        font-size: 12px; 
+    }
+    .main-farmertycal .slider-button {
+        width: 23px;
+        height: 23px; 
+    }
+    .title h6 {
+        font-size: 16px;
+        margin-top: 20px;
+    }
+    .title { 
+        margin-bottom: 35px;
+    }
+    .vercel> span { 
+        margin-right: 12px!important;
+        width: 75px!important;
+        height: 75px!important; 
+    }
+    .vercel button { 
+        right: 14px;
+        top: 1px; 
+        width: 21px;
+        height: 21px;
+        line-height: 14px;
+        font-size: 21px;
+        border-radius: 100px; 
+    }
+    .numbrbundel h5 {
+        font-size: 22px; 
+    }
+    .img-no> span::after { 
+        font-size: 24px; 
+    }
+    button.buy_bundle { 
+        width: 180px;
+        font-size: 17px; 
+    }
+    .dolarret span {
+        font-size: 12px; 
+    }
+    .dolarret {
+        font-size: 28px; 
+    }
+    .dolarret span.rupese {
+        font-size: 30px; 
+    }
+    .mobwrep { 
+        padding: 16px 20px;
+    }
+    button.buy_bundle i.fa.fa-arrow-right {
+        padding-right: 12px;
+        font-size: 16px;
+    }
+    .search-container input[type="text"] { 
+        font-size: 10px!important;
+        padding: 8px 17px;
+        padding-left: 5px; 
+    }
+    .search-container-out { 
+        max-width: 340px;
+    }
+    .pharmaceutical-box img {
+        height: 150px;
+    }
+    .pharmaceutical-contant h5 {
+        font-size: 13px; 
+        min-height: 34px
+    }
+    .pharmaceutical-contant h3 span span.rupes { 
+        font-size: 19px;
+    }
+    .pharmaceutical-contant h3 { 
+        font-size: 15px; 
+        margin-top: 0px;
+        margin-bottom: 0; 
+    }
+    .pharmaceutical-contant p {
+        font-size: 9px; 
+        min-height: 20px;
+        line-height: 1;
+    }
+    .buttons button.carts span {
+        font-size: 11px; 
+    }
+    .buttons span {
+        font-size: 11px; 
+    }
+    .buttons button.btn i.fa.fa-database {
+        margin-right: 0px;
+        font-size: 11px;
+    }
+    figure p { 
+        font-size: 10px;  
+        top: 6px; 
+    }
+    .prodwerp {
+        background-color: #3753a0;
+        padding: 5px 7px 4px 7px;
+        border-radius: 5px;
+    }
+    .userswithicon {
+        padding: 5px 0;
+    }
+    .buttons { 
+        padding: 0px 0;
+        padding-top: 5px;
+    }
+    .pagination li.selected a { 
+        width: 25px;
+        height: 25px; 
+        padding: 1px; 
+        font-size: 14px; 
+    }
+    figure.package-img p { 
+        font-size: 14px;
+    }
+    figure.package-img p {
+        top: 5px;
+        bottom: auto;
+        font-size: 12px;
+    }
+    .content-area .review-item {
+        padding: 10px 0px;
+    }
+    .packageItem button.btn.btn-danger {
+        font-size: 18px;
+        line-height: 1.5; 
+    }
+    .slider-button span {
+        font-size: 40px;
+        line-height: 20px;
+    }
+    .slider-button { 
+        width: 35px;
+        height: 35px; ;
+    }
+    .bannerbottom .banner-content {
+        width: 58%; 
+    }
+    .bannerbottom a.button-download-launcher { 
+        width: 220px;
+        font-size: 19px; 
+    }
+    .bannerbottom .banner-content {
+        width: 58%; 
+        min-height: 290px;
+    }
+    .pravesipolisi ul li a {
+        font-size: 14px; 
     }
 }
 @media only screen and (max-width: 1345px) {
@@ -2518,9 +2862,7 @@ section.newslettersection {
     .indastry-content h5 a {
         font-size: 11px;
     }
-    .banner-content h1 {
-        font-size: 35px;
-    }
+     
     .mideel-mene ul.list-menu li.nav-item button {
         font-size: 13px;
     }
@@ -2530,8 +2872,23 @@ section.newslettersection {
     figure.package-img p {
         font-size: 15px;
     }
-    
-    
+    section.farmertical { 
+        padding: 0 25px;
+    }
+    .mideel-mene ul.list-menu li {
+        padding: 0px 28px 0px 0px;
+    }
+    .mideel-mene ul.list-menu li.position-relative span.badge.badge-danger { 
+        top: -12px;
+        right: -18px;
+        font-size: 11px;
+    }
+    .mideel-mene ul.list-menu li.nav-item button span.MuiButton-endIcon svg {
+        font-size: 22px;
+    }
+    .buttons button.carts { 
+        min-height: 38px;
+    }
 }
 
 @media only screen and (max-width: 1199px) {

@@ -5,8 +5,7 @@ export default function WhatYouGet() {
         <div className="container">
             <div className="title" data-aos="fade-up">
                 <h3>WHAT YOU GET</h3>
-                <h6>Find the exact right 3D content for your needs Lorem Ipsum is simply dummy text of the printing
-</h6>
+                <h6>Find the exact right 3D content for your needs, including AR/VR, gaming,   </h6>
             </div>
             <div className="row row-center justify-content-center">
                 <div className=" col-lg-4 col-md-6">

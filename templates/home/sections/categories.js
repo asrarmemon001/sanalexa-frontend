@@ -5,7 +5,7 @@ import { ImageBaseUrl } from "../../../utils/Baseurl"
 import Slider from "react-slick";
 function CategoryItem({ classes, image, link, title }) {
     return (
-        <div className={classes} style={{borderRight:'2px solid #f7ad18'}}>
+        <div className={classes}>
             <div className="indastry">
                 <div className="indastry-img">
                     <img src={image} />
@@ -34,9 +34,9 @@ export default function CategoriesSection() {
 
     useEffect(() => {
         const r = sectors?.filter(el => el?.projects?.length == 1);
-        if (r.length && r.length < 4) {
+        if (r.length && r.length < 6) {
             const arr = [...r, ...r, ...r, ...r];
-            const arn = arr.slice(0, 5)
+            const arn = arr.slice(0, 7)
             setSliderSectors([...arn])
         } else {
             setSliderSectors(r)
@@ -61,7 +61,7 @@ export default function CategoriesSection() {
         dots: false,
         infinite: true,
         speed: 500,
-        slidesToShow: 4,
+        slidesToShow: 5,
         slidesToScroll: 1,
         nextArrow: <NextArrow />,
         prevArrow: <PrevArrow />,

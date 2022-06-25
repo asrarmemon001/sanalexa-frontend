@@ -289,7 +289,7 @@ const Header = () => {
                       className="btn sinup"
                       onClick={() => loginSignupModal("login")}
                     >
-                      <i className="fa fa-user-circle" aria-hidden="true"></i>
+                      <i className="fa fa-user" aria-hidden="true"></i>
 
                     </button>
                   )}

@@ -4,6 +4,7 @@ import AOS from "aos";
 import Link from "next/link";
 
 export default function LeaningPageTemplate() {
+
     useEffect(() => {
         AOS.init();
         AOS.refresh();
@@ -27,16 +28,16 @@ export default function LeaningPageTemplate() {
                    
 <div className="alltabsyel">
 <ul>
-    <li><a href="#" data-id="#inprogres">In Progress (2)</a></li>
-    <li><a href="#" data-id="#saved">Saved (2)</a></li>
-    <li><a href="#" data-id="#collections">My Collections (2)</a></li>
-    <li><a href="#" data-id="">Learning History (1)</a></li>
+    <li><a href="javascript:void(0)" data-id="inprogres">In Progress (2)</a></li>
+    <li><a href="javascript:void(0)" data-id="saved">Saved (2)</a></li>
+    <li><a href="javascript:void(0)" data-id="collections">My Collections (2)</a></li>
+    <li><a href="javascript:void(0)" data-id="history">Learning History (1)</a></li>
 </ul>
 
 </div>
 <div className="container">
          <div className="tabpaneal">
-            <div className="learning-historytab" itemID="inprogres">
+            <div className="learning-historytab" id="inprogres">
                 <div className="historytablist">
               <div className="row">
                  <div className="col-md-3">
@@ -118,7 +119,7 @@ export default function LeaningPageTemplate() {
               </div>
               </div>
             </div>
-            <div className="learning-historytab" itemID="saved">
+            <div className="learning-historytab" id="saved">
                 <div className="historytablist">
               <div className="row">
                  <div className="col-md-3">
@@ -200,7 +201,7 @@ export default function LeaningPageTemplate() {
               </div>
               </div>
             </div>
-            <div className="learning-historytab" itemID="collections">
+            <div className="learning-historytab" id="collections">
                 <div className="historytablist">
               <div className="row">
                  <div className="col-md-3">
@@ -303,18 +304,9 @@ export default function LeaningPageTemplate() {
                 </div>
             </div>
         </section>
-
-
-
-
-                </section>
-
-
-
-
-
-             
-             
+  </section>
+        
         
     )
 } 
+ 

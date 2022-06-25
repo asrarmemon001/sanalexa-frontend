@@ -186,7 +186,7 @@ export default function SearchGetStarted() {
           <div className="col-md-3 col-sm-12 text-right pr-0 paddi">
             <div className="flexclas">
               <div className="dolarret">
-                ₹ {state?.bundleTotal}
+              <span className="rupes"> ₹</span> {state?.bundleTotal} 
               </div>
               <Paymentgateway
                 className="bg-danger text-white control__content"

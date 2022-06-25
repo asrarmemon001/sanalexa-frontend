@@ -201,13 +201,13 @@ export default function GetStarted() {
               </>
 
             ))}
-             
-           
+             <div className="numbrbundel"> <h5>(0 of 4) </h5></div>
+          
           </div>
           <div className="col-md-3 col-sm-12 text-right pr-0 paddi">
             <div className="flexclas">
             <div className="dolarret">
-            ₹ {state?.bundleTotal} <span>16% Discount</span>
+            <span className="rupese">₹</span> {state?.bundleTotal}  <span>16% Discount</span>
           </div>
             <Paymentgateway 
             className="bg-danger text-white control__content" 
@@ -218,7 +218,7 @@ export default function GetStarted() {
                     </div>
                     </div>
         </div>
-        <div></div>
+        <div className="dividerborder"></div>
       
         <div className="row">
           <div className="col-lg-3 col-md-4">

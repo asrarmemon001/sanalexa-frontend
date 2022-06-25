@@ -9,7 +9,16 @@ $(window).scroll(function() {
     } else {
         $("header").removeClass("darkHeader");
     }
- }); 
+ });  
+ $(".alltabsyel ul li a").click(function(){
+  var id =  $(this).attr("data-id");
+  $('.learning-historytab').css('display','none');
+  $('#'+id).css('display','block');
+  $('.alltabsyel ul li a').removeClass('active');         
+           $(this).addClass('active');            
+ });
+ 
+
  $(document).ready(function(){
     $(".collapsebutton").click(function(){
       $(this).toggleClass("opentoggle");
@@ -48,17 +57,8 @@ $(window).scroll(function() {
         }
       }
     })
-
-
-    jQuery('.alltabsyel ul li a').on('click', function() {
-      var id =  jQuery(this).attr("data-id");
-              jQuery('.learning-historytab').css('display','none');
-               jQuery('#'+id).css('display','block');
-               jQuery('.alltabsyel ul li a, .learning-historytab').removeClass('active');         
-               jQuery(this).addClass('active');            
-   
-   
-     });
+ 
+     
 
 
 

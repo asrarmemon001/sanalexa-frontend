@@ -204,7 +204,7 @@ export default function GetStarted() {
           <div className="col-md-3 col-sm-12 text-right pr-0 paddi">
             <div className="flexclas">
             <div className="dolarret">
-            ₹ {state?.bundleTotal} <span>16% Discount</span>
+            <span className="rupese">₹ </span> {state?.bundleTotal}<span>16% Discount</span>
           </div>
             <Paymentgateway 
             className="bg-danger text-white control__content" 

@@ -123,6 +123,7 @@ export default function SubscriptionPackages({ heading }) {
         <div className="container">
             <div className="title" data-aos="fade-down">
                 <h3>{heading}</h3>
+                <h6>Find the exact right 3D content for your needs, including AR/VR, gaming, </h6>
             </div>
             <div className="rowCantainer">
                 <Slider {...settings} className="packegeSlider">
@@ -139,8 +140,10 @@ export default function SubscriptionPackages({ heading }) {
                                             </figure>
                                             <div className="content-area">
                                                 <h3>{obj?.packagesName}</h3>
+                                                <div className="discriptions-c">
                                                 <p>{obj?.packagesDesc}</p>
                                                 <p>{obj.project?.length} {obj.project?.length > 1 ? `Courses` : `Course`}</p>
+                                                </div>
                                                 <div className="review-item">
                                                     <div className="review-icon">
                                                         <ul>

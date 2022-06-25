@@ -23,9 +23,9 @@ export default function FeaturedCourses({ heading }) {
     if (response) {
       setLoading(false)
       setTotalPages(list?.data?.totalPages)
-      if(response.length && response.length < 4){
+      if(response.length && response.length < 5){
         const arr = [...response,...response,...response,...response];
-        const arn = arr.slice(0,4)
+        const arn = arr.slice(0,7)
         setProjectList([...arn])
       }else{ 
         setProjectList(response)
@@ -96,6 +96,7 @@ export default function FeaturedCourses({ heading }) {
     <div className="container">
       <div className="title" data-aos="fade-up">
         <h3>{heading}</h3>
+        <p>Find the exact right 3D content for your needs, including AR/VR, gaming, </p>
       </div>
       <div className="rowCantainer">
 

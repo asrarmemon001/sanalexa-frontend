@@ -131,7 +131,7 @@ function ProjectCard({ obj, index, classes }) {
            </div>
           </div>
           <h3>
-            <span>₹{obj?.price}</span>
+            <span><span className="rupes">₹</span>{obj?.price}</span>
           </h3>
           {!obj.isBuyed && <div className="buttons">
             <button
