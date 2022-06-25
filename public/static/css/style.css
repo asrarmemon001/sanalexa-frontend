@@ -347,7 +347,7 @@ ul.MuiMenu-list .cu-2  li.dropdown-item span.MuiTouchRipple-root::after {
     font-size: 18px;
     font-weight: 500;
         font-family: 'HelveticaNeue';
-    text-transform: capitalize;
+    text-transform: uppercase;
     position: relative;
     color: #fff;
 }
@@ -355,12 +355,16 @@ ul.MuiMenu-list .cu-2  li.dropdown-item span.MuiTouchRipple-root::after {
     text-transform: capitalize;
 }
 .mideel-mene ul.list-menu li.nav-item button span.MuiButton-endIcon svg {
-    font-size: 30px;
+    font-size: 22px;
 }
 header.darkHeader .mideel-mene ul.list-menu li.nav-item button{
     color: #000;
 }
-
+.css-9tj150-MuiButton-endIcon {
+    display: inherit;
+    margin-right: -8px;
+    margin-left: 0px;
+}
 
 .mideel-mene ul.list-menu li.nav-item button::after{
     content: "";
@@ -605,9 +609,7 @@ header.darkHeader .logo a img:nth-child(2) {
     text-decoration: none;
     position: relative;
 }
-.mideel-mene ul.list-menu li:first-child a, .mideel-mene ul.list-menu li:last-child a {
-    text-transform: capitalize;
-}
+ 
 header.darkHeader .mideel-mene ul.list-menu li a{
     color: #000;
 }
@@ -1872,9 +1874,12 @@ figure p {
 }
 .mideel-mene ul.list-menu li.position-relative span.badge.badge-danger {
     position: absolute;
-    top: -8px;
-    right: -22px;
-    font-size: 14px;
+    top: -14px;
+    right: -11px;
+    font-size: 10px;
+    border-radius: 10px;
+    width: 17px;
+    height: 17px;
 }
 
 
@@ -2480,7 +2485,7 @@ button#user-button {
     
     
     .mideel-mene ul.list-menu li.nav-item button { 
-        font-size: 15px; 
+        font-size: 14px; 
     }
 
     .varymenu li:last-child {
@@ -2496,7 +2501,7 @@ button#user-button {
     } */
 
     .mideel-mene ul.list-menu li {
-        padding:0px 32px 0px 0px;
+        padding: 0px 28px 0px 0px;
     }
 
     .mideel-mene ul.varymenu li a,
@@ -2875,6 +2880,8 @@ a.button-download-launcher {
      
     .mideel-mene ul.list-menu li.nav-item button {
         font-size: 13px;
+        position: relative;
+        top: 3px;
     }
     h3 {
         font-size: 30px;

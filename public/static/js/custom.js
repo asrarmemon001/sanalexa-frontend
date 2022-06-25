@@ -10,6 +10,7 @@ $(window).scroll(function() {
         $("header").removeClass("darkHeader");
     }
  });  
+ 
  $(".alltabsyel ul li a").click(function(){
   var id =  $(this).attr("data-id");
   $('.learning-historytab').css('display','none');
