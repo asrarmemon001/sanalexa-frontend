@@ -1247,7 +1247,11 @@ a.girdfilter.active {
     color: #fff;
     padding: 1px;
 }
-
+.prodwerp ul li a i.customicon {
+    padding: 0px 18px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
 
 
 

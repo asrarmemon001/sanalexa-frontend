@@ -11,16 +11,11 @@ $(window).scroll(function() {
     }
  });  
  
- $(".alltabsyel ul li a").click(function(){
-  var id =  $(this).attr("data-id");
-  $('.learning-historytab').css('display','none');
-  $('#'+id).css('display','block');
-  $('.alltabsyel ul li a').removeClass('active');         
-           $(this).addClass('active');            
- });
+
  
 
  $(document).ready(function(){
+
     $(".collapsebutton").click(function(){
       $(this).toggleClass("opentoggle");
       alert('sssss');
@@ -58,10 +53,6 @@ $(window).scroll(function() {
         }
       }
     })
- 
-     
-
-
 
   }); 
 

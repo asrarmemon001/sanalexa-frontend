@@ -119,14 +119,15 @@ function ProjectCard({ obj, index, classes }) {
                <li><i className="fa fa-user" aria-hidden="true"></i> 45,896</li> 
              </ul>
             </div>
-            <div className="prodwerp">
+            { obj.plateform && obj.plateform.length > 0 && <div className="prodwerp">
               <ul>
-                <li><a href="#" className="girditemea"><i className="fa fa-desktop" aria-hidden="true"></i></a></li>
-                <li><a href="#" className="girditemea"><i className="fa fa-laptop" aria-hidden="true"></i></a></li>
-                <li><a href="#" className="girditemea"><i className="fa fa-mobile" aria-hidden="true"></i></a></li>
-                <li><a href="#" className="girditemea"><i className="fa fa-gamepad" aria-hidden="true"></i></a></li> 
+                {obj.plateform.indexOf('desktop') > -1 &&  <li><a href="#" className="girditemea"><i className="fa fa-desktop" aria-hidden="true"></i></a></li>}
+                {obj.plateform.indexOf('webgl') > -1 && <li><a href="#" className="girditemea"><i className="fa fa-laptop" aria-hidden="true"></i></a></li>}
+                {obj.plateform.indexOf('mobile_application') > -1 && <li><a href="#" className="girditemea"><i className="fa fa-mobile" aria-hidden="true"></i></a></li>}
+                {obj.plateform.indexOf('vr') > -1 && <li><a href="#" className="girditemea"><i className="fa fa-gamepad" aria-hidden="true"></i></a></li> }
+                {obj.plateform.indexOf('hololens') > -1 && <li><a href="#" className="girditemea"><i class="customicon" style={{"backgroundImage": "url('../../static/images/hololens.png')"}}></i></a></li> }
               </ul>
-            </div>
+            </div>}
 
            </div>
           </div>

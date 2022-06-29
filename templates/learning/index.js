@@ -2,12 +2,23 @@ import React, { useEffect } from "react"
 import AOS from "aos"; 
 
 import Link from "next/link";
+// import $ from 'jquery';
 
 export default function LeaningPageTemplate() {
 
+   const tabHandle = () => {
+      // $(".alltabsyel ul li a").click(function(){
+      //    var id =  $(this).attr("data-id");
+      //    $('.learning-historytab').css('display','none');
+      //    $('#'+id).css('display','block');
+      //    $('.alltabsyel ul li a').removeClass('active');         
+      //             $(this).addClass('active');            
+      //   });
+   }
     useEffect(() => {
         AOS.init();
         AOS.refresh();
+        // tabHandle()
     }, []);
     return (<section className="learning-content"> 
             <div className="banner-plans" style={{ backgroundImage: 'url(/static/images/learning.jpeg)' }}>
@@ -29,9 +40,10 @@ export default function LeaningPageTemplate() {
 <div className="alltabsyel">
 <ul>
     <li><a href="javascript:void(0)" data-id="inprogres">In Progress (2)</a></li>
-    <li><a href="javascript:void(0)" data-id="saved">Saved (2)</a></li>
-    <li><a href="javascript:void(0)" data-id="collections">My Collections (2)</a></li>
+    <li><a href="javascript:void(0)" data-id="collections">My Favorites (2)</a></li>
     <li><a href="javascript:void(0)" data-id="history">Learning History (1)</a></li>
+    <li><a href="javascript:void(0)" data-id="history">Purchased Courses (1)</a></li>
+
 </ul>
 
 </div>
