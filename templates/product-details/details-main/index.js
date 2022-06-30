@@ -121,15 +121,14 @@ const ProductDetailsMain = ({ productDetails }) => {
         }) : 0
         return p + sp
         
-    }
-    console.log(productDetails);
+    } 
     return (
         <section className="product-Gallery"> 
         <div className="banner-plans">
                 <div className="container">
                     <div className="banner-content-ple">
-                        <h2>{packagesName}</h2>
-                        <p>{packagesDesc}</p>
+                        <h2>{projectTitle}</h2>
+                        <p>{projectDesc}</p>
                         <p>₹ {price}</p>
                     </div>
                 </div>
