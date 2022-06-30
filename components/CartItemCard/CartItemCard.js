@@ -143,6 +143,7 @@ const AccordianItem = ({
 }) => {
   const images = image?.split("/");
   const imgsrc = images ? encodeURI(images[1]) : "";
+  const plateforms = JSON.parse(plateform) 
   return (<div
     className={`card mb-3 ${classes}`}
     style={{}}
@@ -163,10 +164,13 @@ const AccordianItem = ({
         <p className="card-text mx-2">{desc}</p>
         {/* <span className="badge bg-danger mx-2 text-white">{type}</span> */}
 
-        {plateform && plateform.length > 0 &&
-          plateform.map((obj) => (
+        {plateforms && plateforms.length > 0 
+        ?
+          plateforms.map((obj) => (
             <span key={obj} className="badge bg-danger mx-2 text-white">{obj}</span>
-          ))}
+          ))
+        :
+        null}
         {/* <h4 className="mx-2">₹ {price}</h4> */}
       </div>
 

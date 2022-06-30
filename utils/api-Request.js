@@ -96,3 +96,7 @@ export const getProjectList = async () => {
 export const getProjectAndPackage = async () => {
    return await getApi(`/api/projects/list-plans`)
 }
+
+export const getProjectPercentageApi = async () => {
+   return await getApi(`/api/precentage/list`)
+}
