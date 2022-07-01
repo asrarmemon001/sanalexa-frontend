@@ -45,8 +45,8 @@ export default function LeaningPageTemplate() {
    }
 
    useEffect(() => {
-      const lProjects = projects.filter(el => Number(percentageData?.find(l => l.projectId == el.id)?.precentage) >= 100)
-      const IProjects = projects.filter(el => Number(percentageData?.find(l => l.projectId == el.id)?.precentage) < 100)
+      const lProjects = projects?.filter(el => Number(percentageData?.find(l => l.projectId == el.id)?.precentage) >= 100)
+      const IProjects = projects?.filter(el => Number(percentageData?.find(l => l.projectId == el.id)?.precentage) < 100)
       setLearningProjects(lProjects)
       setInProgressProjects(IProjects)
 
