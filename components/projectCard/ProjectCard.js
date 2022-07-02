@@ -1,22 +1,31 @@
 import { CircularProgress } from "@mui/material";
 import { useRouter } from "next/router";
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import AppContext from "../../appContext";
 import {
   addtoBundleApi,
   AddtoCart,
   removeItemBundleList,
+  getFavList,
+  addToFav,
+  removeToFav
 } from "../../utils/api-Request";
 import { ImageBaseUrl } from "../../utils/Baseurl";
 import { getSession } from "../../utils/constants";
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 function ProjectCard({ obj, index, classes }) {
   const router = useRouter();
   const [apicall, setapicall] = useState(false);
   const [bundleApicall, setBundleApicall] = useState(false);
+  const [favProjects, setFavProjects] = useState([])
+
   const apiContext = useContext(AppContext);
   let { fetchBundleList, playTypeModal } = apiContext;
+  let { isLoggedin } = apiContext.state
+
   const handleAddtoCart = async (id) => {
     setapicall(true);
     const data = {
@@ -92,6 +101,41 @@ function ProjectCard({ obj, index, classes }) {
       console.log(error, "handleRemove bundle");
     }
   };
+
+  const handleRemoveFav = async(obj) => {
+    const payloadIs = { itemId : obj?.id, itemType : "project", isActive : true }
+  }
+
+
+  const handleFav = async( status, obj ) => {
+    const payloadIs = { itemId : obj?.id, itemType : "project", isActive : true }
+    let wishlisted;
+    if(status === "add"){
+      wishlisted = await addToFav(payloadIs)
+    }else{
+      wishlisted = await removeToFav(payloadIs)
+    }
+    const resIs = wishlisted?.data
+    if(resIs.status === 1){
+      toast.success(resIs?.message);
+      getFavData()
+    }
+  }
+
+  const getFavData = async() => {
+    const favData = await getFavList()    
+    const response = favData?.data?.data
+    if(response?.length){
+      const data = response.filter((el => el.itemType === "project"))
+      setFavProjects(data)
+    }
+  }
+
+  useEffect(() => {
+    getFavData()
+  },[])
+
+  const isWishListed = favProjects?.some(el => el?.project?.id === obj.id)
  
   return (
     <div className={classes}>
@@ -115,9 +159,16 @@ function ProjectCard({ obj, index, classes }) {
           <div className="userswithicon">
           <div className="review-item">
             <div className="review-icon">
-             <ul>
-               <li><i className="fa fa-user" aria-hidden="true"></i> 45,896</li> 
-             </ul>
+              <ul>
+                <li><i className="fa fa-user" aria-hidden="true"></i> 45,896</li> 
+                {isLoggedin ?<li>
+                  {
+                    isWishListed?
+                    <FavoriteIcon onClick={() => handleFav("remove",obj)}/>:
+                    <FavoriteBorderIcon onClick={() => handleFav("add",obj)}/>
+                  }                  
+                </li> : ""}
+              </ul>
             </div>
             { obj.plateform && obj.plateform.length > 0 && <div className="prodwerp">
               <ul>

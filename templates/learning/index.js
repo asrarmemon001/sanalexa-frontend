@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import AOS from "aos";
-import { getUser, getProjectAndPackage, getProjectPercentageApi } from "../../utils/api-Request"
+import { getUser, getProjectAndPackage, getProjectPercentageApi, getFavList } from "../../utils/api-Request"
 import { ImageBaseUrl } from "../../utils/Baseurl"
 
 import Link from "next/link";
@@ -18,7 +18,14 @@ export default function LeaningPageTemplate() {
    const [activePanel, setActivePanel] = useState(0)
    const [loading, setLoading] = useState(false)
 
-
+   const getFavData = async() => {
+      const favList = await getFavList()
+      const response = favList?.data?.data
+      if(response?.length){
+         const data = response.filter((el => el.itemType === "project"))
+         setFavProjects(data)
+      }
+   }
 
    const getUserData = async () => {
       const user = await getUser()
@@ -57,6 +64,7 @@ export default function LeaningPageTemplate() {
       AOS.refresh();
       getUserData()
       getCourses()
+      getFavData()
    }, []);
 
    const tabPanels = [
