@@ -5,6 +5,7 @@ const CheckoutSummary = () => {
                 <h4 className="order">Order summary</h4>
                 <div className="orders plan-list">
                     <table>
+                    <tbody>
                         <tr>
                             <th>PLAN</th>
                             <th>PRICE</th>
@@ -21,6 +22,7 @@ const CheckoutSummary = () => {
                             <td>ESTIMATED TAX<sup>1</sup> </td>
                             <td>₹ 0 </td>
                         </tr>
+                        </tbody>
                     </table>
                 </div>
 

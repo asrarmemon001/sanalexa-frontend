@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react"
 import { ImageBaseUrl } from "../../utils/Baseurl"
-
 import Link from "next/link";
 import AccountDetails from "./account-details";
 import PaymentMethodCheckout from "./payment-method-checkout";
@@ -18,7 +17,6 @@ export default function CheckoutPageTemplate() {
    const [percentageData, setPercentageData] = useState([])
    const [activePanel, setActivePanel] = useState(0)
    const [loading, setLoading] = useState(false)
-
 
 
    return (
@@ -57,22 +55,6 @@ export default function CheckoutPageTemplate() {
          </section>
 
          <BannerBottom />
-
-
-         {/* <section className="banner bannerbottom" style={{ backgroundImage: 'url(/static/images/banner-bottom.jpg)' }}>
-            <div className="container">
-               <div className="main-banner">
-                  <div className="banner-content">
-                     <h1>Whan us to deploy paint  Simulator at your site?</h1>
-                     <p>Our technical experts will respond to your query at the earliest.</p>
-                     <Link href="#"><a className="button-download-launcher">Contact Us</a></Link>
-                  </div>
-                  <div className="banner-img">
-                        <img src="/static/images/right-bott.png" />
-                    </div>
-               </div>
-            </div>
-         </section> */}
       </section>
    )
 }

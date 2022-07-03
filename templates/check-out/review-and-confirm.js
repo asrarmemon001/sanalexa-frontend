@@ -9,11 +9,12 @@ const ReviewAndConfirm = () => {
         <div id="collapseOne" className="accordion-collapse">
             <div className="review-confirm interacordian">
                 <table>
-                    <tr>
+                <tbody>
+                <tr>
                         <td>
                             <div className="reviewItem">
                                 <figure><img src="/static/images/learning.jpeg" alt="" /></figure>
-                                <h4>Course 2D - 3D Space layers, Cameras & Depth <small>Sector’s name</small></h4>
+                                <h4>{`Course 2D - 3D Space layers, Cameras & Depth`} <small>Sector’s name</small></h4>
                             </div>
                         </td>
                         <td><strong className="accountdetails">₹ 499 </strong> <span><del> ₹ 899</del>16% Discount</span></td>
@@ -22,7 +23,7 @@ const ReviewAndConfirm = () => {
                         <td>
                             <div className="reviewItem">
                                 <figure><img src="/static/images/learning.jpeg" alt="" /></figure>
-                                <h4>Course 2D - 3D Space layers, Cameras & Depth <small>Sector’s name</small></h4>
+                                <h4>{`Course 2D - 3D Space layers, Cameras & Depth`} <small>Sector’s name</small></h4>
                             </div>
                         </td>
                         <td><strong className="accountdetails">₹ 499 </strong> <span><del> ₹ 899</del>16% Discount</span></td>
@@ -31,11 +32,12 @@ const ReviewAndConfirm = () => {
                         <td>
                             <div className="reviewItem">
                                 <figure><img src="/static/images/learning.jpeg" alt="" /></figure>
-                                <h4>Course 2D - 3D Space layers, Cameras & Depth <small>Sector’s name</small></h4>
+                                <h4>{`Course 2D - 3D Space layers, Cameras & Depth`} <small>Sector’s name</small></h4>
                             </div>
                         </td>
                         <td><strong className="accountdetails">₹ 499 </strong> <span><del> ₹ 899</del>16% Discount</span></td>
                     </tr>
+                </tbody>
                 </table>
                 <button type="submit" className="carts">Purchase</button>
             </div>
