@@ -349,34 +349,34 @@ const ProductDetailsMain = ({ productDetails }) => {
                                     <div className="OculusQuest">
                                     <ul className="towcarlist">
                                         <li>
-                                        <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" />
-                                         <label for="vehicle1"> Oculus Quest 2 <strong><img src="/static/images/Icon ionic-md-i.png" /></strong></label>
+                                        <input type="checkbox" id="Oculus" name="vehicle1" value="Bike" />
+                                         <label for="Oculus"> Oculus Quest 2 <strong><img src="/static/images/Icon ionic-md-i.png" /></strong></label>
                                         </li>
                                         <li>
-                                        <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" />
-                                         <label for="vehicle1"> Clipart Images PNG/PSD/JPG <strong><img src="/static/images/Icon ionic-md-i.png" /></strong></label>
+                                        <input type="checkbox" id="Clipart" name="vehicle1" value="Bike" />
+                                         <label for="Clipart"> Clipart Images PNG/PSD/JPG <strong><img src="/static/images/Icon ionic-md-i.png" /></strong></label>
                                          <ul className="Clipart">
                                             <li>
-                                            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" />
-                                         <label for="vehicle1">PSD image in HD resolution <strong><span className="totalru">₹ </span>300</strong> </label>
+                                            <input type="checkbox" id="resolution" name="vehicle1" value="Bike" />
+                                         <label for="resolution">PSD image in HD resolution <strong><span className="totalru">₹ </span>300</strong> </label>
                                             </li>
                                             <li>
-                                            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" />
-                                         <label for="vehicle1">Blue Print<strong><span className="totalru">₹ </span>30</strong> </label>
+                                            <input type="checkbox" id="Blue" name="vehicle1" value="Bike" />
+                                         <label for="Blue">Blue Print<strong><span className="totalru">₹ </span>30</strong> </label>
                                             </li>
                                             <li>
-                                            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" />
-                                         <label for="vehicle1">High resolution 300 dpi Image <strong><span className="totalru">₹ </span>30</strong></label>
+                                            <input type="checkbox" id="dpi" name="dpi" value="Bike" />
+                                         <label for="dpi">High resolution 300 dpi Image <strong><span className="totalru">₹ </span>30</strong></label>
                                             </li>
                                          </ul>
                                         </li>
                                         <li>
-                                        <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" />
-                                         <label for="vehicle1"> Detailed Interior <strong><span className="totalru"><img src="/static/images/Icon ionic-md-i.png" /> ₹ </span>300 </strong></label>
+                                        <input type="checkbox" id="Interior" name="vehicle1" value="Bike" />
+                                         <label for="Interior"> Detailed Interior <strong><span className="totalru"><img src="/static/images/Icon ionic-md-i.png" /> ₹ </span>300 </strong></label>
                                         </li>
                                         <li>
-                                        <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" />
-                                         <label for="vehicle1"> Unity Asset Package (Mobile Ready) <strong><span className="totalru"><img src="/static/images/Icon ionic-md-i.png" /> ₹ </span>200 </strong></label>
+                                        <input type="checkbox" id="Unity" name="Unity" value="Bike" />
+                                         <label for="Unity"> Unity Asset Package (Mobile Ready) <strong><span className="totalru"><img src="/static/images/Icon ionic-md-i.png" /> ₹ </span>200 </strong></label>
                                         </li>
                                     </ul>
 
@@ -405,7 +405,7 @@ const ProductDetailsMain = ({ productDetails }) => {
                              <h5>
                                 <div className="listimg">
                                 <div class="bordprice_soal"><div class="prodwerp"><ul><li><a href="#" class="girditemea"><i class="fa fa-desktop" aria-hidden="true"></i></a></li><li><a href="#" class="girditemea"><i class="fa fa-laptop" aria-hidden="true"></i></a></li><li><a href="#" class="girditemea"><i class="fa fa-mobile" aria-hidden="true"></i></a></li><li><a href="#" class="girditemea"><i class="fa fa-gamepad" aria-hidden="true"></i></a></li></ul></div></div>
-                                
+
                              </div><a href="#">more info</a></h5> </li>
                              <li><h5>Downloadable size</h5> <h5>560MB <a href="#">more info</a></h5> </li>
                              <li><h5>Shareable Certificates </h5> <h5>Yes</h5> </li>
