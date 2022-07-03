@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import AppContext from "../../../appContext";
 import { addtoBundleApi, AddtoCart } from "../../../utils/api-Request";
 import { ImageBaseUrl } from "../../../utils/Baseurl";
-import { getSession } from "../../../utils/constants";
+import { getSession } from "../../../utils/constants"; 
 const ProductDetailsMain = ({ productDetails }) => {
     const { id, projectTitle, bannerImage, price, projectDesc, services, isBuyed } = productDetails;
     const apiContext = useContext(AppContext)
@@ -122,21 +122,35 @@ const ProductDetailsMain = ({ productDetails }) => {
         return p + sp
         
     } 
+
+ 
+
+
     return (
         <section className="product-Gallery"> 
         <div className="banner-plans">
                 <div className="container">
-                    <div className="banner-content-ple">
-                        <h2>{projectTitle}</h2>
+                    <div className="banner-content-ple"> 
+                        <h3>{projectTitle}</h3>
+                        <h5>Safety Operations  </h5>
                         <p>{projectDesc}</p>
-                        <p>₹ {price}</p>
                     </div>
                 </div>
             </div>
             <div className="container">
                 <div className="outer">
                     <div className="row">
-                        <div className="col-lg-6 col-md-12">
+                        <div className="col-lg-8 col-md-12">
+                            <div className="normalcontent">
+
+                           <div className="noslidecontent">
+
+                               <h5>DUST RACING CAR 3D MODEL</h5> <a href="#"><i className="fa fa-eye" aria-hidden="true"></i> <span>544</span></a>
+                           </div>
+                           <div className="zoomicon">
+                            <a href="#"><img src="/static/images/Icon map-fullsc.png" /></a>
+                           </div>
+
                             {sliderImages ? <Slider {...settings}>
                                 {sliderImages.map((image, index) => {
                                     return (<div className="item next-image-to-normal" key={`slideimage-${index}`}>
@@ -145,13 +159,30 @@ const ProductDetailsMain = ({ productDetails }) => {
                                 })}
 
                             </Slider> : null}
+                               <div className="dustrac">
+                                  <div className="hingmodel">
+                                   <h4>DUST RACING 3D MODEL</h4>
+                                   <p>Safety Operations  </p>
+                                  </div>
+                                 <div className="hingmodelicon">
+                                 <button className="btn btn-danger"><i className="fa fa-plus" aria-hidden="true"></i> ADD TO WISHLIST</button> 
+                                 <ul>
+                                    <li><a href="#"><i class="fa fa-eye" aria-hidden="true"></i> <span>1.08k</span></a></li>
+                                    <li><a href="#"><i class="fa fa-heart" aria-hidden="true"></i> <span>78</span></a></li>
+                                    <li><a href="#"><i class="fa fa-share" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-info-circle" aria-hidden="true"></i></a></li>
+                                 </ul>
+                                  </div>
+                                </div>
+                             </div> 
+
                         </div>
-                        <div className="col-lg-6 col-md-12">
-                            <div className="shift-content">
+                        <div className="col-lg-4 col-md-12">
+                            {/* <div className="shift-content">
 
                                 <h3>{projectTitle}</h3>
                                 <p>{projectDesc}
-                                    {/* <a href="#">Read More</a> */}
+                                    { <a href="#">Read More</a> }
                                 </p>
 
                                 <h4>₹{calculatePrice()}</h4>
@@ -177,7 +208,7 @@ const ProductDetailsMain = ({ productDetails }) => {
                                         null}
                                     <div className="detail-all-butoon">
                                         { !isBuyed && <> <div className="cart-but">
-                                            {/* <input type="number" id="quantity" name="quantity" min="1" max="20" value="1" /> */}
+                                            { <input type="number" id="quantity" name="quantity" min="1" max="20" value="1" />}
                                             <button
                                                 className={
                                                     isProductExistInCart(id)
@@ -219,11 +250,11 @@ const ProductDetailsMain = ({ productDetails }) => {
                                                         :
                                                         router.push("/cart")
                                                 }}
-                                            // disabled={
-                                            //     isProductExistInCart(id)
-                                            //         ? true
-                                            //         : false
-                                            // }
+                                            disabled={
+                                                isProductExistInCart(id)
+                                                    ? true
+                                                    : false
+                                            }
                                             >
                                                 {apicall ? (
                                                     <CircularProgress size={20} />) :
@@ -282,10 +313,115 @@ const ProductDetailsMain = ({ productDetails }) => {
                                         </div>
                                     </div>
                                 </div>
+                            </div> */}
+
+
+
+                            <div className="rectanglemaen">
+                            <div className="rectangle">
+                            <div className="bordprice">
+                                   <div className="bordprice_rupis_ican">  
+                                     <h3><span><span class="rupes">₹ </span> {price}</span> <span className="discouns">16% discount</span></h3>
+                                     </div>
+                                     <div className="bordprice_soal">  
+                                     <div className="prodwerp">
+                                                        <ul>
+                                         <li><a href="#" className="girditemea"><i className="fa fa-desktop" aria-hidden="true"></i></a></li>
+                                                            <li><a href="#" className="girditemea"><i className="fa fa-laptop" aria-hidden="true"></i></a></li>
+                                                            <li><a href="#" className="girditemea"><i className="fa fa-mobile" aria-hidden="true"></i></a></li>
+                                                            <li><a href="#" className="girditemea"><i className="fa fa-gamepad" aria-hidden="true"></i></a></li>
+                                                           
+                                                        </ul>
+                                                    </div>
+                                      </div>
+
+                                </div>
+
+                                <div className="towcartbutton">
+                                <button className="btn btn-danger" disabled=""><i className="fa fa-shopping-cart" aria-hidden="true"></i>  Added in Cart </button>
+                                <button className="btn btn-danger"> <i className="fa fa-database" aria-hidden="true"></i> ADD TO WISHLIST</button>
+
+                                </div>
+                                  <div className="RecommendedAddons">
+                                    <h4>Recommended Addons <img src="/static/images/Icon ionic-md-i.png" /></h4>
+                                    <div className="OculusQuest">
+                                    <ul className="towcarlist">
+                                        <li>
+                                        <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" />
+                                         <label for="vehicle1"> Oculus Quest 2 <p><img src="/static/images/Icon ionic-md-i.png" /></p></label>
+                                        </li>
+                                        <li>
+                                        <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" />
+                                         <label for="vehicle1"> Clipart Images PNG/PSD/JPG <p><img src="/static/images/Icon ionic-md-i.png" /></p></label>
+                                         <ul className="Clipart">
+                                            <li>
+                                            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" />
+                                         <label for="vehicle1">PSD image in HD resolution <p><span className="totalru">₹ </span>300</p> </label>
+                                            </li>
+                                            <li>
+                                            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" />
+                                         <label for="vehicle1">Blue Print<p><span className="totalru">₹ </span>30</p> </label>
+                                            </li>
+                                            <li>
+                                            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" />
+                                         <label for="vehicle1">High resolution 300 dpi Image <p><span className="totalru">₹ </span>30</p></label>
+                                            </li>
+                                         </ul>
+                                        </li>
+                                        <li>
+                                        <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" />
+                                         <label for="vehicle1"> Detailed Interior <p><span className="totalru"><img src="/static/images/Icon ionic-md-i.png" /> ₹ </span>300 </p></label>
+                                        </li>
+                                        <li>
+                                        <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" />
+                                         <label for="vehicle1"> Unity Asset Package (Mobile Ready) <p><span className="totalru"><img src="/static/images/Icon ionic-md-i.png" /> ₹ </span>200 </p></label>
+                                        </li>
+                                    </ul>
+
+                                    </div>
+                                  </div>
+
                             </div>
+
+                            <div className="ProductUSPwill">
+                              <ul>
+                    <li><h5><i class="fa fa-file-text-o" aria-hidden="true"></i> Product USP will be here</h5></li>
+                    <li><h5><i class="fa fa-bar-chart" aria-hidden="true"></i> Product USP will be here</h5></li>
+                <li><h5><img src="/static/images/Icon feather-me.png" /> Product USP will be here</h5></li>
+                              </ul>
+
+                            </div>
+                           
+
+                           <div className="COURSEPREVIEW">
+                            <h4>COURSE PREVIEW</h4>
+                            <ul className="courslist">
+                             <li><h5>License </h5> <h5>Standard <a href="#">Learn More</a></h5> </li>
+                             <li><h5>Language </h5> <h5>English, Hindi, Marathi</h5> </li>
+                             <li><h5>Level</h5> <h5>Beginner</h5> </li>
+                             <li><h5>Compatible with </h5>
+                             <h5>
+                                <div className="listimg">
+                                    <img src="/static/images/Icon awesome-vr.png" />
+                                    <img src="/static/images/Icon awesome-mo.png" />
+                                    <img src="/static/images/Icon material-w.png" />
+                                    <img src="/static/images/Icon awesome-de.png" />
+                             </div><a href="#">more info</a></h5> </li>
+                             <li><h5>Downloadable size</h5> <h5>560MB <a href="#">more info</a></h5> </li>
+                             <li><h5>Shareable Certificates </h5> <h5>Yes</h5> </li>
+                             <li><h5>100% online </h5> <h5>Yes</h5> </li>
+                             <li><h5>Flexible Deadlines  </h5> <h5>Yes</h5> </li>
+                             <li><h5>Version</h5> <h5> V1.0 </h5> </li>
+                             <li><h5>Validated by</h5> <h5>Hella & ASDC</h5> </li>
+                             <li><h5>Updated on.</h5><h5>  28th Feb 2022</h5> </li>
+
+
+                            </ul>
+                           </div>
                         </div>
                     </div>
                 </div>
+            </div>
             </div>
         </section>
     )

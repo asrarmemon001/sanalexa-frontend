@@ -28,9 +28,9 @@ const ShiftHandover = ({productDetails}) => {
         }))
     }
     return (
-        <section className="shift-hendvery">
+        <section className="shift-hendverys">
             <div className="container">
-                <div className="all-teb">
+                <div className="all-teb TabDesign">
                     <h3>Shift handover</h3>
                     <div id="material-tabs">
                         <ul>

@@ -180,6 +180,76 @@ export default function GetStarted() {
 
   return (
     <section className="couressto">
+
+<section className="industrial-knowl-edge">
+<div className="container">
+	<div className="Upkill-title">
+		<h3>Upskill your industrial knowledge with US</h3>
+		<p>Get access to industrial courses, assessments, knowledge repositories, and <br />
+     professional certificates on Simulanis LEARN, trusted by leading industries and companies.
+		  </p>
+	</div>
+	
+
+
+<div className="row mt-5">
+	<div className="col-md-3">
+		<div className="industry-helvetica">
+		    <img src="/static/images/industry-img1.png" />
+	       <h5>helvetica neue</h5>
+		   <p>Learn new industry skills using the ‘learn-by-doing’ pedagogy</p>
+		</div> 
+	</div>
+	
+	<div className="col-md-3">
+		<div className="industry-helvetica">
+		    <img src="/static/images/industry-img2.png" />
+	       <h5>helvetica neue</h5>
+		   <p>Learn new industry skills using the ‘learn-by-doing’ pedagogy</p>
+		</div> 
+	</div>
+	
+	<div className="col-md-3">
+		<div className="industry-helvetica">
+		    <img src="/static/images/industry-img3.png" />
+	       <h5>helvetica neue</h5>
+		   <p>Learn new industry skills using the ‘learn-by-doing’ pedagogy</p>
+		</div> 
+	</div>
+
+	<div className="col-md-3">
+		<div className="industry-helvetica">
+		    <img src="/static/images/industry-img4.png" />
+	       <h5>helvetica neue</h5>
+		   <p>Learn new industry skills using the ‘learn-by-doing’ pedagogy</p>
+		</div> 
+	</div>
+ 
+</div>
+</div>
+</section>
+
+
+<section className="leading-businesses">
+<div className="container-fuild">
+	<div className="Upkill-title">
+		<h3>Trusted by 150+ leading businesses and corporates </h3>
+		<p>Learn from courses that are from around the globe</p>
+	</div>
+	
+	<div className="Trusted-logoslider">
+				<img src="/static/images/lupin.jpg" />
+				<img src="/static/images/zydus.jpg" />
+				<img src="/static/images/gsk.jpg" />
+				<img src="/static/images/dr-reddy.jpg" />
+				<img src="/static/images/reckitt.jpg" />  
+				<img src="/static/images/sun.jpg" />  
+				<img src="/static/images/granules.jpg" />  
+				<img src="/static/images/marksans.jpg" />  
+	</div> 
+</div> 
+</section>
+      
       <div className="container">
         <div className="title">
           <h3>COURSES TO GET YOU STARTED </h3>
@@ -394,6 +464,8 @@ export default function GetStarted() {
           {/* Projects************************ */}
         </div>
       </div>
+
+      
     </section>
   );
 }
