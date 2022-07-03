@@ -30,8 +30,7 @@ const ShiftHandover = ({productDetails}) => {
     return (
         <section className="shift-hendverys">
             <div className="container">
-                <div className="all-teb TabDesign">
-                    <h3>Shift handover</h3>
+                <div className="all-teb TabDesign"> 
                     <div id="material-tabs">
                         <ul>
                             {tabPanels.tabs.map((el, ii) => {

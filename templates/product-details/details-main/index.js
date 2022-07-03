@@ -147,9 +147,7 @@ const ProductDetailsMain = ({ productDetails }) => {
 
                                <h5>DUST RACING CAR 3D MODEL</h5> <a href="#"><i className="fa fa-eye" aria-hidden="true"></i> <span>544</span></a>
                            </div>
-                           <div className="zoomicon">
-                            <a href="#"><img src="/static/images/Icon map-fullsc.png" /></a>
-                           </div>
+                           
 
                             {sliderImages ? <Slider {...settings}>
                                 {sliderImages.map((image, index) => {
@@ -159,7 +157,11 @@ const ProductDetailsMain = ({ productDetails }) => {
                                 })}
 
                             </Slider> : null}
+
                                <div className="dustrac">
+                               <div className="zoomicon">
+                            <a href="#"><img src="/static/images/Icon map-fullsc.png" /></a>
+                           </div>
                                   <div className="hingmodel">
                                    <h4>DUST RACING 3D MODEL</h4>
                                    <p>Safety Operations  </p>
@@ -348,33 +350,33 @@ const ProductDetailsMain = ({ productDetails }) => {
                                     <ul className="towcarlist">
                                         <li>
                                         <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" />
-                                         <label for="vehicle1"> Oculus Quest 2 <p><img src="/static/images/Icon ionic-md-i.png" /></p></label>
+                                         <label for="vehicle1"> Oculus Quest 2 <strong><img src="/static/images/Icon ionic-md-i.png" /></strong></label>
                                         </li>
                                         <li>
                                         <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" />
-                                         <label for="vehicle1"> Clipart Images PNG/PSD/JPG <p><img src="/static/images/Icon ionic-md-i.png" /></p></label>
+                                         <label for="vehicle1"> Clipart Images PNG/PSD/JPG <strong><img src="/static/images/Icon ionic-md-i.png" /></strong></label>
                                          <ul className="Clipart">
                                             <li>
                                             <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" />
-                                         <label for="vehicle1">PSD image in HD resolution <p><span className="totalru">₹ </span>300</p> </label>
+                                         <label for="vehicle1">PSD image in HD resolution <strong><span className="totalru">₹ </span>300</strong> </label>
                                             </li>
                                             <li>
                                             <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" />
-                                         <label for="vehicle1">Blue Print<p><span className="totalru">₹ </span>30</p> </label>
+                                         <label for="vehicle1">Blue Print<strong><span className="totalru">₹ </span>30</strong> </label>
                                             </li>
                                             <li>
                                             <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" />
-                                         <label for="vehicle1">High resolution 300 dpi Image <p><span className="totalru">₹ </span>30</p></label>
+                                         <label for="vehicle1">High resolution 300 dpi Image <strong><span className="totalru">₹ </span>30</strong></label>
                                             </li>
                                          </ul>
                                         </li>
                                         <li>
                                         <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" />
-                                         <label for="vehicle1"> Detailed Interior <p><span className="totalru"><img src="/static/images/Icon ionic-md-i.png" /> ₹ </span>300 </p></label>
+                                         <label for="vehicle1"> Detailed Interior <strong><span className="totalru"><img src="/static/images/Icon ionic-md-i.png" /> ₹ </span>300 </strong></label>
                                         </li>
                                         <li>
                                         <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" />
-                                         <label for="vehicle1"> Unity Asset Package (Mobile Ready) <p><span className="totalru"><img src="/static/images/Icon ionic-md-i.png" /> ₹ </span>200 </p></label>
+                                         <label for="vehicle1"> Unity Asset Package (Mobile Ready) <strong><span className="totalru"><img src="/static/images/Icon ionic-md-i.png" /> ₹ </span>200 </strong></label>
                                         </li>
                                     </ul>
 
@@ -402,10 +404,8 @@ const ProductDetailsMain = ({ productDetails }) => {
                              <li><h5>Compatible with </h5>
                              <h5>
                                 <div className="listimg">
-                                    <img src="/static/images/Icon awesome-vr.png" />
-                                    <img src="/static/images/Icon awesome-mo.png" />
-                                    <img src="/static/images/Icon material-w.png" />
-                                    <img src="/static/images/Icon awesome-de.png" />
+                                <div class="bordprice_soal"><div class="prodwerp"><ul><li><a href="#" class="girditemea"><i class="fa fa-desktop" aria-hidden="true"></i></a></li><li><a href="#" class="girditemea"><i class="fa fa-laptop" aria-hidden="true"></i></a></li><li><a href="#" class="girditemea"><i class="fa fa-mobile" aria-hidden="true"></i></a></li><li><a href="#" class="girditemea"><i class="fa fa-gamepad" aria-hidden="true"></i></a></li></ul></div></div>
+                                
                              </div><a href="#">more info</a></h5> </li>
                              <li><h5>Downloadable size</h5> <h5>560MB <a href="#">more info</a></h5> </li>
                              <li><h5>Shareable Certificates </h5> <h5>Yes</h5> </li>

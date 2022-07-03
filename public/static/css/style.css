@@ -2475,11 +2475,12 @@ button#user-button {
     border-radius: 0;
 }
 .dustrac {
-    display: flex;
-    align-items: center;
+    display: flex; 
     justify-content: space-between;
-    margin-top: 30px;
+    margin-top: 30px;    
+    position: relative;
 }
+
 .hingmodel h4 {
     font-size: 32px;
     line-height: 50px;
@@ -2488,15 +2489,18 @@ button#user-button {
 .hingmodel p {
     font-size: 27px;
     line-height: 30px;
+    font-weight: 300;
+    color: #787878;
 }
 .hingmodelicon ul li {
-    padding: 15px 11px;
+    /* padding: 15px 11px; */
+    margin-left: 16px;
 }
 .hingmodelicon ul li a {
     font-size: 20px;
     color: #484848;
     border: 1px solid #9a9a9a;
-    padding: 12px;
+    padding: 8px 15px;
     border-radius: 5px;
     text-decoration: none;
 }
@@ -2513,7 +2517,7 @@ border: 0;
     align-items: center;
     list-style: none;
     margin-bottom: 0;
-    margin-top: 15px;
+    margin-top: 40px;
 }
 .banner-content-ple h2 {
     font-size: 32px;
@@ -2872,7 +2876,7 @@ ul.Clipart {
 }
 .zoomicon {
     position: absolute;
-    top: 83%;
+    top: -90px;
     z-index: 99;
     right: 20px;
 }
@@ -2907,6 +2911,7 @@ ul.Clipart {
 }
 .ProductUSPwill ul {
     list-style: none;
+    margin-bottom: 0;
 }
 
 .ProductUSPwill ul h5 {
@@ -2916,13 +2921,12 @@ ul.Clipart {
     margin-bottom: 0;
 }
 .ProductUSPwill ul h5 i.fa {
-    font-size: 25px;
-    margin-right: 20px;
+    font-size: 25px; 
     color: #f7ad18;
 }
-.ProductUSPwill ul h5 img {
-    margin-right: 15px;
-    height: 30px;
+.ProductUSPwill ul h5 img, .ProductUSPwill ul h5 i {
+    width: 28px;
+    height: auto;    margin-right: 15px;
 }
 .COURSEPREVIEW {
     background-color: #ffffff;
@@ -2960,6 +2964,7 @@ ul.Clipart {
     margin-top: 10px;
     margin-bottom: 0;
     text-decoration: none;
+    text-align: right;
 }
 .listimg {
     display: flex;
@@ -2970,6 +2975,7 @@ ul.Clipart {
 }
 .banner-content-ple h3 {
     font-size: 35px;
+    text-transform: uppercase;
 }
 .banner-content-ple h5 {
     font-size: 27px;
@@ -3050,9 +3056,30 @@ section.leading-businesses {
     font-size: 20px;
     margin-right: 20px;
 }
-
-
-
+.OculusQuest ul li label strong {
+    margin-left: 10px;
+    font-weight: 300;
+    color: #4a4a4a;
+}
+.ProductUSPwill ul li {
+    padding: 3px 0;
+}
+.listimg .bordprice_soal li a {
+    margin-top: 0!important;
+}
+.listimg .bordprice_soal li {
+    padding: 0!important;
+}
+.listimg .bordprice_soal .prodwerp {
+    background-color: transparent;
+}
+.listimg .bordprice_soal li a.girditemea i {
+    color: #333;
+    font-size: 27px;
+}
+.listimg  .bordprice_soal .prodwerp {
+    padding-right: 0;
+}
 
 /*********************************homepagenewsectioncss*************************************/
 
@@ -3609,8 +3636,95 @@ a.button-download-launcher {
     .rightt button.btn.btn-danger svg {
         width: 20px;
     }
-
+    .banner-content-ple h3 {
+        font-size: 28px; 
+    }
+    .banner-content-ple h5 {
+        font-size: 22px; 
+        margin: 0px 0px 7px; 
+    }
+    .banner-content-ple p {
+        font-size: 19px; 
+    }
+    .normalcontent .noslidecontent h5 {
+        font-size: 20px; 
+    }
+    .bordprice .bordprice_rupis_ican h3 {
+        font-size: 30px;
+    }
+    .rectangle { 
+        padding: 15px; 
+    }
+    .towcartbutton button.btn.btn-danger {
+        max-width: 148px; 
+        font-size: 12px; 
+    }
+    .RecommendedAddons h4 {
+        font-size: 15px; 
+    }
+    .OculusQuest ul li label {
+        font-size: 13px; 
+    }
+    .OculusQuest ul li input {
+        width: 14px;
+        height: 15px;
+        margin-right: 11px;
+        top: 3px;
+    }
+    .zoomicon { 
+        top: -80px;
+        z-index: 99;
+        right: 20px;
+        width: 22px;
+    }
+    .ProductUSPwill ul h5 {
+        font-size: 16px;
+        line-height: 1.4; 
+    }
+    .ProductUSPwill ul h5 img, .ProductUSPwill ul h5 i {
+        width: 22px;
+        height: auto;
+        margin-right: 10px;
+    }
+    .ProductUSPwill ul h5 i.fa {
+        font-size: 21px; 
+    }
+    .hingmodelicon button.btn.btn-danger {
+        max-width: 199px; 
+        font-size: 14px; 
+        line-height: 2.5; 
+    }
+    .hingmodel h4 {
+        font-size: 24px;
+        line-height: 1; 
+    }
+    .hingmodel p {
+        font-size: 20px; 
+    }
+    .hingmodelicon ul li a {
+        font-size: 17px; 
+        padding: 5px 12px;
+        border-radius: 5px; 
+    }
+    .COURSEPREVIEW ul.courslist li h5 {
+        font-size: 15px; 
+    }
+    .COURSEPREVIEW ul.courslist li h5 a {
+        font-size: 11px; 
+    }
+    .listimg .bordprice_soal li a.girditemea i { 
+        font-size: 22px;
+    }
+    .all-teb ul a, .all-teb #material-tabs ul span { 
+        font-size: 18px; 
+    }
+    .TabDesign { 
+        padding: 9px 25px; 
+    }
 }
+
+
+
 @media only screen and (max-width: 1345px) {
     .mideel-mene ul.list-menu li a {
         font-size: 13px;
