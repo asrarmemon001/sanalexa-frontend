@@ -1,9 +1,7 @@
 const ShiftHandoverFaq=()=>{
-    return(<section >
-      {/*className="whyyou-will-like"*/} 
-    {/* <div className="container"> 
-      <h3 className="like-tex">Why you will like the Shift handover</h3>
-  
+    return(<section  className="whyyou-will-like">
+   <div className="container"> 
+      <h3 className="like-tex">Why you will like the Shift handover</h3>  
         <div className="row">  
         <div className="col-md-4 mb-4"> 
           <div className="handvoerbox">
@@ -42,7 +40,7 @@ const ShiftHandoverFaq=()=>{
         
   
       </div> 
-      </div> */}
+      </div>  
     </section>)
 }
 export default ShiftHandoverFaq

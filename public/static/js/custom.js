@@ -16,6 +16,10 @@ $(window).scroll(function() {
 
  $(document).ready(function(){
 
+  $(".customdp").click(function() {  //use a class, since your ID gets mangled
+    $(this).toggleClass("active");      //add the class to the clicked element
+  });
+
     $(".collapsebutton").click(function(){
       $(this).toggleClass("opentoggle");
       alert('sssss');
@@ -53,7 +57,7 @@ $(window).scroll(function() {
         }
       }
     })
-
+  
   }); 
 
   

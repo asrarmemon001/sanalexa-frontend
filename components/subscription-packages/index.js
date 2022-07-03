@@ -156,6 +156,7 @@ export default function SubscriptionPackages({ heading }) {
                                                             <li><a href="#" className="girditemea"><i className="fa fa-laptop" aria-hidden="true"></i></a></li>
                                                             <li><a href="#" className="girditemea"><i className="fa fa-mobile" aria-hidden="true"></i></a></li>
                                                             <li><a href="#" className="girditemea"><i className="fa fa-gamepad" aria-hidden="true"></i></a></li>
+                                                            <li><a href="#" className="girditemea"><i className="cutomeicon" style={{ backgroundImage: 'url(/static/images/iconfive.png)' }}></i></a></li>
                                                         </ul>
                                                     </div>
 
