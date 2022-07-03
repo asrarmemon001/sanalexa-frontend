@@ -69,13 +69,15 @@ export const fileUpload = (path, data) => {
   })
 };
 
-// export const deleteApi = (path:string, data?:any) => {
-//   const token = localStorage.getItem("token");
 
-//   return axios.delete(BaseUrl + path, data, {
-//     headers: {
-//       "Content-Type": "application/json",
-//       Authorization: `Bearer ${token}`
-//     }
-//   });
-// };
+export const deleteApi = (path, data) => {
+  const token = localStorage.getItem("token");
+
+  return axios.delete(apiBaseUrl + path, {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`
+    },
+    data
+  });
+};

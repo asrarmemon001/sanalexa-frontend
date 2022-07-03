@@ -1,4 +1,4 @@
-import { getApi, postApi, getApiWithoutToken, postApiWithoutToken } from "./api-interface";
+import { getApi, postApi, getApiWithoutToken, postApiWithoutToken, deleteApi } from "./api-interface";
 
 export const projectList = (data) => {
    return postApi(`/api/projects/web/list`, data)
@@ -99,4 +99,16 @@ export const getProjectAndPackage = async () => {
 
 export const getProjectPercentageApi = async () => {
    return await getApi(`/api/precentage/list`)
+}
+
+export const getFavList = async() => {
+   return await getApi(`/api/favourite/list`)
+}
+
+export const addToFav = async(data) => {
+   return await postApi(`/api/favourite/add-to-fav`, data)
+}
+
+export const removeToFav = async(data) => {
+   return await deleteApi(`/api/favourite/remove-to-fav?itemId=${data?.itemId}&itemType=${data?.itemType}`)
 }

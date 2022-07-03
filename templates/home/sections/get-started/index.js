@@ -271,7 +271,7 @@ export default function GetStarted() {
               </>
 
             ))}
-             <div className="numbrbundel"> <h5>(0 of 4) </h5></div>
+             <div className="numbrbundel"> <h5>({bundleProducts?.length || 0} of 4) </h5></div>
           
           </div>
           <div className="col-md-3 col-sm-12 text-right pr-0 paddi">
