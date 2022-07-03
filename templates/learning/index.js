@@ -118,7 +118,7 @@ export default function LeaningPageTemplate() {
                   <ul>
                      {tabPanels.map((el, i) => {
                         return (
-                           <li><a href="javascript:void(0)" onClick={() => setActivePanel(i)} key={el.id}>{el.tab}</a></li>
+                           <li className={activePanel == i ? "active" : ""}><a href="javascript:void(0)" onClick={() => setActivePanel(i)} key={el.id}>{el.tab}</a></li>
                         )
                      })}
 

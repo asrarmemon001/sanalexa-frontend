@@ -3816,3 +3816,8 @@ text-align: center;
 .otp-form > div {justify-content: center;}
 
 .otp-form > div > div input {width: 38px!important;border-radius: 4px;border-style: solid;padding: 8px 0px;}
+
+.buy_bundle[disabled] {opacity: 0.5;cursor: not-allowed;pointer-events: none;}
+
+button[disabled] {cursor: not-allowed;pointer-events: none;}
+.alltabsyel .active, .alltabsyel .active a {color: #007bff;}

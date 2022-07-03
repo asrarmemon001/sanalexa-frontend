@@ -3,6 +3,7 @@ import Image from "next/image";
 import { ImageBaseUrl } from "../../utils/Baseurl";
 import { RemoveCartItem } from "../../utils/api-Request";
 import { NoDataFound } from "../NoDataFound/NoDataFound";
+import { checkJson } from "../../utils/helper-functions";
 
 function CardItem({
   image,
@@ -43,7 +44,7 @@ function CardItem({
           {/* <span className="badge bg-danger mx-2 text-white">{type}</span> */}
           {/* <span className="badge bg-danger mx-2 text-white">{plateform.join(", ").replace("_" , " ")}</span> */}
           {plateform && plateform.length > 0 &&
-            plateform.map((obj) => (
+            checkJson(plateform).map((obj) => (
               <span key={obj} className="badge bg-danger mx-2 text-white">{obj}</span>
             ))}
         </div>
@@ -166,7 +167,7 @@ const AccordianItem = ({
 
         {plateforms && plateforms.length > 0 
         ?
-          plateforms.map((obj) => (
+          checkJson(plateforms).map((obj) => (
             <span key={obj} className="badge bg-danger mx-2 text-white">{obj}</span>
           ))
         :
