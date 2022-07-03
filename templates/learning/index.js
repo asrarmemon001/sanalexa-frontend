@@ -76,7 +76,7 @@ export default function LeaningPageTemplate() {
       {
          id: "tab-02",
          tab: `My Favorites (${favProjects?.length || 0})`,
-         panel: <TabPanel projects={favProjects} percentageData={percentageData} />
+         panel: <TabPanel projects={favProjects} percentageData={percentageData} favorites={true}/>
       },
       {
          id: "tab-03",
