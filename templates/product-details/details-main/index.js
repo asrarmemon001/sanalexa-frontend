@@ -1,189 +1,264 @@
 import { CircularProgress } from "@mui/material";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useContext, useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react";
 import Slider from "react-slick";
 import { toast } from "react-toastify";
 import AppContext from "../../../appContext";
-import { addtoBundleApi, AddtoCart } from "../../../utils/api-Request";
+import { addtoBundleApi, AddtoCart, addToFav, getFavList } from "../../../utils/api-Request";
 import { ImageBaseUrl } from "../../../utils/Baseurl";
-import { getSession } from "../../../utils/constants"; 
+import { getSession } from "../../../utils/constants";
 const ProductDetailsMain = ({ productDetails }) => {
-    const { id, projectTitle, bannerImage, price, projectDesc, services, isBuyed } = productDetails;
-    const apiContext = useContext(AppContext)
-    const {
-        playTypeModal
-    } = apiContext;
-    const [apicall, setapicall] = useState(false);
-    const [bundleApicall, setBundleApicall] = useState(false);
-    const [selectServices, setSelectedServices] = useState([])
-    const { state } = apiContext;
-    const [sliderImages, setSliderImages] = useState(null)
-    const settings = {
-        customPaging: function (i) {
-            return (
-                <a className="item thum-img">
-                    <Image src={ImageBaseUrl + sliderImages[i]} width={10} height={10} />
-                </a>
-            );
-        },
-        dots: true,
-        dotsClass: "slick-dots slick-thumb",
-        infinite: true,
-        autoplay: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1
+  const {
+    id,
+    projectTitle,
+    bannerImage,
+    price,
+    projectDesc,
+    services,
+    isBuyed,
+    plateform
+  } = productDetails;
+
+  const apiContext = useContext(AppContext);
+  const { playTypeModal } = apiContext;
+  const [apicall, setapicall] = useState(false);
+  const [bundleApicall, setBundleApicall] = useState(false);
+  const [selectServices, setSelectedServices] = useState([]);
+  const { state } = apiContext;
+  const [sliderImages, setSliderImages] = useState(null);
+  const [ wishlistIs, setWishlistIs ] = useState(false)
+  const settings = {
+    customPaging: function (i) {
+      return (
+        <a className="item thum-img">
+          <Image src={ImageBaseUrl + sliderImages[i]} width={10} height={10} />
+        </a>
+      );
+    },
+    dots: true,
+    dotsClass: "slick-dots slick-thumb",
+    infinite: true,
+    autoplay: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
+
+  const isProductExistInCart = (id) => {
+    return Boolean(
+      apiContext.state.cartProduct?.find(
+        (el) => el.id == id && el.type == "project"
+      )
+    );
+  };
+
+  const handleAddtoCart = async (id, type) => {
+    setapicall(true);
+    const data = {
+      sessionId: getSession(),
+      cart: { id: String(id), type: "project", quantity: 1, selectServices },
     };
-
-    const isProductExistInCart = (id) => {
-        return Boolean(apiContext.state.cartProduct?.find(el => el.id == id && el.type == 'project'))
-    }
-
-    const handleAddtoCart = async (id, type) => {
-        setapicall(true)
-        const data = {
-            sessionId: getSession(),
-            cart: { id: String(id), type: "project", quantity: 1, selectServices },
-        };
-        await AddtoCart(data)
-            .then((res) => {
-                if (res?.status == 200) {
-                  //  toast.success("Product added to cart")
-                    if (type == 'buy') {
-                        router.push('/checkout')
-                    }
-                } else {
-                    toast.error("somethingwent wrong");
-                }
-                apiContext.fetchCartList()
-                setapicall(false)
-            }
-            )
-            .catch((error) => { setapicall(false); console.log(error) });
-    };
-
-
-    const handleAddtoBundle = async (id) => {
-        setBundleApicall(true)
-        const data = {
-            sessionId: getSession(),
-            bundle: { id: String(id), type: "project", quantity: 1, selectServices },
-        };
-        await addtoBundleApi(data)
-            .then((res) => {
-                if (res?.status == 200) {
-                   // toast.success("Product added to bundle")
-                } else {
-                    toast.error("something went wrong");
-                }
-                apiContext.fetchBundleList()
-                setBundleApicall(false)
-            }
-            )
-            .catch((error) => { setBundleApicall(false); console.log(error) });
-    };
-
-
-
-    const isProductExistInBundle = (id) => {
-        return Boolean(apiContext.state.bundleProduct?.find(el => el.id == id && el.type == 'project'))
-    }
-
-    const handleSelectedServices = (el, selected) => {
-        const oldData = selectServices
-        if (selected) {
-            setSelectedServices([...oldData, el])
+    await AddtoCart(data)
+      .then((res) => {
+        if (res?.status == 200) {
+          //  toast.success("Product added to cart")
+          if (type == "buy") {
+            router.push("/checkout");
+          }
         } else {
-            const excludeElelment = oldData.filter((l) => !(l.name == el.name && l.price == el.price))
-            setSelectedServices([...excludeElelment])
+          toast.error("somethingwent wrong");
         }
+        apiContext.fetchCartList();
+        setapicall(false);
+      })
+      .catch((error) => {
+        setapicall(false);
+        console.log(error);
+      });
+  };
 
+  const handleAddtoBundle = async (id) => {
+    setBundleApicall(true);
+    const data = {
+      sessionId: getSession(),
+      bundle: { id: String(id), type: "project", quantity: 1, selectServices },
+    };
+    await addtoBundleApi(data)
+      .then((res) => {
+        if (res?.status == 200) {
+          // toast.success("Product added to bundle")
+        } else {
+          toast.error("something went wrong");
+        }
+        apiContext.fetchBundleList();
+        setBundleApicall(false);
+      })
+      .catch((error) => {
+        setBundleApicall(false);
+        console.log(error);
+      });
+  };
+
+  const isProductExistInBundle = (id) => {
+    return Boolean(
+      apiContext.state.bundleProduct?.find(
+        (el) => el.id == id && el.type == "project"
+      )
+    );
+  };
+
+  const handleSelectedServices = (el, selected) => {
+    const oldData = selectServices;
+    if (selected) {
+      setSelectedServices([...oldData, el]);
+    } else {
+      const excludeElelment = oldData.filter(
+        (l) => !(l.name == el.name && l.price == el.price)
+      );
+      setSelectedServices([...excludeElelment]);
     }
-    const isServiceSelected = (el) => {
-        const oldData = selectServices
-        return oldData.find(l=>(l.name == el.name && l.price == el.price))
+  };
+  const isServiceSelected = (el) => {
+    const oldData = selectServices;
+    return oldData.find((l) => l.name == el.name && l.price == el.price);
+  };
+  const router = useRouter();
+
+  useEffect(() => {
+    setSliderImages([bannerImage]);
+  }, [router.asPath]);
+
+  const calculatePrice = () => {
+    const p = Number(price);
+    let sp = 0;
+    for (let i = 0; i < selectServices.length; i++) {
+      sp = sp + Number(selectServices[i].price);
     }
-    const router = useRouter()
+    selectServices?.length
+      ? selectServices.reduce((total, el) => {
+          return Number(total) + Number(el.price);
+        })
+      : 0;
+    return p + sp;
+  };
+
+    const handleAddtoFav = async() => {
+        const data = { itemId : id, itemType : "project", isActive : true }
+        const wishlisted = await addToFav(data)
+        const resIs = wishlisted?.data
+        if (wishlisted.status == 200) {
+            toast.success(resIs?.message);
+            getFavData()
+        }
+    }
+
+    const getFavData = async() => {
+        const listIs  = await getFavList()    
+        const response = listIs?.data?.data
+        if(response){
+            const isWishlist = response?.some(el => el.itemType === "project" && el?.project?.id === id)
+            setWishlistIs(isWishlist)
+        }
+    }
+
     useEffect(() => {
-        setSliderImages([bannerImage])
-    }, [router.asPath])
+        getFavData()
+    },[])
 
-    const calculatePrice=()=>{
-        const p = Number(price);
-        let sp = 0;
-        for(let i = 0; i < selectServices.length; i++){
-            sp = sp + Number(selectServices[i].price)
-        }
-        selectServices?.length ? selectServices.reduce((total, el)=>{
-            return Number(total) + Number(el.price)
-
-        }) : 0
-        return p + sp
-        
-    } 
-
- 
-
-
-    return (
-        <section className="product-Gallery innerbanner"> 
-        <div className="banner-plans" style={{ backgroundImage: 'url(/static/images/learning.jpeg)' }}>
-                <div className="container">
-                    <div className="banner-content-ple"> 
-                        <h3>{projectTitle}</h3>
-                      
-                    </div>
+  return (
+    <section className="product-Gallery innerbanner">
+      <div
+        className="banner-plans"
+        style={{ backgroundImage: "url(/static/images/learning.jpeg)" }}
+      >
+        <div className="container">
+          <div className="banner-content-ple">
+            <h3>{projectTitle}</h3>
+          </div>
+        </div>
+      </div>
+      <div className="container">
+        <div className="productdetails">
+          <h5>Safety Operations </h5>
+          <p>{projectDesc}</p>
+        </div>
+        <div className="outer">
+          <div className="row">
+            <div className="col-lg-8 col-md-12">
+              <div className="normalcontent">
+                <div className="noslidecontent">
+                  <h5>{projectTitle}</h5>{" "}
+                  <a href="#">
+                    <i className="fa fa-eye" aria-hidden="true"></i>{" "}
+                    <span>544</span>
+                  </a>
                 </div>
-            </div>
-            <div className="container">
-                <div className="productdetails">
-                <h5>Safety Operations  </h5>
-                        <p>{projectDesc}</p>
-                </div>
-                <div className="outer">
-                    <div className="row">
-                        <div className="col-lg-8 col-md-12">
-                            <div className="normalcontent">
 
-                           <div className="noslidecontent">
-
-                               <h5>DUST RACING CAR 3D MODEL</h5> <a href="#"><i className="fa fa-eye" aria-hidden="true"></i> <span>544</span></a>
-                           </div>
-                           
-
-                            {sliderImages ? <Slider {...settings}>
-                                {sliderImages.map((image, index) => {
-                                    return (<div className="item next-image-to-normal" key={`slideimage-${index}`}>
-                                        <Image src={ImageBaseUrl + image} layout="fill" className="slide-image" />
-                                    </div>)
-                                })}
-
-                            </Slider> : null}
-
-                               <div className="dustrac">
-                               <div className="zoomicon">
-                            <a href="#"><img src="/static/images/Icon map-fullsc.png" /></a>
-                           </div>
-                                  <div className="hingmodel">
-                                   <h4>DUST RACING 3D MODEL</h4>
-                                   <p>Safety Operations  </p>
-                                  </div>
-                                 <div className="hingmodelicon">
-                                 <button className="btn btn-danger"><i className="fa fa-plus" aria-hidden="true"></i> ADD TO WISHLIST</button> 
-                                 <ul>
-                                    <li><a href="#"><i class="fa fa-eye" aria-hidden="true"></i> <span>1.08k</span></a></li>
-                                    <li><a href="#"><i class="fa fa-heart" aria-hidden="true"></i> <span>78</span></a></li>
-                                    <li><a href="#"><i class="fa fa-share" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-info-circle" aria-hidden="true"></i></a></li>
-                                 </ul>
-                                  </div>
-                                </div>
-                             </div> 
-
+                {sliderImages ? (
+                  <Slider {...settings}>
+                    {sliderImages.map((image, index) => {
+                      return (
+                        <div
+                          className="item next-image-to-normal"
+                          key={`slideimage-${index}`}
+                        >
+                          <Image
+                            src={ImageBaseUrl + image}
+                            layout="fill"
+                            className="slide-image"
+                          />
                         </div>
-                        <div className="col-lg-4 col-md-12">
-                            {/* <div className="shift-content">
+                      );
+                    })}
+                  </Slider>
+                ) : null}
+
+                <div className="dustrac">
+                  <div className="zoomicon">
+                    <a href="#">
+                      <img src="/static/images/Icon map-fullsc.png" />
+                    </a>
+                  </div>
+                  <div className="hingmodel">
+                    <h4>{projectTitle}</h4>
+                    <p>{projectDesc}</p>
+                  </div>
+                  <div className="hingmodelicon">
+                    {!isBuyed && <button className="btn btn-danger" disabled={wishlistIs ? true : false} onClick={handleAddtoFav}>
+                      {" "}
+                      <i className="fa fa-plus" aria-hidden="true"></i>{`${wishlistIs ? `Wishlisted` :`ADD TO WISHLIST`}`}
+                    </button>}
+                    <ul>
+                      <li>
+                        <a href="#">
+                          <i class="fa fa-eye" aria-hidden="true"></i>{" "}
+                          <span>1.08k</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <i class="fa fa-heart" aria-hidden="true"></i>{" "}
+                          <span>78</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <i class="fa fa-share" aria-hidden="true"></i>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <i class="fa fa-info-circle" aria-hidden="true"></i>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-4 col-md-12">
+              {/* <div className="shift-content">
 
                                 <h3>{projectTitle}</h3>
                                 <p>{projectDesc}
@@ -320,113 +395,364 @@ const ProductDetailsMain = ({ productDetails }) => {
                                 </div>
                             </div> */}
 
-
-
-                            <div className="rectanglemaen">
-                            <div className="rectangle">
-                            <div className="bordprice">
-                                   <div className="bordprice_rupis_ican">  
-                                     <h3><span><span class="rupes">₹ </span> {price}</span> <span className="discouns">16% discount</span></h3>
-                                     </div>
-                                     <div className="bordprice_soal">  
-                                     <div className="prodwerp">
-                                                        <ul>
-                                         <li><a href="#" className="girditemea"><i className="fa fa-desktop" aria-hidden="true"></i></a></li>
-                                                            <li><a href="#" className="girditemea"><i className="fa fa-laptop" aria-hidden="true"></i></a></li>
-                                                            <li><a href="#" className="girditemea"><i className="fa fa-mobile" aria-hidden="true"></i></a></li>
-                                                            <li><a href="#" className="girditemea"><i className="fa fa-gamepad" aria-hidden="true"></i></a></li>
-                                                           
-                                                        </ul>
-                                                    </div>
-                                      </div>
-
-                                </div>
-
-                                <div className="towcartbutton">
-                                <button className="btn btn-danger" disabled=""><i className="fa fa-shopping-cart" aria-hidden="true"></i>  Added in Cart </button>
-                                <button className="btn btn-danger"> <i className="fa fa-database" aria-hidden="true"></i> ADD TO WISHLIST</button>
-
-                                </div>
-                                  <div className="RecommendedAddons">
-                                    <h4>Recommended Addons <img src="/static/images/Icon ionic-md-i.png" /></h4>
-                                    <div className="OculusQuest">
-                                    <ul className="towcarlist">
-                                        <li>
-                                        <input type="checkbox" id="Oculus" name="vehicle1" value="Bike" />
-                                         <label for="Oculus"> Oculus Quest 2 <strong><img src="/static/images/Icon ionic-md-i.png" /></strong></label>
-                                        </li>
-                                        <li>
-                                        <input type="checkbox" id="Clipart" name="vehicle1" value="Bike" />
-                                         <label for="Clipart"> Clipart Images PNG/PSD/JPG <strong><img src="/static/images/Icon ionic-md-i.png" /></strong></label>
-                                         <ul className="Clipart">
-                                            <li>
-                                            <input type="checkbox" id="resolution" name="vehicle1" value="Bike" />
-                                         <label for="resolution">PSD image in HD resolution <strong><span className="totalru">₹ </span>300</strong> </label>
-                                            </li>
-                                            <li>
-                                            <input type="checkbox" id="Blue" name="vehicle1" value="Bike" />
-                                         <label for="Blue">Blue Print<strong><span className="totalru">₹ </span>30</strong> </label>
-                                            </li>
-                                            <li>
-                                            <input type="checkbox" id="dpi" name="dpi" value="Bike" />
-                                         <label for="dpi">High resolution 300 dpi Image <strong><span className="totalru">₹ </span>30</strong></label>
-                                            </li>
-                                         </ul>
-                                        </li>
-                                        <li>
-                                        <input type="checkbox" id="Interior" name="vehicle1" value="Bike" />
-                                         <label for="Interior"> Detailed Interior <strong><span className="totalru"><img src="/static/images/Icon ionic-md-i.png" /> ₹ </span>300 </strong></label>
-                                        </li>
-                                        <li>
-                                        <input type="checkbox" id="Unity" name="Unity" value="Bike" />
-                                         <label for="Unity"> Unity Asset Package (Mobile Ready) <strong><span className="totalru"><img src="/static/images/Icon ionic-md-i.png" /> ₹ </span>200 </strong></label>
-                                        </li>
-                                    </ul>
-
-                                    </div>
-                                  </div>
-
-                            </div>
-
-                            <div className="ProductUSPwill">
-                              <ul>
-                    <li><h5><i class="fa fa-file-text-o" aria-hidden="true"></i> Product USP will be here</h5></li>
-                    <li><h5><i class="fa fa-bar-chart" aria-hidden="true"></i> Product USP will be here</h5></li>
-                <li><h5><img src="/static/images/Icon feather-me.png" /> Product USP will be here</h5></li>
-                              </ul>
-
-                            </div>
-                           
-
-                           <div className="COURSEPREVIEW">
-                            <h4>COURSE PREVIEW</h4>
-                            <ul className="courslist">
-                             <li><h5>License </h5> <h5>Standard <a href="#">Learn More</a></h5> </li>
-                             <li><h5>Language </h5> <h5>English, Hindi, Marathi</h5> </li>
-                             <li><h5>Level</h5> <h5>Beginner</h5> </li>
-                             <li><h5>Compatible with </h5>
-                             <h5>
-                                <div className="listimg">
-                                <div class="bordprice_soal"><div class="prodwerp"><ul><li><a href="#" class="girditemea"><i class="fa fa-desktop" aria-hidden="true"></i></a></li><li><a href="#" class="girditemea"><i class="fa fa-laptop" aria-hidden="true"></i></a></li><li><a href="#" class="girditemea"><i class="fa fa-mobile" aria-hidden="true"></i></a></li><li><a href="#" class="girditemea"><i class="fa fa-gamepad" aria-hidden="true"></i></a></li></ul></div></div>
-
-                             </div><a href="#">more info</a></h5> </li>
-                             <li><h5>Downloadable size</h5> <h5>560MB <a href="#">more info</a></h5> </li>
-                             <li><h5>Shareable Certificates </h5> <h5>Yes</h5> </li>
-                             <li><h5>100% online </h5> <h5>Yes</h5> </li>
-                             <li><h5>Flexible Deadlines  </h5> <h5>Yes</h5> </li>
-                             <li><h5>Version</h5> <h5> V1.0 </h5> </li>
-                             <li><h5>Validated by</h5> <h5>Hella & ASDC</h5> </li>
-                             <li><h5>Updated on.</h5><h5>  28th Feb 2022</h5> </li>
-
-
-                            </ul>
-                           </div>
-                        </div>
+              <div className="rectanglemaen">
+                <div className="rectangle">
+                  <div className="bordprice">
+                    <div className="bordprice_rupis_ican">
+                      <h3>
+                        <span>
+                          <span class="rupes">₹ </span> {calculatePrice()}
+                        </span>{" "}
+                        <span className="discouns">16% discount</span>
+                      </h3>
                     </div>
+                    <div className="bordprice_soal">
+                      <div className="prodwerp">
+                        <ul>
+                          <li>
+                            <a href="#" className="girditemea">
+                              <i
+                                className="fa fa-desktop"
+                                aria-hidden="true"
+                              ></i>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#" className="girditemea">
+                              <i
+                                className="fa fa-laptop"
+                                aria-hidden="true"
+                              ></i>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#" className="girditemea">
+                              <i
+                                className="fa fa-mobile"
+                                aria-hidden="true"
+                              ></i>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#" className="girditemea">
+                              <i
+                                className="fa fa-gamepad"
+                                aria-hidden="true"
+                              ></i>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="towcartbutton">
+                    {!isBuyed ?
+                    <>
+                    <button className="btn btn-danger" 
+                    onClick={() => {
+                        !isProductExistInCart(id) ?
+                            handleAddtoCart(id, 'buy')
+                            :
+                            router.push("/cart")
+                    }}
+                    disabled={
+                        isProductExistInCart(id)
+                            ? true
+                            : false
+                    }
+                    >
+                        {apicall ? (
+                            <CircularProgress size={20} />) :
+                            isProductExistInCart(id)
+                            ?
+                            <>
+                                <i className="fa fa-shopping-cart" aria-hidden="true"></i> Added to cart
+                            </>
+                            :
+                            <>
+                                <i className="fa fa-shopping-cart" aria-hidden="true"></i> Add to cart
+                            </>
+                        }
+                    </button>
+                    <button className="btn btn-danger" disabled={wishlistIs ? true : false} onClick={handleAddtoFav}>
+                      {" "}
+                      <i className="fa fa-database" aria-hidden="true"></i>{`${wishlistIs ? `Wishlisted` :`ADD TO WISHLIST`}`}
+                    </button>
+                    </> : 
+                    <button className="btn btn-danger my-4 mr-3 text-white" target="_blank" rel="noreferrer" 
+                    onClick={(e) => playTypeModal('play', productDetails)} data-toggle="tooltip" data-original-title="Play">
+                     Play
+                    </button>
+                    }
+                  </div>
+                  {services && services.length ?
+                    <div className="RecommendedAddons">
+                    <h4>
+                      Recommended Addons{" "}
+                      <img src="/static/images/Icon ionic-md-i.png" />
+                    </h4>
+                    <div className="OculusQuest">
+                      <ul className="towcarlist">
+                        {services.map((el, i) => {
+                            return(
+                            <li>                                
+                                <input
+                                  type="checkbox"
+                                  id={`service-${el.name}`}
+                                //   name="vehicle1"
+                                //   value="Bike"
+                                  checked={isServiceSelected(el)}
+                                  onChange={(e) => handleSelectedServices(el, e.target.checked)}
+                                />
+                                <label className="form-check-label" htmlFor={`service-${el.name}`}>
+                                    {el.name} - <span className="text-primary">₹ {el.price}</span>
+                                    <strong>
+                                       <img src="/static/images/Icon ionic-md-i.png" />
+                                    </strong>
+                                </label>
+                                {/* <label for="Oculus">
+                                  {" "}
+                                  Oculus Quest 2{" "}
+                                  <strong>
+                                    <img src="/static/images/Icon ionic-md-i.png" />
+                                  </strong>
+                                </label> */}
+                            </li>
+
+                            )
+                        })}
+                        {/* <li>
+                          <input
+                            type="checkbox"
+                            id="Clipart"
+                            name="vehicle1"
+                            value="Bike"
+                          />
+                          <label for="Clipart">
+                            {" "}
+                            Clipart Images PNG/PSD/JPG{" "}
+                            <strong>
+                              <img src="/static/images/Icon ionic-md-i.png" />
+                            </strong>
+                          </label>
+                          <ul className="Clipart">
+                            <li>
+                              <input
+                                type="checkbox"
+                                id="resolution"
+                                name="vehicle1"
+                                value="Bike"
+                              />
+                              <label for="resolution">
+                                PSD image in HD resolution{" "}
+                                <strong>
+                                  <span className="totalru">₹ </span>300
+                                </strong>{" "}
+                              </label>
+                            </li>
+                            <li>
+                              <input
+                                type="checkbox"
+                                id="Blue"
+                                name="vehicle1"
+                                value="Bike"
+                              />
+                              <label for="Blue">
+                                Blue Print
+                                <strong>
+                                  <span className="totalru">₹ </span>30
+                                </strong>{" "}
+                              </label>
+                            </li>
+                            <li>
+                              <input
+                                type="checkbox"
+                                id="dpi"
+                                name="dpi"
+                                value="Bike"
+                              />
+                              <label for="dpi">
+                                High resolution 300 dpi Image{" "}
+                                <strong>
+                                  <span className="totalru">₹ </span>30
+                                </strong>
+                              </label>
+                            </li>
+                          </ul>
+                        </li> */}
+                        {/* <li>
+                          <input
+                            type="checkbox"
+                            id="Interior"
+                            name="vehicle1"
+                            value="Bike"
+                          />
+                          <label for="Interior">
+                            {" "}
+                            Detailed Interior{" "}
+                            <strong>
+                              <span className="totalru">
+                                <img src="/static/images/Icon ionic-md-i.png" />{" "}
+                                ₹{" "}
+                              </span>
+                              300{" "}
+                            </strong>
+                          </label>
+                        </li> */}
+                        {/* <li>
+                          <input
+                            type="checkbox"
+                            id="Unity"
+                            name="Unity"
+                            value="Bike"
+                          />
+                          <label for="Unity">
+                            {" "}
+                <div className="rectangle">
+                  <div className="bordprice">
+                    <div className="bordprice_rupis_ican">
+                      <h3>
+                        <span>
+                            Unity Asset Package (Mobile Ready){" "}
+                            <strong>
+                              <span className="totalru">
+                                <img src="/static/images/Icon ionic-md-i.png" />{" "}
+                                ₹{" "}
+                              </span>
+                              200{" "}
+                            </strong>
+                          </label>
+                        </li> */}
+                      </ul>
+                    </div>
+                  </div> : null}
                 </div>
+
+                <div className="ProductUSPwill">
+                  <ul>
+                    <li>
+                      <h5>
+                        <i class="fa fa-file-text-o" aria-hidden="true"></i>{" "}
+                        Product USP will be here
+                      </h5>
+                    </li>
+                    <li>
+                      <h5>
+                        <i class="fa fa-bar-chart" aria-hidden="true"></i>{" "}
+                        Product USP will be here
+                      </h5>
+                    </li>
+                    <li>
+                      <h5>
+                        <img src="/static/images/Icon feather-me.png" /> Product
+                        USP will be here
+                      </h5>
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="COURSEPREVIEW">
+                  <h4>COURSE PREVIEW</h4>
+                  <ul className="courslist">
+                    <li>
+                      <h5>License </h5>{" "}
+                      <h5>
+                        Standard <a href="#">Learn More</a>
+                      </h5>{" "}
+                    </li>
+                    <li>
+                      <h5>Language </h5> <h5>English, Hindi, Marathi</h5>{" "}
+                    </li>
+                    <li>
+                      <h5>Level</h5> <h5>Beginner</h5>{" "}
+                    </li>
+                    <li>
+                      <h5>Compatible with </h5>
+                      <h5>
+                        <div className="listimg">
+                          <div class="bordprice_soal">
+                            <div class="prodwerp">
+                            <ul>
+                            {plateform.indexOf('desktop') > -1 && <li><a href="#" className="girditemea"><i className="fa fa-desktop" aria-hidden="true"></i></a></li>}
+                            {plateform.indexOf('webgl') > -1 && <li><a href="#" className="girditemea"><i className="fa fa-laptop" aria-hidden="true"></i></a></li>}
+                            {plateform.indexOf('mobile_application') > -1 && <li><a href="#" className="girditemea"><i className="fa fa-mobile" aria-hidden="true"></i></a></li>}
+                            {plateform.indexOf('vr') > -1 && <li><a href="#" className="girditemea"><i className="fa fa-gamepad" aria-hidden="true"></i></a></li>}
+                            {plateform.indexOf('hololens') > -1 && <li><a href="#" className="girditemea"><i className="customicon" style={{ "backgroundImage": "url('../../static/images/hololens.png')" }}></i></a></li>}
+                            </ul>
+                              {/* <ul>
+                                <li>
+                                  <a href="#" class="girditemea">
+                                    <i
+                                      class="fa fa-desktop"
+                                      aria-hidden="true"
+                                    ></i>
+                                  </a>
+                                </li>
+                                <li>
+                                  <a href="#" class="girditemea">
+                                    <i
+                                      class="fa fa-laptop"
+                                      aria-hidden="true"
+                                    ></i>
+                                  </a>
+                                </li>
+                                <li>
+                                  <a href="#" class="girditemea">
+                                    <i
+                                      class="fa fa-mobile"
+                                      aria-hidden="true"
+                                    ></i>
+                                  </a>
+                                </li>
+                                <li>
+                                  <a href="#" class="girditemea">
+                                    <i
+                                      class="fa fa-gamepad"
+                                      aria-hidden="true"
+                                    ></i>
+                                  </a>
+                                </li>
+                              </ul> */}
+                            </div>
+                          </div>
+                        </div>
+                        {/* <a href="#">more info</a> */}
+                      </h5>{" "}
+                    </li>
+                    <li>
+                      <h5>Downloadable size</h5>{" "}
+                      <h5>
+                        560MB <a href="#">more info</a>
+                      </h5>{" "}
+                    </li>
+                    <li>
+                      <h5>Shareable Certificates </h5> <h5>Yes</h5>{" "}
+                    </li>
+                    <li>
+                      <h5>100% online </h5> <h5>Yes</h5>{" "}
+                    </li>
+                    <li>
+                      <h5>Flexible Deadlines </h5> <h5>Yes</h5>{" "}
+                    </li>
+                    <li>
+                      <h5>Version</h5> <h5> V1.0 </h5>{" "}
+                    </li>
+                    <li>
+                      <h5>Validated by</h5> <h5>Hella & ASDC</h5>{" "}
+                    </li>
+                    <li>
+                      <h5>Updated on.</h5>
+                      <h5> 28th Feb 2022</h5>{" "}
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
-            </div>
-        </section>
-    )
-}
-export default ProductDetailsMain
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+export default ProductDetailsMain;
