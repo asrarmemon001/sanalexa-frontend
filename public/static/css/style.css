@@ -3146,6 +3146,9 @@ ul.tuch-monu li p {
 }
 ul.tuch-monu li.active i.fa.fa-check-circle {
     color: #f7ad18;
+}
+ul.tuch-monu li.completed i.fa.fa-check-circle {
+    color: green;
 } 
 .accountmain {
     background-color: #ffffff;

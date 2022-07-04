@@ -221,7 +221,7 @@ const Header = () => {
                 </li>
 
                 <li>
-                  <Link href="/cart">
+                  <Link href="/checkout">
                     <a className="cart">
                       <span className="cart-nub">
                         {cartLoading ? (

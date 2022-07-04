@@ -42,7 +42,7 @@ const SubscriptionPlansListTemplates = ({ subsciptionList }) => {
                     toast.error("somethingwent wrong");
                 }
                 apiContext.fetchCartList()
-                router.push("/cart")
+                router.push("/checkout")
                 setapicall(false)
             }
             )
@@ -52,7 +52,25 @@ const SubscriptionPlansListTemplates = ({ subsciptionList }) => {
     const isPackageExistInCart = (id) => {
         return Boolean(apiContext.state.cartProduct?.find(el => el.id == id && el.type == 'package'))
     }
-    const listOfSubscriptions = subsciptionList.filter(el => el.project?.length)
+    let listOfSubscriptions = subsciptionList.filter(el => el.project?.length)
+    useEffect(() => {
+        
+        for(let obj of listOfSubscriptions) {
+            if (!obj.plateform) {
+                let plateform = []
+                if (obj.project && obj.project.length > 0) {
+                    for (let pro of obj.project) {
+                        if (typeof pro.plateform === "string") {
+                            pro.plateform = JSON.parse(pro.plateform);
+                        }
+                        plateform = plateform.concat(pro.plateform.filter((item) => plateform.indexOf(item) < 0));
+                    }
+                }
+                obj.plateform = plateform;
+            }
+
+        }
+    }, [listOfSubscriptions])
     return (
         <>
         
@@ -84,15 +102,16 @@ const SubscriptionPlansListTemplates = ({ subsciptionList }) => {
                                      <h3><span><span class="rupes">₹ </span> 200</span> <span className="discouns">899 16% discount</span></h3>
                                      </div>
                                      <div className="bordprice_soal">  
-                                     <div className="prodwerp">
+                                     {el.plateform && el.plateform.length > 0 && 
+                                                    <div className="prodwerp">
                                                         <ul>
-                                                            <li><a href="#" className="girditemea"><i className="fa fa-desktop" aria-hidden="true"></i></a></li>
-                                                            <li><a href="#" className="girditemea"><i className="fa fa-laptop" aria-hidden="true"></i></a></li>
-                                                            <li><a href="#" className="girditemea"><i className="fa fa-mobile" aria-hidden="true"></i></a></li>
-                                                            <li><a href="#" className="girditemea"><i className="fa fa-gamepad" aria-hidden="true"></i></a></li>
-                                                            <li><a href="#" className="girditemea"><i className="cutomeicon" style={{ backgroundImage: 'url(/static/images/iconfive.png)' }}></i></a></li>
+                                                        {el.plateform.indexOf('desktop') > -1 && <li><a href="#" className="girditemea"><i className="fa fa-desktop" aria-hidden="true"></i></a></li>}
+                                                        {el.plateform.indexOf('webgl') > -1 && <li><a href="#" className="girditemea"><i className="fa fa-laptop" aria-hidden="true"></i></a></li>}
+                                                        {el.plateform.indexOf('mobile_application') > -1 && <li><a href="#" className="girditemea"><i className="fa fa-mobile" aria-hidden="true"></i></a></li>}
+                                                        {el.plateform.indexOf('vr') > -1 && <li><a href="#" className="girditemea"><i className="fa fa-gamepad" aria-hidden="true"></i></a></li>}
+                                                        {el.plateform.indexOf('hololens') > -1 && <li><a href="#" className="girditemea"><i className="customicon" style={{ "backgroundImage": "url('../../static/images/hololens.png')" }}></i></a></li>}
                                                         </ul>
-                                                    </div>
+                                                    </div>}
                                       </div>
 
                                 </div>
