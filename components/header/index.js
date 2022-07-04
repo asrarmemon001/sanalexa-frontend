@@ -183,7 +183,7 @@ const Header = () => {
                   </li>
                   <li>
                     <Link href="/plans-and-subscriptions">
-                      <a> Plans and Subscriptions</a>
+                      <a> Plans & subscription</a>
                     </Link>
                   </li>
                   <li className="position-relative">
