@@ -37,6 +37,26 @@ h3 {
 .indastry-content {
     margin-top: -15px;
 }
+.HurreyPayment {
+    text-align: center;
+    padding: 30px 100px;
+}
+.HurreyPayment img {
+    width: 100px;
+}
+.learning-content .banner-plans {
+    padding-top: 108px;
+}
+.learning-content .banner-plans h2 {
+    color: #fff;
+}
+.HurreyPayment p {
+    font-size: 20px;
+    color: #d1d1d1;
+}
+.banner.PaymentSuccess {
+    min-height: 300px;  
+}
 .all-teb ul {
     list-style: none;
     display: flex;
