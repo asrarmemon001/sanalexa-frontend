@@ -151,6 +151,13 @@ function ProjectCard({ obj, index, classes }) {
             {obj?.projectTitle}
           </p>
           <img src={ImageBaseUrl + obj?.bannerImage} />
+          {isLoggedin ? <li>
+                    {
+                      isWishListed ?
+                        <FavoriteIcon onClick={() => handleFav("remove", obj)} className="text-danger" /> :
+                        <FavoriteBorderIcon onClick={() => handleFav("add", obj)} />
+                    }
+                  </li> : ""}
         </figure>
         <div className="pharmaceutical-contant">
           <h5>{obj?.sector?.name}</h5>
@@ -161,13 +168,7 @@ function ProjectCard({ obj, index, classes }) {
               <div className="review-icon">
                 <ul>
                   <li><i className="fa fa-user" aria-hidden="true"></i> 45,896</li>
-                  {isLoggedin ? <li>
-                    {
-                      isWishListed ?
-                        <FavoriteIcon onClick={() => handleFav("remove", obj)} className="text-danger" /> :
-                        <FavoriteBorderIcon onClick={() => handleFav("add", obj)} />
-                    }
-                  </li> : ""}
+                
                 </ul>
               </div>
               {obj.plateform && obj.plateform.length > 0 && <div className="prodwerp">
