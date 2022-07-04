@@ -5,6 +5,7 @@ import { removeItemBundleList } from "../../utils/api-Request";
 import { getSession } from "../../utils/constants";
 import { toast } from "react-toastify";
 import AppContext from "../../appContext";
+import { checkJson } from "../../utils/helper-functions";
 
 function BundleCard({
   image,
@@ -60,7 +61,7 @@ function BundleCard({
           {/* <span className="badge bg-danger mx-2 text-white">{type}</span>
           <br />  */}
           {plateform && plateform.length > 0 &&
-          plateform.map((obj) => (
+          checkJson(plateform).map((obj) => (
              <span key={obj} className="badge bg-danger mx-2 text-white">{obj}</span>
           ))}
         </div>

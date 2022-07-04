@@ -19,17 +19,17 @@ export default function HomePageTemplate() {
         <>
             <BannerSection>
                 <div className="banner-content" data-aos="fade-right">
-                <h1>META XR <br />Learning <br />EXPERIENCE </h1>
-                    <p>Simulator is an impactful alternative #training <br /> method to traditional coating and spray-painting techniques</p> 
+                    <h1>META XR <br />Learning <br />EXPERIENCE </h1>
+                    <p>Simulator is an impactful alternative #training <br /> method to traditional coating and spray-painting techniques</p>
                     <Link href="#">
-                  <a className="button-download-launcher">  <i className="fa fa-download" aria-hidden="true"></i>Download Launcher</a>
+                        <a className="button-download-launcher">  <i className="fa fa-download" aria-hidden="true"></i>Download Launcher</a>
                     </Link>
                     {/* <Link href="#">
                     <a className="button-download-launcher" ><i className="fa fa-unlock" aria-hidden="true"></i>
  Free Access</a>
                     </Link> */}
                 </div>
-               
+
             </BannerSection>
             <CategoriesSection />
             <GetStarted />

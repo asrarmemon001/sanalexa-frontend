@@ -76,7 +76,7 @@ export default function LeaningPageTemplate() {
       {
          id: "tab-02",
          tab: `My Favorites (${favProjects?.length || 0})`,
-         panel: <TabPanel projects={favProjects} percentageData={percentageData} />
+         panel: <TabPanel projects={favProjects} percentageData={percentageData} favorites={true}/>
       },
       {
          id: "tab-03",
@@ -118,7 +118,7 @@ export default function LeaningPageTemplate() {
                   <ul>
                      {tabPanels.map((el, i) => {
                         return (
-                           <li><a href="javascript:void(0)" onClick={() => setActivePanel(i)} key={el.id}>{el.tab}</a></li>
+                           <li className={activePanel == i ? "active" : ""}><a href="javascript:void(0)" onClick={() => setActivePanel(i)} key={el.id}>{el.tab}</a></li>
                         )
                      })}
 

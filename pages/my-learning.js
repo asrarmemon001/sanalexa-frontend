@@ -6,6 +6,7 @@ import AppContext from "../appContext/index"
 import { ImageBaseUrl } from "../utils/Baseurl";
 import { getProjectAndPackage } from "../utils/api-Request";
 import { NoDataFound } from "../components/NoDataFound/NoDataFound";
+import { checkJson } from "../utils/helper-functions";
 
 function MyLearning() {
 
@@ -199,7 +200,7 @@ const AccordianItem = ({
                 {/* <span className="badge bg-danger mx-2 text-white">{type}</span> */}
 
                 {plateform && plateform.length > 0 &&
-                    plateform.map((obj) => (
+                    checkJson(plateform).map((obj) => (
                         <span key={obj} className="badge bg-danger mx-2 text-white">{obj}</span>
                     ))}
                 <div className=" m-auto">

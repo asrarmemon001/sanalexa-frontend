@@ -188,7 +188,7 @@ function ProjectCard({ obj, index, classes }) {
           {!obj.isBuyed && <div className="buttons">
             <button
               className={
-                isProductExistInCart(obj.id) ? "carts bg-danger" : "carts"
+               "btn" 
               }
               onClick={() => {
                 !isProductExistInCart(obj.id) &&
@@ -224,7 +224,7 @@ function ProjectCard({ obj, index, classes }) {
                 <CircularProgress size={20} />
               ) : isProductExistInBundle(obj.id) ? (
                 <>
-                  <i className='fa fa-times' aria-hidden='true'></i>
+                  <i className='fa fa-times mr-2' aria-hidden='true'></i>
                   {' '}<span>Remove Bundle</span>
                 </>
               ) : (

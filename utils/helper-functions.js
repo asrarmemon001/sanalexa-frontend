@@ -8,3 +8,12 @@ export const generateSessionId = () => {
     }
     return result;
 }
+
+
+export const checkJson = (json) => {
+    if (typeof json == "string") {
+        return JSON.parse(json)
+    } else {
+        return json
+    }
+}
