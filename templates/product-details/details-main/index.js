@@ -127,17 +127,20 @@ const ProductDetailsMain = ({ productDetails }) => {
 
 
     return (
-        <section className="product-Gallery"> 
-        <div className="banner-plans">
+        <section className="product-Gallery innerbanner"> 
+        <div className="banner-plans" style={{ backgroundImage: 'url(/static/images/learning.jpeg)' }}>
                 <div className="container">
                     <div className="banner-content-ple"> 
                         <h3>{projectTitle}</h3>
-                        <h5>Safety Operations  </h5>
-                        <p>{projectDesc}</p>
+                      
                     </div>
                 </div>
             </div>
             <div className="container">
+                <div className="productdetails">
+                <h5>Safety Operations  </h5>
+                        <p>{projectDesc}</p>
+                </div>
                 <div className="outer">
                     <div className="row">
                         <div className="col-lg-8 col-md-12">
