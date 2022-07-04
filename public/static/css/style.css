@@ -1915,6 +1915,31 @@ footer {
     overflow: hidden;
     position: relative;
 }
+.pharmaceutical-box figure li {
+    list-style: none;
+    position: absolute;
+    right: 5px;
+    z-index: 99;
+    bottom: 5px;
+    list-style: none;
+}
+.packageItem figure li {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    list-style: none;
+    cursor: pointer;
+
+}
+.packageItem figure li svg.MuiSvgIcon-root, .pharmaceutical-box figure li svg.MuiSvgIcon-root {
+    background-color: #fdfdfd;
+    border-radius: 2px;
+    padding: 2px;
+    width: 28px;
+    height: 28px;
+}
+
+
 figure p {
     background-color: #4853ac;
     color: #fff;
@@ -2637,7 +2662,7 @@ box-shadow: 277px 0 0 0 #3a437e inset;}
     width: 100%;
     display: inline-block;
     text-align: center;
-    line-height: 2.8;
+    line-height: 2.7;
     margin-top: 30px;
     text-decoration: none;
     outline-offset: 5px;
@@ -3381,6 +3406,7 @@ p.Order-text {
     .bord button.btn.btn-danger {
         font-size: 15px;
         margin-top: 25px;
+        line-height: 2;
     }
     .bordprice_soal .prodwerp ul li a {
         font-size: 22px;
@@ -3532,7 +3558,7 @@ p.Order-text {
     }
 
     .mideel-mene ul li {
-        padding: 0px 15px;
+        padding: 0px 12px;
     }
 
     .mideel-mene ul li a.humb span.mainhunm span.line {
