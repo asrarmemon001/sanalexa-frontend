@@ -39,6 +39,26 @@ export default function SubscriptionPackages({ heading }) {
         getPackageList()
     }, [])
 
+    useEffect(() => {
+        
+        for(let obj of packListIs) {
+            if (!obj.plateform) {
+                let plateform = []
+                if (obj.project && obj.project.length > 0) {
+                    for (let pro of obj.project) {
+                        if (typeof pro.plateform === "string") {
+                            pro.plateform = JSON.parse(pro.plateform);
+                        }
+                        plateform = plateform.concat(pro.plateform.filter((item) => plateform.indexOf(item) < 0));
+                    }
+                }
+                obj.plateform = plateform;
+            }
+
+        }
+        setPackList(packListIs)
+    }, [packListIs])
+
     function NextArrow(props) {
         const { onClick } = props;
         return (
@@ -105,7 +125,7 @@ export default function SubscriptionPackages({ heading }) {
                     toast.error("somethingwent wrong");
                 }
                 apiContext.fetchCartList()
-                router.push("/cart")
+                router.push("/checkout")
                 setapicall(false)
             }
             )
@@ -137,7 +157,7 @@ export default function SubscriptionPackages({ heading }) {
                                         <div className="packageItem px-3 mb-2" key={index}>
                                             <figure className="package-img" style={{ backgroundImage: `url('${ImageBaseUrl + obj?.bannerImage}')` }}>
                                                 <p>{getSectorName(obj.sector)}</p>
-                                                <li><svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium text-danger css-i4bv87-MuiSvgIcon-root" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteIcon"><path d="m12 21.35-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg></li>
+                                                <li><svg className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium text-danger css-i4bv87-MuiSvgIcon-root" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteIcon"><path d="m12 21.35-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg></li>
                                             </figure>
                                             <div className="content-area">
                                                 <h3>{obj?.packagesName}</h3>
@@ -151,16 +171,18 @@ export default function SubscriptionPackages({ heading }) {
                                                             <li><i className="fa fa-user" aria-hidden="true"></i> 45,896</li>
                                                         </ul>
                                                     </div>
+                                                    
+                                                    {obj.plateform && obj.plateform.length > 0 && 
                                                     <div className="prodwerp">
                                                         <ul>
-                                                            <li><a href="#" className="girditemea"><i className="fa fa-desktop" aria-hidden="true"></i></a></li>
-                                                            <li><a href="#" className="girditemea"><i className="fa fa-laptop" aria-hidden="true"></i></a></li>
-                                                            <li><a href="#" className="girditemea"><i className="fa fa-mobile" aria-hidden="true"></i></a></li>
-                                                            <li><a href="#" className="girditemea"><i className="fa fa-gamepad" aria-hidden="true"></i></a></li>
-                                                            <li><a href="#" className="girditemea"><i className="cutomeicon" style={{ backgroundImage: 'url(/static/images/iconfive.png)' }}></i></a></li>
+                                                        {obj.plateform.indexOf('desktop') > -1 && <li><a href="#" className="girditemea"><i className="fa fa-desktop" aria-hidden="true"></i></a></li>}
+                                                        {obj.plateform.indexOf('webgl') > -1 && <li><a href="#" className="girditemea"><i className="fa fa-laptop" aria-hidden="true"></i></a></li>}
+                                                        {obj.plateform.indexOf('mobile_application') > -1 && <li><a href="#" className="girditemea"><i className="fa fa-mobile" aria-hidden="true"></i></a></li>}
+                                                        {obj.plateform.indexOf('vr') > -1 && <li><a href="#" className="girditemea"><i className="fa fa-gamepad" aria-hidden="true"></i></a></li>}
+                                                        {obj.plateform.indexOf('hololens') > -1 && <li><a href="#" className="girditemea"><i className="customicon" style={{ "backgroundImage": "url('../../static/images/hololens.png')" }}></i></a></li>}
                                                         </ul>
-                                                    </div>
-
+                                                    </div>}
+                                                    
                                                 </div>
                                                 <h6 className="mb-2">₹ {obj?.price}</h6>
 

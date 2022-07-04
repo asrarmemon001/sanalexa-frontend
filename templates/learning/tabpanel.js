@@ -10,9 +10,15 @@ import { getSession } from "../../utils/constants";
 const TabPanel = ({ projects, percentageData, favorites }) => {
     const apiContext = useContext(AppContext);
     const [apicall, setapicall] = useState(false);
+    const {
+        playTypeModal
+    } = apiContext;
     const isCompleted = (id) => {
-        const p = Number(percentageData?.find(el => el.projectId == id)?.precentage)
+        let p = Number(percentageData?.find(el => el.projectId == id)?.precentage)
         const f = p >= 100
+        if(isNaN(p)) {
+            p  = 0;
+        }
         return { f, p }
     }
 
@@ -77,6 +83,8 @@ const TabPanel = ({ projects, percentageData, favorites }) => {
                                     </div>
                                 </div>
                                 <div className="col-md-4 layers">
+                                    <a href="javascript:void(0);" className="downloadcertificate" onClick={(e) => playTypeModal('play', el)}>Play</a>
+                                    <div>
                                     {isCompleted(el?.id || el?.project?.id).f && !favorites ? <a href="#" className="downloadcertificate">Download Certificate</a> : null}
                                     {favorites ?
                                         <button
@@ -99,7 +107,9 @@ const TabPanel = ({ projects, percentageData, favorites }) => {
                                         </button>
                                         :
                                         null}
+                                    
                                     <a href="#" className="share">Share</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -41,8 +41,6 @@ function CartInfoCard({ cartListIs, cartTotal, title, type }) {
 
             <p style={{whiteSpace:"nowrap"}}>₹ {el.productInfo.price}</p>
 
-
-
           </div>)
       })}
 

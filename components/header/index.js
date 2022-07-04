@@ -183,7 +183,7 @@ const Header = () => {
                   </li>
                   <li>
                     <Link href="/plans-and-subscriptions">
-                      <a> Plans and Subscriptions</a>
+                      <a> Plans & subscription</a>
                     </Link>
                   </li>
                   <li className="position-relative">
@@ -221,7 +221,7 @@ const Header = () => {
                 </li>
 
                 <li>
-                  <Link href="/cart">
+                  <Link href="/checkout">
                     <a className="cart">
                       <span className="cart-nub">
                         {cartLoading ? (

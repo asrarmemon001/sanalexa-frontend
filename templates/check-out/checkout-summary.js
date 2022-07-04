@@ -1,4 +1,5 @@
-const CheckoutSummary = () => {
+const CheckoutSummary = ({cartListIs, cartTotal}) => {
+    console.log(cartListIs)
     return (
         <>
             <div className="accountmain">
@@ -12,11 +13,11 @@ const CheckoutSummary = () => {
                         </tr>
                         <tr>
                             <td>individual Standard</td>
-                            <td>₹1.499 </td>
+                            <td>₹{cartTotal} </td>
                         </tr>
                         <tr>
                             <td>SUB TOTAL </td>
-                            <td>₹1.499 </td>
+                            <td>₹{cartTotal} </td>
                         </tr>
                         <tr>
                             <td>ESTIMATED TAX<sup>1</sup> </td>
@@ -29,7 +30,7 @@ const CheckoutSummary = () => {
 
 
                 <ul className="plan-list">
-                    <li><p>Order summary</p> <p>1.499</p></li>
+                    <li><p>Order summary</p> <p>{cartTotal}</p></li>
                 </ul>
             </div>
             <p className="Order-text">In publishing and graphic design, Lorem ipsum is a placeholder text commonly   Lorem ipsum may be used as a placeholder before final copy is....</p>

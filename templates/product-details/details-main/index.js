@@ -51,7 +51,7 @@ const ProductDetailsMain = ({ productDetails }) => {
                 if (res?.status == 200) {
                     toast.success("Product added to cart")
                     if (type == 'buy') {
-                        router.push('/cart')
+                        router.push('/checkout')
                     }
                 } else {
                     toast.error("somethingwent wrong");

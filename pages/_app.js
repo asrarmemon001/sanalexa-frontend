@@ -127,7 +127,8 @@ function MyApp({ Component, pageProps }) {
         loginSignupModal: handleModal,
         playTypeModal: handleModal,
         setIsLoggedin,
-        setUser
+        setUser,
+        handleModal
       }}
     >
       <Component {...pageProps} />
