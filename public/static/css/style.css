@@ -2662,7 +2662,7 @@ box-shadow: 277px 0 0 0 #3a437e inset;}
     width: 100%;
     display: inline-block;
     text-align: center;
-    line-height: 2.8;
+    line-height: 2.7;
     margin-top: 30px;
     text-decoration: none;
     outline-offset: 5px;
@@ -3403,6 +3403,7 @@ p.Order-text {
     .bord button.btn.btn-danger {
         font-size: 15px;
         margin-top: 25px;
+        line-height: 2;
     }
     .bordprice_soal .prodwerp ul li a {
         font-size: 22px;
