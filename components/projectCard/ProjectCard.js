@@ -155,7 +155,11 @@ function ProjectCard({ obj, index, classes }) {
                     {
                       isWishListed ?
                         <FavoriteIcon onClick={() => handleFav("remove", obj)} className="text-danger" /> :
-                        <FavoriteBorderIcon onClick={() => handleFav("add", obj)} />
+                        <FavoriteBorderIcon onClick={(e) => {
+                          e.stopPropagation()
+                          e.preventDefault()
+                          handleFav("add", obj)
+                        }} />
                     }
                   </li> : ""}
         </figure>
