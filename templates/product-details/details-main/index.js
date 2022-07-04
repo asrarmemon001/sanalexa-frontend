@@ -17,7 +17,9 @@ const ProductDetailsMain = ({ productDetails }) => {
     projectDesc,
     services,
     isBuyed,
+    plateform
   } = productDetails;
+
   const apiContext = useContext(AppContext);
   const { playTypeModal } = apiContext;
   const [apicall, setapicall] = useState(false);
@@ -671,7 +673,14 @@ const ProductDetailsMain = ({ productDetails }) => {
                         <div className="listimg">
                           <div class="bordprice_soal">
                             <div class="prodwerp">
-                              <ul>
+                            <ul>
+                            {plateform.indexOf('desktop') > -1 && <li><a href="#" className="girditemea"><i className="fa fa-desktop" aria-hidden="true"></i></a></li>}
+                            {plateform.indexOf('webgl') > -1 && <li><a href="#" className="girditemea"><i className="fa fa-laptop" aria-hidden="true"></i></a></li>}
+                            {plateform.indexOf('mobile_application') > -1 && <li><a href="#" className="girditemea"><i className="fa fa-mobile" aria-hidden="true"></i></a></li>}
+                            {plateform.indexOf('vr') > -1 && <li><a href="#" className="girditemea"><i className="fa fa-gamepad" aria-hidden="true"></i></a></li>}
+                            {plateform.indexOf('hololens') > -1 && <li><a href="#" className="girditemea"><i className="customicon" style={{ "backgroundImage": "url('../../static/images/hololens.png')" }}></i></a></li>}
+                            </ul>
+                              {/* <ul>
                                 <li>
                                   <a href="#" class="girditemea">
                                     <i
@@ -704,11 +713,11 @@ const ProductDetailsMain = ({ productDetails }) => {
                                     ></i>
                                   </a>
                                 </li>
-                              </ul>
+                              </ul> */}
                             </div>
                           </div>
                         </div>
-                        <a href="#">more info</a>
+                        {/* <a href="#">more info</a> */}
                       </h5>{" "}
                     </li>
                     <li>
