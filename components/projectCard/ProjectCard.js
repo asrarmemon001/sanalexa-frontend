@@ -35,7 +35,7 @@ function ProjectCard({ obj, index, classes }) {
     await AddtoCart(data)
       .then((res) => {
         if (res?.status == 200) {
-          toast.success("Product added to cart");
+        //  toast.success("Product added to cart");
         } else {
           toast.error("somethingwent wrong");
         }
@@ -56,7 +56,7 @@ function ProjectCard({ obj, index, classes }) {
     await addtoBundleApi(data)
       .then((res) => {
         if (res?.status == 200) {
-          toast.success("Product added to bundle");
+       //   toast.success("Product added to bundle");
         } else {
           toast.error("something went wrong");
         }

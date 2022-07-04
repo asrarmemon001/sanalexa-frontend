@@ -39,7 +39,7 @@ const TabPanel = ({ projects, percentageData, favorites }) => {
         await AddtoCart(data)
           .then((res) => {
             if (res?.status == 200) {
-              toast.success("Product added to cart");
+             // toast.success("Product added to cart");
             } else {
               toast.error("somethingwent wrong");
             }

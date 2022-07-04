@@ -37,7 +37,7 @@ const SubscriptionPlansListTemplates = ({ subsciptionList }) => {
         await AddtoCart(data)
             .then((res) => {
                 if (res?.status == 200) {
-                    toast.success("Package added to cart")
+                  //  toast.success("Package added to cart")
                 } else {
                     toast.error("somethingwent wrong");
                 }

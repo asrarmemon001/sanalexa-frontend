@@ -49,7 +49,7 @@ const ProductDetailsMain = ({ productDetails }) => {
         await AddtoCart(data)
             .then((res) => {
                 if (res?.status == 200) {
-                    toast.success("Product added to cart")
+                  //  toast.success("Product added to cart")
                     if (type == 'buy') {
                         router.push('/checkout')
                     }
@@ -73,7 +73,7 @@ const ProductDetailsMain = ({ productDetails }) => {
         await addtoBundleApi(data)
             .then((res) => {
                 if (res?.status == 200) {
-                    toast.success("Product added to bundle")
+                   // toast.success("Product added to bundle")
                 } else {
                     toast.error("something went wrong");
                 }
