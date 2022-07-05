@@ -52,7 +52,6 @@ const TabPanel = ({ projects, percentageData, favorites, packages }) => {
             });
     };
 
-    console.log(packages, 'packages')
     return (<div className="tabpaneal">
         {projects?.length
             ?
@@ -143,12 +142,12 @@ const PackagesView = ({ packages, favorites, isCompleted, playTypeModal, isProdu
                             <div className="historytablist">
                                 <div className="row">
                                     <div className="col-md-3">
-                                        <img src={ImageBaseUrl + (el?.bannerImage)} />
+                                        <img src={ImageBaseUrl + (el?.bannerImage || el?.package.bannerImage)} />
                                     </div>
                                     <div className="col-md-5">
                                         <div className="historytabcontent">
-                                            <p>{el?.packagesName}</p>
-                                            <h4>{el?.packagesDesc}</h4>
+                                            <p>{el?.packagesName || el?.package?.packagesName}</p>
+                                            <h4>{el?.packagesDesc || el?.package?.packagesDesc}</h4>
                                             {/* {favorites
                                             ?
                                             ""
@@ -190,11 +189,11 @@ const PackagesView = ({ packages, favorites, isCompleted, playTypeModal, isProdu
                                             <a href="#" className="share">Share</a>
                                         </div>
                                     </div>
-                                    <div className="d-flex justify-content-between px-4 w-100 my-4 align-items-center bg-info text-white cursor-pointer" onClick={() => setShowDetails(!showDetails)}>
+                                    <div className="d-flex justify-content-between px-4 w-100 my-4 align-items-center bg-info text-white cursor-pointer" onClick={() => setShowDetails(Boolean(showDetails) && (showDetails == i+1)? false : i + 1)}>
                                         <p className="m-0">Details</p>
-                                        <button className="btn text-white" >{showDetails ? `Hide project details` : `See project details`}</button>
+                                        <button className="btn text-white" >{Boolean(showDetails) && (showDetails == i+1) ? `Hide project details` : `See project details`}</button>
                                     </div>
-                                    {showDetails && <div className="col-md-12 p-4 bg-light">
+                                    {showDetails && showDetails == i+1 && <div className="col-md-12 p-4 bg-light">
 
                                         {el.projects?.length
                                             ?
