@@ -18,7 +18,6 @@ const ProductDetails = ({ productId }) => {
         getDetail(productId);
     }, [productId])
 
-    console.log("***********************", productDetails)
 
     return (
         <Layout>

@@ -2,9 +2,11 @@ import { useEffect, useState } from "react"
 import Layout from "../../components/layout"
 import SubscriptionPlansListTemplates from "../../templates/subscription-plans"
 import { packageList } from "../../utils/api-Request"
+import { packagesfavList } from "../../utils/helper-functions"
 
 const SubscriptionPlans = () => {
     const [subsciptionList, setSubsciptionList] = useState()
+    
 
     const getPackages = async () => {
         const subscriptionPlansResponse = await packageList()
@@ -22,7 +24,7 @@ const SubscriptionPlans = () => {
 
     return (
         <Layout>
-            {subsciptionList && <SubscriptionPlansListTemplates subsciptionList={subsciptionList} />}
+            {subsciptionList && <SubscriptionPlansListTemplates subsciptionList={subsciptionList}/>}
         </Layout>
     )
 }
