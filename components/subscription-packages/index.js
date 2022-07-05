@@ -24,7 +24,7 @@ export default function SubscriptionPackages({ heading }) {
         const response = list?.data?.data
         if (response) {
             setLoading(false)
-            const r = response.filter(el=>el.project?.length == 1) 
+            const r = response.filter(el=>el.project?.length > 1) 
             if(r.length && r.length < 3){
                 const arr = [...r,...r,...r,...r];
                 const arn = arr
@@ -40,7 +40,6 @@ export default function SubscriptionPackages({ heading }) {
     }, [])
 
     useEffect(() => {
-        
         for(let obj of packListIs) {
             if (!obj.plateform) {
                 let plateform = []
