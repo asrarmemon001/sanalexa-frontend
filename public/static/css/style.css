@@ -1436,21 +1436,24 @@ h5.Pharmacepo {
 }
 .search-container-out {
     position: relative;
-    width: 45%; 
-    max-width: 450px;
+    width: 100%;
+    max-width: 650px;
+    margin: 30px auto;
 }
-.search-container input[type="text"] {
+
+.search-container-out input[type="text"] {
     padding: 10px 17px;
     border: 1px solid #b5b6b8;
     border-radius: 6px;
     width: 100%;
     outline: none;
-    font-size: 15px;
+    font-size: 18px;
     position: relative;
     padding-right: 60px;
+    background-color: #f2f2f2;
 }
 
-    .search-container input[type="text"]::placeholder {
+.search-container-out input[type="text"]::placeholder {
         color: #3c3c3c47;
         font-style: italic;
     }
@@ -1467,9 +1470,11 @@ h5.Pharmacepo {
     background-color: #f7ad18;
     border-top-right-radius: 4px;
     border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
     width: 140px;
     color: #151515;
     font-family: 'HelveticaNeue';
+    border-top-left-radius: 4px;
 }
 .search-container-out button.searchbut:hover {
     background-color: #3753a0;
@@ -2458,6 +2463,10 @@ section.newslettersection {
 }
 
 @media only screen and (min-width: 1599px) {
+
+    
+
+
     .girditem a {
         font-size: 20px;
     }
@@ -3383,11 +3392,16 @@ p.Order-text {
     font-size: 30px;
     margin: 30px 0px;
 }
-
+.homebannerbuton a.button-download-launcher:first-child {
+    margin-right: 30px;
+}
 
 
 
 @media only screen and (max-width: 1599px) {
+    .banner { 
+        background-position: top -80px center; 
+    }
 
     .HurreyPayment { 
         padding: 5px 100px;
@@ -3849,8 +3863,12 @@ a.button-download-launcher {
         padding: 8px 17px;
         padding-left: 5px; 
     }
-    .search-container-out { 
-        max-width: 340px;
+    .search-container-out {
+        max-width: 445px;
+    }
+    .search-container-out input[type="text"] {
+        padding: 8px 17px; 
+        font-size: 15px; 
     }
     .pharmaceutical-box img {
         height: 150px;

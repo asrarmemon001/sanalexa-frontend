@@ -254,6 +254,17 @@ export default function GetStarted() {
         <div className="title">
           <h3>COURSES TO GET YOU STARTED </h3>
           <h6> Find the exact right 3D content for your needs Lorem Ipsum is simply dummy text of the printing</h6>
+          <div className="search-container-out">
+                {}
+               <input
+                type="text"
+                placeholder="Worlds best XR Training mobules"
+                name="search"
+                value={search}
+                onChange={handleOnChange}
+              />
+              <button className="searchbut"> <i className="fa fa-search" aria-hidden="true"></i> SEARCH</button>
+              </div>
         </div>
         <div className="mb-4 mobwrep h-100 d-flex">
           <div className="d-flex col-md-9 pl-0 col-sm-12 vercel img-no"> 
@@ -408,17 +419,6 @@ export default function GetStarted() {
 
           <div className="col-lg-9 col-md-8">
             <div className="search-container" data-aos="fade-up">
-              <div className="search-container-out">
-                {/* <i className="fa fa-search" aria-hidden="true"></i> */}
-               <input
-                type="text"
-                placeholder="Worlds best XR Training mobules"
-                name="search"
-                value={search}
-                onChange={handleOnChange}
-              />
-              <button className="searchbut">SEARCH</button>
-              </div>
               <div className="girditem">
                 <a href="#" className="girdfilter active"><i className="fa fa-th" aria-hidden="true"></i></a>
                 <a href="#" className="viewfilter"><i className="fa fa-bars" aria-hidden="true"></i></a>
