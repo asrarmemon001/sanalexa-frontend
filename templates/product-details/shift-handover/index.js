@@ -28,7 +28,7 @@ const ShiftHandover = ({productDetails}) => {
         }))
     }
     return (
-        <section className="shift-hendverys">
+        <section className="shift-hendverys w-100">
             <div className="container">
                 <div className="all-teb TabDesign"> 
                     <div id="material-tabs">
