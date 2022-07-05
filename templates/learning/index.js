@@ -12,8 +12,11 @@ export default function LeaningPageTemplate() {
    const [projects, setProjects] = useState([])
    const [packages, setPackages] = useState([])
    const [learningProjects, setLearningProjects] = useState([])
+   const [learningPackages, setLearningPackages] = useState([])
    const [favProjects, setFavProjects] = useState([])
+   const [favPackages, setFavPackages] = useState([])
    const [inProgressProjects, setInProgressProjects] = useState([])
+   const [inProgressPackages, setInProgressPackages] = useState([])
    const [percentageData, setPercentageData] = useState([])
    const [activePanel, setActivePanel] = useState(0)
    const [loading, setLoading] = useState(false)
@@ -42,7 +45,9 @@ export default function LeaningPageTemplate() {
       const response = coursesData?.data?.data
 
       if (response) {
-         setPackages(response?.packages)
+         if(Object.keys(response?.packages).length){ 
+            setPackages([...Object.values(response?.packages)])
+         }
          setProjects(response?.projects)
       }
       if (projectPercentageData) {
@@ -70,18 +75,18 @@ export default function LeaningPageTemplate() {
    const tabPanels = [
       {
          id: "tab-01",
-         tab: `In Progress (${inProgressProjects?.length || 0})`,
-         panel: <TabPanel projects={inProgressProjects} percentageData={percentageData} />
+         tab: `In Progress (${(inProgressProjects?.length || 0) + (inProgressPackages?.length || 0)})`,
+         panel: <TabPanel projects={inProgressProjects} percentageData={percentageData} packages={inProgressPackages}/>
       },
       {
          id: "tab-02",
-         tab: `My Favorites (${favProjects?.length || 0})`,
-         panel: <TabPanel projects={favProjects} percentageData={percentageData} favorites={true}/>
+         tab: `My Favorites (${(favProjects?.length || 0) + (favPackages?.length || 0)})`,
+         panel: <TabPanel projects={favProjects} percentageData={percentageData} packages={favPackages} favorites={true}/>
       },
       {
          id: "tab-03",
-         tab: `Learning History (${learningProjects?.length || 0})`,
-         panel: <TabPanel projects={learningProjects} percentageData={percentageData} />
+         tab: `Learning History (${(learningProjects?.length || 0) + (learningPackages?.length || 0)})`,
+         panel: <TabPanel projects={learningProjects} percentageData={percentageData} packages={learningPackages}/>
       },
       {
          id: "tab-04",

@@ -25,7 +25,7 @@ export default function PaymentSuccess() {
             <div className="col-12 text-center" style={{minHeight:200}}> 
             <div className="HurreyPayment">
             <img src="/static/images/download.png" />
-                    <h3 className="text-center text-success p-5">Hurrey!, Payment Success.</h3>
+                    <h3 className="text-center text-success ">Hurrey!, Payment Success.</h3>
                     <p className="text-center">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&apos;s standard dummy text ever since the</p>
                     <Link href="/"><a className="button-download-launcher">Go to Home</a></Link>
                 </div>

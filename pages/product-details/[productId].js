@@ -17,6 +17,9 @@ const ProductDetails = ({ productId }) => {
     useEffect(()=> {
         getDetail(productId);
     }, [productId])
+
+    console.log("***********************", productDetails)
+
     return (
         <Layout>
             {productDetails && <ProductDetailsTemplate productDetails={productDetails} />}
