@@ -8,6 +8,7 @@ import AppContext from "../../../appContext";
 import { addtoBundleApi, AddtoCart, addToFav, getFavList } from "../../../utils/api-Request";
 import { ImageBaseUrl } from "../../../utils/Baseurl";
 import { getSession } from "../../../utils/constants";
+import ShiftHandover from "../shift-handover";
 const ProductDetailsMain = ({ productDetails }) => {
   const {
     id,
@@ -256,6 +257,9 @@ const ProductDetailsMain = ({ productDetails }) => {
                   </div>
                 </div>
               </div>
+              <div className="row">
+              <ShiftHandover productDetails={productDetails}/> 
+              </div>
             </div>
             <div className="col-lg-4 col-md-12">
               {/* <div className="shift-content">
@@ -403,12 +407,12 @@ const ProductDetailsMain = ({ productDetails }) => {
                         <span>
                           <span class="rupes">₹ </span> {calculatePrice()}
                         </span>{" "}
-                        <span className="discouns">16% discount</span>
+                        <span className="discouns">0% discount</span>
                       </h3>
                     </div>
                     <div className="bordprice_soal">
                       <div className="prodwerp">
-                        <ul>
+                        {/* <ul>
                           <li>
                             <a href="#" className="girditemea">
                               <i
@@ -441,7 +445,14 @@ const ProductDetailsMain = ({ productDetails }) => {
                               ></i>
                             </a>
                           </li>
-                        </ul>
+                        </ul> */}
+                        <ul>
+                            {plateform.indexOf('desktop') > -1 && <li><a href="#" className="girditemea"><i className="fa fa-desktop" aria-hidden="true"></i></a></li>}
+                            {plateform.indexOf('webgl') > -1 && <li><a href="#" className="girditemea"><i className="fa fa-laptop" aria-hidden="true"></i></a></li>}
+                            {plateform.indexOf('mobile_application') > -1 && <li><a href="#" className="girditemea"><i className="fa fa-mobile" aria-hidden="true"></i></a></li>}
+                            {plateform.indexOf('vr') > -1 && <li><a href="#" className="girditemea"><i className="fa fa-gamepad" aria-hidden="true"></i></a></li>}
+                            {plateform.indexOf('hololens') > -1 && <li><a href="#" className="girditemea"><i className="customicon" style={{ "backgroundImage": "url('../../static/images/hololens.png')" }}></i></a></li>}
+                            </ul>
                       </div>
                     </div>
                   </div>

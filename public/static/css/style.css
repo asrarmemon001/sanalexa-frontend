@@ -88,6 +88,18 @@ section.banner.palneandbundel {
     border-radius: 50px;
     margin-left: 20px;
 }
+
+.customdp i.fa.fa-angle-up {
+    font-size: 20px;
+    line-height: 1;
+    background-color: #f7ad18;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    color: #fff;
+    border-radius: 50px;
+    margin-left: 20px;
+}
 .customdp {
     font-size: 30px;
     line-height: 45px;
