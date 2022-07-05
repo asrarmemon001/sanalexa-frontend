@@ -23,6 +23,7 @@ const ProductDetailsMain = ({ productDetails }) => {
 
   const apiContext = useContext(AppContext);
   const { playTypeModal } = apiContext;
+  const { isLoggedin } = apiContext.state
   const [apicall, setapicall] = useState(false);
   const [bundleApicall, setBundleApicall] = useState(false);
   const [selectServices, setSelectedServices] = useState([]);
@@ -226,7 +227,7 @@ const ProductDetailsMain = ({ productDetails }) => {
                     <p>{projectDesc}</p>
                   </div>
                   <div className="hingmodelicon">
-                    {!isBuyed && <button className="btn btn-danger" disabled={wishlistIs ? true : false} onClick={handleAddtoFav}>
+                    {(!isBuyed && isLoggedin )&& <button className="btn btn-danger" disabled={wishlistIs ? true : false} onClick={handleAddtoFav}>
                       {" "}
                       <i className="fa fa-plus" aria-hidden="true"></i>{`${wishlistIs ? `Wishlisted` :`ADD TO WISHLIST`}`}
                     </button>}
@@ -486,10 +487,11 @@ const ProductDetailsMain = ({ productDetails }) => {
                             </>
                         }
                     </button>
+                    {isLoggedin ? 
                     <button className="btn btn-danger" disabled={wishlistIs ? true : false} onClick={handleAddtoFav}>
                       {" "}
                       <i className="fa fa-database" aria-hidden="true"></i>{`${wishlistIs ? `Wishlisted` :`ADD TO WISHLIST`}`}
-                    </button>
+                    </button> :""}
                     </> : 
                     <button className="btn btn-danger my-4 mr-3 text-white" target="_blank" rel="noreferrer" 
                     onClick={(e) => playTypeModal('play', productDetails)} data-toggle="tooltip" data-original-title="Play">

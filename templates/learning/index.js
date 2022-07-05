@@ -26,7 +26,9 @@ export default function LeaningPageTemplate() {
       const response = favList?.data?.data
       if(response?.length){
          const data = response.filter((el => el.itemType === "project"))
+         const packIs = response.filter((el => el.itemType === "package"))
          setFavProjects(data)
+         setFavPackages(packIs)
       }
    }
 
@@ -71,6 +73,8 @@ export default function LeaningPageTemplate() {
       getCourses()
       getFavData()
    }, []);
+
+   console.log("sdcsdsddsd", favPackages)
 
    const tabPanels = [
       {
