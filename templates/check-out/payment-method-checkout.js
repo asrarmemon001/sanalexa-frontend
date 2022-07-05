@@ -20,7 +20,7 @@ const PaymentMethodCheckout = ({inProcess, setInProcess}) => {
         <div className="accordion-item">
             <div className="accountdetails">
                 <li><h4><span>2</span> Payment </h4>
-                    <p>Select a Payment method <strong>${cartTotal}</strong></p>
+                    <p>Select a Payment method <strong>₹ {cartTotal}</strong></p>
                 </li>
             </div>
         </div>

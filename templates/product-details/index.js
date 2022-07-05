@@ -15,7 +15,7 @@ export default function ProductDetailsTemplate({ productDetails }) {
     return (
         <>
             <ProductDetailsMain productDetails={productDetails}/>
-            <ShiftHandover productDetails={productDetails}/> 
+            {/* <ShiftHandover productDetails={productDetails}/>  */}
             <FeaturedCourses heading="POPULAR 3D MODELS" /> 
             <NewsletterSection />
         </>
