@@ -47,7 +47,8 @@ export default function LeaningPageTemplate() {
       const response = coursesData?.data?.data
 
       if (response) {
-         if(Object.keys(response?.packages).length){ 
+         console.log(response,'lll')
+         if(typeof response?.packages == "object" && Object.keys(response?.packages).length){ 
             setPackages([...Object.values(response?.packages)])
          }
          setProjects(response?.projects)
