@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Image from 'next/image'
+import Image from "next/image";
 import { useCallback, useContext, useEffect, useState } from "react";
 import { plateformList } from "../../../../utils/plateform";
 import { ImageBaseUrl } from "../../../../utils/Baseurl";
@@ -9,6 +9,7 @@ import {
   cartList,
   AddtoCart,
   removeItemBundleList,
+  getdiscount
 } from "../../../../utils/api-Request";
 import { Loader } from "../../../../components/Loader/Loader";
 import { NoDataFound } from "../../../../components/NoDataFound/NoDataFound";
@@ -23,7 +24,7 @@ import { debounce } from "lodash";
 
 export default function GetStarted() {
   const setCounter = useContext(AppContext);
-  let { setCartProduct, state,fetchBundleList} = setCounter;
+  let { setCartProduct, state, fetchBundleList } = setCounter;
   let bundleProducts = state.bundleProduct;
   const [plateformFilterShow, setPlateformFilterShow] = useState(false);
   const [bundleList, setBundleList] = useState([]);
@@ -40,6 +41,7 @@ export default function GetStarted() {
   const [cartListIs, setCartList] = useState([]);
   const [sessionId, setSessionId] = useState("");
   const [apicall, setapicall] = useState(false);
+  const [ discount, setDiscount ] = useState(1)
 
   const handleOnChange = (event) => {
     setPage(1);
@@ -104,15 +106,14 @@ export default function GetStarted() {
         id: id,
         type,
       };
-      const res = await removeItemBundleList(data)
+      const res = await removeItemBundleList(data);
       if (res.status == 200) {
-        toast.success("successfully Removed")
-        fetchBundleList()
+        toast.success("successfully Removed");
+        fetchBundleList();
       }
-
     } catch (error) {
-      toast.error("something went wrong")
-      console.log(error, 'handleRemove bundle')
+      toast.error("something went wrong");
+      console.log(error, "handleRemove bundle");
     }
   };
 
@@ -132,7 +133,7 @@ export default function GetStarted() {
     }
   };
   // console.log(cartListIs);
-  const getProjectList = async (data) => {   
+  const getProjectList = async (data) => {
     setLoading(true);
     const list = await projectList(data);
     const response = list?.data?.data;
@@ -156,16 +157,24 @@ export default function GetStarted() {
 
   const handlerGetProjectList = useCallback(debounce(getProjectList, 300), []);
 
+  const getDiscount = async() => {
+    const disCountIs = await getdiscount()
+    const response = disCountIs?.data?.data
+    if(response){
+      setDiscount(response?.discount)
+    }
+  }
+
   useEffect(() => {
     const data = { page, limit, search, plateform, sector };
     handlerGetProjectList(data);
   }, [page, search, plateform, sector]);
 
-
   useEffect(() => {
     const key = localStorage.getItem("sessionId");
     setSessionId(key);
     getSectorList();
+    getDiscount()
   }, []);
 
   // useEffect(() => {
@@ -175,132 +184,172 @@ export default function GetStarted() {
   // useEffect(() => {
   //   getCartList();
   // }, [sessionId]);
-  
-  let defaultCardNumber = bundleProducts?.length ? 4-bundleProducts?.length : 4
+
+  const payableAmount = (totalAmount) => {
+    const currentAmount = (totalAmount * discount)/100;
+    const amountIs = totalAmount - currentAmount?.toFixed(2)
+    console.log("7777777777777777",currentAmount?.toFixed(2))
+    return amountIs
+  }
+
+  let defaultCardNumber = bundleProducts?.length
+    ? 4 - bundleProducts?.length
+    : 4;
 
   return (
     <section className="couressto">
+      <section className="industrial-knowl-edge">
+        <div className="container">
+          <div className="Upkill-title">
+            <h3>Upskill your industrial knowledge with US</h3>
+            <p>
+              Get access to industrial courses, assessments, knowledge
+              repositories, and <br />
+              professional certificates on Simulanis LEARN, trusted by leading
+              industries and companies.
+            </p>
+          </div>
 
-<section className="industrial-knowl-edge">
-<div className="container">
-	<div className="Upkill-title">
-		<h3>Upskill your industrial knowledge with US</h3>
-		<p>Get access to industrial courses, assessments, knowledge repositories, and <br />
-     professional certificates on Simulanis LEARN, trusted by leading industries and companies.
-		  </p>
-	</div>
-	
+          <div className="row mt-5">
+            <div className="col-md-3">
+              <div className="industry-helvetica">
+                <img src="/static/images/industry-img1.png" />
+                <h5>helvetica neue</h5>
+                <p>
+                  Learn new industry skills using the ‘learn-by-doing’ pedagogy
+                </p>
+              </div>
+            </div>
 
+            <div className="col-md-3">
+              <div className="industry-helvetica">
+                <img src="/static/images/industry-img2.png" />
+                <h5>helvetica neue</h5>
+                <p>
+                  Learn new industry skills using the ‘learn-by-doing’ pedagogy
+                </p>
+              </div>
+            </div>
 
-<div className="row mt-5">
-	<div className="col-md-3">
-		<div className="industry-helvetica">
-		    <img src="/static/images/industry-img1.png" />
-	       <h5>helvetica neue</h5>
-		   <p>Learn new industry skills using the ‘learn-by-doing’ pedagogy</p>
-		</div> 
-	</div>
-	
-	<div className="col-md-3">
-		<div className="industry-helvetica">
-		    <img src="/static/images/industry-img2.png" />
-	       <h5>helvetica neue</h5>
-		   <p>Learn new industry skills using the ‘learn-by-doing’ pedagogy</p>
-		</div> 
-	</div>
-	
-	<div className="col-md-3">
-		<div className="industry-helvetica">
-		    <img src="/static/images/industry-img3.png" />
-	       <h5>helvetica neue</h5>
-		   <p>Learn new industry skills using the ‘learn-by-doing’ pedagogy</p>
-		</div> 
-	</div>
+            <div className="col-md-3">
+              <div className="industry-helvetica">
+                <img src="/static/images/industry-img3.png" />
+                <h5>helvetica neue</h5>
+                <p>
+                  Learn new industry skills using the ‘learn-by-doing’ pedagogy
+                </p>
+              </div>
+            </div>
 
-	<div className="col-md-3">
-		<div className="industry-helvetica">
-		    <img src="/static/images/industry-img4.png" />
-	       <h5>helvetica neue</h5>
-		   <p>Learn new industry skills using the ‘learn-by-doing’ pedagogy</p>
-		</div> 
-	</div>
- 
-</div>
-</div>
-</section>
+            <div className="col-md-3">
+              <div className="industry-helvetica">
+                <img src="/static/images/industry-img4.png" />
+                <h5>helvetica neue</h5>
+                <p>
+                  Learn new industry skills using the ‘learn-by-doing’ pedagogy
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
+      <section className="leading-businesses">
+        <div className="container-fuild">
+          <div className="Upkill-title">
+            <h3>Trusted by 150+ leading businesses and corporates </h3>
+            <p>Learn from courses that are from around the globe</p>
+          </div>
 
-<section className="leading-businesses">
-<div className="container-fuild">
-	<div className="Upkill-title">
-		<h3>Trusted by 150+ leading businesses and corporates </h3>
-		<p>Learn from courses that are from around the globe</p>
-	</div>
-	
-	<div className="Trusted-logoslider">
-				<img src="/static/images/lupin.jpg" />
-				<img src="/static/images/zydus.jpg" />
-				<img src="/static/images/gsk.jpg" />
-				<img src="/static/images/dr-reddy.jpg" />
-				<img src="/static/images/reckitt.jpg" />  
-				<img src="/static/images/sun.jpg" />  
-				<img src="/static/images/granules.jpg" />  
-				<img src="/static/images/marksans.jpg" />  
-	</div> 
-</div> 
-</section>
-      
+          <div className="Trusted-logoslider">
+            <img src="/static/images/lupin.jpg" />
+            <img src="/static/images/zydus.jpg" />
+            <img src="/static/images/gsk.jpg" />
+            <img src="/static/images/dr-reddy.jpg" />
+            <img src="/static/images/reckitt.jpg" />
+            <img src="/static/images/sun.jpg" />
+            <img src="/static/images/granules.jpg" />
+            <img src="/static/images/marksans.jpg" />
+          </div>
+        </div>
+      </section>
+
       <div className="container">
         <div className="title">
           <h3>COURSES TO GET YOU STARTED </h3>
-          <h6> Find the exact right 3D content for your needs Lorem Ipsum is simply dummy text of the printing</h6>
+          <h6>
+            {" "}
+            Find the exact right 3D content for your needs Lorem Ipsum is simply
+            dummy text of the printing
+          </h6>
           <div className="search-container-out">
-                {}
-               <input
-                type="text"
-                placeholder="Worlds best XR Training mobules"
-                name="search"
-                value={search}
-                onChange={handleOnChange}
-              />
-              <button className="searchbut"> <i className="fa fa-search" aria-hidden="true"></i> SEARCH</button>
-              </div>
+            {}
+            <input
+              type="text"
+              placeholder="Worlds best XR Training mobules"
+              name="search"
+              value={search}
+              onChange={handleOnChange}
+            />
+            <button className="searchbut">
+              {" "}
+              <i className="fa fa-search" aria-hidden="true"></i> SEARCH
+            </button>
+          </div>
         </div>
         <div className="mb-4 mobwrep h-100 d-flex">
-          <div className="d-flex col-md-9 pl-0 col-sm-12 vercel img-no"> 
-            {
-              bundleProducts?.slice(0,4)?.map((i, key)=>(
-                <div className="d-flex flex-column   vercel" key={key}>
-                <Image src={`${ImageBaseUrl}${i?.productInfo?.bannerImage}`} height="180px" width="180px"/>
-                <button  onClick={()=>{handleRemove(i.productInfo?.id,i.type)}}>x</button>
-                  </div>
-              ))
-            }
+          <div className="d-flex col-md-9 pl-0 col-sm-12 vercel img-no">
+            {bundleProducts?.slice(0, 4)?.map((i, key) => (
+              <div className="d-flex flex-column   vercel" key={key}>
+                <Image
+                  src={`${ImageBaseUrl}${i?.productInfo?.bannerImage}`}
+                  height="180px"
+                  width="180px"
+                />
+                <button
+                  onClick={() => {
+                    handleRemove(i.productInfo?.id, i.type);
+                  }}
+                >
+                  x
+                </button>
+              </div>
+            ))}
             {[...Array(defaultCardNumber)]?.map((i) => (
               <>
-              <Image src="/vercel.svg" height="180px" width="180px"/>
+                <Image src="/vercel.svg" height="180px" width="180px" />
               </>
-
             ))}
-             <div className="numbrbundel"> <h5>({bundleProducts?.length || 0} of 4) </h5></div>
-          
+            <div className="numbrbundel">
+              {" "}
+              <h5>({bundleProducts?.length || 0} of 4) </h5>
+            </div>
           </div>
           <div className="col-md-3 col-sm-12 text-right pr-0 paddi">
             <div className="flexclas">
-            <div className="dolarret">
-            <span className="rupese">₹</span> {state?.bundleTotal}  <span>16% Discount</span>
+              <div className="dolarret">
+                {/* <span className="rupese">₹</span> {state?.bundleTotal}{" "} */}
+                <span className="rupese">₹</span> {payableAmount(state?.bundleTotal)}{" "}
+                <span>{`${discount} % Discount`}</span>                               
+              </div>   
+              {state?.bundleTotal ? <p><del>₹ {state?.bundleTotal}</del></p> :""}           
+              <Paymentgateway
+                className="bg-danger text-white control__content"
+                style={{ width: "100px" }}
+                disabled={
+                  bundleProducts?.length > 2 && bundleProducts?.length < 5
+                    ? false
+                    : true
+                }
+                cartListIs={bundleProducts}
+                cartTotal={state?.bundleTotal}
+                type={"bundle"}
+              />
+            </div>
           </div>
-            <Paymentgateway 
-            className="bg-danger text-white control__content" 
-            style={{width:"100px"}} 
-            disabled={bundleProducts?.length > 2 && bundleProducts?.length < 5 ? false : true}
-            cartListIs={bundleProducts} cartTotal={state?.bundleTotal} type={'bundle'}
-            />
-                    </div>
-                    </div>
         </div>
         <div className="dividerborder"></div>
-      
+
         <div className="row">
           <div className="col-lg-3 col-md-4">
             <div className="filltercode" data-aos="fade-right">
@@ -420,9 +469,13 @@ export default function GetStarted() {
           <div className="col-lg-9 col-md-8">
             <div className="search-container" data-aos="fade-up">
               <div className="girditem">
-                <a href="#" className="girdfilter active"><i className="fa fa-th" aria-hidden="true"></i></a>
-                <a href="#" className="viewfilter"><i className="fa fa-bars" aria-hidden="true"></i></a>
-            </div>
+                <a href="#" className="girdfilter active">
+                  <i className="fa fa-th" aria-hidden="true"></i>
+                </a>
+                <a href="#" className="viewfilter">
+                  <i className="fa fa-bars" aria-hidden="true"></i>
+                </a>
+              </div>
             </div>
 
             <div className="row mb-4 girdsestem">
@@ -464,8 +517,6 @@ export default function GetStarted() {
           {/* Projects************************ */}
         </div>
       </div>
-
-      
     </section>
   );
 }

@@ -112,3 +112,7 @@ export const addToFav = async(data) => {
 export const removeToFav = async(data) => {
    return await deleteApi(`/api/favourite/remove-to-fav?itemId=${data?.itemId}&itemType=${data?.itemType}`)
 }
+
+export const getdiscount = async() => {
+   return await getApi(`/api/bundle/settings`)
+}
