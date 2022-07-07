@@ -187,8 +187,8 @@ export default function GetStarted() {
 
   const payableAmount = (totalAmount) => {
     const currentAmount = (totalAmount * discount)/100;
-    const amountIs = totalAmount - currentAmount?.toFixed(2)
-    console.log("7777777777777777",currentAmount?.toFixed(2))
+    const amountIs = totalAmount - currentAmount?.toFixed()
+    console.log("7777777777777777",currentAmount?.toFixed())
     return amountIs
   }
 
@@ -330,9 +330,10 @@ export default function GetStarted() {
               <div className="dolarret">
                 {/* <span className="rupese">₹</span> {state?.bundleTotal}{" "} */}
                 <span className="rupese">₹</span> {payableAmount(state?.bundleTotal)}{" "}
+                {state?.bundleTotal ? <span className="text-danger"><del>₹ {state?.bundleTotal}</del></span> :""}  
                 <span>{`${discount} % Discount`}</span>                               
               </div>   
-              {state?.bundleTotal ? <p><del>₹ {state?.bundleTotal}</del></p> :""}           
+                       
               <Paymentgateway
                 className="bg-danger text-white control__content"
                 style={{ width: "100px" }}

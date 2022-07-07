@@ -30,10 +30,11 @@ export default function CategoriesSection() {
     if (!sectors?.length) {
         return null
     }
+ 
     const [sliderSectors, setSliderSectors] = useState([])
 
     useEffect(() => {
-        const r = sectors?.filter(el => el?.projects?.length == 1);
+        const r = sectors?.filter(el => el?.projects?.length > 0);
         if (r.length && r.length < 6) {
             const arr = [...r, ...r, ...r, ...r];
             const arn = arr.slice(0, 7)
@@ -112,7 +113,7 @@ export default function CategoriesSection() {
                    
                     
                      <CategoryItem classes="listitem-farmertycal" link="#" image="/static/images/customer.png" title="Contraction"/> */}
-                    <Slider {...settings} className="coursesSliders">
+                    <Slider {...settings} className="coursesSliders"> 
                         {sliderSectors.map((el) => {
                             return el.projects?.length ? (
                                 <div>
