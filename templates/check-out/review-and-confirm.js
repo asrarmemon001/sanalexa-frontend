@@ -94,7 +94,7 @@ const ReviewAndConfirm = ({ inProcess, setInProcess }) => {
                                                 <td><button type="submit" className="carts" onClick={() => handleRemove(el.id, el.type)}>Remove</button></td>
                                             </tr>
                                             :
-                                            <PackageView el={el} />
+                                            <PackageView el={el} handleRemove={handleRemove} />
                                     ))
                                     }
                                 </tbody>
@@ -116,7 +116,7 @@ const ReviewAndConfirm = ({ inProcess, setInProcess }) => {
 export default ReviewAndConfirm
 
 
-const PackageView = ({ el }) => {
+const PackageView = ({ el, handleRemove }) => {
     const [toggle, setToggle] = useState(false)
     return (
         <>

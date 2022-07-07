@@ -46,8 +46,7 @@ export default function LeaningPageTemplate() {
       const projectPercentageData = await getProjectPercentageApi()
       const response = coursesData?.data?.data
 
-      if (response) {
-         console.log(response,'lll')
+      if (response) { 
          if(typeof response?.packages == "object" && Object.keys(response?.packages).length){ 
             setPackages([...Object.values(response?.packages)])
          }
@@ -61,7 +60,7 @@ export default function LeaningPageTemplate() {
 
    useEffect(() => {
       const lProjects = projects?.filter(el => Number(percentageData?.find(l => l.projectId == el.id)?.precentage) >= 100)
-      const IProjects = projects?.filter(el => Number(percentageData?.find(l => l.projectId == el.id)?.precentage) < 100)
+      const IProjects = projects?.filter(el => Number(percentageData?.find(l => l.projectId == el.id)?.precentage) != 100)
       setLearningProjects(lProjects)
       setInProgressProjects(IProjects)
 
@@ -74,8 +73,7 @@ export default function LeaningPageTemplate() {
       getCourses()
       getFavData()
    }, []);
-
-   console.log("sdcsdsddsd", favPackages)
+ 
 
    const tabPanels = [
       {

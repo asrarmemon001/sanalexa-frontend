@@ -30,11 +30,19 @@ const TabPanel = ({ projects, percentageData, favorites, packages }) => {
         );
     };
 
-    const handleAddtoCart = async (id) => {
+    const isPackageExistInCart = (id) => {
+        return Boolean(
+            apiContext.state.cartProduct?.find(
+                (el) => el.id == id && el.type == "package"
+            )
+        );
+    };
+
+    const handleAddtoCart = async (id, type, quantity) => {
         setapicall(id);
         const data = {
             sessionId: getSession(),
-            cart: { id: String(id), type: "project", quantity: 1 },
+            cart: { id: String(id), type, quantity },
         };
         await AddtoCart(data)
             .then((res) => {
@@ -61,12 +69,13 @@ const TabPanel = ({ projects, percentageData, favorites, packages }) => {
                         <div className="historytablist">
                             <div className="row">
                                 <div className="col-md-3">
-                                    <img src={ImageBaseUrl + (el?.bannerImage || el?.project?.bannerImage)} />
+                                    <img src={ImageBaseUrl + (!favorites ? el?.bannerImage : el?.project?.bannerImage)} />
                                 </div>
                                 <div className="col-md-5">
                                     <div className="historytabcontent">
-                                        <p>{el?.projectTitle || el?.project?.projectTitle}</p>
-                                        <h4>{el?.projectDesc || el?.project?.projectDesc}</h4>
+                                        <p>{!favorites ? el?.projectTitle : el?.project?.projectTitle}</p>
+                                        <h4>{!favorites ? el?.projectDesc : el?.project?.projectDesc}</h4>
+                                        {favorites ? <h4 className="text-danger">₹ {el?.project.price}</h4> : null}
                                         {favorites
                                             ?
                                             ""
@@ -75,8 +84,8 @@ const TabPanel = ({ projects, percentageData, favorites, packages }) => {
                                                 <span>Month Year</span>
                                                 {/* <h6> <img src="/static/images/feather-ch.png" /> Completed DD/MM/YYYY</h6> */}
                                                 <div className="percentage-meter">
-                                                    <div className="-meter" style={{ width: `${isCompleted(el?.id || el?.project?.id).p}%` }} />
-                                                </div> {isCompleted(el?.id || el?.project?.id).p} percent
+                                                    <div className="-meter" style={{ width: `${isCompleted(el?.id).p}%` }} />
+                                                </div> {isCompleted(el?.id).p} percent
                                             </>
                                         }
 
@@ -85,19 +94,19 @@ const TabPanel = ({ projects, percentageData, favorites, packages }) => {
                                 <div className="col-md-4 layers">
                                     <a href="javascript:void(0);" className="downloadcertificate" onClick={(e) => playTypeModal('play', el)}>Play</a>
                                     <div>
-                                        {isCompleted(el?.id || el?.project?.id).f && !favorites ? <a href="#" className="downloadcertificate">Download Certificate</a> : null}
+                                        {isCompleted(!favorites ? el?.id : el?.project?.id).f && !favorites ? <a href="#" className="downloadcertificate">Download Certificate</a> : null}
                                         {favorites ?
                                             <button
                                                 className={
                                                     "btn add-cart"
                                                 }
                                                 onClick={() => {
-                                                    !isProductExistInCart(el.id) &&
-                                                        handleAddtoCart(el?.id, 'project', 1);
+                                                    !isProductExistInCart(el?.project?.id) &&
+                                                        handleAddtoCart(el?.project?.id, 'project', 1);
                                                 }}
-                                                disabled={isProductExistInCart(el.id) ? true : false}
+                                                disabled={isProductExistInCart(el?.project?.id) ? true : false}
                                             >
-                                                {apicall == el.id ? (
+                                                {apicall == el?.project?.id ? (
                                                     <CircularProgress size={20} />
                                                 ) : (
                                                     <>
@@ -119,7 +128,7 @@ const TabPanel = ({ projects, percentageData, favorites, packages }) => {
             :
             packages.length ? null : <NoDataFound />}
 
-        <PackagesView packages={packages} favorites={favorites} isCompleted={isCompleted} playTypeModal={playTypeModal} isProductExistInCart={isProductExistInCart} handleAddtoCart={handleAddtoCart} />
+        <PackagesView apicall={apicall} packages={packages} favorites={favorites} isCompleted={isCompleted} playTypeModal={playTypeModal} isPackageExistInCart={isPackageExistInCart} handleAddtoCart={handleAddtoCart} />
 
 
 
@@ -129,25 +138,27 @@ const TabPanel = ({ projects, percentageData, favorites, packages }) => {
 export default TabPanel
 
 
-const PackagesView = ({ packages, favorites, isCompleted, playTypeModal, isProductExistInCart }) => {
+const PackagesView = ({ packages, favorites, isCompleted, playTypeModal, isPackageExistInCart, handleAddtoCart, apicall }) => {
 
-    const [showDetails, setShowDetails] = useState(false)
+    const [showDetails, setShowDetails] = useState(false) 
     return (
         <>
             {packages?.length
                 ?
                 packages.map((el, i) => {
+                    const pp = el?.projects || el?.package?.projects;
                     return (
                         <div className="learning-historytab border p-4" index={`p${i}`}>
                             <div className="historytablist">
                                 <div className="row">
                                     <div className="col-md-3">
-                                        <img src={ImageBaseUrl + (el?.bannerImage || el?.package.bannerImage)} />
+                                        <img src={ImageBaseUrl + (!favorites ? el?.bannerImage : el?.package.bannerImage)} />
                                     </div>
                                     <div className="col-md-5">
                                         <div className="historytabcontent">
-                                            <p>{el?.packagesName || el?.package?.packagesName}</p>
-                                            <h4>{el?.packagesDesc || el?.package?.packagesDesc}</h4>
+                                            <p>{!favorites ? el?.packagesName : el?.package?.packagesName}</p>
+                                            <h4>{!favorites ? el?.packagesDesc : el?.package?.packagesDesc}</h4>
+                                            {favorites ? <h4 className="text-danger">₹ {el?.package.price}</h4> : null}
                                             {/* {favorites
                                             ?
                                             ""
@@ -164,18 +175,18 @@ const PackagesView = ({ packages, favorites, isCompleted, playTypeModal, isProdu
                                     </div>
                                     <div className="col-md-4 layers">
                                         <div>
-                                            {/* {favorites ?
+                                            {favorites ?
                                         <button
                                             className={
                                                 "btn add-cart"
                                             }
                                             onClick={() => {
-                                                !isProductExistInCart(el.id) &&
-                                                    handleAddtoCart(el?.id, 'project', 1);
+                                                !isPackageExistInCart(el?.package?.id) &&
+                                                    handleAddtoCart(el?.package?.id, 'package', 1);
                                             }}
-                                            disabled={isProductExistInCart(el.id) ? true : false}
+                                            disabled={isPackageExistInCart(el?.package?.id) ? true : false}
                                         >
-                                            {apicall == el.id ? (
+                                            {apicall == el?.package?.id ? (
                                                 <CircularProgress size={20} />
                                             ) : (
                                                 <>
@@ -184,7 +195,7 @@ const PackagesView = ({ packages, favorites, isCompleted, playTypeModal, isProdu
                                             )}
                                         </button>
                                         :
-                                        null} */}
+                                        null}
 
                                             <a href="#" className="share">Share</a>
                                         </div>
@@ -195,20 +206,20 @@ const PackagesView = ({ packages, favorites, isCompleted, playTypeModal, isProdu
                                     </div>
                                     {showDetails && showDetails == i+1 && <div className="col-md-12 p-4 bg-light">
 
-                                        {el.projects?.length
+                                        {pp?.length
                                             ?
-                                            el.projects.map((el, i) => {
+                                            pp.map((el, i) => {
                                                 return (
                                                     <div className="learning-historytab" index={i}>
                                                         <div className="historytablist">
                                                             <div className="row">
                                                                 <div className="col-md-3">
-                                                                    <img src={ImageBaseUrl + (el?.bannerImage || el?.project?.bannerImage)} />
+                                                                    <img src={ImageBaseUrl + (el?.bannerImage)} />
                                                                 </div>
                                                                 <div className="col-md-5">
                                                                     <div className="historytabcontent">
-                                                                        <p>{el?.projectTitle || el?.project?.projectTitle}</p>
-                                                                        <h4>{el?.projectDesc || el?.project?.projectDesc}</h4>
+                                                                        <p>{ el?.projectTitle }</p>
+                                                                        <h4>{ el?.projectDesc }</h4>
                                                                         {favorites
                                                                             ?
                                                                             ""
@@ -217,8 +228,8 @@ const PackagesView = ({ packages, favorites, isCompleted, playTypeModal, isProdu
                                                                                 <span>Month Year</span>
                                                                                 {/* <h6> <img src="/static/images/feather-ch.png" /> Completed DD/MM/YYYY</h6> */}
                                                                                 <div className="percentage-meter">
-                                                                                    <div className="-meter" style={{ width: `${isCompleted(el?.id || el?.project?.id).p}%` }} />
-                                                                                </div> {isCompleted(el?.id || el?.project?.id).p} percent
+                                                                                    <div className="-meter" style={{ width: `${isCompleted(el?.id).p}%` }} />
+                                                                                </div> {isCompleted(el?.id).p} percent
                                                                             </>
                                                                         }
 
@@ -226,32 +237,7 @@ const PackagesView = ({ packages, favorites, isCompleted, playTypeModal, isProdu
                                                                 </div>
                                                                 <div className="col-md-4 layers">
                                                                     <a href="javascript:void(0);" className="downloadcertificate" onClick={(e) => playTypeModal('play', el)}>Play</a>
-                                                                    <div>
-                                                                        {isCompleted(el?.id || el?.project?.id).f && !favorites ? <a href="#" className="downloadcertificate">Download Certificate</a> : null}
-                                                                        {favorites ?
-                                                                            <button
-                                                                                className={
-                                                                                    "btn add-cart"
-                                                                                }
-                                                                                onClick={() => {
-                                                                                    !isProductExistInCart(el.id) &&
-                                                                                        handleAddtoCart(el?.id, 'project', 1);
-                                                                                }}
-                                                                                disabled={isProductExistInCart(el.id) ? true : false}
-                                                                            >
-                                                                                {apicall == el.id ? (
-                                                                                    <CircularProgress size={20} />
-                                                                                ) : (
-                                                                                    <>
-                                                                                        <i className="fa fa-shopping-cart mr-2" aria-hidden="true"></i> <span>Add to Cart</span>{""}
-                                                                                    </>
-                                                                                )}
-                                                                            </button>
-                                                                            :
-                                                                            null}
-
-                                                                        <a href="#" className="share">Share</a>
-                                                                    </div>
+                                            
                                                                 </div>
                                                             </div>
                                                         </div>
