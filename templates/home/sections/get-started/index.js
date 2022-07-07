@@ -57,7 +57,8 @@ export default function GetStarted() {
       data = data.filter((el) => el != value);
     }
     setplateform(data);
-    handlerGetProjectList();
+    const dataIs = { page, limit, search, plateform, sector  };
+    handlerGetProjectList(dataIs);
   };
 
   const getSectors = (event) => {
@@ -69,7 +70,8 @@ export default function GetStarted() {
       data = data.filter((el) => el != value);
     }
     setSector(data);
-    handlerGetProjectList();
+    const dataIs = { page, limit, search, plateform, sector  };
+    handlerGetProjectList(dataIs);
   };
 
   const handleFilterChange = (event, status) => {
@@ -166,6 +168,7 @@ export default function GetStarted() {
   }
 
   useEffect(() => {
+
     const data = { page, limit, search, plateform, sector };
     handlerGetProjectList(data);
   }, [page, search, plateform, sector]);
@@ -187,8 +190,7 @@ export default function GetStarted() {
 
   const payableAmount = (totalAmount) => {
     const currentAmount = (totalAmount * discount)/100;
-    const amountIs = totalAmount - currentAmount?.toFixed()
-    console.log("7777777777777777",currentAmount?.toFixed())
+    const amountIs = totalAmount - currentAmount?.toFixed()    
     return amountIs
   }
 
