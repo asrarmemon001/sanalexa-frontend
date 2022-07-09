@@ -213,11 +213,11 @@ section.innerbanner .banner-plans{
 }
 
 .layers a.downloadcertificate {
-    font-size: 24px;
+    font-size: 20px;
     background-color: #d63c3c;
     color: #fff;
     display: inline-block;
-    width: 315px;
+    width: 150px;
     text-align: center;
     height: 55px;
     line-height: 55px;
@@ -227,9 +227,9 @@ section.innerbanner .banner-plans{
 }
 .layers a.share {
     text-decoration: none;
-    font-size: 25px;
-    color: #2a2a2a;
-    border: 1px solid #2448c1;
+    font-size: 20px;
+    color: #fff;
+    border: 1px solid #f7ad18;
     width: 150px;
     display: inline-block;
     text-align: center;
@@ -237,6 +237,12 @@ section.innerbanner .banner-plans{
     line-height: 55px;
     border-radius: 10px;
     margin-left: 25px;
+    background-color: #f7ad18;
+    font-weight: 300;
+}
+.learning-historytab .baccheng button.btn.text-white {
+    outline: none;
+    box-shadow: none;
 }
 .layers {
     display: flex;
@@ -959,6 +965,7 @@ section.farmertical {
     background-color: #252f61;
     align-items: center;
     justify-content: center;
+    height: 90px;
 }
 
 .indastry-img { 
@@ -989,17 +996,18 @@ section.farmertical {
         font-family: 'HelveticaNeue';
     font-style: normal;
     font-weight: 400;
-    font-size: 20px;
+    font-size: 18px;
     line-height: 0px;
     color: #ffffff;
     margin-bottom: 0;
     margin-top: 10px;
     text-transform: uppercase;
 }
-.indastry-content h5  {
+.indastry-content h5 {
     position: relative;
     opacity: 0.7228040099143982;
     margin-bottom: 0;
+    margin-top: 5px;
 }
 
 .container-fuild {
@@ -1007,7 +1015,7 @@ section.farmertical {
     padding-right: 50px;
 }
 .indastry-content h4 {
-    font-size: 20px;
+    font-size: 18px;
     line-height: 1;    
     margin-bottom: 5px;
 }
@@ -1321,6 +1329,7 @@ a.girdfilter.active {
     width: 48%;
     outline: none;
     box-shadow: none;
+    height: 40px; 
 }
 .buttons button.btn i.fa.fa-database {
     margin-right: 12px;
@@ -1394,7 +1403,7 @@ a.girdfilter.active {
 }
 
 .buttons button:hover {
-    box-shadow: 277px 0 0 0 #f7ad18 inset;
+    box-shadow: 350px 0 0 0 #f7ad18 inset;
     color: #fff !important;
 }
 
@@ -2135,7 +2144,10 @@ section.shift-hendvery {
     color: #494C54;
         font-family: 'HelveticaNeue';
 }
-
+.packageItem .buttons button.btn.btn-danger.w-100 {
+    font-size: 16px;
+    height: 40px;
+}
 .all-check-box label.form-check-label {
     font-weight: 500;
     font-size: 13px;
@@ -2405,7 +2417,7 @@ body .btn-primary:hover,body .btn-primary:focus {
     font-weight: 600;
 }
 .packageItem button.btn.btn-danger:hover {
-    box-shadow: 380px 0 0 0 #f7ad18 inset;
+    box-shadow: 475px 0 0 0 #f7ad18 inset;
     border-color: #f7ad18;
     color: #000;
 }
@@ -3386,6 +3398,20 @@ p.Order-text {
 .interacordian h3 {
     font-size: 26px;
 }
+.learning-historytab .baccheng {
+    background-color: #3A436F;
+}
+.learning-historytab .baccheng button.btn.text-white i.fa.fa-angle-down {
+    font-size: 20px;
+    line-height: 1;
+    background-color: #f7ad18;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    color: #fff;
+    border-radius: 50px;
+    margin-left: 15px;
+}
 /*********************************new cart end*************************************/
 
 .HurreyPayment h3 {
@@ -3396,7 +3422,33 @@ p.Order-text {
     margin-right: 30px;
 }
 
+.otp-form > div {justify-content: center;}
 
+.otp-form > div > div input {width: 38px!important;border-radius: 4px;border-style: solid;padding: 8px 0px;}
+
+.buy_bundle[disabled] {opacity: 0.5;cursor: not-allowed;pointer-events: none;}
+
+button[disabled] {cursor: not-allowed;pointer-events: none;}
+.alltabsyel .active, .alltabsyel .active a {color: #007bff;}
+.percentage-meter {display: flex;align-items: center;}
+
+.percentage-meter .-meter {height: 15px;background: #072b70;width: 10%;}
+.percentage-meter {height: 15px;background: #c2c2c2;}
+.btn.add-cart {text-decoration: none;
+    font-size: 20px;
+    color: #fff;
+    border: 1px solid #d63c3c;
+    background-color: #d63c3c;
+    display: flex;
+    text-align: center;
+    height: 55px;
+    line-height: 55px;
+    align-items: center;border-radius: 10px;
+    margin-left: 25px;
+    width:150px;
+      font-weight: 300;}
+    
+    
 
 @media only screen and (max-width: 1599px) {
     .banner { 
@@ -3527,15 +3579,21 @@ p.Order-text {
     }
     .layers a.downloadcertificate {
         font-size: 18px;
-        height: 45px;
-        line-height: 45px;
+        line-height: 40px;
+        height: 40px;
     }
     .layers a.share {
-        text-decoration: none;
         font-size: 18px;
-        height: 45px;
-        line-height: 45px;
+        line-height: 40px;
+    height: 40px;
+        text-decoration: none;
     }
+    .btn.add-cart {
+        font-size: 18px;
+        line-height: 40px;
+    height: 40px;
+    }
+    
     .copy-right p {
         font-size: 14px;
     }
@@ -3707,13 +3765,17 @@ p.Order-text {
 
     .buttons button {
         padding: 7px 5px;
-        font-size: 15px;
+        font-size: 11px;
+        height: 30px!important;
     }
 
     .listItem h3 {
         font-size: 17px;
     }
-
+    .packageItem .buttons button.btn.btn-danger {
+        font-size: 11px!important; 
+        height: 30px!important;
+    }
     .content-area h3 {
         font-size: 14px;
         line-height: 1;
@@ -3766,16 +3828,21 @@ a.button-download-launcher {
     .indastry-content h4 {
         margin-bottom: 0;
         margin-top: 0;
-    }
-    .indastry-content h4 a { 
         font-size: 15px; 
+    }
+
+    .indastry-content h4 a { 
+        font-size: 14px; 
     }
     
     .indastry {
         padding: 20px 15px;
         padding-right: 0;
+        height: 75px;
     }
-    
+    .indastry::after { 
+        height: 65px; 
+    }
 
     .massage-box h5 {
         font-size: 16px;
@@ -4120,6 +4187,16 @@ a.button-download-launcher {
         font-size: 25px;
         margin: 20px 0px;
     }
+    .indastry-content h5 { 
+        text-align: left;
+    }
+    button.buy_bundle {
+        width: 140px;
+    }
+    .packageItem .buttons button.btn.btn-danger { 
+        line-height: 1;
+    }
+    
     .HurreyPayment p {
         font-size: 16px;
     }
@@ -4944,26 +5021,3 @@ text-align: center;
 
 
 
-.otp-form > div {justify-content: center;}
-
-.otp-form > div > div input {width: 38px!important;border-radius: 4px;border-style: solid;padding: 8px 0px;}
-
-.buy_bundle[disabled] {opacity: 0.5;cursor: not-allowed;pointer-events: none;}
-
-button[disabled] {cursor: not-allowed;pointer-events: none;}
-.alltabsyel .active, .alltabsyel .active a {color: #007bff;}
-.percentage-meter {display: flex;align-items: center;}
-
-.percentage-meter .-meter {height: 15px;background: #072b70;width: 10%;}
-.percentage-meter {height: 15px;background: #c2c2c2;}
-.btn.add-cart {text-decoration: none;
-    font-size: 20px;
-    color: #2a2a2a;
-    border: 1px solid #2448c1;
-    
-    display: flex;
-    text-align: center;
-    height: 55px;
-    line-height: 55px;
-    align-items: center;border-radius: 10px;
-    margin-left: 25px;}

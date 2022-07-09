@@ -93,7 +93,7 @@ const TabPanel = ({ projects, percentageData, favorites, packages }) => {
                                 </div>
                                 <div className="col-md-4 layers">
                                     <a href="javascript:void(0);" className="downloadcertificate" onClick={(e) => playTypeModal('play', el)}>Play</a>
-                                    <div>
+                                    
                                         {isCompleted(!favorites ? el?.id : el?.project?.id).f && !favorites ? <a href="#" className="downloadcertificate">Download Certificate</a> : null}
                                         {favorites ?
                                             <button
@@ -118,7 +118,7 @@ const TabPanel = ({ projects, percentageData, favorites, packages }) => {
                                             null}
 
                                         <a href="#" className="share">Share</a>
-                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -174,7 +174,7 @@ const PackagesView = ({ packages, favorites, isCompleted, playTypeModal, isPacka
                                         </div>
                                     </div>
                                     <div className="col-md-4 layers">
-                                        <div>
+                                        
                                             {favorites ?
                                         <button
                                             className={
@@ -198,11 +198,11 @@ const PackagesView = ({ packages, favorites, isCompleted, playTypeModal, isPacka
                                         null}
 
                                             <a href="#" className="share">Share</a>
-                                        </div>
+                                       
                                     </div>
-                                    <div className="d-flex justify-content-between px-4 w-100 my-4 align-items-center bg-info text-white cursor-pointer" onClick={() => setShowDetails(Boolean(showDetails) && (showDetails == i+1)? false : i + 1)}>
+                                    <div className="d-flex justify-content-between px-4 w-100 my-4 align-items-center baccheng text-white cursor-pointer" onClick={() => setShowDetails(Boolean(showDetails) && (showDetails == i+1)? false : i + 1)}>
                                         <p className="m-0">Details</p>
-                                        <button className="btn text-white" >{Boolean(showDetails) && (showDetails == i+1) ? `Hide project details` : `See project details`}</button>
+                                        <button className="btn text-white" >{Boolean(showDetails) && (showDetails == i+1) ? `Hide project details` : `See project details`} <i className="fa fa-angle-down" aria-hidden="true"></i></button>
                                     </div>
                                     {showDetails && showDetails == i+1 && <div className="col-md-12 p-4 bg-light">
 
