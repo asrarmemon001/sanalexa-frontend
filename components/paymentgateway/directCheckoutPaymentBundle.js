@@ -84,7 +84,7 @@ export default function DirectPaymentANdCheckoutBundle({ packageId }) {
                 router.push("/payment/failed")
             });
             paymentObject.open();
-            router.push("/payment/verifying-payment-status")
+            // router.push("/payment/verifying-payment-status")
 
         } catch (error) {
             toast.error("Something went wrong.")

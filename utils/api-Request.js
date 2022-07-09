@@ -1,4 +1,5 @@
 import { getApi, postApi, getApiWithoutToken, postApiWithoutToken, deleteApi } from "./api-interface";
+import { getSession } from "./constants";
 
 export const projectList = (data) => {
    return postApi(`/api/projects/web/list`, data)
@@ -101,18 +102,22 @@ export const getProjectPercentageApi = async () => {
    return await getApi(`/api/precentage/list`)
 }
 
-export const getFavList = async() => {
+export const getFavList = async () => {
    return await getApi(`/api/favourite/list`)
 }
 
-export const addToFav = async(data) => {
+export const addToFav = async (data) => {
    return await postApi(`/api/favourite/add-to-fav`, data)
 }
 
-export const removeToFav = async(data) => {
+export const removeToFav = async (data) => {
    return await deleteApi(`/api/favourite/remove-to-fav?itemId=${data?.itemId}&itemType=${data?.itemType}`)
 }
 
-export const getdiscount = async() => {
+export const getdiscount = async () => {
    return await getApi(`/api/bundle/settings`)
+}
+
+export const clearCartApi = async (type) => {
+   return await postApi(`/api/payment/remove-items`, { sessionId: getSession(), type })
 }

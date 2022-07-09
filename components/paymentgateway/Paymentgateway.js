@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import AppContext from "../../appContext";
-import { paymentApi } from "../../utils/api-Request";
+import { clearCartApi, paymentApi } from "../../utils/api-Request";
 import { getSession, getToken } from "../../utils/constants";
 
 export default function Paymentgateway({ type, disabled }) {
@@ -65,10 +65,18 @@ export default function Paymentgateway({ type, disabled }) {
         order_id: data.id,
         description: "Thank you for choosing Simulanis",
         image: "/static/images/logo.png",
-        handler: function (response) {
+        handler: async function (response) {
           // Validate payment at server - using webhooks is a better idea.
           setPaymentRes(response)
-          router.push("/payment/success")
+          await clearCartApi(type)
+          if (type == "cart") {
+            fetchCartList()
+          } else {
+
+            fetchBundleList()
+          }
+
+          router.push(`/payment/success`)
           // validatePaymentVerification({"order_id": razorpayOrderId, "payment_id": razorpayPaymentId }, signature, secret);
 
         },
@@ -86,22 +94,13 @@ export default function Paymentgateway({ type, disabled }) {
         router.push("/payment/failed")
       });
       paymentObject.open();
-      router.push("/payment/verifying-payment-status")
-      setTimeout(() => {
-        if (type == "cart") {
-          fetchCartList()
-        } else {
+      // router.push("/payment/verifying-payment-status")
 
-          fetchBundleList()
-        }
-
-        setLoading(false)
-      }, 3000)
     } catch (error) {
       toast.error("Something went wrong.")
       setLoading(false)
     }
   };
   return <button disabled={loading || disabled} className="buy_bundle" style={{ borderRadius: "20px" }} onClick={makePayment}> <i className="fa fa-arrow-right" aria-hidden="true"></i>
-  {loading ? <CircularProgress size={16} /> : 'Pay now'}</button>;
+    {loading ? <CircularProgress size={16} /> : 'Pay now'}</button>;
 }
