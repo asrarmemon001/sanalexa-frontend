@@ -6,6 +6,7 @@ import { ImageBaseUrl } from "../../utils/Baseurl"
 import Link from "next/link";
 import TabPanel from "./tabpanel";
 import { CircularProgress } from "@mui/material";
+import { getToken } from "../../utils/constants";
 
 export default function LeaningPageTemplate() {
    const [userIs, setUser] = useState("")
@@ -71,7 +72,10 @@ export default function LeaningPageTemplate() {
       AOS.refresh();
       getUserData()
       getCourses()
-      getFavData()
+
+      if(Boolean(getToken())){
+         getFavData()
+       } 
    }, []);
  
 

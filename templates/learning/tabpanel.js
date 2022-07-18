@@ -1,4 +1,5 @@
 import { CircularProgress } from "@mui/material"
+import Link from "next/link";
 import { useContext, useState } from "react";
 import { toast } from "react-toastify";
 import AppContext from "../../appContext";
@@ -116,8 +117,13 @@ const TabPanel = ({ projects, percentageData, favorites, packages }) => {
                                             </button>
                                             :
                                             null}
-
-                                        <a href="#" className="share">Share</a>
+                                        {favorites 
+                                        ?
+                                        null
+                                        : 
+                                        <Link href={`/user-project-analytics/${el?.id}`}>
+                                        <a className="share">Analytics</a>
+                                        </Link>}
                                     </div>
                                 </div>
                             </div>

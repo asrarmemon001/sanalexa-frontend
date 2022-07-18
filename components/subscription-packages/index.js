@@ -5,7 +5,7 @@ import { AddtoCart, packageList } from "../../utils/api-Request";
 import { ImageBaseUrl } from "../../utils/Baseurl";
 import { Loader } from "../Loader/Loader";
 import { NoDataFound } from "..//NoDataFound/NoDataFound";
-import { getSession } from "../../utils/constants";
+import { getSession, getToken } from "../../utils/constants";
 import { toast } from "react-toastify";
 import AppContext from "../../appContext";
 import { useRouter } from "next/router";
@@ -46,7 +46,9 @@ export default function SubscriptionPackages({ heading }) {
 
   useEffect(() => {
     getPackageList();
+   if(Boolean(getToken())){
     getFavData()
+   }
   }, []);
 
   useEffect(() => {

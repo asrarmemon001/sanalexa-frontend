@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import AppContext from "../../../appContext";
 import { addtoBundleApi, AddtoCart, addToFav, getFavList } from "../../../utils/api-Request";
 import { ImageBaseUrl } from "../../../utils/Baseurl";
-import { getSession } from "../../../utils/constants";
+import { getSession, getToken } from "../../../utils/constants";
 import ShiftHandover from "../shift-handover";
 const ProductDetailsMain = ({ productDetails }) => {
   const {
@@ -165,7 +165,9 @@ const ProductDetailsMain = ({ productDetails }) => {
     }
 
     useEffect(() => {
+      if(Boolean(getToken())){
         getFavData()
+      }  
     },[])
 
   return (

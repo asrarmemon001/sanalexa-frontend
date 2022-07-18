@@ -12,7 +12,7 @@ import {
   removeToFav
 } from "../../utils/api-Request";
 import { ImageBaseUrl } from "../../utils/Baseurl";
-import { getSession } from "../../utils/constants";
+import { getSession, getToken } from "../../utils/constants";
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
@@ -132,7 +132,10 @@ function ProjectCard({ obj, index, classes }) {
   }
 
   useEffect(() => {
-    getFavData()
+    if(Boolean(getToken())){
+      getFavData()
+    }
+    
   }, [])
 
   const isWishListed = favProjects?.some(el => el?.project?.id == obj.id)

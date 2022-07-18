@@ -121,3 +121,19 @@ export const getdiscount = async () => {
 export const clearCartApi = async (type) => {
    return await postApi(`/api/payment/remove-items`, { sessionId: getSession(), type })
 }
+
+export const getUserProjectReportApi = async (userId, projectId) => {
+   return await getApi(`/api/dashboard/project-user?projectId=${projectId}&userId=${userId}`)
+}
+
+export const onUserProjectSummeryError = (data)=>{
+   return getApi(`/api/dashboard/project-user/errors?projectId=${data?.projectId}&userId=${data?.userId}&sessionId=${data?.sessionId}&type=error`)
+}
+
+export const onUserProjectPriorityReport = (data)=>{
+   return getApi(`/api/dashboard/project-user/priorityTable?projectId=${data?.projectId}&userId=${data?.userId}&sessionId=${data?.sessionId}`)
+}
+
+export const onUserProjectSummeryReport = (data)=>{
+   return getApi(`/api/dashboard/project-user/summary?projectId=${data?.projectId}&userId=${data?.userId}&type=${data?.type}`)
+}

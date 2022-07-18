@@ -37,3 +37,8 @@ export const isPackagesWishListed = (id, favProjects) => {
     const alreadyWishlisted = favProjects?.some(el => el?.package?.id == id)
     return alreadyWishlisted
 }
+
+export const getLastElementId = () => {
+    const id = window.location.href.split("/");
+    return id[id.length - 1]
+}

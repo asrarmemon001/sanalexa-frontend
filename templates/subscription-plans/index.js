@@ -9,7 +9,7 @@ import AppContext from "../../appContext";
 import BannerSection from "../../components/banner-section";
 import { AddtoCart, addToFav, removeToFav } from "../../utils/api-Request";
 import { ImageBaseUrl } from "../../utils/Baseurl";
-import { getSession } from "../../utils/constants";
+import { getSession, getToken } from "../../utils/constants";
 import { isPackagesWishListed, packagesfavList  } from "../../utils/helper-functions"
 import PackageListItem from "./package-list-item";
 
@@ -29,7 +29,9 @@ const SubscriptionPlansListTemplates = ({ subsciptionList }) => {
   useEffect(() => {
     AOS.init();
     AOS.refresh();
+   if(Boolean(getToken())){
     getFavData()
+   }
   }, []);
 
   const handleAddtoCart = async (el) => {
