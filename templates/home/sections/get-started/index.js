@@ -216,7 +216,7 @@ export default function GetStarted() {
             <div className="col-md-3">
               <div className="industry-helvetica">
                 <img src="/static/images/industry-img1.png" />
-                <h5>helvetica neue</h5>
+                <h5>Hand on Training</h5>
                 <p>
                   Learn new industry skills using the ‘learn-by-doing’ pedagogy
                 </p>
@@ -226,9 +226,9 @@ export default function GetStarted() {
             <div className="col-md-3">
               <div className="industry-helvetica">
                 <img src="/static/images/industry-img2.png" />
-                <h5>helvetica neue</h5>
+                <h5>Save Money</h5>
                 <p>
-                  Learn new industry skills using the ‘learn-by-doing’ pedagogy
+                  Save money by accessing the same course across different devices
                 </p>
               </div>
             </div>
@@ -236,9 +236,9 @@ export default function GetStarted() {
             <div className="col-md-3">
               <div className="industry-helvetica">
                 <img src="/static/images/industry-img3.png" />
-                <h5>helvetica neue</h5>
+                <h5>Completion Certificates</h5>
                 <p>
-                  Learn new industry skills using the ‘learn-by-doing’ pedagogy
+                Get certified post successful competition of your every course
                 </p>
               </div>
             </div>
@@ -246,9 +246,9 @@ export default function GetStarted() {
             <div className="col-md-3">
               <div className="industry-helvetica">
                 <img src="/static/images/industry-img4.png" />
-                <h5>helvetica neue</h5>
+                <h5>Industry 5.0 Ready</h5>
                 <p>
-                  Learn new industry skills using the ‘learn-by-doing’ pedagogy
+               Get job ready by digital learning industry 5.0 skills
                 </p>
               </div>
             </div>

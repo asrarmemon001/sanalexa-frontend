@@ -50,3 +50,8 @@
   header {background-color: #062a58;}
 
 header + main {padding-top: 106px;}
+
+@media screen and (max-width: 1499px) {
+
+  header + main {padding-top: 0px;}
+}
