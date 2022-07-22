@@ -103,7 +103,7 @@ const UserAnalyticsProjectReport = () => {
 
 
   return (
-    <div className="container py-4">
+    <div className="container py-4 spacing ">
       <div className="row">
         <PhysiologicalSummary
           maxTimeTakingTask={_userProjectReport?.maxTimeTakingTask}

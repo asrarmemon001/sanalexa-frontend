@@ -2,9 +2,9 @@ import React from "react";
 const TimeSection = ({ imprInTimeEfficiency, AVGTimeTaken }) => {
   return (
     <div className="col-md-3">
-      <div className="card my-4">
+      <div className="card borderred my-4">
         <div className="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-          <div className="bg-success px-3 shadow-success border-radius-lg pt-4 pb-3">
+          <div className="bg-success px-3 shadow-success border-radiusus pt-4 pb-3">
             <div className="row">
               <div className="col-12">
                 <h6 className="text-white text-capitalize ps-3">Time</h6>

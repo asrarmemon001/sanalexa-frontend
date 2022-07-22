@@ -11,9 +11,9 @@ const SummaryOfErrors = ({ IterationDropDown,handleSummaryErrorAPI,defaultIterat
 
   return (
     <div className="col-md-6">
-      <div className="card my-4">
+      <div className="card borderred my-4">
         <div className="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-          <div className="bg-primary px-3 shadow-primary border-radius-lg pt-4 pb-3">
+          <div className="bg-danger px-3 shadow-danger border-radiusus pt-4 pb-3">
             <div className="row">
               <div className="col-12">
                 <h6 className="text-white text-capitalize px-3 d-flex align-items-center">
@@ -61,7 +61,7 @@ const SummaryOfErrors = ({ IterationDropDown,handleSummaryErrorAPI,defaultIterat
             className="table-responsive p-0 text-center"
             style={{ height: 200 }}
           >
-            <table className="table align-items-center mb-0">
+            <table className="table align-items-center thborder  mb-0">
               <thead>
                 <tr>
                   <th className="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 text-start">

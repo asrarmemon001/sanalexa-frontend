@@ -2305,12 +2305,33 @@ body .btn-primary:hover,body .btn-primary:focus {
 /*//////////////////*/
 .card {
     border: 0;
-    border-bottom: 1px solid #e7e2df;
-    border-radius: 0;
+    border-radius: 15px;
     padding-bottom: 30px;
     padding-top: 20px;
 }
+.card-body span.text-bolder {
+    font-weight: bold;
+    color: #000;
+}
+.borderred .card-header {
+    background-color: transparent;
+    border: none;
+}
+.border-radiusus {
+    border-radius: 8px;
+    box-shadow: 1px 4px 4px #dc354526;
+    border: none;
+    /* background-image: linear-gradient(to right,#dc3545, #e53371); */
+    margin-top: -15px;
 
+}
+.thborder thead th {
+    border: 0;
+}
+
+.spacing {
+    padding-top: 80px!important;
+}
 .cartlist button.removeItem {
     border: 0;
     background-color: transparent;
